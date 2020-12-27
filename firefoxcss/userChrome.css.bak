@@ -1,0 +1,237 @@
+:root {
+  --tabs-border: transparent !important;
+  /* active tab left & right borders - not working in 58?*/
+  --toolbox-border-bottom-color: transparent !important;
+  /* 1px line under background tabs */
+  --chrome-nav-bar-controls-border-color: transparent !important;
+  /* border around url bar */
+}
+
+:-moz-any(.tabs-newtab-button,#new-tab-button,#alltabs-button) .toolbarbutton-icon{
+  transform: scale(0.5, 0.5) !important;
+  margin-top:1px !important;
+}
+
+:root:-moz-lwtheme {
+  --toolbox-border-bottom-color: rgba(0,0,0,0) !important; 
+}
+
+#nav-bar {
+  box-shadow:0px 0px 24px 0px rgba(0, 0, 0, 0.12) !important;
+  border:none !important;
+  padding:0px 8px !important;
+}
+
+#bookmarks-menu-button { /* 'Show your bookmarks' toolbar button */
+  list-style-image: url('bookmarks.svg') !important;
+}
+
+#back-button,
+#forward-button {
+  display: none !important;
+}
+
+#PanelUI-button,
+#customization-panel-container,
+#customization-panelWrapper .panel-arrow {
+  -moz-box-ordinal-group: 0 !important;
+  margin-right: -2px !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border: none !important;
+  color: grey !important;
+  opacity: .2 !important;
+}
+
+.tabbrowser-tab[visuallyselected="true"] {
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.33);
+}
+
+.tab-line {
+  display: none !important;
+}
+
+/* URL Bar */
+#urlbar[focused="true"],
+#urlbar:hover, .searchbar-textbox:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+#urlbar,
+.searchbar-textbox,
+#urlbar:hover,
+.searchbar-textbox:hover {
+  background: transparent !important;
+  height: 32px !important;
+  padding: 0 10px !important;
+  font-size: 1.1em !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -moz-appearance: none;
+  margin: 4px 0px !important;
+  min-height: 24px !important;
+  cursor: default;
+}
+
+#pageActionButton,
+#pocket-button-box,
+ar-button,
+/* .autocomplete-history-dropmarker, */
+#identity-box,
+.urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional,
+#page-action-buttons,
+#identity-icon-labels {
+  display: none !important;
+  background: transparent !important;
+}
+
+#PanelUI-menu-button {
+  list-style-image: url("images/icons8-menu.svg") !important;
+}
+
+#TabsToolbar .titlebar-placeholder[type="pre-tabs"] {
+  width:1.22em !important;
+  border-right: none !important;
+}
+
+.titlebar-placeholder[type="post-tabs"] {
+  width:8px !important;
+}
+
+
+
+#PersonalToolbar {
+max-height: none !important; /* Otherwise it's limited to 4em */
+height: 2.5em; /* Just some ridiculous size so you know it works. */
+}
+
+@-moz-document url-prefix("chrome://"), url-prefix("about:") {
+
+	menupopup {
+		-moz-appearance: none !important;
+		padding: 5px 1px 5px 1px !important;
+		background-color: #2B2B2B !important;
+		border: 1px #1C1C1C solid !important;
+		border-radius: 0px !important;
+		min-width: 258px !important;
+	}
+	menuseparator {
+		-moz-appearance: none !important;
+		border: none !important;
+		padding: .5px 0px .5px 0px !important;
+		margin: 4px 11px 4px 11px !important;
+		background-color: #757575 !important;
+	}
+	menuitem, menu {
+		-moz-appearance: none !important;
+		color: white !important;
+		padding: 7px 0px 7px 9px !important;
+		border: none !important;
+		font-size: 12px !important;
+	}
+	menuitem[disabled="true"], menuitem[disabled="true"] > .menu-text {
+		color: gray !important;
+	}
+	menuitem:hover, menu:hover, menuitem[_moz-menuactive] {
+		background-color: #404040 !important;
+	}
+	menu[open] {
+		background-color: var(--uwp-accent-color) !important;
+	}
+	menuitem:hover:active, menu:hover:active, menuitem[selected] {
+		background-color: #555555 !important;
+	}
+	menugroup {
+		padding: 0px !important;
+		background-color: transparent !important;
+	}
+	menuitem > .menu-text, menuitem > .menu-iconic-text {
+		color: white !important;
+		padding: 0px !important;
+	}
+	menuitem[type="checkbox"], menuitem[type="radio"] {
+		padding-left: 17px !important;
+	}
+	menuitem[type="checkbox"] > .menu-iconic-text, menuitem[type="radio"] > .menu-iconic-text {
+		padding-left: 5px !important;
+	}
+	menuitem[checked="true"][type="checkbox"] > .menu-iconic-left {
+		padding: 7px 0px 0px 0px !important;
+		border: solid white;
+		border-width: 0 0 2px 2px;
+		transform: rotate(-45deg) scale(.75);
+		margin-bottom: 4px !important;
+	}
+	menuitem[checked="true"][type="radio"] > .menu-iconic-left {
+		padding: 1px !important;
+		border: solid white;
+		height: 17px !important;
+		border-radius: 100%;
+		background: white;
+		transform: scale(.5); 
+	}
+	menucaption {
+		background-color: transparent !important;
+		color: white !important;
+	}
+	#ContentSelectDropdown > menupopup {
+		background-image: none !important;
+	}
+	#ContentSelectDropdown {
+		padding: 0px !important;
+	}
+	menulist, menulist[disabled="true"] {
+		-moz-appearance: none !important;
+		padding: 4px 4px 4px 4px !important;
+		border: 2px solid #666666 !important;
+		border-radius: 0px !important;
+		background-color: transparent !important;
+		color: white !important;
+		height: auto !important;
+	}
+	menulist:hover {
+		padding: 4px 4px 4px 4px !important;
+		border: 2px solid #999999 !important;
+		background-color: transparent !important;
+	}
+	menulist[open="true"]  {
+		border: 2px solid #666666 !important;
+		background-color: #333333 !important;
+	}
+	#context-back > .menu-iconic-left, #context-forward > .menu-iconic-left, #context-reload > .menu-iconic-left, #context-stop > .menu-iconic-left, #context-bookmarkpage > .menu-iconic-left {
+		padding: 0px !important;
+	}
+	#context-navigation > menuitem {
+		padding-left: 0px !important;
+	}
+	.menu-iconic-left {
+		-moz-appearance: none !important;
+		padding: 0px 5px 0px 9px !important;
+	}
+	.menu-right {
+		-moz-appearance: none !important;
+		padding: 7px !important;
+		margin-right: 12px !important;
+		color: white !important;
+		border: solid white;
+		border-width: 0 2px 2px 0px;
+		transform: rotate(-45deg) scale(.55);
+	}
+	.menu-accel {
+		padding: 0px !important;
+	}
+	tooltip { /* Also update the js script */
+		-moz-appearance: none !important;
+		color: white !important;
+		background-color: #2B2B2B !important;
+		border: 1px solid #1C1C1C !important;
+		padding: 6px !important;
+	}
+
+}
