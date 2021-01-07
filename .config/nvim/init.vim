@@ -38,6 +38,7 @@ Plug 'majutsushi/tagbar'
 Plug 'farseer90718/vim-taskwarrior'
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-startify'
+Plug 'norcalli/nvim-colorizer.lua'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 " Plug 'Valloric/YouCompleteMe'
@@ -111,9 +112,13 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='base16_bright'
 " }}}
 
-" {{{
+" Fuzzy Finder {{{
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS = '--reverse'
+" }}}
+
+" Colorizer {{{
+" Colorizer init settings in Colors section
 " }}}
 
 " }}}
@@ -124,6 +129,7 @@ filetype plugin on
 set termguicolors
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
+lua require'colorizer'.setup()
 " }}}
 
 " Tabs And Spaces {{{
@@ -203,6 +209,12 @@ nnoremap <silent> <C-p> :FZF -m<CR>
 
 " Folding/Unfolding
 nnoremap <space> za
+
+"if &filetype ==# "zsh"
+"  echo "Hello Mushfiq"
+"  set foldmethod=marker
+"endif
+au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
