@@ -15,3 +15,5 @@ To enable, set the pref `toolkit.legacyUserProfileCustomizations.stylesheets` to
 * create 'chrome/userChrome.css'
 * add custom css to `userChrome.css`
 * Restart to apply changes.
+
+**Note**: Apply firefox Default (Dark) theme for best results.
