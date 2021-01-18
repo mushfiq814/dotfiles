@@ -227,6 +227,9 @@ nnoremap <space> za
 "  set foldmethod=marker
 "endif
 au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
+
+" FOR TESTING
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
