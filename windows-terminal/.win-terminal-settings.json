@@ -1,0 +1,115 @@
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+
+  "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+  "colorScheme": "Lovelace",
+  "useAcrylic": true,
+  "acrylicOpacity": 0.5,
+  "fontFace": "FuraCode Nerd Font",
+  "fontWeight": "medium",
+  "fontSize": 10,
+  "suppressApplicationTitle": true,
+
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Chesterz",
+      "useAcrylic": true,
+      "acrylicOpacity": 0.8,
+      "fontFace": "FuraCode Nerd Font",
+      "fontWeight": "medium",
+      "fontSize": 11,
+      "suppressApplicationTitle": true
+    },
+
+    "list": [
+      {
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "name": "PowerShell",
+        "source": "Windows.Terminal.PowershellCore"
+      },
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell",
+        "commandline": "powershell.exe",
+        "hidden": true
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "name": "cmd",
+        "commandline": "cmd.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+        "name": "Ubuntu",
+        "hidden": false,
+        "source": "Windows.Terminal.Wsl"
+      },
+      {
+          "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+          "hidden": false,
+          "name": "Azure Cloud Shell",
+          "source": "Windows.Terminal.Azure"
+      }
+    ]
+  },
+
+  "schemes": [
+    {
+      "name": "Chesterz",
+      "background": "#161a20",
+      "foreground": "#FFFFFF",
+      "black": "#080200",
+      "red": "#FA5E5B",
+      "green": "#16C98D",
+      "yellow": "#FFC83F",
+      "blue": "#288AD6",
+      "purple": "#D34590",
+      "cyan": "#28DDDE",
+      "white": "#E7E7E7",
+      "brightBlack": "#6F6B68",
+      "brightRed": "#FA5E5B",
+      "brightGreen": "#16C98D",
+      "brightYellow": "#FEEF6D",
+      "brightBlue": "#278AD6",
+      "brightPurple": "#D34590",
+      "brightCyan": "#27DEDE",
+      "brightWhite": "#FFFFFF"
+    },
+    {
+      "name": "Lovelace",
+      "background": "#1D1F28",
+      "black": "#282A36",
+      "blue": "#8897F4",
+      "brightBlack": "#414458",
+      "brightBlue": "#556FFF",
+      "brightCyan": "#3FDCEE",
+      "brightGreen": "#18E3C8",
+      "brightPurple": "#B043D1",
+      "brightRed": "#FF4971",
+      "brightWhite": "#BEBEC1",
+      "brightYellow": "#FF8037",
+      "cyan": "#79E6F3",
+      "foreground": "#FDFDFD",
+      "green": "#5ADECD",
+      "purple": "#C574DD",
+      "red": "#F37F97",
+      "white": "#FDFDFD",
+      "yellow": "#F2A272"
+    }
+  ],
+
+  "keybindings": [
+    { "command": { "action": "splitPane", "split": "vertical" }, "keys": "alt+=" },
+    { "command": { "action": "splitPane", "split": "horizontal" }, "keys": "alt+-" },
+    { "command": { "action": "splitPane", "split": "auto" }, "keys": "alt+d" },
+    { "command": { "action": "moveFocus", "direction": "down" }, "keys": "alt+j" },
+    { "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+h" },
+    { "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+l" },
+    { "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+k" }
+  ]
+}

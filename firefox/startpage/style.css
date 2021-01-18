@@ -1,0 +1,79 @@
+:root {
+  --grey: #928374;
+  --red1: #cc241d;
+  --red2: #fb4934;
+  --green1: #98971a;
+  --green2: #b8bb26;
+  --yellow1: #d79921;
+  --yellow2: #fabd2f;
+  --blue1: #458588;
+  --blue2: #83a598;
+  --purple1: #b16286;
+  --purple2: #d3869b;
+  --aqua1: #689d6a;
+  --aqua2: #8ec07c;
+
+  --col1: var(--yellow1);
+  --col2: var(--blue1);
+  --col3: var(--aqua1);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Source Code Pro';
+}
+
+body {
+  background-image: url('images/car-blurred.png');
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  padding: 4em 5em;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  align-items: start;
+  gap: 4em; 
+}
+
+.column {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.row {
+  margin: 1em 0;
+}
+
+.header {
+  margin-bottom: 1rem;
+  color: var(--col1);
+}
+
+.link {
+  padding-bottom: 0.2em;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 0.3em;
+}
+
+#col1 > .header { color: var(--col1); }
+#col1 a { text-decoration-color: var(--col1); }
+
+#col2 > .header { color: var(--col2); }
+#col2 a { text-decoration-color: var(--col2); }
+
+#col3 > .header { color: var(--col3); }
+#col3 a { text-decoration-color: var(--col3); }
