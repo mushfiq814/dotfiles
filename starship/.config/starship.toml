@@ -1,0 +1,28 @@
+# Use custom format
+format = "$username:$hostname $git_branch[\\$](blue) "
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the newline at the start of the prompt
+add_newline = false
+
+[username]
+style_user = "yellow bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  "[$hostname](green bold)"
+trim_at = ".companyname.com"
+disabled = false
+
+[directory]
+truncation_length = 1
+
+[git_branch]
+symbol = "⚡" #  
+format = "[$symbol $branch]($style)"
+
