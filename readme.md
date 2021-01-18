@@ -16,6 +16,8 @@ Use stow to create or remove symbolic links for different programs
 $ stow -nSvt ~ <program_dir_name>
 # for actually creating the link
 $ stow -Svt ~ <program_dir_name>
+# in case config already exists, use --adopt to force stow to link
+$ stow --adopt -Svt ~ <program_dir_name>
 ```
 For `<program_dir_name>`, use the top level directory name that is in the repo, e.g. `neovim`, `zsh`, `bash`
 
@@ -25,5 +27,7 @@ For `<program_dir_name>`, use the top level directory name that is in the repo, 
 $ stow -nDvt ~ <program_dir_name>
 # for actually creating the link
 $ stow -Dvt ~ <program_dir_name>
+# in case config already exists, use --adopt to force stow to link
+$ stow --adopt -Dvt ~ <program_dir_name>
 ```
 
