@@ -1,0 +1,52 @@
+
+# set imap_user = "mushfiq.minds@gmail.com"
+set imap_user = "mushfiq.minds@gmail.com"
+
+# set imap_pass = "`gpg --batch -q --decrypt ~/.mutt/account.gpg`"
+set imap_pass = "hzqbadasnuweatmv"
+
+set folder = imaps://imap.gmail.com/
+set spoolfile = "+INBOX"
+unset record                # Gmail auto-stores in "+[Gmail].Sent Mail"
+unset trash                 # Unset, deletion will remove labels
+set postponed = "+[Gmail].Drafts"
+
+set mail_check = 60
+
+# Prefer plain text to html.
+auto_view text/html
+alternative_order multipart/mixed multipart/related text/plain
+
+# Consult mime.types for determining types of these attachments
+mime_lookup application/octet-stream
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# source colors file
+source ~/.config/mutt/colors.muttrc
+
+# Sidebar
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
+
+# Default index colors:
+color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.*'
+
+# New mail is boldened:
+color index brightyellow black "~N"
+color index_author brightred black "~N"
+color index_subject brightcyan black "~N"
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
