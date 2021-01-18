@@ -1,4 +1,0 @@
-/* invert pdf */
-#viewerContainer > #viewer > .page > .canvasWrapper > canvas {
-  filter: invert(100%) !important;
-}
