@@ -42,6 +42,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
+Plug 'mg979/vim-visual-multi'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -217,15 +218,12 @@ nnoremap <leader>ve :edit $MYVIMRC<CR>
 nnoremap <leader>ze :edit ~/.zshrc<CR>
 
 " Fuzzy Finder
-nnoremap <silent> <C-p> :FZF -m<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
 
 " Folding/Unfolding
 nnoremap <space> za
 
-"if &filetype ==# "zsh"
-"  echo "Hello Mushfiq"
-"  set foldmethod=marker
-"endif
+" set foldmethod for 
 au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 
 " }}}
