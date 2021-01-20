@@ -143,11 +143,10 @@ lua require'colorizer'.setup()
 " }}}
 
 " Tabs And Spaces {{{
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set expandtab
-set noswapfile
+set shiftwidth=2    " # spaces to use for each step of (auto)indent (>>, <<)
+set tabstop=2       " # spaces that a <Tab> counts for
+set softtabstop=2   " # spaces that a <Tab> counts while editing
+set expandtab       " Insert mode: Use the appropriate number of spaces to insert a <Tab>
 " }}}
 
 " File Find {{{
