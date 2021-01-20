@@ -35,9 +35,7 @@ autoload -Uz colors && colors
 # get weather info; q = show city, Q = hide city
 # curl 'wttr.in/?format=2'
 
-# Directory Colors in `ls`
-LS_COLORS='ow=1;30;42:di=1;30;42'
-export $LS_COLORS
+# LS_COLORS moved towards the bottom; otherwise doesn't work
 
 # man pages color
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -204,6 +202,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #export PATH=$PATH:/usr/local/go/bin
 # }}}
 
+# }}}
+
+# Directory Colors in `ls` {{{
+LS_COLORS='ow=1;30;42:di=1;30;42'
+export LS_COLORS
 # }}}
 
 # zsh-syntax-highlighting; should be last. {{{
