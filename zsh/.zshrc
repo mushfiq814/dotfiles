@@ -80,8 +80,7 @@ alias wrc='nvim /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTermi
 alias frc='nvim /mnt/c/Users/mushf/AppData/Roaming/Mozilla/Firefox/Profiles/3qkb6j9y.default-1586366854597/chrome'
 
 # filesystem aliases
-#alias wfs='/mnt/c/Users/mushf'
-hash -d wfs=/mnt/c/Users/mushf
+alias dm='cd /mnt/c/Users/mushf/disciplined-minds'
 alias usf='cd /mnt/c/Users/mushf/OneDrive/USF'
 alias main-dm='ssh -t root@64.225.5.39 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
 
