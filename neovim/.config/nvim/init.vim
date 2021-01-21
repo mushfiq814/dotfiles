@@ -201,6 +201,9 @@ set foldmethod=syntax
 " Remaps {{{
 let mapleader = ","
 
+" Easier Escape from Insert Mode
+inoremap jk <Esc>
+
 " Windows
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
