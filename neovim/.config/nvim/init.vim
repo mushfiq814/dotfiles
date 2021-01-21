@@ -43,6 +43,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
 Plug 'mg979/vim-visual-multi'
+Plug 'tpope/vim-commentary'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
