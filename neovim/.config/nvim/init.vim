@@ -16,39 +16,47 @@
 
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
+
+" Programming Language Plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'caksoylar/vim-mysticaltutor'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'leafgarland/typescript-vim'
-Plug 'vimwiki/vimwiki'
-Plug 'mbbill/undotree'
-Plug 'morhetz/gruvbox'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/goyo.vim'
-Plug 'jkramer/vim-checkbox'
-Plug 'tbabej/taskwiki'
-Plug 'airblade/vim-gitgutter'
-Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'majutsushi/tagbar'
-Plug 'farseer90718/vim-taskwarrior'
-Plug 'tpope/vim-surround'
-Plug 'mhinz/vim-startify'
-Plug 'norcalli/nvim-colorizer.lua'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
+" Plug 'peitalin/vim-jsx-typescript'
+" Plug 'Valloric/YouCompleteMe'
+
+" Navigation Plugins
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Colorschemes and UI
+Plug 'morhetz/gruvbox'
+Plug 'caksoylar/vim-mysticaltutor'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/goyo.vim'
+Plug 'jkramer/vim-checkbox'
+Plug 'mhinz/vim-startify'
+Plug 'norcalli/nvim-colorizer.lua'
+
+" Development Tools
+Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
+Plug 'mbbill/undotree'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'tbabej/taskwiki'
+Plug 'farseer90718/vim-taskwarrior'
+Plug 'airblade/vim-gitgutter'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'digitaltoad/vim-pug'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-" Plug 'Valloric/YouCompleteMe'
 " Plug 'glacambre/firenvim', {'do': {_ -> firenvim#install(0)}}
+
 call plug#end()
 " }}}
 
