@@ -166,6 +166,7 @@ set showmatch
 set nocompatible
 set mouse=a
 set noswapfile
+set list
 
 " integrate with windows clipboard
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
