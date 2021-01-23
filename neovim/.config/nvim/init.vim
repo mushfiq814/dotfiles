@@ -17,20 +17,23 @@
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 
-" Programming Language Plugins
+" Programming Language Plugins {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'Valloric/YouCompleteMe'
+" }}}
 
-" Navigation Plugins
+" Navigation Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" }}}
 
-" Colorschemes and UI
+" Colorschemes and UI {{{
 Plug 'morhetz/gruvbox'
 Plug 'caksoylar/vim-mysticaltutor'
 Plug 'vim-airline/vim-airline'
@@ -39,8 +42,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'jkramer/vim-checkbox'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
+" }}}
 
-" Development Tools
+" Development Tools {{{
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
@@ -56,6 +60,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 " Plug 'glacambre/firenvim', {'do': {_ -> firenvim#install(0)}}
+" }}}
 
 call plug#end()
 " }}}
