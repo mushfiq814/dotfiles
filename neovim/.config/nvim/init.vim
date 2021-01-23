@@ -1,13 +1,13 @@
 "=============================================================================
-"                                  █████        ██████  ███           
-"                                 ░░███        ███░░███░░░            
+"                                  █████        ██████  ███
+"                                 ░░███        ███░░███░░░
 "  █████████████  █████ ████ █████ ░███████   ░███ ░░░ ████   ████████
-" ░░███░░███░░███░░███ ░███ ███░░  ░███░░███ ███████  ░░███  ███░░███ 
-"  ░███ ░███ ░███ ░███ ░███░░█████ ░███ ░███░░░███░    ░███ ░███ ░███ 
-"  ░███ ░███ ░███ ░███ ░███ ░░░░███░███ ░███  ░███     ░███ ░███ ░███ 
-"  █████░███ █████░░██████████████ ████ █████ █████    █████░░███████ 
-" ░░░░░ ░░░ ░░░░░  ░░░░░░░░░░░░░░ ░░░░ ░░░░░ ░░░░░    ░░░░░  ░░░░░███ 
-"                     o                      ,- o                ░███ 
+" ░░███░░███░░███░░███ ░███ ███░░  ░███░░███ ███████  ░░███  ███░░███
+"  ░███ ░███ ░███ ░███ ░███░░█████ ░███ ░███░░░███░    ░███ ░███ ░███
+"  ░███ ░███ ░███ ░███ ░███ ░░░░███░███ ░███  ░███     ░███ ░███ ░███
+"  █████░███ █████░░██████████████ ████ █████ █████    █████░░███████
+" ░░░░░ ░░░ ░░░░░  ░░░░░░░░░░░░░░ ░░░░ ░░░░░ ░░░░░    ░░░░░  ░░░░░███
+"                     o                      ,- o                ░███
 "     ;-. ,-. ,-. . , . ;-.-.   ,-. ,-. ;-.  |  . ,-:            █████
 "     | | |-' | | |/  | | | |   |   | | | |  |- | | |           ░░░░░
 "     ' ' `-' `-' '   ' ' ' '   `-' `-' ' '  |  ' `-|
@@ -152,7 +152,7 @@ let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=j
 syntax enable
 filetype plugin on
 set termguicolors
-colorscheme gruvbox 
+colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 lua require'colorizer'.setup()
 " }}}
@@ -167,7 +167,7 @@ set noexpandtab     " Insert mode: Disable inserting spaces for tabs
 " File Find {{{
 set path+=**
 set wildmenu
-set wildignore+=**/node_modules/** 
+set wildignore+=**/node_modules/**
 set hidden
 " }}}
 
@@ -241,7 +241,7 @@ nnoremap <silent> <C-p> :GFiles<CR>
 " Folding/Unfolding
 nnoremap <space> za
 
-" set foldmethod for 
+" set foldmethod for zshrc
 au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 
 " }}}
