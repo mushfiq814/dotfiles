@@ -79,26 +79,26 @@ call plug#end()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+	inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " }}}
 
 " VimWiki {{{
 let g:vimwiki_list = [{'path':'/mnt/c/Users/mushf/vimwiki',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
+	\ 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
 
 " GitGutter {{{
@@ -112,19 +112,19 @@ set updatetime=100
 " Startify {{{
 " Heading
 let g:startify_custom_header = [
-			\ '                                        _            .                       ', 
-			\ '                                       u            @88>                     ', 
-			\ '   u.    u.                     u.    88Nu.   u.    %8P      ..    .     :   ', 
-			\ ' x@88k u@88c.      .u     ...ue888b  `88888.o888c    .     .888: x888  x888. ', 
-			\ '^"8888""8888"   ud8888.   888R Y888r  ^8888  8888  .@88u  ~`8888~`888X`?888f`', 
-			\ '  8888  888R  :888`8888.  888R I888>   8888  8888 ``888E`   X888  888X `888> ', 
-			\ '  8888  888R  d888 `88%"  888R I888>   8888  8888   888E    X888  888X `888> ', 
-			\ '  8888  888R  8888.+"     888R I888>   8888  8888   888E    X888  888X `888> ', 
-			\ '  8888  888R  8888L      u8888cJ888   .8888b.888P   888E    X888  888X `888> ', 
-			\ ' "*88*" 8888" `8888c. .+  "*888*P"     ^Y8888*""    888&   "*88%""*88" `888!`', 
-			\ '   ""   `Y"    "88888%      `Y"          `Y"        R888"    `~    "    `"`  ', 
-			\ '                 "YP`                                ""                      ', 
-      \ ]
+	\ '                                        _            .                       ',
+	\ '                                       u            @88>                     ',
+	\ '   u.    u.                     u.    88Nu.   u.    %8P      ..    .     :   ',
+	\ ' x@88k u@88c.      .u     ...ue888b  `88888.o888c    .     .888: x888  x888. ',
+	\ '^"8888""8888"   ud8888.   888R Y888r  ^8888  8888  .@88u  ~`8888~`888X`?888f`',
+	\ '  8888  888R  :888`8888.  888R I888>   8888  8888 ``888E`   X888  888X `888> ',
+	\ '  8888  888R  d888 `88%"  888R I888>   8888  8888   888E    X888  888X `888> ',
+	\ '  8888  888R  8888.+"     888R I888>   8888  8888   888E    X888  888X `888> ',
+	\ '  8888  888R  8888L      u8888cJ888   .8888b.888P   888E    X888  888X `888> ',
+	\ ' "*88*" 8888" `8888c. .+  "*888*P"     ^Y8888*""    888&   "*88%""*88" `888!`',
+	\ '   ""   `Y"    "88888%      `Y"          `Y"        R888"    `~    "    `"`  ',
+	\ '                 "YP`                                ""                      ',
+	\ ]
 
 " }}}
 
@@ -184,10 +184,10 @@ set list
 " integrate with windows clipboard
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
-  augroup WSLYank
-    autocmd!
-    autocmd TextYankPost * call system(s:clip, @0)
-  augroup END
+	augroup WSLYank
+		autocmd!
+		autocmd TextYankPost * call system(s:clip, @0)
+	augroup END
 endif
 
 " }}}
