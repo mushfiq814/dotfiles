@@ -2,3 +2,8 @@
 #viewerContainer > #viewer > .page > .canvasWrapper > canvas {
   filter: invert(100%) !important;
 }
+
+/* github code preview */
+.text-mono, .blob-code, .blob-num {
+	font-family: 'Fira Code' !important;
+}
