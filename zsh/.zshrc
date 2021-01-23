@@ -93,6 +93,13 @@ alias fox='powershell.exe Start-Process -FilePath Firefox -ArgumentList'
 function texclean() {
   rm -i *.log *.aux
 }
+
+function convertWinPath() {
+  echo "'$1'"
+  echo "'$1'" | sed 's/\\/\//g'
+  echo "'$1'" | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/g'
+}
+
 # }}}
 
 # Editing {{{
