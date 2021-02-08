@@ -262,7 +262,13 @@ au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 " }}}
 
 " Commands {{{
+
+" Insert current date into buffer.
+" This will insert the date in a new line after the current cursor
+" The ! lets vim override the previous version of the command when resourcing
+" this file
 command! Datenow execute "put=strftime(\\\"%Y-%m-%d\\\")"
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
