@@ -62,3 +62,4 @@ export NVM_DIR="$HOME/.nvm"
 export DISPLAY=localhost:0
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source "$HOME/.cargo/env"
