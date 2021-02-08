@@ -71,13 +71,14 @@ alias make='make -s'
 alias yt='youtube-dl -x --audio-format mp3'
 
 # config files aliases
-alias brc='sudo nvim ~/.bashrc'
-alias zrc='sudo nvim ~/.zshrc'
-alias v='nvim'
-alias vrc='sudo vim /etc/vim/vimrc'
-alias nvrc='nvim ~/.config/nvim/init.vim'
-alias wrc='nvim /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
-alias frc='nvim /mnt/c/Users/mushf/AppData/Roaming/Mozilla/Firefox/Profiles/3qkb6j9y.default-1586366854597/chrome'
+alias brc='sudo $EDITOR ~/.bashrc'
+alias zrc='sudo $EDITOR ~/.zshrc'
+alias v='$EDITOR'
+alias vlatest='~/downloads/squashfs-root/usr/bin/nvim'
+alias vrc='sudo $EDITOR /etc/vim/vimrc'
+alias nvrc='$EDITOR ~/.config/nvim/init.vim'
+alias wrc='$EDITOR /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
+alias frc='$EDITOR /mnt/c/Users/mushf/AppData/Roaming/Mozilla/Firefox/Profiles/3qkb6j9y.default-1586366854597/chrome'
 
 # filesystem aliases
 alias dm='cd /mnt/c/Users/mushf/disciplined-minds'
@@ -86,6 +87,12 @@ alias main-dm='ssh -t root@64.225.5.39 "cd ../var/www/html/wp-content/themes/dis
 
 # open in firefox
 alias fox='powershell.exe Start-Process -FilePath Firefox -ArgumentList'
+
+# open in default program
+alias open='powershell.exe Invoke-Item'
+
+# python3 and pip3; WARNING: replaces pip version2 command name
+alias pip='python3 -m pip'
 
 # }}}
 
@@ -205,7 +212,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # }}}
 
 # Go Compiler {{{
-#export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
+# }}}
+
+# Python Modules {{{
+export PATH=$PATH:$HOME/.local/bin
 # }}}
 
 # }}}
