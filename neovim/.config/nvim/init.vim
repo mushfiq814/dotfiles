@@ -19,11 +19,14 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Programming Language Plugins {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'anott03/nvim-lspinstall'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
+Plug 'cespare/vim-toml'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'Valloric/YouCompleteMe'
 " }}}
@@ -31,6 +34,7 @@ Plug 'pangloss/vim-javascript'
 " Navigation Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-which-key'
 " }}}
 
 " Colorschemes and UI {{{
@@ -39,7 +43,7 @@ Plug 'caksoylar/vim-mysticaltutor'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/goyo.vim'
-Plug 'jkramer/vim-checkbox'
+" Plug 'jkramer/vim-checkbox'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
 " }}}
@@ -96,6 +100,12 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " }}}
 
+" Neovim Lsp {{{
+" lua << EOF
+" require'lspconfig'.tsserver.setup{}
+" EOF
+" }}}
+
 " VimWiki {{{
 let g:vimwiki_list = [{'path':'/mnt/c/Users/mushf/vimwiki',
 	\ 'syntax': 'markdown', 'ext': '.md'}]
@@ -144,6 +154,11 @@ let $FZF_DEFAULT_OPTS = '--reverse'
 
 " Vim-Markdown {{{
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript']
+" }}}
+
+" Which Key {{{
+nnoremap <silent> <leader> :WhichKey ','<CR>
+set timeoutlen=500
 " }}}
 
 " }}}
@@ -244,6 +259,10 @@ nnoremap <space> za
 " set foldmethod for zshrc
 au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 
+" }}}
+
+" Commands {{{
+command! Datenow execute "put=strftime(\\\"%Y-%m-%d\\\")"
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
