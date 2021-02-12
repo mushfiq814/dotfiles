@@ -2,10 +2,10 @@
 My configuration files for different programs that I use. This repo uses [GNU Stow](https://www.gnu.org/software/stow/) to automatically create symlinks to the relevant directories and files from the user home directory `~`.
 
 ## How it Looks
-Overview of neovim+tmux
+### Overview of neovim+tmux
 ![overview](./images/overview.png)
 
-Closer look at the tmux status
+### Closer look at the tmux status
 ![tmux-status](./images/tmux-status.png)
 
 I will add screenshots for the other programs soon.
