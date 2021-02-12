@@ -1,7 +1,11 @@
 # Dotfiles
 My configuration files for different programs that I use. This repo uses [GNU Stow](https://www.gnu.org/software/stow/) to automatically create symlinks to the relevant directories and files from the user home directory `~`.
 
-# Setup
+## How it Looks
+![overview](./images/overview.png)
+![tmux-status](./images/tmux-status.png)
+
+## Setup
 Make sure `stow` is installed
 
 ```sh
