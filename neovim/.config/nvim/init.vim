@@ -52,12 +52,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" Plug 'godlygeek/tabular'
+" Plug 'plasticboy/vim-markdown'
 Plug 'tbabej/taskwiki'
-Plug 'farseer90718/vim-taskwarrior'
 Plug 'airblade/vim-gitgutter'
-Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
@@ -195,6 +193,7 @@ set nocompatible
 set mouse=a
 set noswapfile
 set list
+set noshowmode
 
 " integrate with windows clipboard
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
