@@ -18,12 +18,12 @@
 
 # Startup Scripts
 
-# TaskWarrior
-echo "Work Tasks"
-task +work
+# # TaskWarrior
+# echo "Work Tasks"
+# task +work
 
-echo "Personal Tasks"
-task +personal
+# echo "Personal Tasks"
+# task +personal
 
 # starship prompt
 eval "$(starship init zsh)"
@@ -222,7 +222,7 @@ export PATH=$PATH:$HOME/.local/bin
 # }}}
 
 # Directory Colors in `ls` {{{
-LS_COLORS='ow=1;30;42:di=1;30;42'
+LS_COLORS='ow=1;30;35:di=1;30;35'
 export LS_COLORS
 # }}}
 
