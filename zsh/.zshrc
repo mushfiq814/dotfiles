@@ -54,10 +54,14 @@ cd $HOME
 # Aliases and Variables {{{
 
 # ls aliases (try saying that 5 times)
-alias ls='ls --color=auto -1'
-alias ll='ls -alF'
-alias la='ls -la'
-alias l='ls -CF'
+# alias ls='ls --color=auto -1'
+# alias ll='ls -alF'
+# alias la='ls -la'
+# alias l='ls -CF'
+
+# exa (an ls alternative); NOTE: overrides the ls aliases
+alias ls='exa --oneline --icons'
+alias la='exa --long --all --icons'
 
 # grep aliases
 alias grep='grep --color=auto'
