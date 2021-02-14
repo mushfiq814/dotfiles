@@ -36,5 +36,5 @@ title=$(mid3v2 $1 | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
 echo "$artist - $title" > now-playing.txt
 
 # Initiate powershell script in background
-powershell.exe ./player.ps1 $song $seconds > /dev/null 2>&1 & echo $! > run.pid
+powershell.exe ~/dotfiles/scripts/wsl-musicplayer/player.ps1 $song $seconds > /dev/null 2>&1 & echo $! > run.pid
 
