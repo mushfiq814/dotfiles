@@ -1,0 +1,4 @@
+# pid for powershell background musciplayer process
+# please check scripts/wsl-musicplayer/ for details
+**/run.pid
+
