@@ -12,6 +12,9 @@ then
 	exit 1
 fi
 
+# Kill any previous session
+pkill powershell.exe
+
 # Get duration of song passed in as argument
 duration=$(exiftool $1 | grep Duration | sed 's/^.*\([0-9]\+:[0-9]\+:[0-9]\+\).*$/\1/g')
 
@@ -26,6 +29,11 @@ seconds=$(( 3600 * $hr + 60 * $mn + $sc + $padding ))
 
 # Format song for windows filepath
 song="\"$(realpath $1 | sed 's/\//\\/g' | sed 's/\\mnt\\\(c\)\\/\U\1:\\/g')\""
+
+# Write song info to file
+artist=$(mid3v2 $1 | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
+title=$(mid3v2 $1 | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
+echo "$artist - $title" > now-playing.txt
 
 # Initiate powershell script in background
 powershell.exe ./player.ps1 $song $seconds > /dev/null 2>&1 & echo $! > run.pid
