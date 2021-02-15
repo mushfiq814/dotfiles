@@ -3,7 +3,7 @@
 # February 2021
 
 # Get Passed in Duration
-$mp3file = $args[0]
+$mp3file = Get-Item $args[0] | Select -ExpandProperty FullName
 $duration = $args[1]
 
 # Check if filepath and duration exists, otherwise terminate
