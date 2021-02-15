@@ -9,7 +9,7 @@
 nowplaying=$HOME/dotfiles/scripts/wsl-musicplayer/now-playing.txt
 psscript=$HOME/dotfiles/scripts/wsl-musicplayer/player.ps1
 
-stop_music () {
+stop_player () {
 	# Kill any previous powershell.exe sessions
 	pkill powershell.exe
 
@@ -19,11 +19,9 @@ stop_music () {
 }
 
 # Playback Functions
-play_music () {
-	echo "Playing...$1"
-
-	# Stop anny existing music sessions
-	stop_music
+play_song () {
+	# Stop any existing music player sessions
+	stop_player
 
 	# Get duration of song passed in as argument
 	duration=$(exiftool $1 | grep Duration | sed 's/^.*\([0-9]\+:[0-9]\+:[0-9]\+\).*$/\1/g')
@@ -45,15 +43,27 @@ play_music () {
 	title=$(mid3v2 $1 | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
 	echo "$artist - $title" > $nowplaying
 
+	echo "Now Playing...$title by $artist"
+
 	# Initiate powershell script in background
 	powershell.exe $psscript $song $seconds > /dev/null 2>&1 & echo $! > run.pid
 }
 
-pause_music () {
+play_directory () {
+	echo "Directory play is not supported"
+
+	# STEPS
+	# * loop through all mp3 files in directoy
+	# * start background process to play each song
+	# * implement playlist system
+	# * need to implement next and prev to cycle through songs
+}
+
+pause_song () {
 	echo "Pausing not supported yet"
 }
 
-shuffle_music () {
+shuffle () {
 	echo "Shuffling not supported yet"
 }
 
@@ -62,34 +72,22 @@ while test $# -gt 0; do
 	case "$1" in
 		'--play')
 			shift
-			file=$1
-			play_music $1
+			arg=$1
+			if [ -d "$arg" ]; then
+				play_directory
+			elif [ -f "$arg" ]; then
+				play_song $arg
+			else
+				echo "invalid"
+			fi
 			shift
 			continue
 		;;
-		'--pause')
-			pause_music
-			shift 1
-			continue
-		;;
-		'--stop')
-			stop_music
-			shift 1
-			continue
-		;;
-		'--shuffle')
-			shuffle_music
-			shift 1
-			continue
-		;;
-		'--')
-			shift
-			break
-		;;
-		*)
-			echo "$1 not available"
-			exit 1
-		;;
+		'--pause') pause_song; shift 1; continue ;;
+		'--stop') stop_player; shift 1; continue ;;
+		'--shuffle') shuffle; shift 1; continue ;;
+		'--') shift; break ;;
+		*) echo "$1 not available"; exit 1 ;;
 	esac
 done
 
