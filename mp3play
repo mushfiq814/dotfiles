@@ -12,6 +12,10 @@ psscript=$HOME/dotfiles/scripts/wsl-musicplayer/player.ps1
 stop_music () {
 	# Kill any previous powershell.exe sessions
 	pkill powershell.exe
+
+	# update now playing
+	lastsong=$(cat $nowplaying | head -n 1)
+	echo "Last Played: $lastsong" > $nowplaying
 }
 
 # Playback Functions
@@ -25,9 +29,9 @@ play_music () {
 	duration=$(exiftool $1 | grep Duration | sed 's/^.*\([0-9]\+:[0-9]\+:[0-9]\+\).*$/\1/g')
 
 	# Extract hours, minutes and seconds from duration
-	hr=$(echo $duration | cut -d : -f 1)
-	mn=$(echo $duration | cut -d : -f 2)
-	sc=$(echo $duration | cut -d : -f 3)
+	hr=$(echo $duration | cut -d : -f 1 | sed 's/^0*\(.*\)/\1/g')
+	mn=$(echo $duration | cut -d : -f 2 | sed 's/^0*\(.*\)/\1/g')
+	sc=$(echo $duration | cut -d : -f 3 | sed 's/^0*\(.*\)/\1/g')
 
 	# Calculate total seconds and add padding to ensure song finishes
 	padding=5
