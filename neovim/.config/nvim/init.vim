@@ -107,6 +107,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " VimWiki {{{
 let g:vimwiki_list = [{'path':'/mnt/c/Users/mushf/vimwiki',
 	\ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
 " }}}
 
 " GitGutter {{{
@@ -193,6 +194,9 @@ set nocompatible
 set mouse=a
 set noswapfile
 set list
+set listchars=tab:▶\ ,precedes:↪,extends:↪,space:•,trail:■
+set nowrap
+set linebreak
 set noshowmode
 
 " integrate with windows clipboard
@@ -267,6 +271,12 @@ au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 " The ! lets vim override the previous version of the command when resourcing
 " this file
 command! Datenow execute "put=strftime(\\\"%Y-%m-%d\\\")"
+
+" Put matched groups in search into register
+" for stringing multiple objects use:
+" %s//\=setreg('A', submatch(1) . ": " . submatch(2), "V")/n
+
+command! GetMatch execute "%s//\=setreg('A', submatch(1), \"V\")/n"
 
 " }}}
 
