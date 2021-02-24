@@ -22,6 +22,7 @@ Use stow to create or remove symbolic links for different programs
 ## Link config files
 * Create directory with name of program for which the config files will be linked e.g. `zsh`.
 * Recreate config directory structure in this directory. For instance, `neovim` would have the following directory structure:
+
 	```sh
 	neovim
 	└── .config
