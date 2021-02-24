@@ -65,6 +65,7 @@ cd $HOME
 # exa (an ls alternative); NOTE: overrides the ls aliases
 alias ls='exa --oneline --icons'
 alias la='exa --long --all --icons'
+alias lg='exa --long --all --icons --git'
 
 # grep aliases
 alias grep='grep --color=auto'
@@ -118,6 +119,26 @@ function vlcplay() {
 	vlc="C:\Program Files (x86)\VideoLan\VLC\\\vlc.exe"
 	pth="$(echo $1 | sed 's/\/home\/mushfiq\/windows/C:/g; s/\//\\/g')"
 	powershell.exe $vlc $pth
+}
+
+# Convert from markdown to html
+function md2html() {
+	css="~/dotfiles/pandoc/mvp.css"
+	html="$HOME/dotfiles/pandoc/template.html"
+	out="$(basename $1 .md).html"
+
+	pandoc readme.md                \
+	       --to html                \
+	       --standalone             \
+	       --css $css               \
+	       --template $html         \
+	       --output $out            \
+	       --mathjax                \
+	       --highlight-style tango
+
+	# open in browser
+	powershell.exe Invoke-Item $out
+	
 }
 
 # }}}
