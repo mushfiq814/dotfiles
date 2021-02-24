@@ -18,8 +18,8 @@ $wifi_name = (netsh wlan show interfaces | Select-String -Pattern "^\s+SSID\s*: 
 # Wifi Speed
 $wifi_speed = Get-NetAdapter | ? Name -eq Wi-Fi | Select -ExpandProperty LinkSpeed
 
-Write-Host $cpu
-Write-Host $storage
-Write-Host $mem
-Write-Host $wifi_name
-Write-Host $wifi_speed
+Write-Host "🕒 CPU: $cpu%"
+Write-Host "💾 $storage"
+Write-Host "📈 $mem"
+Write-Host "$wifi_name"
+Write-Host "🌐 $wifi_speed"
