@@ -72,6 +72,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# git aliases
+alias ga='git add'
+alias gs='git status'
+
 # silent mode for make (suppress output)
 alias make='make -s'
 
@@ -127,7 +131,7 @@ function md2html() {
 	html="$HOME/dotfiles/pandoc/template.html"
 	out="$(basename $1 .md).html"
 
-	pandoc readme.md                \
+	pandoc $1                       \
 	       --to html                \
 	       --standalone             \
 	       --css $css               \
