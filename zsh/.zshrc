@@ -25,6 +25,9 @@
 # echo "Personal Tasks"
 # task +personal
 
+# wsl pulseaudio server
+export PULSE_SERVER=tcp:localhost
+
 # starship prompt
 eval "$(starship init zsh)"
 
@@ -109,6 +112,12 @@ function convertWinPath() {
   echo "'$1'"
   echo "'$1'" | sed 's/\\/\//g'
   echo "'$1'" | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/g'
+}
+
+function vlcplay() {
+	vlc="C:\Program Files (x86)\VideoLan\VLC\\\vlc.exe"
+	pth="$(echo $1 | sed 's/\/home\/mushfiq\/windows/C:/g; s/\//\\/g')"
+	powershell.exe $vlc $pth
 }
 
 # }}}
