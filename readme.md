@@ -1,14 +1,25 @@
 # Dotfiles
 My configuration files for different programs that I use. This repo uses [GNU Stow](https://www.gnu.org/software/stow/) to automatically create symlinks to the relevant directories and files from the user home directory `~`.
 
+## My setup
+| Part                    | Details                                                                                              |
+|-------------------------|------------------------------------------------------------------------------------------------------|
+| Device                  | Razer Blade Stealth Ultrabook                                                                        |
+| CPU                     | Intel(R) Core(TM) i7-8550U @ 2.001GHz                                                                |
+| RAM                     | 16.0 GB                                                                                              |
+| OS                      | Ubuntu 18.04.5 LTS on Windows 10 x86_64                                                              |
+| Shell                   | zsh 5.4.2                                                                                            |
+| Terminal Emulator       | Windows Terminal                                                                                     |
+| Terminal Window Manager | Tmux                                                                                                 |
+| Editor                  | NeoVim 0.4.4                                                                                         |
+| Browser/PDF Reader      | Mozilla FireFox                                                                                      |
+| Font                    | [Fira Code Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip) |
+| Colorscheme (Terminal)  | Gruvbox Dark                                                                                         |
+| Colorscheme (Editor)    | Gruvbox Dark                                                                                         |
+
+
 ## How it Looks
-### Overview of neovim+tmux
-![overview](./images/overview.png)
-
-### Closer look at the tmux status
-![tmux-status](./images/tmux-status.png)
-
-I will add screenshots for the other programs soon.
+![windows terminal + zsh + neovim + tmux](./images/overview.png)
 
 ## Setup
 Make sure `stow` is installed
@@ -52,3 +63,14 @@ $ stow -Dvt ~ <program_dir_name>
 $ stow --adopt -Dvt ~ <program_dir_name>
 ```
 
+## More Screenshots
+### Tmux Status
+![tmux-status](./images/tmux-status-2.png)
+
+I will add screenshots for the other programs soon.
+
+### Firefox
+![firefox](./images/firefox.png)
+
+### Visual Studio Code
+![vscode](./images/vscode.png)
