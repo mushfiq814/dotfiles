@@ -9,13 +9,13 @@ I am trying to use pandoc to convert from markdown to html. I am adding my speci
 
 ```sh
 $ pandoc readme.md \
-         -t html \
-				 -s \
-				 -c mvp.css \
-				 --template template.html \
-				 -o readme.html \
-				 --mathjax \
-				 --highlight-style tango
+         -t html                  \ # --to
+         -s                       \ # --standalone
+         -c mvp.css               \ # --css
+         --template template.html \ # --template
+         -o readme.html           \ # --output
+         --mathjax                \ # add mathjax rendering inside markdown
+         --highlight-style tango    # syntax highlight style
 ```
 
 I obtained the template html and css mainly from the following sources:
