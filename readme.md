@@ -4,7 +4,7 @@ My configuration files for different programs that I use. This repo uses [GNU St
 ## My setup
 | Part                    | Details                                                                                              |
 |-------------------------|------------------------------------------------------------------------------------------------------|
-| Device                  | Razer Blade Stealth Ultrabook                                                                        |
+| Device                  | Razer Blade Stealth - 3200x1800 13.3" QHD+ - RZ09-02393E32-R3U1                                      |
 | CPU                     | Intel(R) Core(TM) i7-8550U @ 2.001GHz                                                                |
 | RAM                     | 16.0 GB                                                                                              |
 | OS                      | Ubuntu 18.04.5 LTS on Windows 10 x86_64                                                              |
@@ -16,7 +16,6 @@ My configuration files for different programs that I use. This repo uses [GNU St
 | Font                    | [Fira Code Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip) |
 | Colorscheme (Terminal)  | Gruvbox Dark                                                                                         |
 | Colorscheme (Editor)    | Gruvbox Dark                                                                                         |
-
 
 ## How it Looks
 ![windows terminal + zsh + neovim + tmux](./images/overview.png)
