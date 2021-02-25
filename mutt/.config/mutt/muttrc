@@ -1,15 +1,12 @@
-
-# set imap_user = "mushfiq.minds@gmail.com"
+set from = "mushfiq.minds@gmail.com"
+set realname = "Mushfiq Mahmud"
+set smtp_url = "smtps://mushfiq.minds@smtp.gmail.com:587/"
 set imap_user = "mushfiq.minds@gmail.com"
-
-# set imap_pass = "`gpg --batch -q --decrypt ~/.mutt/account.gpg`"
-set imap_pass = "hzqbadasnuweatmv"
-
-set folder = imaps://imap.gmail.com/
+set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
-unset record                # Gmail auto-stores in "+[Gmail].Sent Mail"
-unset trash                 # Unset, deletion will remove labels
 set postponed = "+[Gmail].Drafts"
+set trash = "+[Gmail].Trash"
+set record = "+[Gmail].Sent Mail"
 
 set mail_check = 60
 
@@ -27,26 +24,27 @@ set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)
 # source colors file
 source ~/.config/mutt/colors.muttrc
 
-# Sidebar
-set sidebar_visible = yes
-set sidebar_width = 20
-set sidebar_short_path = yes
-set sidebar_next_new_wrap = yes
-set mail_check_stats
-set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
+# # Sidebar
+# set sidebar_visible = yes
+# set sidebar_width = 20
+# set sidebar_short_path = yes
+# set sidebar_next_new_wrap = yes
+# set mail_check_stats
+# set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
 
-# Default index colors:
-color index yellow default '.*'
-color index_author red default '.*'
-color index_number blue default
-color index_subject cyan default '.*'
+# # Default index colors:
+# color index yellow default '.*'
+# color index_author red default '.*'
+# color index_number blue default
+# color index_subject cyan default '.*'
 
-# New mail is boldened:
-color index brightyellow black "~N"
-color index_author brightred black "~N"
-color index_subject brightcyan black "~N"
+# # New mail is boldened:
+# color index brightyellow black "~N"
+# color index_author brightred black "~N"
+# color index_subject brightcyan black "~N"
 
-# Status Bar -----------------------------------------
-set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# # Status Bar -----------------------------------------
+# set status_chars  = " *%A"
+# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
+source "gpg -d ~/.config/mutt/password.gpg |"
