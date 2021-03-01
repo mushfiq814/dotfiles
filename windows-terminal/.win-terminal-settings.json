@@ -1,115 +1,208 @@
+
 // To view the default settings, hold "alt" while clicking on the "Settings" button.
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
 
 {
-  "$schema": "https://aka.ms/terminal-profiles-schema",
+	"$schema": "https://aka.ms/terminal-profiles-schema",
+	"defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
 
-  "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-  "colorScheme": "Lovelace",
-  "useAcrylic": true,
-  "acrylicOpacity": 0.5,
-  "fontFace": "FuraCode Nerd Font",
-  "fontWeight": "medium",
-  "fontSize": 10,
-  "suppressApplicationTitle": true,
+	"profiles": {
+		"defaults": {
+			"colorScheme": "gruvbox",
+			"useAcrylic": true,
+			"acrylicOpacity": 0.8,
+			"backgroundImage": "C:/Users/mushf/Downloads/screenshots/blank.png",
+			"backgroundImageOpacity": 1,
+			"fontFace": "FuraCode Nerd Font",
+			"fontWeight": "medium",
+			"fontSize": 11,
+			// "fontFace": "JetBrainsMono Nerd Font",
+			// "fontSize": 11,
+			// "fontFace": "CaskaydiaCove Nerd Font",
+			// "fontWeight": "medium",
+			// "fontSize": 11,
+			"suppressApplicationTitle": false,
+			"showTerminalTitleInTitlebar": true,
+			"padding": "0, 0, 0, 0",
+			"scrollbarState": "hidden"
+		},
 
-  "profiles": {
-    "defaults": {
-      "colorScheme": "Chesterz",
-      "useAcrylic": true,
-      "acrylicOpacity": 0.8,
-      "fontFace": "FuraCode Nerd Font",
-      "fontWeight": "medium",
-      "fontSize": 11,
-      "suppressApplicationTitle": true
-    },
+		"list": [
+			{
+				"guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+				"hidden": false,
+				"name": "PowerShell",
+				"source": "Windows.Terminal.PowershellCore"
+			},
+			{
+				"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+				"name": "Windows PowerShell",
+				"commandline": "powershell.exe",
+				"hidden": true
+			},
+			{
+				"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+				"name": "cmd",
+				"commandline": "cmd.exe",
+				"hidden": false
+			},
+			{
+				"guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+				"name": "Ubuntu",
+				"hidden": false,
+				"source": "Windows.Terminal.Wsl"
+			},
+			{
+				"guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+				"hidden": false,
+				"name": "Azure Cloud Shell",
+				"source": "Windows.Terminal.Azure"
+			}
+		]
+	},
 
-    "list": [
-      {
-        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "hidden": false,
-        "name": "PowerShell",
-        "source": "Windows.Terminal.PowershellCore"
-      },
-      {
-        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-        "name": "Windows PowerShell",
-        "commandline": "powershell.exe",
-        "hidden": true
-      },
-      {
-        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "name": "cmd",
-        "commandline": "cmd.exe",
-        "hidden": false
-      },
-      {
-        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-        "name": "Ubuntu",
-        "hidden": false,
-        "source": "Windows.Terminal.Wsl"
-      },
-      {
-          "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-          "hidden": false,
-          "name": "Azure Cloud Shell",
-          "source": "Windows.Terminal.Azure"
-      }
-    ]
-  },
+	"schemes": [
+		{
+			"name": "gruvbox",
+			"foreground": "#F9F5D7",
+			"background": "#1D2021",
+			"black": "#1D2021",
+			"red": "#CC241D",
+			"green": "#98971A",
+			"yellow": "#D79921",
+			"blue": "#458588",
+			"purple": "#B16286",
+			"cyan": "#689D6A",
+			"white": "#D5C4A1",
+			"brightBlack": "#504945",
+			"brightRed": "#FB4934",
+			"brightGreen": "#B8BB26",
+			"brightYellow": "#FABD2F",
+			"brightBlue": "#83A598",
+			"brightPurple": "#D3869B",
+			"brightCyan": "#8EC07C",
+			"brightWhite": "#F9F5D7"
+		},
+		{
+			"name": "Chesterz",
+			"foreground": "#FFFFFF",
+			"background": "#161a20",
+			"black": "#080200",
+			"red": "#FA5E5B",
+			"green": "#16C98D",
+			"yellow": "#FFC83F",
+			"blue": "#288AD6",
+			"purple": "#D34590",
+			"cyan": "#28DDDE",
+			"white": "#E7E7E7",
+			"brightBlack": "#6F6B68",
+			"brightRed": "#FA5E5B",
+			"brightGreen": "#16C98D",
+			"brightYellow": "#FEEF6D",
+			"brightBlue": "#278AD6",
+			"brightPurple": "#D34590",
+			"brightCyan": "#27DEDE",
+			"brightWhite": "#FFFFFF"
+		},
+		{
+			"name": "Lovelace",
+			"background": "#1D1F28",
+			"foreground": "#FDFDFD",
+			"black": "#282A36",
+			"red": "#F37F97",
+			"green": "#5ADECD",
+			"yellow": "#F2A272",
+			"blue": "#8897F4",
+			"purple": "#C574DD",
+			"cyan": "#79E6F3",
+			"white": "#FDFDFD",
+			"brightBlack": "#414458",
+			"brightRed": "#FF4971",
+			"brightGreen": "#18E3C8",
+			"brightYellow": "#FF8037",
+			"brightBlue": "#556FFF",
+			"brightPurple": "#B043D1",
+			"brightCyan": "#3FDCEE",
+			"brightWhite": "#BEBEC1"
+		},
+		{
+			"name": "x-dotshare",
+			"background": "#151515",
+			"foreground": "#d7d0c7",
+			"black": "#101010",
+			"red": "#e84f4f",
+			"green": "#b8d68c",
+			"yellow": "#e1aa5d",
+			"blue": "#7dc1cf",
+			"purple": "#9b64fb",
+			"cyan": "#6d878d",
+			"white": "#dddddd",
+			"brightBlack": "#404040",
+			"brightRed": "#d23d3d",
+			"brightGreen": "#a0cf5d",
+			"brightYellow": "#f39d21",
+			"brightBlue": "#4e9fb1",
+			"brightPurple": "#8542ff",
+			"brightCyan": "#42717b",
+			"brightWhite": "#dddddd"
+		},
+		{
+			"name": "Blue Matrix",
+			"black": "#101116",
+			"red": "#ff5680",
+			"green": "#00ff9c",
+			"yellow": "#fffc58",
+			"blue": "#00b0ff",
+			"purple": "#d57bff",
+			"cyan": "#76c1ff",
+			"white": "#c7c7c7",
+			"brightBlack": "#686868",
+			"brightRed": "#ff6e67",
+			"brightGreen": "#5ffa68",
+			"brightYellow": "#fffc67",
+			"brightBlue": "#6871ff",
+			"brightPurple": "#d682ec",
+			"brightCyan": "#60fdff",
+			"brightWhite": "#ffffff",
+			"background": "#1d2342",
+			"foreground": "#b8ffe1"
+		},
+		{
+			"name" : "Raspberry",
+			"background" : "#3C0315",
+			"black" : "#282A2E",
+			"blue" : "#0170C5",
+			"brightBlack" : "#676E7A",
+			"brightBlue" : "#80c8ff",
+			"brightCyan" : "#8ABEB7",
+			"brightGreen" : "#B5D680",
+			"brightPurple" : "#AC79BB",
+			"brightRed" : "#BD6D85",
+			"brightWhite" : "#FFFFFD",
+			"brightYellow" : "#FFFD76",
+			"cyan" : "#3F8D83",
+			"foreground" : "#FFFFFD",
+			"green" : "#76AB23",
+			"purple" : "#7D498F",
+			"red" : "#BD0940",
+			"white" : "#FFFFFD",
+			"yellow" : "#E0DE48"
+		}
+	],
 
-  "schemes": [
-    {
-      "name": "Chesterz",
-      "background": "#161a20",
-      "foreground": "#FFFFFF",
-      "black": "#080200",
-      "red": "#FA5E5B",
-      "green": "#16C98D",
-      "yellow": "#FFC83F",
-      "blue": "#288AD6",
-      "purple": "#D34590",
-      "cyan": "#28DDDE",
-      "white": "#E7E7E7",
-      "brightBlack": "#6F6B68",
-      "brightRed": "#FA5E5B",
-      "brightGreen": "#16C98D",
-      "brightYellow": "#FEEF6D",
-      "brightBlue": "#278AD6",
-      "brightPurple": "#D34590",
-      "brightCyan": "#27DEDE",
-      "brightWhite": "#FFFFFF"
-    },
-    {
-      "name": "Lovelace",
-      "background": "#1D1F28",
-      "black": "#282A36",
-      "blue": "#8897F4",
-      "brightBlack": "#414458",
-      "brightBlue": "#556FFF",
-      "brightCyan": "#3FDCEE",
-      "brightGreen": "#18E3C8",
-      "brightPurple": "#B043D1",
-      "brightRed": "#FF4971",
-      "brightWhite": "#BEBEC1",
-      "brightYellow": "#FF8037",
-      "cyan": "#79E6F3",
-      "foreground": "#FDFDFD",
-      "green": "#5ADECD",
-      "purple": "#C574DD",
-      "red": "#F37F97",
-      "white": "#FDFDFD",
-      "yellow": "#F2A272"
-    }
-  ],
+	"keybindings": [
+		{ "command": { "action": "splitPane", "split": "vertical" }, "keys": "alt+=" },
+		{ "command": { "action": "splitPane", "split": "horizontal" }, "keys": "alt+-" },
+		{ "command": { "action": "splitPane", "split": "auto" }, "keys": "alt+d" },
 
-  "keybindings": [
-    { "command": { "action": "splitPane", "split": "vertical" }, "keys": "alt+=" },
-    { "command": { "action": "splitPane", "split": "horizontal" }, "keys": "alt+-" },
-    { "command": { "action": "splitPane", "split": "auto" }, "keys": "alt+d" },
-    { "command": { "action": "moveFocus", "direction": "down" }, "keys": "alt+j" },
-    { "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+h" },
-    { "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+l" },
-    { "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+k" }
-  ]
+		{ "command": { "action": "moveFocus", "direction": "down" }, "keys": "alt+j" },
+		{ "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+h" },
+		{ "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+l" },
+		{ "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+k" },
+
+		{ "command": { "action": "resizePane", "direction": "down" }, "keys": "alt+shift+j" },
+		{ "command": { "action": "resizePane", "direction": "left" }, "keys": "alt+shift+h" },
+		{ "command": { "action": "resizePane", "direction": "right" }, "keys": "alt+shift+l" },
+		{ "command": { "action": "resizePane", "direction": "up" }, "keys": "alt+shift+k" }
+	]
 }
