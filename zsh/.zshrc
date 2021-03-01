@@ -52,9 +52,15 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # start in $HOME
 cd $HOME
 
+# this fixes issues with tmux rendering when using italic support
+# TERM=xterm-color
+
 # }}}
 
 # Aliases and Variables {{{
+
+# source this file
+alias soz='source ~/.zshrc'
 
 # ls aliases (try saying that 5 times)
 # alias ls='ls --color=auto -1'
@@ -90,7 +96,9 @@ alias vlatest='~/downloads/squashfs-root/usr/bin/nvim'
 alias vrc='sudo $EDITOR /etc/vim/vimrc'
 alias nvrc='$EDITOR ~/.config/nvim/init.vim'
 alias wrc='$EDITOR /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
+# alias wrc='$EDITOR /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json'
 alias frc='$EDITOR /mnt/c/Users/mushf/AppData/Roaming/Mozilla/Firefox/Profiles/3qkb6j9y.default-1586366854597/chrome'
+alias trc='$EDITOR ~/.tmux.conf'
 
 # filesystem aliases
 alias dm='cd /mnt/c/Users/mushf/disciplined-minds'
@@ -105,6 +113,9 @@ alias open='powershell.exe Invoke-Item'
 
 # python3 and pip3; WARNING: replaces pip version2 command name
 alias pip='python3 -m pip'
+
+# launch vimwiki
+alias vw='$EDITOR ~/windows/vimwiki/index.md'
 
 # }}}
 
@@ -143,6 +154,15 @@ function md2html() {
 	# open in browser
 	powershell.exe Invoke-Item $out
 	
+}
+
+function changeBG() {
+	pre="C:\/Users\/mushf\/Downloads\/screenshots"
+	img="$pre\/$1.png"
+	term1="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
+	term2="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+	sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term1
+	sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term2
 }
 
 # }}}
