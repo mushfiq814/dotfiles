@@ -2,41 +2,37 @@
 # WSL PowerShell Music Player Initialization Script
 # Created By: Mushfiq Mahmud
 # February 2021
-# IMPORANT NOTE: Currently the script does not work with filenames
-# containing whitespace.
+
+# This script utilizes:
+# * PulseAudio for linux-windows audio server
+# * Tmux for playing music in background session
+# * Mplayer for playing music files
 
 # filepath variables
-nowplaying=$HOME/dotfiles/scripts/wsl-musicplayer/now-playing.txt
-psscript=$HOME/dotfiles/scripts/wsl-musicplayer/player.ps1
+psscript=$HOME/dotfiles/scripts/wsl-musicplayer/pa-server.ps1
+playlistFile=$HOME/dotfiles/scripts/wsl-musicplayer/playlist.txt
 
-stop_player () {
+# Custom name for tmux music session
+session_name="music"
+
+stop_server () {
 	# Kill any previous powershell.exe sessions
 	pkill powershell.exe
-
-	# update now playing
-	lastsong=$(cat $nowplaying | head -n 1)
-	echo "Last Played: $lastsong" > $nowplaying
 }
 
-# Playback Functions
+start_server () {
+	# stop any running servers first
+	stop_server
+
+	# start pulseaudio server
+	powershell.exe $psscript > /dev/null 2>&1 & echo $! > run.pid
+
+	echo "PulseAudio Server Started..."
+}
+
 play_song () {
 	# Stop any existing music player sessions
-	stop_player
-
-	# Get duration of song passed in as argument
-	duration=$(exiftool $1 | grep Duration | sed 's/^.*\([0-9]\+:[0-9]\+:[0-9]\+\).*$/\1/g')
-
-	# Extract hours, minutes and seconds from duration
-	hr=$(echo $duration | cut -d : -f 1 | sed 's/^0*\(.*\)/\1/g')
-	mn=$(echo $duration | cut -d : -f 2 | sed 's/^0*\(.*\)/\1/g')
-	sc=$(echo $duration | cut -d : -f 3 | sed 's/^0*\(.*\)/\1/g')
-
-	# Calculate total seconds and add padding to ensure song finishes
-	padding=5
-	seconds=$(( 3600 * $hr + 60 * $mn + $sc + $padding ))
-
-	# Format song for windows filepath
-	song="\"$(realpath $1 | sed 's/\//\\/g' | sed 's/\\mnt\\\(c\)\\/\U\1:\\/g')\""
+	stop_server
 
 	# Write song info to file
 	artist=$(mid3v2 $1 | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
@@ -45,22 +41,101 @@ play_song () {
 
 	echo "Now Playing...$title by $artist"
 
-	# Initiate powershell script in background
-	powershell.exe $psscript $song $seconds > /dev/null 2>&1 & echo $! > run.pid
+	# start mpv player
+	mpplayer $1
 }
 
-play_directory () {
-	echo "Directory play is not supported"
+tmux_get_session () {
+	# Check if session named $session_name exists.
+	# If it exists, nothing will be output.
+	# Otherwise, redirect error to /dev/null
+	tmux has-session -t $session_name 2>/dev/null
 
-	# STEPS
-	# * loop through all mp3 files in directoy
-	# * start background process to play each song
-	# * implement playlist system
-	# * need to implement next and prev to cycle through songs
+	if [ $? != 0 ]; then
+		# If session doesn't exist return 1
+		echo 1
+	else
+		# If session exists, return session name
+		echo 0
+	fi
 }
 
-pause_song () {
-	echo "Pausing not supported yet"
+tmux_start_music () {
+	# check if session exists
+	exists=$(tmux_get_session)
+
+	if [ $exists -eq 1 ]; then
+		# If session doesn't exist, create it
+		echo "creating new session: $session_name"
+		tmux new-session -s $session_name -d
+	else
+		echo "session: $session_name already exists...attaching"
+	fi
+
+	# Attach to music session
+	tmux attach-session -t $session_name
+	echo "attached to tmux session $session_name"
+
+	# Restart pulseaudio server using start_server function defined above
+	tmux send-keys -t $session_name "$0 start" Enter
+
+	# Start mplayer
+	tmux send-keys -t $session_name "mplayer -shuffle -playlist ~/windows/Music/playlist-all.txt" Enter
+}
+
+pause_resume_song () {
+	# check if session exists
+	exists=$(tmux_get_session)
+
+	if [ $exists -eq 1 ]; then
+		echo "No session named $session_name found. Cannot pause/resume"
+		exit 1
+	fi
+
+	# Attach to music session
+	tmux attach-session -t $session_name
+	echo "attached to tmux session $session_name"
+
+	# Pause/Resume mplayer
+	tmux send-keys -t $session_name p
+}
+
+switch_song () {
+	# check if session exists
+	exists=$(tmux_get_session)
+
+	if [ $exists -eq 1 ]; then
+		echo "No session named $session_name found. Cannot switch song"
+		exit 1
+	fi
+
+	# Attach to music session
+	tmux attach-session -t $session_name
+	echo "attached to tmux session $session_name"
+
+	if [ $1 = "next" ]; then
+		# Go to next song
+		tmux send-keys -t $session_name \>
+	else
+		# Go to next song
+		tmux send-keys -t $session_name \<
+	fi
+
+	# Give time to switch track
+	sleep 1
+	# Show Now Playing
+	get_now_playing
+}
+
+get_now_playing () {
+	# get current mp3 file from mplayer
+	song=$(lsof -c mplayer | fgrep ".mp3" | awk -F " " '{ print $NF; }')
+
+	# Write song info to file
+	artist=$(mid3v2 $song | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
+	title=$(mid3v2 $song | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
+
+	echo "Now Playing $artist - $title"
 }
 
 shuffle () {
@@ -70,11 +145,11 @@ shuffle () {
 # Parse flags and arguments
 while test $# -gt 0; do
 	case "$1" in
-		'--play')
+		'play')
 			shift
 			arg=$1
 			if [ -d "$arg" ]; then
-				play_directory
+				echo "Cannot play from directory yet"
 			elif [ -f "$arg" ]; then
 				play_song $arg
 			else
@@ -83,9 +158,14 @@ while test $# -gt 0; do
 			shift
 			continue
 		;;
-		'--pause') pause_song; shift 1; continue ;;
-		'--stop') stop_player; shift 1; continue ;;
-		'--shuffle') shuffle; shift 1; continue ;;
+		'pause') pause_resume_song "pause"; shift 1; continue ;;
+		'resume') pause_resume_song "resume"; shift 1; continue ;;
+		'stop') stop_server; shift 1; continue ;;
+		'start') start_server; shift 1; continue ;;
+		'next') switch_song "next"; shift 1; continue ;;
+		'prev') switch_song "previous"; shift 1; continue ;;
+		'shuffle') shuffle; shift 1; continue ;;
+		'tmux') tmux_start_music; shift 1; continue ;;
 		'--') shift; break ;;
 		*) echo "$1 not available"; exit 1 ;;
 	esac
