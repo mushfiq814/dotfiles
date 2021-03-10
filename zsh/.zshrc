@@ -163,7 +163,7 @@ function md2html() {
 	       --highlight-style tango
 
 	# open in browser
-	powershell.exe Invoke-Item $out
+	# powershell.exe Invoke-Item $out
 	
 }
 

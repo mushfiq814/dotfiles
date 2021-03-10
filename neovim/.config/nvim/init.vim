@@ -19,6 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Programming Language Plugins {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'godlygeek/tabular'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -47,7 +48,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
-Plug 'godlygeek/tabular'
 Plug 'tbabej/taskwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -250,6 +250,10 @@ nnoremap <silent> <C-p> :GFiles<CR>
 " Folding/Unfolding
 nnoremap <space> za
 
+" }}}
+
+" File Specific Commands {{{
+
 " set foldmethod for zshrc
 au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 
@@ -272,6 +276,33 @@ command! GetMatch execute "%s//\=setreg('A', submatch(1), \"V\")/n"
 " }}}
 
 " Functions {{{
+
+" From https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
+function! TextEnableCodeSnip(filetype) abort
+	let start = '^\s*```'.a:filetype
+	let end = "^\s*```"
+	let textSnipHl = "Comment"
+
+	let ft=toupper(a:filetype)
+	let group='textGroup'.ft
+	if exists('b:current_syntax')
+		let s:current_syntax=b:current_syntax
+		" Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+		" do nothing if b:current_syntax is defined.
+		unlet b:current_syntax
+	endif
+	execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+	try
+		execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+	catch
+	endtry
+	if exists('s:current_syntax')
+		let b:current_syntax=s:current_syntax
+	else
+		unlet b:current_syntax
+	endif
+	execute 'syntax region textSnip'.ft.' matchgroup='.textSnipHl.' keepend start="'.start.'" end="'.end.'" contains=@'.group
+endfunction
 
 " The following function tries to implement execution of a markdown code blocks
 " A bulk of the vimscript here is "borrowed" from vim-markdown by gabrielelana

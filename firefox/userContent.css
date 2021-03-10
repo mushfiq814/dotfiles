@@ -7,3 +7,8 @@
 .text-mono, .blob-code, .blob-num {
 	font-family: 'Fira Code' !important;
 }
+
+/* All monospace fonts */
+code, pre {
+	font-family: 'Fira Code';
+}
