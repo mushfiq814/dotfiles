@@ -1,7 +1,8 @@
 format = """\
 💻 $username:$hostname \\[$directory\\]$git_branch$git_status\
 [█](bg:green fg:red)\
-[░▒▓█](bg:red fg:green)\
+[░▒▓█](bg:red fg:yellow)\
+[░▒▓█](bg:yellow fg:green)\
 [░▒▓█](bg:green fg:blue) \
 [\\$](blue) \
 """
