@@ -1,5 +1,9 @@
-# Use custom format
-format = "💻 $username:$hostname \\[$directory\\]$git_branch$git_status [\\$](blue) "
+format = """\
+💻 $username:$hostname \\[$directory\\]$git_branch$git_status[\\$](blue) \
+[█](bg:green fg:red)\
+[░▒▓█](bg:red fg:green)\
+[░▒▓█](bg:green fg:blue) \
+"""
 
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
@@ -25,5 +29,5 @@ symbol = "" #   ⚡
 format = "[ $symbol $branch]($style)"
 
 [git_status]
-format = "[ $all_status$ahead_behind]($style)"
+format = "[ $all_status$ahead_behind]($style) "
 
