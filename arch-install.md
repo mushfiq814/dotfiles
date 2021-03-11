@@ -64,9 +64,31 @@ More detailed instructions in the [arch wiki](https://wiki.archlinux.org/index.p
 	* `grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck`
 	* `grub-mkconfig -o /boot/grub/grub.cfg`
 
-Arch is installed. You can unmount and reboot or shutdown using `umount -l /mnt` and `reboot` or `shutdown now`
+Arch is installed. You can exit, unmount and reboot or shutdown using:
+```sh
+exit
+umount -l /mnt
+reboot
+# OR
+shutdown now
+```
 
 ## Post Installation
 1. Install Network Manager and enable
 	* `pacman -S networkmanager`
 	* `systemctl enable NetworkManager`
+2. Install packages
+	* `xorg-server xorg-xinit`
+	* `pulseaudio pavucontrol`
+	* `xf86-video-intel mesa-libgl xf86-input-libinput`
+	* `i3 compton dmenu`
+	* `zsh`
+	* `alacritty`
+	* `firefox`
+	* `yay`:
+		* `git clone https://aur.archlinux.org/yay-git.git`
+		* `pacman -S base-devel`
+		* `cd yay-git`
+		* `makepkg -si`
+	* Initialize X
+		* `cp /etc/X11/xinit/xinitrc /home/mushfiq/.xinitrc`
