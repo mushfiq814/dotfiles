@@ -1,9 +1,10 @@
 format = """\
 💻 $username:$hostname \\[$directory\\]$git_branch$git_status\
-[█](bg:green fg:red)\
+[](bg:black fg:red)\
 [░▒▓█](bg:red fg:yellow)\
 [░▒▓█](bg:yellow fg:green)\
-[░▒▓█](bg:green fg:blue) \
+[░▒▓](bg:green fg:blue)\
+[](bg:black fg:blue) \
 [\\$](blue) \
 """
 
@@ -20,7 +21,8 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = "[$hostname](green bold)"
+# format = "[$hostname](green bold)"
+format = "[æŋɘʍą](green bold)"
 
 [directory]
 truncation_length = 1
