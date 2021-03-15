@@ -33,7 +33,15 @@ eval "$(starship init zsh)"
 
 # Set up zsh prompt
 autoload -Uz colors && colors
-# PS1='%F{yellow}%n%f:%F{green}%m%f %F{red}[%1d]%f %F{blue}$%f '
+PS1='💻 '\
+'%F{yellow}%n%f'\
+'%F{magenta}:%f'\
+'%F{green}%m %f'\
+'[%F{cyan}%1d%f] '\
+'%F{red}█%f'\
+'%K{red}%F{green}░▒▓█%k%f'\
+'%K{green}%F{blue}░▒▓█%k%f '\
+'%F{blue}$%f '
 
 # get weather info; q = show city, Q = hide city
 # curl 'wttr.in/?format=2'
@@ -72,6 +80,9 @@ alias soz='source ~/.zshrc'
 alias ls='exa --oneline --icons'
 alias la='exa --long --all --icons'
 alias lg='exa --long --all --icons --git'
+
+# bat (a cat alternative)
+alias bat='batcat'
 
 # grep aliases
 alias grep='grep --color=auto'
@@ -266,7 +277,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # }}}
 
 # Fuzzy Finder {{{
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 # }}}
 
 # Go Compiler {{{
