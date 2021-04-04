@@ -1,20 +1,16 @@
-
-// To view the default settings, hold "alt" while clicking on the "Settings" button.
-// For documentation on these settings, see: https://aka.ms/terminal-documentation
-
 {
 	"$schema": "https://aka.ms/terminal-profiles-schema",
-	"defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+	"defaultProfile": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
 
 	"profiles": {
 		"defaults": {
 			"colorScheme": "gruvbox",
 			"useAcrylic": true,
 			"acrylicOpacity": 0.8,
-			"backgroundImage": "C:/Users/mushf/Downloads/screenshots/blank.png",
+			//"backgroundImage": "C:/Users/mushf/Downloads/pic.png",
 			"backgroundImageOpacity": 1,
 			"fontFace": "FuraCode Nerd Font",
-			"fontWeight": "medium",
+			"fontWeight": 400,
 			"fontSize": 11,
 			// "fontFace": "JetBrainsMono Nerd Font",
 			// "fontSize": 11,
@@ -28,6 +24,19 @@
 		},
 
 		"list": [
+			{
+				"guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
+				"hidden": false,
+				"name": "Arch",
+				"commandline": "wsl -u mushfiq -d Arch",
+				"source": "Windows.Terminal.Wsl"
+			},
+			{
+				"guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+				"name": "Ubuntu",
+				"hidden": false,
+				"source": "Windows.Terminal.Wsl"
+			},
 			{
 				"guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
 				"hidden": false,
@@ -47,17 +56,11 @@
 				"hidden": false
 			},
 			{
-				"guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-				"name": "Ubuntu",
-				"hidden": false,
-				"source": "Windows.Terminal.Wsl"
-			},
-			{
 				"guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
 				"hidden": false,
 				"name": "Azure Cloud Shell",
 				"source": "Windows.Terminal.Azure"
-			}
+			},
 		]
 	},
 
@@ -203,6 +206,9 @@
 		{ "command": { "action": "resizePane", "direction": "down" }, "keys": "alt+shift+j" },
 		{ "command": { "action": "resizePane", "direction": "left" }, "keys": "alt+shift+h" },
 		{ "command": { "action": "resizePane", "direction": "right" }, "keys": "alt+shift+l" },
-		{ "command": { "action": "resizePane", "direction": "up" }, "keys": "alt+shift+k" }
+		{ "command": { "action": "resizePane", "direction": "up" }, "keys": "alt+shift+k" },
+
+		{ "command": "toggleFocusMode", "keys": "ctrl+f" }
 	]
 }
+
