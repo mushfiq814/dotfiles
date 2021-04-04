@@ -18,7 +18,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Programming Language Plugins {{{
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -26,6 +26,10 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'cespare/vim-toml'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 " }}}
 
 " Navigation Plugins {{{
@@ -53,6 +57,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
+Plug 'puremourning/vimspector'
 " }}}
 
 call plug#end()
@@ -65,34 +70,55 @@ call plug#end()
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+" 	let col = col('.') - 1
+" 	return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-	inoremap <silent><expr> <c-space> coc#refresh()
-else
-	inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" " Use <c-space> to trigger completion.
+" if has('nvim')
+" 	inoremap <silent><expr> <c-space> coc#refresh()
+" else
+" 	inoremap <silent><expr> <c-@> coc#refresh()
+" endif
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" " Make <CR> auto-select the first completion item and notify coc.nvim to
+" " format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+" 	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" }}}
+
+" TreeSitter {{{
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+	highlight = { enable = true },
+	indent = { enable = true }
+}
+EOF
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 
 " Neovim Lsp {{{
-" lua << EOF
-" require'lspconfig'.tsserver.setup{}
-" EOF
+lua << EOF
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.pyright.setup{}
+EOF
+" }}}
+
+" Nevim Lsp Completion {{{
+autocmd BufEnter * lua require'completion'.on_attach()
+
+set completeopt=menuone,noinsert,noselect
+set completeopt-=preview
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 " }}}
 
 " VimWiki {{{
@@ -218,8 +244,8 @@ set smartcase " case-insensitive when using lowercase; otherwise, case-sensitive
 " Section Folding {{{
 set foldenable
 set foldlevelstart=10
-set foldnestmax=10
-set foldmethod=syntax
+" set foldnestmax=10
+" set foldmethod=syntax
 " }}}
 
 " Remaps {{{
@@ -255,7 +281,7 @@ nnoremap <space> za
 " File Specific Commands {{{
 
 " set foldmethod for zshrc
-au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
+" au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 
 " }}}
 
