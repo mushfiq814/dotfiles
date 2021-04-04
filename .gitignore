@@ -10,3 +10,8 @@ readme.html
 # files for testing
 **/test.ps1
 **/test.sh
+
+# neovim plugins
+neovim/.config/nvim/.netrwhist
+neovim/.config/nvim/autoload/
+neovim/.config/nvim/plugged/
