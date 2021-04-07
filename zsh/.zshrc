@@ -14,57 +14,6 @@
 #                                  -'    `-'
 #=============================================================================
 
-# Startup, Prompt and Colors {{{
-
-# Startup Scripts
-
-# # TaskWarrior
-# echo "Work Tasks"
-# task +work
-
-# echo "Personal Tasks"
-# task +personal
-
-# wsl pulseaudio server
-export PULSE_SERVER=tcp:localhost
-
-# starship prompt
-eval "$(starship init zsh)"
-
-# Set up zsh prompt
-autoload -Uz colors && colors
-PS1='💻 '\
-'%F{yellow}%n%f'\
-'%F{magenta}:%f'\
-'%F{green}%m %f'\
-'[%F{cyan}%1d%f] '\
-'%F{red}█%f'\
-'%K{red}%F{green}░▒▓█%k%f'\
-'%K{green}%F{blue}░▒▓█%k%f '\
-'%F{blue}$%f '
-
-# get weather info; q = show city, Q = hide city
-# curl 'wttr.in/?format=2'
-
-# LS_COLORS moved towards the bottom; otherwise doesn't work
-
-# man pages color
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
-# start in $HOME
-cd $HOME
-
-# this fixes issues with tmux rendering when using italic support
-# TERM=xterm-color
-
-# }}}
-
 # Aliases and Variables {{{
 
 # source this file
@@ -183,12 +132,13 @@ function changeBG() {
 # Default Editor
 export EDITOR=nvim
 
-# vi mode
+# vi keybindings
 bindkey -v
 export KEYTIMEOUT=1
 
 # Edit line in $EDITOR with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # }}}
@@ -199,21 +149,48 @@ bindkey '^e' edit-command-line
 export HISTSIZE=2000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=~/.zsh_history
-# ignore duplicate commands
+
+# If a new command line being added to the history list duplicates an older
+# one, the older command is removed from the list
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-# ignore commands preceeded by a space
-setopt hist_ignore_space
+
 # share history between shells
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 
 # }}}
 
-# Zsh settings {{{
+# Version Control Info for Prompt {{{
 
+autoload -Uz add-zsh-hook vcs_info
+# only enable git since this is the only vcs I care about (for now)
+zstyle ':vcs_info:*' enable git
+# enable substitution in the prompt
+setopt prompt_subst
+# run vcs_info just before a prompt is displayed (precmd)
+add-zsh-hook precmd vcs_info
+
+# Enable checking for (un)staged changes, enabling use of %u and %c
+zstyle ':vcs_info:*' check-for-changes true
+# Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}●%f'
+zstyle ':vcs_info:*' stagedstr   '%F{blue}●%f'
+# Set the format of the Git information for vcs_info
+zstyle ':vcs_info:git:*' formats       ' %b %u%c '
+zstyle ':vcs_info:git:*' actionformats ' %b|%a %u%c '
+
+# Git branch FontAwesome Icons
+#    ⚡
+
+# }}}
+
+# General Zsh settings {{{
+
+# Enable colors
+autoload -Uz colors && colors
 # Change dir without cd
-setopt auto_cd
+setopt AUTO_CD
 # enable comments in interactive mode
 setopt INTERACTIVE_COMMENTS
 
@@ -221,18 +198,17 @@ setopt INTERACTIVE_COMMENTS
 
 # Zsh Completion {{{
 
-# Use modern completion system
+# enable completion system
 autoload -Uz compinit
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zmodload zsh/complist
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
-eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -241,11 +217,14 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-compinit
-_comp_options+=(globdots)   # Include hidden files.
+
+# initialize completion and ignore all insecure files and dirs
+compinit -i
+
+# Include hidden files.
+_comp_options+=(globdots)
 
 # }}}
 
@@ -290,14 +269,65 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/.local/bin
 # }}}
 
+# WSL PulseAudio Server {{{
+export PULSE_SERVER=tcp:localhost
 # }}}
 
-# Directory Colors in `ls` {{{
-LS_COLORS='ow=1;30;35:di=1;30;35'
-export LS_COLORS
+# Colorful Man Pages {{{
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 # }}}
 
-# zsh-syntax-highlighting; should be last. {{{
+# Starship Prompt {{{
+# eval "$(starship init zsh)"
+# }}}
+
+# }}}
+
+# Startup, Prompt and Colors {{{
+BB0='0'  # black
+RE0='1'  # red
+GR0='2'  # green
+YE0='3'  # yellow
+BL0='4'  # blue
+MA0='5'  # purple
+CY0='6'  # cyan
+WH0='7'  # white
+BB1='8'  # bright black
+RE1='9'  # bright red
+GR1='10' # bright green
+YE1='11' # bright yellow
+BL1='12' # bright blue
+MA1='13' # bright purple
+CY1='14' # bright cyan
+WH1='15' # bright white
+
+COL_BAR='%F{$RE0}%f'\
+'%K{$RE0}%F{$YE0}░▒▓█%k%f'\
+'%K{$YE0}%F{$GR0}░▒▓█%k%f'\
+'%K{$GR0}%F{$BL0}░▒▓%k%f'\
+'%F{$BL0}%f '\
+
+PS1='💻 '\
+'%F{$YE1}%n%f'\
+'%F{$MA1}:%f'\
+'%F{$GR1}arch %f'\
+'['\
+'%F{$CY1}%1d%f'\
+']'\
+'%F{$MA1} ${vcs_info_msg_0_}%f'\
+$COL_BAR\
+'%F{$BL1}$%f '
+
+
+# }}}
+
+# Zsh Plugins; NOTE: SHOULD BE LAST. {{{
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
