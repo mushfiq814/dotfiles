@@ -46,6 +46,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'savq/melange'
+" Plug 'kaicataldo/material.vim'
+" Plug 'fenetikm/falcon'
 " }}}
 
 " Development Tools {{{
