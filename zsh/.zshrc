@@ -289,7 +289,9 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # }}}
 
-# Startup, Prompt and Colors {{{
+# Prompt {{{
+
+# Colors {{{
 BB0='0'  # black
 RE0='1'  # red
 GR0='2'  # green
@@ -306,12 +308,15 @@ BL1='12' # bright blue
 MA1='13' # bright purple
 CY1='14' # bright cyan
 WH1='15' # bright white
+# }}}
 
 COL_BAR='%F{$RE0}%f'\
 '%K{$RE0}%F{$YE0}░▒▓█%k%f'\
 '%K{$YE0}%F{$GR0}░▒▓█%k%f'\
 '%K{$GR0}%F{$BL0}░▒▓%k%f'\
-'%F{$BL0}%f '\
+'%F{$BL0}%f '
+
+SUFFIX='$(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})'$(printf '\u276f%.0s' {1..$SHLVL})'%f'
 
 PS1='💻 '\
 '%F{$YE1}%n%f'\
@@ -322,7 +327,7 @@ PS1='💻 '\
 ']'\
 '%F{$MA1} ${vcs_info_msg_0_}%f'\
 $COL_BAR\
-'%F{$BL1}$%f '
+"${SUFFIX} "
 
 
 # }}}
