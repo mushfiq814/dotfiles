@@ -316,18 +316,18 @@ COL_BAR='%F{$RE0}%f'\
 '%K{$GR0}%F{$BL0}░▒▓%k%f'\
 '%F{$BL0}%f '
 
-SUFFIX='$(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})'$(printf '\u276f%.0s' {1..$SHLVL})'%f'
+SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLVL})"%f"
 
-PS1='💻 '\
-'%F{$YE1}%n%f'\
-'%F{$MA1}:%f'\
-'%F{$GR1}arch %f'\
-'['\
-'%F{$CY1}%1d%f'\
-']'\
-'%F{$MA1} ${vcs_info_msg_0_}%f'\
-$COL_BAR\
-"${SUFFIX} "
+PS1="💻 "\
+"%F{$YE1}%n%f"\
+"%F{$MA1}:%f"\
+"%F{$GR1}arch %f"\
+"["\
+"%F{$CY1}%1d%f"\
+"]"\
+"%F{$MA1} ${vcs_info_msg_0_}%f"\
+"%B${SUFFIX}%b "
+# $COL_BAR\
 
 
 # }}}
