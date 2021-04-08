@@ -20,12 +20,12 @@ call plug#begin('~/.config/nvim/plugged')
 " Programming Language Plugins {{{
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'cespare/vim-toml'
+" Plug 'pangloss/vim-javascript'
+" Plug 'cespare/vim-toml'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
@@ -41,8 +41,10 @@ Plug 'liuchengxu/vim-which-key'
 " Colorschemes and UI {{{
 Plug 'morhetz/gruvbox'
 Plug 'caksoylar/vim-mysticaltutor'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
@@ -61,7 +63,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 " }}}
 
 call plug#end()
@@ -161,6 +163,35 @@ let g:startify_custom_header = [
 " Powerline/Airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16_bright'
+" }}}
+
+" LuaLine {{{
+let g:lualine = {
+			\'options' : {
+			\  'theme' : 'palenight',
+			\  'section_separators' : ['', ''],
+			\  'component_separators' : ['', ''],
+			\  'icons_enabled' : v:true,
+			\},
+			\'sections' : {
+			\  'lualine_a' : [ [ 'mode', { 'upper': v:true, }, ], ],
+			\  'lualine_b' : [ [ 'branch', { 'icon': '', }, ], 'diff', ],
+			\  'lualine_c' : [ [ 'filename', { 'file_status': v:true, 'full_path': v:true, 'shorten': v:true, }, ], ],
+			\  'lualine_x' : [ [ 'diagnostics', { 'sources': [ 'nvim_lsp', ], 'symbols': { 'error': '🔴', 'warn': '🟡', 'info': '🔵', }, }, ], 'encoding', 'fileformat', 'filetype' ],
+			\  'lualine_y' : [ 'progress' ],
+			\  'lualine_z' : [ 'location' ],
+			\},
+			\'inactive_sections' : {
+			\  'lualine_a' : [  ],
+			\  'lualine_b' : [  ],
+			\  'lualine_c' : [ 'filename' ],
+			\  'lualine_x' : [ 'location' ],
+			\  'lualine_y' : [  ],
+			\  'lualine_z' : [  ],
+			\},
+			\'extensions' : [ 'fzf' ],
+			\}
+lua require("lualine").setup()
 " }}}
 
 " Fuzzy Finder {{{
