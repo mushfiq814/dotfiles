@@ -351,6 +351,7 @@ PS1="💻 "\
 "%F{$CY1}%1d%f"\
 "]"\
 "%F{$MA1}${vcs_info_msg_0_}%f"\
+"%(1j. 💬.)"\
 " %B${SUFFIX}%b "
 # $COL_BAR\
 
