@@ -41,6 +41,8 @@ alias egrep='egrep --color=auto'
 # git aliases
 alias ga='git add'
 alias gs='git status'
+alias gl="git log --pretty="\
+	"%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s"
 
 # silent mode for make (suppress output)
 alias make='make -s'
@@ -80,6 +82,30 @@ alias vw='$EDITOR ~/windows/vimwiki/index.md'
 # }}}
 
 # Functions {{{
+
+function prettyGitLog() {
+	# format strings; check man git log for more `placeholders`
+	local authorDate='%aI'            # author date
+	local authorDateRelative='%ar'    # author date relative
+	# local commitDate='%cI'            # commit date relative
+	# local commitDateRelative='%cr'    # commit date relative
+	local authorName='%an'            # author name
+	local shortCommitHash='%h'        # abbreviated commit hash
+	# local longCommitHash='%H'         # commit hash
+	local subject='%s'                # subject
+	# local REFP='%d'   # reference pointer(branch, tag) names
+	
+	local format=""
+	format+="%C(Magenta)$shortCommitHash  %C(reset)"
+	format+="%C(Yellow)$authorDate %C(reset)"
+	format+="(%C(Green)$authorDateRelative%C(reset))"
+	format+="%x09" # tab character
+	format+="%C(Cyan)$authorName: %C(reset)"
+	format+="$subject"
+
+	git log --pretty=$format
+}
+
 function texclean() {
   rm -i *.log *.aux
 }
@@ -173,15 +199,15 @@ add-zsh-hook precmd vcs_info
 
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
-# Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
-zstyle ':vcs_info:*' unstagedstr '%F{yellow}●%f'
-zstyle ':vcs_info:*' stagedstr   '%F{blue}●%f'
+# Set custom strings for an unstaged vcs repo changes
+zstyle ':vcs_info:*' unstagedstr '%F{red}●%f'
+zstyle ':vcs_info:*' stagedstr   '%F{green}●%f'
 # Set the format of the Git information for vcs_info
-zstyle ':vcs_info:git:*' formats       ' %b %u%c '
-zstyle ':vcs_info:git:*' actionformats ' %b|%a %u%c '
+zstyle ':vcs_info:git:*' formats       '  %b %m%u%c'
+zstyle ':vcs_info:git:*' actionformats '  %b|%a %m%u%c'
 
 # Git branch FontAwesome Icons
-#    ⚡
+#   ⚡
 
 # }}}
 
@@ -325,8 +351,8 @@ PS1="💻 "\
 "["\
 "%F{$CY1}%1d%f"\
 "]"\
-"%F{$MA1} ${vcs_info_msg_0_}%f"\
-"%B${SUFFIX}%b "
+"%F{$MA1}${vcs_info_msg_0_}%f"\
+" %B${SUFFIX}%b "
 # $COL_BAR\
 
 
