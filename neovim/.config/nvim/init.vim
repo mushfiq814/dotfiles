@@ -166,32 +166,97 @@ let g:airline_theme='base16_bright'
 " }}}
 
 " LuaLine {{{
-let g:lualine = {
-			\'options' : {
-			\  'theme' : 'palenight',
-			\  'section_separators' : ['', ''],
-			\  'component_separators' : ['', ''],
-			\  'icons_enabled' : v:true,
-			\},
-			\'sections' : {
-			\  'lualine_a' : [ [ 'mode', { 'upper': v:true, }, ], ],
-			\  'lualine_b' : [ [ 'branch', { 'icon': '', }, ], 'diff', ],
-			\  'lualine_c' : [ [ 'filename', { 'file_status': v:true, 'full_path': v:true, 'shorten': v:true, }, ], ],
-			\  'lualine_x' : [ [ 'diagnostics', { 'sources': [ 'nvim_lsp', ], 'symbols': { 'error': '🔴', 'warn': '🟡', 'info': '🔵', }, }, ], 'encoding', 'fileformat', 'filetype' ],
-			\  'lualine_y' : [ 'progress' ],
-			\  'lualine_z' : [ 'location' ],
-			\},
-			\'inactive_sections' : {
-			\  'lualine_a' : [  ],
-			\  'lualine_b' : [  ],
-			\  'lualine_c' : [ 'filename' ],
-			\  'lualine_x' : [ 'location' ],
-			\  'lualine_y' : [  ],
-			\  'lualine_z' : [  ],
-			\},
-			\'extensions' : [ 'fzf' ],
-			\}
-lua require("lualine").setup()
+
+lua << EOF
+local nord = {  }
+
+local colors = {
+	black    = '#2e3440',
+	white    = '#eceff4',
+	grey0    = '#3b4252',
+	grey1    = '#434c5e',
+	grey2    = '#4c566a',
+	grey3    = '#d8dee9',
+	grey4    = '#e5e9f0',
+	frost0   = '#8fbcbb',
+	frost1   = '#88c0d0',
+	frost2   = '#81a1c1',
+	blue     = '#5e81ac',
+	red      = '#bf616a',
+	orange   = '#d08770',
+	yellow   = '#ebcb8b',
+	green    = '#a3be8c',
+	purple   = '#b48ead',
+}
+
+nord.normal = {
+	a = { bg = colors.green,  fg = colors.black, gui = "bold", },
+	b = { bg = colors.grey0,  fg  = colors.white, },
+	c = { bg = colors.black,  fg = colors.grey3, }
+}
+
+nord.insert = {
+	a = { bg = colors.blue,   fg = colors.black, gui = "bold", },
+	b = { bg = colors.grey0,  fg = colors.white, },
+	c = { bg = colors.black,  fg = colors.grey3, }
+}
+
+nord.visual = {
+	a = { bg = colors.yellow, fg = colors.black, gui = "bold", },
+	b = { bg = colors.grey0,  fg = colors.white, },
+	c = { bg = colors.black,  fg = colors.grey3, }
+}
+
+nord.replace = {
+	a = { bg = colors.red,    fg = colors.black, gui = "bold", },
+	b = { bg = colors.grey0,  fg = colors.white, },
+	c = { bg = colors.black,  fg = colors.grey3, }
+}
+
+nord.command = {
+	a = { bg = colors.orange, fg = colors.black, gui = "bold", },
+	b = { bg = colors.grey0,  fg = colors.white, },
+	c = { bg = colors.black,  fg = colors.grey3, }
+}
+
+nord.inactive = {
+	a = { bg = colors.purple, fg = colors.black, gui = "bold", },
+	b = { bg = colors.black,  fg = colors.grey3, }
+}
+
+nord.terminal = nord.normal
+
+local function inactive_txt()
+	return [[INACTIVE]]
+end
+
+require('lualine').setup {
+	options = {
+		theme = nord,
+		section_separators = { '', '' },
+		component_separators = { '|', '|' },
+		icons_enabled = true,
+	},
+	sections = {
+		lualine_a = { { 'mode', upper = true, }, },
+		lualine_b = { { 'branch', icon = '', }, 'diff', },
+		lualine_c = { { 'filename', file_status = true, full_path = true, shorten = true, }, },
+		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, }, 'encoding', 'fileformat', 'filetype' },
+		lualine_y = { 'progress' },
+		lualine_z = { 'location'  },
+	},
+	inactive_sections = {
+		lualine_a = { { inactive_txt }, },
+		lualine_b = { 'filename' },
+		lualine_c = { },
+		lualine_x = { },
+		lualine_y = { },
+		lualine_z = { 'location' },
+	},
+	extensions = { 'fzf' }
+}
+EOF
+
 " }}}
 
 " Fuzzy Finder {{{
@@ -339,9 +404,9 @@ command! GetMatch execute "%s//\=setreg('A', submatch(1), \"V\")/n"
 " Functions {{{
 
 " From https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
-function! TextEnableCodeSnip(filetype) abort
-	let start = '^\s*```'.a:filetype
-	let end = "^\s*```"
+function! TextEnableCodeSnip(filetype, start, end) abort
+	" let start = '^\s*```'.a:filetype
+	" let end = "^\s*```"
 	let textSnipHl = "Comment"
 
 	let ft=toupper(a:filetype)
@@ -362,7 +427,7 @@ function! TextEnableCodeSnip(filetype) abort
 	else
 		unlet b:current_syntax
 	endif
-	execute 'syntax region textSnip'.ft.' matchgroup='.textSnipHl.' keepend start="'.start.'" end="'.end.'" contains=@'.group
+	execute 'syntax region textSnip'.ft.' matchgroup='.textSnipHl.' keepend start="'.a:start.'" end="'.a:end.'" contains=@'.group
 endfunction
 
 " The following function tries to implement execution of a markdown code blocks
