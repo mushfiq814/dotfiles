@@ -427,6 +427,9 @@ nnoremap <space> za
 " set foldmethod for zshrc
 " au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
 
+" follow markdown links
+au FileType markdown nnoremap <buffer> <CR> :call FollowMarkdownLink()<CR>
+
 " }}}
 
 " Commands {{{
