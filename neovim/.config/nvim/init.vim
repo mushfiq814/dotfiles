@@ -30,6 +30,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'anott03/nvim-lspinstall'
 " }}}
 
 " Navigation Plugins {{{
@@ -48,6 +49,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 " Plug 'ayu-theme/ayu-vim'
 " Plug 'savq/melange'
 " Plug 'kaicataldo/material.vim'
@@ -56,9 +58,9 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 " Development Tools {{{
 Plug 'tpope/vim-fugitive'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
-Plug 'tbabej/taskwiki'
+" Plug 'tbabej/taskwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
