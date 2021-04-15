@@ -235,7 +235,7 @@ local colors = {
 
 nord.normal = {
 	a = { bg = colors.green,  fg = colors.black, gui = "bold", },
-	b = { bg = colors.grey0,  fg  = colors.white, },
+	b = { bg = colors.grey0,  fg = colors.white, },
 	c = { bg = colors.black,  fg = colors.grey3, }
 }
 
@@ -264,7 +264,7 @@ nord.command = {
 }
 
 nord.inactive = {
-	a = { bg = colors.purple, fg = colors.black, gui = "bold", },
+	a = { bg = colors.grey3,  fg = colors.black, gui = "bold", },
 	b = { bg = colors.black,  fg = colors.grey3, }
 }
 
