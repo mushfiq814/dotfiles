@@ -409,11 +409,8 @@ nnoremap <space> za
 
 " File Specific Commands {{{
 
-" set foldmethod for zshrc
-" au BufRead,BufNewFile *.zshrc set foldmethod=marker foldlevel=0
-
 " follow markdown links
-au FileType markdown nnoremap <buffer> <leader>g :call FollowMarkdownLink()<CR>
+au FileType markdown nnoremap <buffer> <CR> :call FollowMarkdownLink()<CR>
 " go backwards
 au FileType markdown nnoremap <buffer> <BS> <C-o>
 " align tables using Tabular
