@@ -375,8 +375,6 @@ set smartcase " case-insensitive when using lowercase; otherwise, case-sensitive
 " Section Folding {{{
 set foldenable
 set foldlevelstart=10
-" set foldnestmax=10
-" set foldmethod=syntax
 " }}}
 
 " Remaps {{{
