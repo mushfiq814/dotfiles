@@ -18,20 +18,13 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Programming Language Plugins {{{
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'cespare/vim-toml'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-Plug 'hrsh7th/nvim-compe'
 Plug 'anott03/nvim-lspinstall'
+Plug 'hrsh7th/nvim-compe'
 " }}}
 
 " Navigation Plugins {{{
@@ -42,19 +35,11 @@ Plug 'liuchengxu/vim-which-key'
 
 " Colorschemes and UI {{{
 Plug 'morhetz/gruvbox'
-Plug 'caksoylar/vim-mysticaltutor'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-" Plug 'ayu-theme/ayu-vim'
-" Plug 'savq/melange'
-" Plug 'kaicataldo/material.vim'
-" Plug 'fenetikm/falcon'
 " }}}
 
 " Development Tools {{{
@@ -64,9 +49,8 @@ Plug 'mbbill/undotree'
 " Plug 'tbabej/taskwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
-Plug 'mg979/vim-visual-multi'
+" Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
-" Plug 'puremourning/vimspector'
 " }}}
 
 call plug#end()
