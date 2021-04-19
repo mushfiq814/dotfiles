@@ -460,7 +460,9 @@ lua << EOF
 	end
 EOF
 endfunction
+" }}}
 
+" TextEnableCodeSnip {{{
 " From https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
 function! TextEnableCodeSnip(filetype, start, end) abort
 	" let start = '^\s*```'.a:filetype
@@ -487,7 +489,9 @@ function! TextEnableCodeSnip(filetype, start, end) abort
 	endif
 	execute 'syntax region textSnip'.ft.' matchgroup='.textSnipHl.' keepend start="'.a:start.'" end="'.a:end.'" contains=@'.group
 endfunction
+" }}}
 
+" My_orgmode {{{
 " The following function tries to implement execution of a markdown code blocks
 " A bulk of the vimscript here is "borrowed" from vim-markdown by gabrielelana
 " I have tried to trim the code to fit my particular needs and have made a few
@@ -631,6 +635,8 @@ let s:extensions_and_envs = {
 	\ 'python': ['.py', 'python3'],
 	\ 'py': ['.py', 'python3']
 \ }
+
+" }}}
 
 " }}}
 
