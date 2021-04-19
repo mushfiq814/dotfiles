@@ -438,6 +438,8 @@ command! GetMatch execute "%s//\=setreg('A', submatch(1), \"V\")/n"
 " }}}
 
 " Functions {{{
+
+" FollowMarkdownLink {{{
 function! FollowMarkdownLink() abort
 lua << EOF
 	-- get text of current line
