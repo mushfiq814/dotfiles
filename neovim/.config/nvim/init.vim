@@ -203,63 +203,70 @@ let g:startify_custom_header = [
 " LuaLine {{{
 
 lua << EOF
-local nord = {  }
+local gruvbox = {  }
 
 local colors = {
-	black    = '#2e3440',
-	white    = '#eceff4',
-	grey0    = '#3b4252',
-	grey1    = '#434c5e',
-	grey2    = '#4c566a',
-	grey3    = '#d8dee9',
-	grey4    = '#e5e9f0',
-	frost0   = '#8fbcbb',
-	frost1   = '#88c0d0',
-	frost2   = '#81a1c1',
-	blue     = '#5e81ac',
-	red      = '#bf616a',
-	orange   = '#d08770',
-	yellow   = '#ebcb8b',
-	green    = '#a3be8c',
-	purple   = '#b48ead',
+	black    = '#1d2021',
+	grey0    = '#282828',
+	grey1    = '#504945',
+	grey2    = '#7c6f64',
+	grey3    = '#a89984',
+	grey4    = '#ebdbb2',
+	white    = '#fbf1c7',
+	blue     = '#83a598',
+	red      = '#fb4934',
+	orange   = '#fe8019',
+	yellow   = '#fabd2f',
+	green    = '#b8bb26',
+	purple   = '#d3869b',
+	cyan     = '#8ec07c',
 }
 
-nord.normal = {
-	a = { bg = colors.green,  fg = colors.black, gui = "bold", },
-	b = { bg = colors.grey0,  fg = colors.white, },
-	c = { bg = colors.black,  fg = colors.grey3, }
+-- #83a598 #458588
+-- #fb4934 #cc241d
+-- #fe8019 #d65d0e
+-- #fabd2f #d79921
+-- #b8bb26 #98971a
+-- #d3869b #b16286
+-- #8ec07c #689d6a
+
+gruvbox.normal = {
+	a = { bg = colors.cyan,   fg = colors.black, gui = "bold", },
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-nord.insert = {
+gruvbox.insert = {
 	a = { bg = colors.blue,   fg = colors.black, gui = "bold", },
-	b = { bg = colors.grey0,  fg = colors.white, },
-	c = { bg = colors.black,  fg = colors.grey3, }
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-nord.visual = {
+gruvbox.visual = {
 	a = { bg = colors.yellow, fg = colors.black, gui = "bold", },
-	b = { bg = colors.grey0,  fg = colors.white, },
-	c = { bg = colors.black,  fg = colors.grey3, }
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-nord.replace = {
+gruvbox.replace = {
 	a = { bg = colors.red,    fg = colors.black, gui = "bold", },
-	b = { bg = colors.grey0,  fg = colors.white, },
-	c = { bg = colors.black,  fg = colors.grey3, }
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-nord.command = {
+gruvbox.command = {
 	a = { bg = colors.orange, fg = colors.black, gui = "bold", },
-	b = { bg = colors.grey0,  fg = colors.white, },
-	c = { bg = colors.black,  fg = colors.grey3, }
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-nord.inactive = {
+gruvbox.inactive = {
 	a = { bg = colors.grey3,  fg = colors.black, gui = "bold", },
-	b = { bg = colors.black,  fg = colors.grey3, }
+	b = { bg = colors.black,  fg = colors.grey3, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-nord.terminal = nord.normal
+gruvbox.terminal = gruvbox.normal
 
 local function inactive_txt()
 	return [[INACTIVE]]
