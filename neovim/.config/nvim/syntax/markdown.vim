@@ -39,7 +39,7 @@ syntax match markdownGeneralUrl
 
 " Markdown Links: [text](url) OR ![image-alt](url)
 syntax region markdownLinkUrl matchgroup=markdownLinkUrlParans
-	\ start='(' end=')' contains=markdownGeneralUrl keepend oneline
+	\ start='(' end=')' contains=markdownGeneralUrl keepend oneline conceal
 syntax region markdownLinkTitle matchgroup=markdownLinkTitleBracks
 	\ start='!\?\[' end='\]' keepend oneline
 
