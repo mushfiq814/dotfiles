@@ -274,21 +274,21 @@ end
 
 require('lualine').setup {
 	options = {
-		theme = nord,
+		theme = gruvbox,
 		section_separators = { '', '' },
 		component_separators = { '|', '|' },
 		icons_enabled = true,
 	},
 	sections = {
 		lualine_a = { { 'mode', upper = true, }, },
-		lualine_b = { { 'branch', icon = '', }, 'diff', },
+		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.blue, color_modified = colors.green, color_removed = colors.red }, },
 		lualine_c = { { 'filename', file_status = true, full_path = true, shorten = true, }, },
 		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, }, 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location'  },
 	},
 	inactive_sections = {
-		lualine_a = { { inactive_txt }, },
+		lualine_a = { inactive_txt },
 		lualine_b = { 'filename' },
 		lualine_c = { },
 		lualine_x = { },
