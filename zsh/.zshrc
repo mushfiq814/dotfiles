@@ -262,12 +262,12 @@ _comp_options+=(globdots)
 # This enables lazy loading nvm 
 lazynvm() {
 	echo 'lazy loading nvm...'
-  unset -f nvm node npm npx
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-  if [ -f "$NVM_DIR/bash_completion" ]; then
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-  fi
+	unset -f nvm node npm npx
+	export NVM_DIR=~/.nvm
+	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+	if [ -f "$NVM_DIR/bash_completion" ]; then
+		[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+	fi
 }
 
 # lazy load nvm when the following commands are entered
@@ -308,10 +308,6 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
-# }}}
-
-# Starship Prompt {{{
-# eval "$(starship init zsh)"
 # }}}
 
 # }}}
