@@ -412,6 +412,9 @@ nnoremap <silent> <C-p> :GFiles<CR>
 " Folding/Unfolding
 nnoremap <space> za
 
+" Escape to normal mode in terminal mode
+tnoremap <ESC> <C-\><C-n>
+
 " }}}
 
 " File Specific Commands {{{
