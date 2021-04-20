@@ -188,13 +188,15 @@ setopt APPEND_HISTORY
 
 # Version Control Info for Prompt {{{
 
-autoload -Uz add-zsh-hook vcs_info
+autoload -Uz vcs_info
 # only enable git since this is the only vcs I care about (for now)
 zstyle ':vcs_info:*' enable git
+# run vcs_info just before a prompt is displayed (precmd)
+precmd() {
+	vcs_info
+}
 # enable substitution in the prompt
 setopt prompt_subst
-# run vcs_info just before a prompt is displayed (precmd)
-add-zsh-hook precmd vcs_info
 
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
