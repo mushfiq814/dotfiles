@@ -98,7 +98,7 @@ function prettyGitLog() {
 	format+="%C(Magenta)$shortCommitHash  %C(reset)"
 	format+="%C(Yellow)$authorDate %C(reset)"
 	format+="(%C(Green)$authorDateRelative%C(reset))"
-	format+="%x09" # tab character
+	format+="    %x09" # tab character
 	format+="%C(Cyan)$authorName: %C(reset)"
 	format+="$subject"
 
