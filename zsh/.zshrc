@@ -81,6 +81,7 @@ alias vw='$EDITOR ~/windows/vimwiki/index.md'
 
 # Functions {{{
 
+# prettyGitLog {{{
 function prettyGitLog() {
 	# format strings; check man git log for more `placeholders`
 	local authorDate='%aI'            # author date
@@ -101,26 +102,34 @@ function prettyGitLog() {
 	format+="%C(Cyan)$authorName: %C(reset)"
 	format+="$subject"
 
-	git log --pretty=$format
+	# call git log with custom format and append any flags passed in
+	git log --pretty=$format $1
 }
+# }}}
 
+# texclean {{{
 function texclean() {
   rm -i *.log *.aux
 }
+# }}}
 
+# convertWinPath {{{
 function convertWinPath() {
   echo "'$1'"
   echo "'$1'" | sed 's/\\/\//g'
   echo "'$1'" | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/g'
 }
+# }}}
 
+# vlcplay {{{
 function vlcplay() {
 	vlc="C:\Program Files (x86)\VideoLan\VLC\\\vlc.exe"
 	pth="$(echo $1 | sed 's/\/home\/mushfiq\/windows/C:/g; s/\//\\/g')"
 	powershell.exe $vlc $pth
 }
+# }}}
 
-# Convert from markdown to html
+# md2html: Convert from markdown to html {{{
 function md2html() {
 	css="~/dotfiles/pandoc/mvp.css"
 	html="$HOME/dotfiles/pandoc/template.html"
@@ -137,9 +146,10 @@ function md2html() {
 
 	# open in browser
 	# powershell.exe Invoke-Item $out
-	
 }
+# }}}
 
+# changeBG {{{
 function changeBG() {
 	pre="C:\/Users\/mushf\/Downloads\/screenshots"
 	img="$pre\/$1.png"
@@ -148,6 +158,7 @@ function changeBG() {
 	sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term1
 	sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term2
 }
+# }}}
 
 # }}}
 
@@ -356,7 +367,7 @@ PS1="💻 "\
 # }}}
 
 # Zsh Plugins; NOTE: SHOULD BE LAST. {{{
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
 
