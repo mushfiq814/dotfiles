@@ -91,8 +91,12 @@ syn region markdownCodeBlock matchgroup=markdownCodeDelimiter
 	\ start='^\s*```\+.*$' end='^\s*```\+\s*$' keepend
 
 " Tables: | txt | txt |\n|--|--|\n| txt | txt |
-syn region markdownTable1 matchgroup=markdownTableDividers
-	\ start='|' end='|' keepend oneline
+" syn region markdownTable1 matchgroup=markdownTableDividers
+" 	\ start='|' end='|' keepend oneline
+
+" Table Alternating Rows Highlight
+syn match Oddlines  "^|.*|$" contains=ALL nextgroup=Evenlines skipnl
+syn match Evenlines "^|.*|$" contains=ALL nextgroup=Oddlines skipnl
 
 " Horizontal Rule: ---
 
@@ -123,8 +127,10 @@ hi! def link markdownLinkTitleBracks    GruvboxAqua
 hi! def link markdownLinkUrlParans      GruvboxAqua
 hi! def link markdownLinkTitle          GruvboxFg2
 hi! def link markdownLinkUrl            GruvboxRed
-hi! def link markdownTable1 GruvboxYellow
-hi! markdownTableDividers guifg=#000000 guibg=#5E554B
+" hi! def link markdownTable1 GruvboxYellow
+" hi! markdownTableDividers guifg=#000000 guibg=#5E554B
+hi! Oddlines guibg=#2d2d2d guifg=None
+
 
 " Conceal Highlight Color
 hi! def link Conceal GruvboxRed
