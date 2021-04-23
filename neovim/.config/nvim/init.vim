@@ -354,6 +354,7 @@ set listchars=tab:▶\ ,precedes:↪,extends:↪,space:•,trail:■
 set nowrap
 set linebreak
 set noshowmode
+set spell
 
 " integrate with windows clipboard
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
