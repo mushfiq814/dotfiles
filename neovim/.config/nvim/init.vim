@@ -449,6 +449,16 @@ command! GetMatch execute "%s//\=setreg('A', submatch(1), \"V\")/n"
 
 " Functions {{{
 
+" Exec {{{
+" call as follows `:put =Exec('command')`. e.g. `:put =Exec('ls')`
+function! Exec(command)
+	redir => output
+	silent exec a:command
+	redir END
+	return output
+endfunction!
+" }}}
+
 " FollowMarkdownLink {{{
 function! FollowMarkdownLink() abort
 lua << EOF
