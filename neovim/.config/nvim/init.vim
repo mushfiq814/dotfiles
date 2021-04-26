@@ -378,6 +378,7 @@ let g:netrw_banner = 0    " disable banner
 noh
 set incsearch
 set hlsearch
+set ignorecase
 set smartcase " case-insensitive when using lowercase; otherwise, case-sensitive
 " }}}
 
