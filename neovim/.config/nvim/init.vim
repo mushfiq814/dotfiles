@@ -418,6 +418,9 @@ nnoremap <space> za
 " Escape to normal mode in terminal mode
 tnoremap <ESC> <C-\><C-n>
 
+" Lsp Code Actions
+nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+
 " }}}
 
 " File Specific Commands {{{
