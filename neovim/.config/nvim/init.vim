@@ -665,4 +665,4 @@ let s:extensions_and_envs = {
 
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevel=0:norelativenumber
