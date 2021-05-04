@@ -318,13 +318,15 @@ set timeoutlen=500
 " }}}
 
 " Indent Blankline {{{
-" let g:indent_blankline_char = '│'
-let g:indent_blankline_char = '█'
-let g:indent_blankline_char_highlight_list = ['GruvboxBg0', 'GruvboxBg1']
-let g:indent_blankline_space_char = '█'
-let g:indent_blankline_space_char_highlight_list = ['GruvboxBg0', 'GruvboxBg1']
-let g:indent_blankline_space_char_blankline = '█'
-let g:indent_blankline_space_char_blankline_highlight_list = ['GruvboxBg0', 'GruvboxBg1']
+
+" Special Characters: '│' '█'
+let g:indent_blankline_char = ' '
+let g:indent_blankline_char_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+let g:indent_blankline_space_char = ' '
+let g:indent_blankline_space_char_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+let g:indent_blankline_space_char_blankline = ' '
+let g:indent_blankline_space_char_blankline_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+
 " }}}
 
 " }}}
@@ -673,6 +675,14 @@ let s:extensions_and_envs = {
 \ }
 
 " }}}
+
+" }}}
+
+" Custom Universal Highlight Groups (Need to be last) {{{
+
+" Indent Blankline Highlight Groups
+hi! indentBlanklinePrimary guifg=red guibg=#282828
+hi! indentBlanklineSecondary guifg=red guibg=#484848
 
 " }}}
 
