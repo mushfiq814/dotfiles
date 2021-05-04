@@ -36,6 +36,7 @@ Plug 'liuchengxu/vim-which-key'
 " Colorschemes and UI {{{
 Plug 'morhetz/gruvbox'
 Plug 'hoob3rt/lualine.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
@@ -314,6 +315,16 @@ let $FZF_DEFAULT_OPTS = '--reverse'
 " Which Key {{{
 nnoremap <silent> <leader> :WhichKey ','<CR>
 set timeoutlen=500
+" }}}
+
+" Indent Blankline {{{
+" let g:indent_blankline_char = '│'
+let g:indent_blankline_char = '█'
+let g:indent_blankline_char_highlight_list = ['GruvboxBg0', 'GruvboxBg1']
+let g:indent_blankline_space_char = '█'
+let g:indent_blankline_space_char_highlight_list = ['GruvboxBg0', 'GruvboxBg1']
+let g:indent_blankline_space_char_blankline = '█'
+let g:indent_blankline_space_char_blankline_highlight_list = ['GruvboxBg0', 'GruvboxBg1']
 " }}}
 
 " }}}
