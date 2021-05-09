@@ -7,11 +7,11 @@ My configuration files for different programs that I use. This repo uses [GNU St
 | Device                  | Razer Blade Stealth - 3200x1800 13.3" QHD+ - RZ09-02393E32-R3U1                                      |
 | CPU                     | Intel(R) Core(TM) i7-8550U @ 2.001GHz                                                                |
 | RAM                     | 16.0 GB                                                                                              |
-| OS                      | Ubuntu 18.04.5 LTS on Windows 10 x86_64                                                              |
-| Shell                   | zsh 5.4.2                                                                                            |
+| OS                      | Arch Linux on Windows 10 x86_64                                                                      |
+| Shell                   | zsh 5.8                                                                                              |
 | Terminal Emulator       | Windows Terminal                                                                                     |
 | Terminal Window Manager | Tmux                                                                                                 |
-| Editor                  | NeoVim 0.4.4                                                                                         |
+| Editor                  | NeoVim 0.5.0                                                                                         |
 | Browser/PDF Reader      | Mozilla FireFox                                                                                      |
 | Font                    | [Fira Code Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip) |
 | Colorscheme (Terminal)  | Gruvbox Dark                                                                                         |
