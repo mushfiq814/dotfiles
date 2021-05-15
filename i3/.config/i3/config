@@ -195,4 +195,11 @@ bar {
 	status_command i3status
 }
 
-# pkill compton && compton --config ~/.config/compton/compton.conf
+# Start compton with custom config
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
+
+# Start syncthing
+exec --no-startup-id syncthing
+
+# Start feh for wallpapers
+exec --no-startup-id feh --no-fehbg --bg-fill '~/Pictures/wallpapers/kaGnnFN4Ahk_Full.jpg'
