@@ -336,13 +336,13 @@ set timeoutlen=500
 
 " Indent Blankline {{{
 
-" Special Characters: '│' '█'
-let g:indent_blankline_char = ' '
-let g:indent_blankline_char_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+" Special Characters: '│' '█' '▏'
+let g:indent_blankline_char = '▏'
 let g:indent_blankline_space_char = ' '
-let g:indent_blankline_space_char_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
-let g:indent_blankline_space_char_blankline = ' '
-let g:indent_blankline_space_char_blankline_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+" let g:indent_blankline_space_char_blankline = '▏'
+
+" Enable tree sitter to detect current indent level. Needs Treesitter installed
+let g:indent_blankline_use_treesitter = v:true
 
 " }}}
 
@@ -698,8 +698,8 @@ let s:extensions_and_envs = {
 " Custom Universal Highlight Groups (Need to be last) {{{
 
 " Indent Blankline Highlight Groups
-hi! indentBlanklinePrimary guifg=red guibg=#282828
-hi! indentBlanklineSecondary guifg=red guibg=#484848
+" hi! indentBlanklinePrimary guifg=red guibg=#282828
+" hi! indentBlanklineSecondary guifg=red guibg=#484848
 " GitGutter
 hi! GitGutterAdd guifg=#b8bb26 guibg=#
 hi! GitGutterChange guifg=#8ec07c guibg=#
