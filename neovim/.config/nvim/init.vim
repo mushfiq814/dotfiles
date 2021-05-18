@@ -453,6 +453,14 @@ tnoremap <ESC> <C-\><C-n>
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
+" Disable highlight
+nnoremap <ESC> :noh<CR>
+
+" Open personal wiki index page
+nnoremap <leader>ww :edit ~/windows/vimwiki/index.md<CR>
+" Open personal wiki diary page
+nnoremap <leader>w<leader>w :edit ~/windows/vimwiki/diary/diary.md<CR>
+
 " }}}
 
 " File Specific Commands {{{
