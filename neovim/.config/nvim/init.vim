@@ -280,7 +280,11 @@ gruvbox.inactive = {
 	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-gruvbox.terminal = gruvbox.normal
+gruvbox.terminal = {
+	a = { bg = colors.purple,   fg = colors.black, gui = "bold", },
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
+}
 
 local function inactive_txt()
 	return [[INACTIVE]]
@@ -296,9 +300,9 @@ require('lualine').setup {
 	},
 	sections = {
 		lualine_a = { { 'mode', upper = true, }, },
-		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.blue, color_modified = colors.green, color_removed = colors.red }, },
+		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
 		lualine_c = { { 'filename', file_status = true, full_path = true, shorten = true, }, },
-		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, }, 'encoding', 'fileformat', 'filetype' },
+		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, color_error = colors.red, color_warn = colors.yellow, color_info = colors.blue }, 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location'  },
 	},
