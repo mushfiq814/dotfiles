@@ -38,10 +38,11 @@ syntax match markdownGeneralUrl
 	\ '\(https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z0-9][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?[^] \t]*\)'
 
 " Markdown Links: [text](url) OR ![image-alt](url)
-syntax region markdownLinkUrl matchgroup=markdownLinkUrlParans
-	\ start='(' end=')' contains=markdownGeneralUrl keepend oneline conceal
+syntax region markdownLink start='\[' end='\](.*)' oneline contains=markdownLinkTitle
 syntax region markdownLinkTitle matchgroup=markdownLinkTitleBracks
-	\ start='!\?\[' end='\]' keepend oneline
+	\ start='!\?\[' end='\]' contained oneline nextgroup=markdownLinkUrl concealends
+syntax region markdownLinkUrl matchgroup=markdownLinkUrlParans
+	\ start='(' end=')' contained conceal
 
 " Italic: *italicized*
 syn region markdownItalic
