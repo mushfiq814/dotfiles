@@ -175,10 +175,23 @@ EOF
 " }}}
 
 " GitGutter {{{
-highlight GitGutterAdd guifg=#009900 ctermfg=Green
-highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 let g:gitgutter_enabled = 1
+let g:gitgutter_sign_added = '▍'
+let g:gitgutter_sign_modified = '▍'
+let g:gitgutter_sign_removed = '▍'
+let g:gitgutter_sign_removed_first_line = '‾'
+let g:gitgutter_sign_removed_above_and_below = '_¯'
+let g:gitgutter_sign_modified_removed   = '█'
+" █
+" ▉
+" ▊
+" ▋
+" ▌
+" ▍
+" ▎
+" ▏
+" ▐
+
 set updatetime=100
 " }}}
 
@@ -683,6 +696,13 @@ let s:extensions_and_envs = {
 " Indent Blankline Highlight Groups
 hi! indentBlanklinePrimary guifg=red guibg=#282828
 hi! indentBlanklineSecondary guifg=red guibg=#484848
+" GitGutter
+hi! GitGutterAdd guifg=#b8bb26 guibg=#
+hi! GitGutterChange guifg=#8ec07c guibg=#
+hi! GitGutterDelete guifg=#fb4934 guibg=#
+hi! GitGutterChangeDelete guifg=#8ec07c guibg=#fb4934
+" remove both colors from regular signcolumn
+hi! SignColumn guifg=# guibg=#
 
 " }}}
 
