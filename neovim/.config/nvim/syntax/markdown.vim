@@ -91,10 +91,6 @@ syn region markdownBlockQuote start='^\s*> ' end='$'
 syn region markdownCodeBlock matchgroup=markdownCodeDelimiter
 	\ start='^\s*```\+.*$' end='^\s*```\+\s*$' keepend
 
-" Tables: | txt | txt |\n|--|--|\n| txt | txt |
-" syn region markdownTable1 matchgroup=markdownTableDividers
-" 	\ start='|' end='|' keepend oneline
-
 " Table Alternating Rows Highlight
 syn match Oddlines  "^|.*|$" contains=ALL nextgroup=Evenlines skipnl
 syn match Evenlines "^|.*|$" contains=ALL nextgroup=Oddlines skipnl
