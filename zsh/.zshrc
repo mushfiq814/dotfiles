@@ -294,8 +294,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Fuzzy Finder {{{
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+# source /usr/share/fzf/key-bindings.zsh
 # }}}
 
 # Go Compiler {{{
@@ -367,8 +367,8 @@ PS1="💻 "\
 # }}}
 
 # Zsh Plugins; NOTE: SHOULD BE LAST. {{{
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
 
 # vim:foldmethod=marker:foldlevel=0
