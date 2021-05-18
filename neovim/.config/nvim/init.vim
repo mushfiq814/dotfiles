@@ -72,6 +72,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 
 " Neovim Lsp {{{
+
 lua << EOF
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
@@ -450,6 +451,7 @@ tnoremap <ESC> <C-\><C-n>
 
 " Lsp Code Actions
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 " }}}
 
@@ -700,6 +702,17 @@ let s:extensions_and_envs = {
 " Indent Blankline Highlight Groups
 " hi! indentBlanklinePrimary guifg=red guibg=#282828
 " hi! indentBlanklineSecondary guifg=red guibg=#484848
+
+" Neovim LSP virtual diagnostics 
+" hi! LspDiagnosticsDefaultError guifg=#FB4934
+" hi! LspDiagnosticsDefaultWarning guifg=#FABD2F
+" hi! LspDiagnosticsDefaultInformation guifg=#83A598
+" hi! LspDiagnosticsDefaultHint guifg=#8EC07C
+hi! LspDiagnosticsDefaultError guifg=#CC241D
+hi! LspDiagnosticsDefaultWarning guifg=#D79921
+hi! LspDiagnosticsDefaultInformation guifg=#458588
+hi! LspDiagnosticsDefaultHint guifg=#689D6A
+
 " GitGutter
 hi! GitGutterAdd guifg=#b8bb26 guibg=#
 hi! GitGutterChange guifg=#8ec07c guibg=#
