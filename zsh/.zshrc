@@ -63,7 +63,7 @@ alias trc='$EDITOR ~/.tmux.conf'
 # filesystem aliases
 alias dm='cd /mnt/c/Users/mushf/disciplined-minds'
 alias usf='cd /mnt/c/Users/mushf/OneDrive/USF'
-alias main-dm='ssh -t root@64.225.5.39 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
+alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
 
 # open in firefox
 alias fox='powershell.exe Start-Process -FilePath Firefox -ArgumentList'

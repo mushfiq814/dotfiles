@@ -72,6 +72,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 
 " Neovim Lsp {{{
+
 lua << EOF
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
@@ -175,10 +176,23 @@ EOF
 " }}}
 
 " GitGutter {{{
-highlight GitGutterAdd guifg=#009900 ctermfg=Green
-highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 let g:gitgutter_enabled = 1
+let g:gitgutter_sign_added = '▍'
+let g:gitgutter_sign_modified = '▍'
+let g:gitgutter_sign_removed = '▍'
+let g:gitgutter_sign_removed_first_line = '‾'
+let g:gitgutter_sign_removed_above_and_below = '_¯'
+let g:gitgutter_sign_modified_removed   = '█'
+" █
+" ▉
+" ▊
+" ▋
+" ▌
+" ▍
+" ▎
+" ▏
+" ▐
+
 set updatetime=100
 " }}}
 
@@ -267,7 +281,11 @@ gruvbox.inactive = {
 	c = { bg = colors.grey0,  fg = colors.grey4, }
 }
 
-gruvbox.terminal = gruvbox.normal
+gruvbox.terminal = {
+	a = { bg = colors.purple,   fg = colors.black, gui = "bold", },
+	b = { bg = colors.black,  fg = colors.white, },
+	c = { bg = colors.grey0,  fg = colors.grey4, }
+}
 
 local function inactive_txt()
 	return [[INACTIVE]]
@@ -283,9 +301,9 @@ require('lualine').setup {
 	},
 	sections = {
 		lualine_a = { { 'mode', upper = true, }, },
-		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.blue, color_modified = colors.green, color_removed = colors.red }, },
+		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
 		lualine_c = { { 'filename', file_status = true, full_path = true, shorten = true, }, },
-		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, }, 'encoding', 'fileformat', 'filetype' },
+		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, color_error = colors.red, color_warn = colors.yellow, color_info = colors.blue }, 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location'  },
 	},
@@ -319,13 +337,13 @@ set timeoutlen=500
 
 " Indent Blankline {{{
 
-" Special Characters: '│' '█'
-let g:indent_blankline_char = ' '
-let g:indent_blankline_char_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+" Special Characters: '│' '█' '▏'
+let g:indent_blankline_char = '▏'
 let g:indent_blankline_space_char = ' '
-let g:indent_blankline_space_char_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
-let g:indent_blankline_space_char_blankline = ' '
-let g:indent_blankline_space_char_blankline_highlight_list = ['indentBlanklinePrimary', 'indentBlanklineSecondary']
+" let g:indent_blankline_space_char_blankline = '▏'
+
+" Enable tree sitter to detect current indent level. Needs Treesitter installed
+let g:indent_blankline_use_treesitter = v:true
 
 " }}}
 
@@ -433,6 +451,15 @@ tnoremap <ESC> <C-\><C-n>
 
 " Lsp Code Actions
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+
+" Disable highlight
+nnoremap <ESC> :noh<CR>
+
+" Open personal wiki index page
+nnoremap <leader>ww :edit ~/windows/vimwiki/index.md<CR>
+" Open personal wiki diary page
+nnoremap <leader>w<leader>w :edit ~/windows/vimwiki/diary/diary.md<CR>
 
 " }}}
 
@@ -681,8 +708,26 @@ let s:extensions_and_envs = {
 " Custom Universal Highlight Groups (Need to be last) {{{
 
 " Indent Blankline Highlight Groups
-hi! indentBlanklinePrimary guifg=red guibg=#282828
-hi! indentBlanklineSecondary guifg=red guibg=#484848
+" hi! indentBlanklinePrimary guifg=red guibg=#282828
+" hi! indentBlanklineSecondary guifg=red guibg=#484848
+
+" Neovim LSP virtual diagnostics 
+" hi! LspDiagnosticsDefaultError guifg=#FB4934
+" hi! LspDiagnosticsDefaultWarning guifg=#FABD2F
+" hi! LspDiagnosticsDefaultInformation guifg=#83A598
+" hi! LspDiagnosticsDefaultHint guifg=#8EC07C
+hi! LspDiagnosticsDefaultError guifg=#CC241D
+hi! LspDiagnosticsDefaultWarning guifg=#D79921
+hi! LspDiagnosticsDefaultInformation guifg=#458588
+hi! LspDiagnosticsDefaultHint guifg=#689D6A
+
+" GitGutter
+hi! GitGutterAdd guifg=#b8bb26 guibg=#
+hi! GitGutterChange guifg=#8ec07c guibg=#
+hi! GitGutterDelete guifg=#fb4934 guibg=#
+hi! GitGutterChangeDelete guifg=#8ec07c guibg=#fb4934
+" remove both colors from regular signcolumn
+hi! SignColumn guifg=# guibg=#
 
 " }}}
 

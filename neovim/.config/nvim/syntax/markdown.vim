@@ -38,10 +38,11 @@ syntax match markdownGeneralUrl
 	\ '\(https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z0-9][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?[^] \t]*\)'
 
 " Markdown Links: [text](url) OR ![image-alt](url)
-syntax region markdownLinkUrl matchgroup=markdownLinkUrlParans
-	\ start='(' end=')' contains=markdownGeneralUrl keepend oneline conceal
+syntax region markdownLink start='\[' end='\](.*)' oneline contains=markdownLinkTitle
 syntax region markdownLinkTitle matchgroup=markdownLinkTitleBracks
-	\ start='!\?\[' end='\]' keepend oneline
+	\ start='!\?\[' end='\]' contained oneline nextgroup=markdownLinkUrl concealends
+syntax region markdownLinkUrl matchgroup=markdownLinkUrlParans
+	\ start='(' end=')' contained conceal
 
 " Italic: *italicized*
 syn region markdownItalic
@@ -90,10 +91,6 @@ syn region markdownBlockQuote start='^\s*> ' end='$'
 syn region markdownCodeBlock matchgroup=markdownCodeDelimiter
 	\ start='^\s*```\+.*$' end='^\s*```\+\s*$' keepend
 
-" Tables: | txt | txt |\n|--|--|\n| txt | txt |
-" syn region markdownTable1 matchgroup=markdownTableDividers
-" 	\ start='|' end='|' keepend oneline
-
 " Table Alternating Rows Highlight
 syn match Oddlines  "^|.*|$" contains=ALL nextgroup=Evenlines skipnl
 syn match Evenlines "^|.*|$" contains=ALL nextgroup=Oddlines skipnl
@@ -103,20 +100,25 @@ syn match Evenlines "^|.*|$" contains=ALL nextgroup=Oddlines skipnl
 " Footnote: [^1]: Text
 
 " Custom coloring and rendering
-hi! markdownH1         guifg=#FABD2F    gui=bold
-hi! markdownH2         guifg=#FE8019    gui=bold
-hi! markdownH3         guifg=#FE8019    gui=bold
-hi! markdownH4         guifg=#B8BB26    gui=bold
-hi! markdownH5         guifg=#B8BB26    gui=bold
-hi! markdownH6         guifg=#B8BB26    gui=bold
-hi! markdownBold       guifg=#83A598    gui=bold
-hi! markdownItalic     guifg=#83A598    gui=italic
-hi! markdownBoldItalic guifg=#83A598    gui=bold,italic
-hi! markdownStrike     guifg=#83A598    gui=strikethrough
-hi! markdownGeneralUrl guifg=#FFA3BD    gui=underline
+hi! markdownHeadingIcon   guifg=#7C6F64  guibg=#282828  gui=bold
+hi! markdownH1            guifg=#BFF1DE  guibg=#282828  gui=bold
+hi! markdownH2            guifg=#96BEAF  guibg=#282828  gui=bold
+hi! markdownH3            guifg=#96BEAF  guibg=#282828  gui=bold
+hi! markdownH4            guifg=#83A598  guibg=#282828  gui=bold
+hi! markdownH5            guifg=#83A598  guibg=#282828  gui=bold
+hi! markdownH6            guifg=#83A598  guibg=#282828  gui=bold
+hi! markdownBold          guifg=#8EC07C                 gui=bold
+hi! markdownItalic        guifg=#8EC07C                 gui=italic
+hi! markdownBoldItalic    guifg=#8EC07C                 gui=bold,italic
+hi! markdownStrike        guifg=#8EC07C                 gui=strikethrough
+hi! markdownGeneralUrl    guifg=#FABD2F                 gui=underline
+hi! markdownLinkTitle     guifg=#FABD2F                 gui=underline
+hi! markdownLinkUrl       guifg=#7C6F64                 gui=underline
+hi! Oddlines              guifg=None     guibg=#2d2d2d
+" Conceal Highlight Color
+hi! Conceal               guifg=#BCFFA4                 gui=bold
 
 " Highlight Groups
-hi! def link markdownHeadingIcon        GruvboxFg4
 hi! def link markdownBlockQuote         Comment
 hi! def link markdownList               GruvboxRed
 hi! def link markdownNumberList         GruvboxRed
@@ -125,15 +127,8 @@ hi! def link markdownCodeBlock          GruvboxPurple
 hi! def link markdownCodeDelimiter      GruvboxBlue
 hi! def link markdownLinkTitleBracks    GruvboxAqua
 hi! def link markdownLinkUrlParans      GruvboxAqua
-hi! def link markdownLinkTitle          GruvboxFg2
-hi! def link markdownLinkUrl            GruvboxRed
-" hi! def link markdownTable1 GruvboxYellow
-" hi! markdownTableDividers guifg=#000000 guibg=#5E554B
-hi! Oddlines guibg=#2d2d2d guifg=None
 
 
-" Conceal Highlight Color
-hi! def link Conceal GruvboxRed
 
 set conceallevel=2
 
