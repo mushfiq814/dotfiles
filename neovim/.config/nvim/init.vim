@@ -34,6 +34,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'masukomi/vim-markdown-folding'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 " }}}
 
 " Colorschemes and UI {{{
@@ -441,10 +443,27 @@ EOF
 
 " Tabby {{{
 lua << EOF
-require("tabby").setup({
-	tabline = require("tabby.presets").active_wins_at_end,
-})
+-- require("tabby").setup({
+-- 	tabline = require("tabby.presets").active_wins_at_end,
+-- })
 EOF
+" }}}
+
+" FireNvim {{{
+let g:firenvim_config = {
+	\ 'globalSettings': {
+		\ 'alt': 'all',
+	\ },
+	\ 'localSettings': {
+		\ '.*': {
+			\ 'cmdline': 'firenvim',
+			\ 'content': 'html',
+			\ 'priority': 0,
+			\ 'takeover': 'never',
+		\ },
+	\ }
+\ }
+let fc = g:firenvim_config['localSettings']
 " }}}
 
 " }}}
@@ -475,7 +494,7 @@ set hidden
 " UI {{{
 set number
 set relativenumber
-set showcmd
+set noshowcmd
 set showmatch
 set nocompatible
 set mouse=a
@@ -519,7 +538,7 @@ set foldlevelstart=10
 " }}}
 
 " Remaps {{{
-let mapleader = ","
+let mapleader = " "
 
 " Easier Escape from Insert Mode
 inoremap jk <Esc>
@@ -544,7 +563,7 @@ nnoremap <leader>ze :edit ~/.zshrc<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
 
 " Folding/Unfolding
-nnoremap <space> za
+nnoremap <tab> za
 
 " Escape to normal mode in terminal mode
 tnoremap <ESC> <C-\><C-n>
@@ -563,15 +582,16 @@ nnoremap <leader>ww :edit ~/windows/vimwiki/index.md<CR>
 nnoremap <leader>w<leader>w :edit ~/windows/vimwiki/diary/diary.md<CR>
 
 " compile markdown to html
-noremap <leader>p :!pandoc %:p
+noremap <leader>p :cd %:h \| !pandoc %:p
 			\ --css $HOME/dotfiles/pandoc/mvp.css
 			\ --template $HOME/dotfiles/pandoc/template.html
 			\ --output $HOME/downloads/documents/pandoc-markdown-preview.html
 			\ --to html
 			\ --standalone
+			\ --self-contained
 			\ --mathjax
 			\ --highlight-style tango
-			\ && powershell.exe "Invoke-Item ~/downloads/documents/pandoc-markdown-preview.html"<CR><CR>
+			\ && powershell.exe "Invoke-Item ~/downloads/documents/pandoc-markdown-preview.html"<CR>
 
 " }}}
 
