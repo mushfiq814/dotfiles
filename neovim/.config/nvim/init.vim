@@ -23,40 +23,43 @@ Plug 'mattn/emmet-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
+" Plug 'kabouzeid/nvim-lspinstall'
 " Plug 'anott03/nvim-lspinstall'
 Plug 'hrsh7th/nvim-compe'
 Plug 'lewis6991/spellsitter.nvim'
+Plug 'dense-analysis/ale'
 " }}}
 
 " Navigation Plugins {{{
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'liuchengxu/vim-which-key'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'masukomi/vim-markdown-folding'
 " Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'liuchengxu/vim-which-key'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" Plug 'psliwka/vim-smoothie'
+" Plug 'rstacruz/vim-closer'
 " }}}
 
 " Colorschemes and UI {{{
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'nanozuki/tabby.nvim'
+" Plug 'nanozuki/tabby.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'Shadorain/shadotheme'
-Plug 'hoob3rt/lualine.nvim'
+" Plug 'hoob3rt/lualine.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'fladson/vim-kitty'
 " }}}
 
 " Development Tools {{{
 Plug 'tpope/vim-fugitive'
-" Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
-" Plug 'tbabej/taskwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 " Plug 'mg979/vim-visual-multi'
@@ -85,29 +88,30 @@ set foldexpr=nvim_treesitter#foldexpr()
 lua << EOF
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
+require'lspconfig'.graphql.setup{}
 
-require'lspinstall'.setup() -- important
-
-local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{}
-end
-
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
-  end
-end
-
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+-- require'lspinstall'.setup() -- important
+-- 
+-- local servers = require'lspinstall'.installed_servers()
+-- for _, server in pairs(servers) do
+--   require'lspconfig'[server].setup{}
+-- end
+-- 
+-- local function setup_servers()
+--   require'lspinstall'.setup()
+--   local servers = require'lspinstall'.installed_servers()
+--   for _, server in pairs(servers) do
+--     require'lspconfig'[server].setup{}
+--   end
+-- end
+-- 
+-- setup_servers()
+-- 
+-- -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+-- require'lspinstall'.post_install_hook = function ()
+--   setup_servers() -- reload installed servers
+--   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+-- end
 
 EOF
 " }}}
@@ -132,15 +136,15 @@ require'compe'.setup {
 
   source = {
     path = true;
+    treesitter = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    tags = true;
+    spell = true;
     buffer = true;
     calc = true;
     vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    spell = true;
-    tags = true;
     snippets_nvim = true;
-    treesitter = true;
   };
 }
 
@@ -187,7 +191,7 @@ set updatetime=100
 
 " Startify {{{
 " Heading
-let g:startify_custom_header = [
+let g:ascii = [
 	\ '                                        _            .                       ',
 	\ '                                       u            @88>                     ',
 	\ '   u.    u.                     u.    88Nu.   u.    %8P      ..    .     :   ',
@@ -201,6 +205,8 @@ let g:startify_custom_header = [
 	\ '   ""   `Y"    "88888%      `Y"          `Y"        R888"    `~    "    `"`  ',
 	\ '                 "YP`                                ""                      ',
 	\ ]
+
+let g:startify_custom_header = 'startify#center(g:ascii)'
 
 " }}}
 
@@ -280,32 +286,36 @@ local function inactive_txt()
 	return [[INACTIVE]]
 end
 
-require('lualine').setup {
-	options = {
-		theme = gruvbox,
-		-- section_separators = { '', '' },
-		section_separators = { '', '' },
-		component_separators = { '|', '|' },
-		icons_enabled = true,
-	},
-	sections = {
-		lualine_a = { { 'mode', upper = true, }, },
-		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
-		lualine_c = { { 'filename', file_status = true, path = 1, }, },
-		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, color_error = colors.red, color_warn = colors.yellow, color_info = colors.blue }, 'encoding', 'fileformat', 'filetype' },
-		lualine_y = { 'progress' },
-		lualine_z = { 'location'  },
-	},
-	inactive_sections = {
-		lualine_a = { inactive_txt },
-		lualine_b = { 'filename' },
-		lualine_c = { },
-		lualine_x = { },
-		lualine_y = { },
-		lualine_z = { 'location' },
-	},
-	extensions = { 'fzf' }
-}
+-- require('lualine').setup {
+-- 	options = {
+-- 		theme = gruvbox,
+-- 		-- section_separators = { '', '' },
+-- 		-- section_separators = { '', '' },
+-- 		-- section_separators = { '▌', '▐' },
+-- 		section_separators = { '', '' },
+-- 		component_separators = { '•', '•' },
+-- 		-- component_separators = { ' ', ' ' },
+-- 		icons_enabled = true,
+-- 	},
+-- 	sections = {
+-- 		lualine_a = { { 'mode', upper = true, }, },
+-- 		-- lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
+-- 		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
+-- 		lualine_c = { { 'filename', file_status = true, path = 1, }, },
+-- 		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, color_error = colors.red, color_warn = colors.yellow, color_info = colors.blue }, 'encoding', 'fileformat', 'filetype' },
+-- 		lualine_y = { 'progress' },
+-- 		lualine_z = { 'location'  },
+-- 	},
+-- 	inactive_sections = {
+-- 		lualine_a = { inactive_txt },
+-- 		lualine_b = { 'filename' },
+-- 		lualine_c = { },
+-- 		lualine_x = { },
+-- 		lualine_y = { },
+-- 		lualine_z = { 'location' },
+-- 	},
+-- 	extensions = { 'fzf' }
+-- }
 EOF
 
 " }}}
@@ -337,60 +347,79 @@ let g:indent_blankline_use_treesitter = v:true
 " }}}
 
 " Nvim Tree {{{
-let g:nvim_tree_side = 'left' "left by default
-let g:nvim_tree_width = 30 "30 by default, can be width_in_columns or 'width_in_percent%'
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
-let g:nvim_tree_gitignore = 1 "0 by default
-let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
-let g:nvim_tree_auto_close = 0 "0 by default, closes the tree when it's the last window
-let g:nvim_tree_auto_ignore_ft = [ 'startify', 'dashboard' ] "empty by default, don't auto open tree on specific filetypes.
-let g:nvim_tree_quit_on_open = 0 "0 by default, closes the tree when you open a file
-let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
-let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
-let g:nvim_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
-let g:nvim_tree_git_hl = 0 "0 by default, will enable file highlight for git attributes (can be used without the icons).
-let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
-let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
-let g:nvim_tree_tab_open = 1 "0 by default, will open the tree when entering a new tab and the tree was previously open
-let g:nvim_tree_auto_resize = 0 "1 by default, will resize the tree to its saved width when opening a file
-let g:nvim_tree_disable_netrw = 1 "1 by default, disables netrw
-let g:nvim_tree_hijack_netrw = 1 "1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
-let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
-let g:nvim_tree_group_empty = 0 " 0 by default, compact folders that only contain a single folder into one node in the file tree
-let g:nvim_tree_lsp_diagnostics = 1 "0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
-let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
-let g:nvim_tree_hijack_cursor = 0 "1 by default, when moving cursor in the tree, will position the cursor at the start of the file on the current line
-let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
-let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
-let g:nvim_tree_update_cwd = 1 "0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
-let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
-let g:nvim_tree_window_picker_exclude = {
-    \   'filetype': [
-    \     'packer',
-    \     'qf'
-    \   ],
-    \   'buftype': [
-    \     'terminal'
-    \   ]
-    \ }
-" Dictionary of buffer option names mapped to a list of option values that
-" indicates to the window picker that the buffer's window should not be
-" selectable.
-let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 1,
-    \ 'folder_arrows': 0,
-    \ }
-"If 0, do not show the icons for one of 'git' 'folder' and 'files'
-"1 by default, notice that if 'files' is 1, it will only display
-"if nvim-web-devicons is installed and on your runtimepath.
-"if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
-"but this will not work when you set indent_markers (because of UI conflict)
+lua << EOF
+-- following options are the default
+-- require'nvim-tree'.setup {
+--   -- disables netrw completely
+--   disable_netrw       = true,
+--   -- hijack netrw window on startup
+--   hijack_netrw        = true,
+--   -- open the tree when running this setup function
+--   open_on_setup       = false,
+--   -- will not open on setup if the filetype is in this list
+--   ignore_ft_on_setup  = {},
+--   -- closes neovim automatically when the tree is the last **WINDOW** in the view
+--   open_on_tab         = false,
+--   -- hijacks new directory buffers when they are opened.
+--   update_to_buf_dir   = {
+--     -- enable the feature
+--     enable = true,
+--     -- allow to open the tree if it was previously closed
+--     auto_open = true,
+--   },
+--   -- hijack the cursor in the tree to put it at the start of the filename
+--   hijack_cursor       = false,
+--   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
+--   update_cwd          = false,
+--   -- show lsp diagnostics in the signcolumn
+--   diagnostics = {
+--     enable = true,
+--     icons = {
+--       hint    = "",
+--       info    = "",
+--       warning = "",
+--       error   = "",
+--     }
+--   },
+--   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
+--   update_focused_file = {
+--     -- enables the feature
+--     enable      = true,
+--     -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
+--     -- only relevant when `update_focused_file.enable` is true
+--     update_cwd  = false,
+--     -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
+--     -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
+--     ignore_list = {}
+--   },
+--   -- configuration options for the system open command (`s` in the tree by default)
+--   system_open = {
+--     -- the command to run this, leaving nil should work in most cases
+--     cmd  = nil,
+--     -- the command arguments as a list
+--     args = {}
+--   },
+-- 
+--   view = {
+--     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
+--     width = 30,
+--     -- height of the window, can be either a number (columns) or a string in `%`, for top or bottom side placement
+--     height = 30,
+--     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
+--     side = 'left',
+--     -- if true the tree will resize itself after opening a file
+--     auto_resize = true,
+--     mappings = {
+--       -- custom only false will merge the list with the default mappings
+--       -- if true, it will only use your list to set the mappings
+--       custom_only = false,
+--       -- list of mappings to set on the tree manually
+--       list = {}
+--     }
+--   }
+-- }
+EOF
 
-" default will show icon by default if no icon is provided
-" default shows no icon by default
 let g:nvim_tree_icons = {
     \ 'default': '',
     \ 'symlink': '',
@@ -424,19 +453,16 @@ let g:nvim_tree_icons = {
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
-" NvimTreeOpen and NvimTreeClose are also available if you need them
-
-" set termguicolors " this variable must be enabled for colors to be applied properly
 
 " a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guibg=blue
+" highlight NvimTreeFolderIcon guibg=blue
 " }}}
 
 " spellsitter {{{
 lua << EOF
 require('spellsitter').setup {
   hl = 'SpellBad',
-  captures = {'comment'},  -- set to {} to spellcheck everything
+  captures = { 'comment' },  -- set to {} to spellcheck everything
 }
 EOF
 " }}}
@@ -446,24 +472,160 @@ lua << EOF
 -- require("tabby").setup({
 -- 	tabline = require("tabby.presets").active_wins_at_end,
 -- })
+
+local colors = {
+	black          = '#1d2021',
+	grey0          = '#282828',
+	grey1          = '#504945',
+	grey2          = '#7c6f64',
+	grey3          = '#a89984',
+	grey4          = '#ebdbb2',
+	white          = '#fbf1c7',
+
+	bright_red     = '#fb4934',
+	bright_green   = '#b8bb26',
+	bright_yellow  = '#fabd2f',
+	bright_blue    = '#83a598',
+	bright_purple  = '#d3869b',
+	bright_aqua    = '#8ec07c',
+	bright_orange  = '#fe8019',
+
+	neutral_red    = '#cc241d',
+	neutral_green  = '#98971a',
+	neutral_yellow = '#d79921',
+	neutral_blue   = '#458588',
+	neutral_purple = '#b16286',
+	neutral_aqua   = '#689d6a',
+	neutral_orange = '#d65d0e',
+
+	faded_red      = '#9d0006',
+	faded_green    = '#79740e',
+	faded_yellow   = '#b57614',
+	faded_blue     = '#076678',
+	faded_purple   = '#8f3f71',
+	faded_aqua     = '#427b58',
+	faded_orange   = '#af3a03',
+}
+
+local palette = {
+	bg0   = nil,
+	bg1   = colors.black,
+	bg2   = colors.grey1,
+	ac1_1 = colors.bright_aqua,
+	ac1_2 = colors.neutral_aqua,
+	ac1_3 = colors.faded_aqua,
+	ac2_1 = colors.bright_purple,
+	ac2_2 = colors.neutral_purple,
+	ac2_3 = colors.faded_purple,
+}
+
+local separator = {
+	left  = '▐', -- ▐    
+	right = '▌', -- ▌    
+}
+
+-- local filename = require('tabby.filename')
+-- 
+-- local cwd = function()
+-- 	return ' ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t') .. ' '
+-- end
+--  
+-- local tabname = function(tabid)
+-- 	return vim.api.nvim_tabpage_get_number(tabid)
+-- end
+-- 
+-- local gitbranch = function()
+-- 	-- get branch name from lualine function
+-- 	local branch = require('lualine.components.branch')
+-- 	local branch_name = branch.git_branch
+-- 
+-- 	if branch_name == nil or branch_name == '' then
+-- 		return ''
+-- 	else
+-- 		return '  ' .. branch_name .. ' '
+-- 	end
+-- end
+-- 
+-- local line = {
+-- 	hl = { fg = palette.white, bg = palette.bg },
+-- 	layout = 'active_wins_at_tail',
+-- 	head = {
+-- 		-- { separator.left, hl = { fg = palette.ac1_1 } },
+-- 		{ cwd, hl = { fg = palette.bg1, bg = palette.ac1_1, style = 'bold' } },
+-- 		{ gitbranch, hl = { fg = palette.bg1, bg = palette.ac1_2, style = 'bold' } },
+-- 		{ separator.right, hl = { fg = palette.ac1_2, bg = palette.bg0 } },
+-- 	},
+-- 	active_tab = {
+-- 		label = function(tabid)
+-- 			return {
+-- 				'  ' .. tabname(tabid) .. ' ',
+-- 				hl = { fg = palette.bg1, bg = palette.ac1_3, style = 'bold' },
+-- 			}
+-- 		end,
+-- 		left_sep = { separator.left, hl = { fg = palette.ac1_3, bg = palette.bg0 } },
+-- 		right_sep = { separator.right, hl = { fg = palette.ac1_3, bg = palette.bg0 } },
+-- 	},
+-- 	inactive_tab = {
+-- 		label = function(tabid)
+-- 			return {
+-- 				'  ' .. tabname(tabid) .. ' ',
+-- 				hl = { fg = palette.white, bg = palette.bg2, style = 'italic' },
+-- 			}
+-- 		end,
+-- 		left_sep = { separator.left, hl = { fg = palette.bg2, bg = palette.bg0 } },
+-- 		right_sep = { separator.right, hl = { fg = palette.bg2, bg = palette.bg0 } },
+-- 	},
+-- 	top_win = {
+-- 		label = function(winid)
+-- 			return {
+-- 				'  ' .. filename.unique(winid) .. ' ',
+-- 				hl = { fg = palette.bg1, bg = palette.ac2_2, style = 'bold' },
+-- 			}
+-- 		end,
+-- 		left_sep = { separator.left, hl = { fg = palette.ac2_2, bg = palette.bg0 } },
+-- 		right_sep = { separator.right, hl = { fg = palette.ac2_2, bg = palette.bg0 } },
+-- 	},
+-- 	win = {
+-- 		label = function(winid)
+-- 			return {
+-- 				'  ' .. filename.unique(winid) .. ' ',
+-- 				hl = { fg = palette.bg1, bg = palette.bg2 },
+-- 			}
+-- 		end,
+-- 		left_sep = { separator.left, hl = { fg = palette.bg2, bg = palette.bg0 } },
+-- 		right_sep = { separator.right, hl = { fg = palette.bg2, bg = palette.bg0 } },
+-- 	},
+-- 	tail = {
+-- 		{ separator.left, hl = { fg = palette.ac2_1, bg = palette.bg0 } },
+-- 		{ '   ', hl = { fg = palette.bg1, bg = palette.ac2_1 } },
+-- 		-- { separator.right, hl = { fg = palette.ac2_1 } },
+-- 	},
+-- }
+-- 
+-- require('tabby').setup({ tabline = line })
 EOF
 " }}}
 
-" FireNvim {{{
-let g:firenvim_config = {
-	\ 'globalSettings': {
-		\ 'alt': 'all',
-	\ },
-	\ 'localSettings': {
-		\ '.*': {
-			\ 'cmdline': 'firenvim',
-			\ 'content': 'html',
-			\ 'priority': 0,
-			\ 'takeover': 'never',
-		\ },
-	\ }
-\ }
-let fc = g:firenvim_config['localSettings']
+" Telescope {{{
+lua << EOF
+require('telescope').setup({
+  defaults = {
+    layout_config = {
+      vertical = { width = 0.9 },
+      horizontal = { width = 0.9 },
+      -- other layout configuration here
+    },
+    -- other defaults configuration here
+  },
+  -- other configuration values here
+})
+EOF
+" }}}
+
+" Ale linter {{{
+let g:ale_fixers = { 'javascript': ['prettier-eslint', 'prettier', 'eslint'], 'graphql': [ 'eslint', 'prettier', 'gqlint' ] }
+let g:ale_sign_error = '🛑'
+let g:ale_sign_warning = '⚠️'
 " }}}
 
 " }}}
@@ -505,15 +667,7 @@ set nowrap
 set linebreak
 set noshowmode
 set spell
-
-" integrate with windows clipboard
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-	augroup WSLYank
-		autocmd!
-		autocmd TextYankPost * call system(s:clip, @0)
-	augroup END
-endif
+set clipboard=unnamed
 
 " }}}
 
@@ -544,13 +698,10 @@ let mapleader = " "
 inoremap jk <Esc>
 
 " Windows
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-
-" Open File Explorer on the side
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+" Focus current window to full screen
+nnoremap <silent> <C-w>F :wincmd _ \| :wincmd \|<CR>
+" Make all splits equal; should do the opposite of <C-w>F
+nnoremap <silent> <C-w>f :wincmd =<CR>
 
 " Text Wrapping
 nnoremap <leader>z :set wrap!<CR>
@@ -560,32 +711,52 @@ nnoremap <leader>ve :edit $MYVIMRC<CR>
 nnoremap <leader>ze :edit ~/.zshrc<CR>
 
 " Fuzzy Finder
-nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-p> :Telescope find_files find_command=rg,--hidden,--files prompt_prefix=\ 🔍\ <CR>
+nnoremap <silent> <leader>ff :Telescope git_files     prompt_prefix=\ 🔍\ <CR>
+nnoremap <silent> <leader>fg :Telescope live_grep     prompt_prefix=\ 🔍\ <CR>
+nnoremap <silent> <leader>fb :Telescope buffers       prompt_prefix=\ 🔍\ <CR>
+nnoremap <silent> <leader>fh :Telescope help_tags     prompt_prefix=\ 🔍\ <CR>
+nnoremap <silent> <leader>s  :Telescope spell_suggest prompt_prefix=\ ✅\ <CR>
+
+" lua require('telescope.builtin').find_files({layout_strategy='vertical',layout_config={width=0.9}})
+
+" Prettier
+nnoremap <silent> <leader>f :!prettier --write %<CR><CR>
 
 " Folding/Unfolding
-nnoremap <tab> za
+nnoremap <silent> <tab> za
 
 " Escape to normal mode in terminal mode
 tnoremap <ESC> <C-\><C-n>
 
-" Lsp Code Actions
-nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>K <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+" Lsp
+nnoremap K           :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>K   :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <leader>gd  :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>gi  :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>gs  :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>gr  :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rn  :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>ca  :lua vim.lsp.buf.code_action()<CR>
+nnoremap [v          :lua vim.diagnostic.goto_prev()<CR>
+nnoremap ]v          :lua vim.diagnostic.goto_next()<CR>
+
+" Git
+nnoremap <leader>gb :G blame<CR>
 
 " Disable highlight
 nnoremap <ESC> :noh<CR>
 
 " Open personal wiki index page
-nnoremap <leader>ww :edit ~/windows/vimwiki/index.md<CR>
+nnoremap <leader>ww :edit ~/vimwiki/index.md<CR>
 " Open personal wiki diary page
-nnoremap <leader>w<leader>w :edit ~/windows/vimwiki/diary/diary.md<CR>
+nnoremap <leader>w<leader>w :edit ~/vimwiki/diary/diary.md<CR>
 
 " compile markdown to html
 noremap <leader>p :cd %:h \| !pandoc %:p
 			\ --css $HOME/dotfiles/pandoc/mvp.css
 			\ --template $HOME/dotfiles/pandoc/template.html
-			\ --output $HOME/downloads/documents/pandoc-markdown-preview.html
+			\ --output /tmp/pandoc-markdown-preview.html
 			\ --to html
 			\ --standalone
 			\ --self-contained
