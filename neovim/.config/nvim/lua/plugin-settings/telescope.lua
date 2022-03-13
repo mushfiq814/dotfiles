@@ -10,7 +10,6 @@ require('telescope').setup({
   -- other configuration values here
 })
 
-
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
