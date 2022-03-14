@@ -14,6 +14,15 @@ keymap('i', 'jk', '<Esc>', opts)
 keymap('n', '<C-w>F', ':wincmd _ | :wincmd |<CR>', opts)
 -- Make all splits equal; should do the opposite of <C-w>F
 keymap('n', '<C-w>f', ':wincmd =<CR>', opts)
+-- Resize with arrows
+keymap('n', '<C-Up>', ':resize -2<CR>', opts)
+keymap('n', '<C-Down>', ':resize +2<CR>', opts)
+keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
+keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
+
+-- Stay in indent mode
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
 
 -- Text Wrapping
 keymap('n', '<leader>z', ':set wrap!<CR>', opts)
