@@ -1,3 +1,42 @@
+-- copied from https://github.com/LunarVim/Neovim-from-scratch/blob/03-plugins/lua/user/plugins.lua
+-- Automatically install packer
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
+end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
+
 require('packer').startup(function ()
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
@@ -44,7 +83,7 @@ require('packer').startup(function ()
 	use 'lukas-reineke/indent-blankline.nvim' ; require('plugin-settings/indent-blankline')
 	use 'junegunn/goyo.vim'
 	use 'goolord/alpha-nvim' ; require('plugin-settings/alpha')
-	use 'norcalli/nvim-colorizer.lua' ;  require'colorizer'.setup()
+	use 'norcalli/nvim-colorizer.lua' ; require'colorizer'.setup()
 	use 'fladson/vim-kitty'
 
 	use 'folke/twilight.nvim' ; require('plugin-settings/twilight')
@@ -56,5 +95,11 @@ require('packer').startup(function ()
 	use 'tpope/vim-surround'
 	use 'tpope/vim-commentary'
 	use 'jkramer/vim-checkbox'
+
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if PACKER_BOOTSTRAP then
+		require("packer").sync()
+	end
 end)
 
