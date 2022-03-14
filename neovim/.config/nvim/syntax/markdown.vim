@@ -95,6 +95,9 @@ syn region markdownCodeBlock matchgroup=markdownCodeDelimiter
 syn match Oddlines  "^|.*|$" contains=ALL nextgroup=Evenlines skipnl
 syn match Evenlines "^|.*|$" contains=ALL nextgroup=Oddlines skipnl
 
+syn match markdownQuoteStart /"\w/me=e-1 conceal cchar=“
+syn match markdownQuoteEnd /\w"/ms=s+1 conceal cchar=”
+
 " Horizontal Rule: ---
 
 " Footnote: [^1]: Text
