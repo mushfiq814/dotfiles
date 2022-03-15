@@ -37,9 +37,6 @@ keymap('n', '<tab>', 'za', opts)
 -- Escape to normal mode in terminal mode
 keymap('t', '<ESC>', '<C-\\><C-n>', opts)
 
--- Git
-keymap('n', '<leader>gb', ':G blame<CR>', opts)
-
 -- Disable highlight
 keymap('n', '<ESC>', ':noh<CR>', opts)
 
