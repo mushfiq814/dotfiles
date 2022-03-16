@@ -1,5 +1,8 @@
+local success, nvimtree = pcall(require, 'nvim-tree')
+if not success then return end
+
 -- following options are the default
-require'nvim-tree'.setup {
+nvimtree.setup {
 	-- disables netrw completely
 	disable_netrw       = true,
 	-- hijack netrw window on startup
