@@ -56,8 +56,10 @@ COLORS = {
 -- }
 
 -- color schemes
+local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. theme)
+if not status_ok then vim.notify('colorscheme ' .. theme .. ' not found!') end
+
 if (light) then vim.cmd('set background=light') end
-vim.cmd('colorscheme ' .. theme)
 vim.cmd('hi! Normal guibg=NONE ctermbg=NONE')
 vim.cmd('hi! SignColumn guibg=NONE')
 vim.cmd('hi! LineNr guibg=#2d2d2d')
