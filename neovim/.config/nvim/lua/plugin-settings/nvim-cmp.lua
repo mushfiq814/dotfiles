@@ -156,9 +156,3 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['jsonls'].setup {
   capabilities = capabilities
 }
-
--- Key bindings
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
-keymap('n', '<leader>gb', ':Gitsigns blame_line { full = true }<CR>', opts)
