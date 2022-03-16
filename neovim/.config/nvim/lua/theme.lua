@@ -41,6 +41,7 @@ COLORS = {
 	faded_aqua     = '#427b58',
 	faded_orange   = '#af3a03',
 }
+-- light theme
 -- COLORS = {
 --   black   = '#fafafa',
 --   grey0   = '#e6e6e6',
@@ -79,21 +80,16 @@ b.syntax = 'ON'
 g.termguicolors = true
 
 -- Neovim LSP virtual diagnostics
-vim.cmd('hi! LspDiagnosticsDefaultError guifg=' .. COLORS.red2)
-vim.cmd('hi! LspDiagnosticsDefaultWarning guifg=' .. COLORS.yellow2)
-vim.cmd('hi! LspDiagnosticsDefaultInformation guifg=' .. COLORS.blue2)
-vim.cmd('hi! LspDiagnosticsDefaultHint guifg=' .. COLORS.cyan2)
+vim.cmd('hi! LspDiagnosticsDefaultError guifg=' .. COLORS.neutral_red)
+vim.cmd('hi! LspDiagnosticsDefaultWarning guifg=' .. COLORS.neutral_yellow)
+vim.cmd('hi! LspDiagnosticsDefaultInformation guifg=' .. COLORS.neutral_blue)
+vim.cmd('hi! LspDiagnosticsDefaultHint guifg=' .. COLORS.neutral_aqua)
 
 vim.cmd('sign define DiagnosticSignError text= texthl=LspDiagnosticsDefaultError       linehl= numhl=')
 vim.cmd('sign define DiagnosticSignWarn  text= texthl=LspDiagnosticsDefaultWarning     linehl= numhl=')
 vim.cmd('sign define DiagnosticSignInfo  text= texthl=LspDiagnosticsDefaultInformation linehl= numhl=')
 vim.cmd('sign define DiagnosticSignHint  text= texthl=LspDiagnosticsDefaultHint        linehl= numhl=')
 
--- GitGutter
-vim.cmd('hi! GitGutterAdd guifg=' .. COLORS.green .. ' guibg=#')
-vim.cmd('hi! GitGutterChange guifg=' .. COLORS.cyan .. ' guibg=#')
-vim.cmd('hi! GitGutterDelete guifg=' .. COLORS.red .. ' guibg=#')
-vim.cmd('hi! GitGutterChangeDelete guifg=' .. COLORS.cyan .. ' guibg=' .. COLORS.red)
 -- remove both colors from regular signcolumn
 vim.cmd('hi! SignColumn guifg=# guibg=#')
 

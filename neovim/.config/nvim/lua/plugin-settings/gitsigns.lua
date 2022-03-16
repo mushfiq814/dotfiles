@@ -1,13 +1,20 @@
 local success, gitsigns = pcall(require, 'gitsigns')
 if not success then return end
+local colors = require('theme').colors
+
+-- color highlights
+vim.cmd('hi! GitSignsAdd guifg='          .. colors.bright_green .. ' guibg=#')
+vim.cmd('hi! GitSignsChange guifg='       .. colors.bright_aqua  .. ' guibg=#')
+vim.cmd('hi! GitSignsDelete guifg='       .. colors.bright_red   .. ' guibg=#')
+vim.cmd('hi! GitSignsChangeDelete guifg=' .. colors.bright_aqua  .. ' guibg=' .. colors.bright_red)
 
 gitsigns.setup {
   signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '▌', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '▌', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    add          = { hl = 'GitSignsAdd'   , text = '▌', numhl='GitSignsAdd'   , linehl='GitSignsAdd'    },
+    change       = { hl = 'GitSignsChange', text = '▌', numhl='GitSignsChange', linehl='GitSignsChange' },
+    delete       = { hl = 'GitSignsDelete', text = '▌', numhl='GitSignsDelete', linehl='GitSignsDelete' },
+    topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDelete', linehl='GitSignsDelete' },
+    changedelete = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChange', linehl='GitSignsChange' },
   },
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = true,  -- Toggle with `:Gitsigns toggle_numhl`
