@@ -14,6 +14,10 @@ keymap('i', 'jk', '<Esc>', opts)
 keymap('n', '<C-w>F', ':wincmd _ | :wincmd |<CR>', opts)
 -- Make all splits equal; should do the opposite of <C-w>F
 keymap('n', '<C-w>f', ':wincmd =<CR>', opts)
+keymap('n', '<C-h>', '<C-w><C-h><CR>', opts)
+keymap('n', '<C-j>', '<C-w><C-j><CR>', opts)
+keymap('n', '<C-k>', '<C-w><C-k><CR>', opts)
+keymap('n', '<C-l>', '<C-w><C-l><CR>', opts)
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize -2<CR>', opts)
 keymap('n', '<C-Down>', ':resize +2<CR>', opts)
