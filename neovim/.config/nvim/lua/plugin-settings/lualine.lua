@@ -51,6 +51,7 @@ end
 
 require('lualine').setup {
 	options = {
+    globalstatus = true,
 		theme = theme,
 		-- section_separators = { '', '' },
 		-- section_separators = { '', '' },
@@ -65,7 +66,19 @@ require('lualine').setup {
 		-- lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
 		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
 		lualine_c = { { 'filename', file_status = true, path = 1, }, },
-		lualine_x = { { 'diagnostics', sources = { 'nvim_lsp', }, symbols = { error = '🔴', warn = '🟡', info = '🔵', }, color_error = colors.red, color_warn = colors.yellow, color_info = colors.blue }, 'encoding', 'fileformat', 'filetype' },
+		lualine_x = {
+      {
+        'diagnostics',
+        sources = { 'nvim_lsp', },
+        symbols = { error = '🔴', warn = '🟡', info = '🔵', },
+        color_error = colors.red,
+        color_warn = colors.yellow,
+        color_info = colors.blue
+      },
+      'encoding',
+      'fileformat',
+      'filetype'
+    },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location'  },
 	},
