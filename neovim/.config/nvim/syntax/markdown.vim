@@ -25,10 +25,10 @@ syn region markdownH6 matchgroup=markdownHeadingIcon start='\s*###### ' end='$' 
 " Lists: * list item OR - list item OR + list item
 " Conceal will show fancy chars instead of [-+*]
 syn match markdownList '^[-+*] 'me=e-1 conceal cchar=◉
-syn match markdownList /^\t[-+*] /ms=e-1,me=e-1 conceal cchar=▨
-syn match markdownList /^\t\t[-+*] /ms=e-1,me=e-1 conceal cchar=◑
-syn match markdownList /^\t\t\t[-+*] /ms=e-1,me=e-1 conceal cchar=□
-syn match markdownList /^\t\t\t\t\+[-+*] /ms=e-1,me=e-1 conceal cchar=⨁
+syn match markdownList /^\(\(\t\)\|\(  \)\)[-+*] /ms=e-1,me=e-1 conceal cchar=▨
+syn match markdownList /^\(\(\t\t\)\|\(    \)\)[-+*] /ms=e-1,me=e-1 conceal cchar=◑
+syn match markdownList /^\(\(\t\t\t\)\|\(      \)\)[-+*] /ms=e-1,me=e-1 conceal cchar=□
+syn match markdownList /^\(\(\t\t\t\t\)\|\(      \)\)[-+*] /ms=e-1,me=e-1 conceal cchar=⨁
 
 " Numbered Lists
 syn match markdownNumberList '^\s*\d\+\. '
