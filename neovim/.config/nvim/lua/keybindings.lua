@@ -44,10 +44,17 @@ keymap('t', '<ESC>', '<C-\\><C-n>', opts)
 -- Disable highlight
 keymap('n', '<ESC>', ':noh<CR>', opts)
 
+-- local vimwikiDir
+local vimwikiDir = '~/vimwiki'
+-- if 2 then
+--   vimwikiDir = '~/vimwiki'
+-- else
+--   vimwikiDir = '~/windows/vimwiki'
+-- end
 -- Open personal wiki index page
-keymap('n', '<leader>ww', ':edit ~/windows/vimwiki/index.md<CR>', opts)
+keymap('n', '<leader>ww', ':edit ' .. vimwikiDir .. '/index.md<CR>', opts)
 -- Open personal wiki diary page
-keymap('n', '<leader>w<leader>w', ':edit ~/windows/vimwiki/diary/diary.md<CR>', opts)
+keymap('n', '<leader>w<leader>w', ':edit ' .. vimwikiDir .. '/diary/diary.md<CR>', opts)
 
 -- compile markdown to html
 keymap('n', '<leader>p', ':cd %:h | !pandoc %:p'
