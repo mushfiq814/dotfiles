@@ -46,26 +46,34 @@ local theme = {
 local success, lualine = pcall(require, 'lualine')
 if not success then return end
 
+local function allowAtOrAboveVersion (version)
+  local vimVersion = vim.version();
+  local fullVersion = tonumber(vimVersion.major .. '.' .. vimVersion.minor);
+  return fullVersion >= tonumber(version);
+end
+
+local function inactiveText() return [[INACTIVE]] end
+
 lualine.setup {
-	options = {
-    globalstatus = true,
-		theme = theme,
-		-- section_separators = { '', '' },
-		-- section_separators = { '', '' },
-		-- section_separators = { '▌', '▐' },
-		section_separators = { '', '' },
-		component_separators = { '•', '•' },
-		-- component_separators = { ' ', ' ' },
-		icons_enabled = true,
-	},
-	sections = {
-		lualine_a = {
+  options = {
+    globalstatus = allowAtOrAboveVersion('0.7'),
+    theme = theme,
+    -- section_separators = { '', '' },
+    -- section_separators = { '', '' },
+    -- section_separators = { '▌', '▐' },
+    section_separators = { '', '' },
+    component_separators = { '•', '•' },
+    -- component_separators = { ' ', ' ' },
+    icons_enabled = true,
+  },
+  sections = {
+    lualine_a = {
       {
         'mode',
         upper = true,
       },
     },
-		lualine_b = {
+    lualine_b = {
       {
         'diff',
         color_added = colors.green,
@@ -73,14 +81,14 @@ lualine.setup {
         color_removed = colors.red
       },
     },
-		lualine_c = {
+    lualine_c = {
       {
         'filename',
         file_status = true,
         path = 1,
       },
     },
-		lualine_x = {
+    lualine_x = {
       {
         'diagnostics',
         sources = { 'nvim_lsp', },
@@ -98,7 +106,7 @@ lualine.setup {
     lualine_z = { 'location'  },
   },
   inactive_sections = {
-    lualine_a = { inactive_txt },
+    lualine_a = { inactiveText },
     lualine_b = { 'filename' },
     lualine_c = { },
     lualine_x = { },
@@ -107,6 +115,4 @@ lualine.setup {
   },
   extensions = { 'fzf' }
 }
-
-local function inactive_txt() return [[INACTIVE]] end
 
