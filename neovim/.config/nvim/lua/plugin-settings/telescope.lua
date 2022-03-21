@@ -20,5 +20,5 @@ keymap('n', '<leader>fg', ':Telescope live_grep prompt_prefix=\\ 🔍\\ <CR>', o
 keymap('n', '<leader>b', ':Telescope buffers prompt_prefix=\\ 🔍\\ <CR>', opts)
 keymap('n', '<leader>h', ':Telescope help_tags prompt_prefix=\\ 🔍\\ <CR>', opts)
 keymap('n', '<leader>s', ':Telescope spell_suggest prompt_prefix=\\ ✅\\ <CR>', opts)
-keymap('n', '<leader>r', ':Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>', opts)
+keymap('n', '<leader>rc', ':Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>', opts)
 
