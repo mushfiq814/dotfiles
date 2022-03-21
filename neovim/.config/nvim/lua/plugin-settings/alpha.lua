@@ -17,22 +17,21 @@ local fortune = handle:read("*a")
 handle:close()
 dashboard.section.footer.val = fortune
 
+
+local function padding(value)
+  return {
+    type = "padding",
+    val = value,
+  }
+end
+
 dashboard.config = {
   layout = {
-    {
-      type = "padding",
-      val = 2
-    },
+    padding(2),
     dashboard.section.header,
-    {
-      type = "padding",
-      val = 2
-    },
+    padding(2),
     dashboard.section.buttons,
-    {
-      type = "padding",
-      val = 3
-    },
+    padding(3),
     dashboard.section.footer,
   },
   opts = {
