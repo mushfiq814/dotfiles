@@ -1,55 +1,52 @@
-local theme = require('theme')
-local colors = theme.colors
-
+local colors = require('theme').colors
 local theme = {
-	normal = {
-		a = { bg = colors.cyan,   fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.white, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  normal = {
+    a = { bg = colors.bright_aqua,   fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.white, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 
-	insert = {
-		a = { bg = colors.blue,   fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.white, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  insert = {
+    a = { bg = colors.bright_blue,   fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.white, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 
-	visual = {
-		a = { bg = colors.yellow, fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.white, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  visual = {
+    a = { bg = colors.bright_yellow, fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.white, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 
-	replace = {
-		a = { bg = colors.red,    fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.white, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  replace = {
+    a = { bg = colors.bright_red,    fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.white, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 
-	command = {
-		a = { bg = colors.orange, fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.white, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  command = {
+    a = { bg = colors.bright_orange, fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.white, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 
-	inactive = {
-		a = { bg = colors.grey3,  fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.grey3, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  inactive = {
+    a = { bg = colors.grey3,         fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.grey3, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 
-	terminal = {
-		a = { bg = colors.purple,   fg = colors.black, gui = "bold", },
-		b = { bg = colors.black,  fg = colors.white, },
-		c = { bg = colors.grey0,  fg = colors.grey4, }
-	},
+  terminal = {
+    a = { bg = colors.bright_purple, fg = colors.black, gui = 'bold', },
+    b = { bg = colors.black,         fg = colors.white, },
+    c = { bg = colors.grey0,         fg = colors.grey4, }
+  },
 }
 
-local function inactive_txt()
-	return [[INACTIVE]]
-end
+local success, lualine = pcall(require, 'lualine')
+if not success then return end
 
-require('lualine').setup {
+lualine.setup {
 	options = {
     globalstatus = true,
 		theme = theme,
@@ -62,15 +59,32 @@ require('lualine').setup {
 		icons_enabled = true,
 	},
 	sections = {
-		lualine_a = { { 'mode', upper = true, }, },
-		-- lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
-		lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
-		lualine_c = { { 'filename', file_status = true, path = 1, }, },
+		lualine_a = {
+      {
+        'mode',
+        upper = true,
+      },
+    },
+		lualine_b = {
+      {
+        'diff',
+        color_added = colors.green,
+        color_modified = colors.cyan,
+        color_removed = colors.red
+      },
+    },
+		lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        path = 1,
+      },
+    },
 		lualine_x = {
       {
         'diagnostics',
         sources = { 'nvim_lsp', },
-        symbols = { error = '🔴', warn = '🟡', info = '🔵', },
+        symbols = { error = '●', warn = '●', info = '●', },
         color_error = colors.red,
         color_warn = colors.yellow,
         color_info = colors.blue
@@ -92,3 +106,6 @@ require('lualine').setup {
 	},
 	extensions = { 'fzf' }
 }
+
+local function inactive_txt() return [[INACTIVE]] end
+

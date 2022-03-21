@@ -1,10 +1,13 @@
-require('lspconfig').tsserver.setup{}
-require('lspconfig').sumneko_lua.setup{}
+local success, lspconfig = pcall(require, 'lspconfig')
+if not success then return end
 
+lspconfig.tsserver.setup{}
+lspconfig.sumneko_lua.setup{}
+
+-- keybindings
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- Lsp
 keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 keymap('n', '<leader>K', ':lua vim.diagnostic.open_float()<CR>', opts)
 keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)

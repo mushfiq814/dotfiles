@@ -70,7 +70,7 @@ require('packer').startup(function ()
   use 'psliwka/vim-smoothie'
   use 'rstacruz/vim-closer'
 
-  -- UI Colors
+  -- UI
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua' ; require('plugin-settings/nvim-tree')
   use 'hoob3rt/lualine.nvim' ; require('plugin-settings/lualine')
@@ -90,12 +90,9 @@ require('packer').startup(function ()
   use 'norcalli/nvim-colorizer.lua' ; require'colorizer'.setup()
   use 'fladson/vim-kitty'
 
-  use 'folke/twilight.nvim' ; require('plugin-settings/twilight')
-
   -- Development Tools
   use 'tpope/vim-fugitive'
   use 'mbbill/undotree'
-  -- use 'airblade/vim-gitgutter' ; require('plugin-settings/gitgutter')
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
   use 'jkramer/vim-checkbox'

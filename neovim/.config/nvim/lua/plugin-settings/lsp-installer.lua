@@ -1,4 +1,5 @@
-local lsp_installer = require("nvim-lsp-installer")
+local success, lsp_installer = pcall(require, 'nvim-lsp-installer')
+if not success then return end
 
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).

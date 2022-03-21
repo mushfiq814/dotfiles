@@ -1,4 +1,7 @@
-require('telescope').setup({
+local success, telescope = pcall(require, 'telescope')
+if not success then return end
+
+telescope.setup({
   defaults = {
     layout_config = {
       vertical = { width = 0.9 },
@@ -10,10 +13,10 @@ require('telescope').setup({
   -- other configuration values here
 })
 
+-- keymaps
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- keymaps
 keymap('n', '<C-p>', ':Telescope find_files find_command=rg,--hidden,--files prompt_prefix=\\ 🔍\\ <CR>', opts)
 keymap('n', '<leader>ff', ':Telescope git_files prompt_prefix=\\ 🔍\\ <CR>', opts)
 keymap('n', '<leader>fg', ':Telescope live_grep prompt_prefix=\\ 🔍\\ <CR>', opts)

@@ -1,4 +1,7 @@
-require('nvim-treesitter.configs').setup {
+local success, nvim_treesitter = pcall(require, 'nvim-treesitter.configs')
+if not success then return end
+
+nvim_treesitter.setup {
   textsubjects = {
     enable = true,
     prev_selection = ',', -- (Optional) keymap to select the previous selection
