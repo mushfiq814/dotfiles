@@ -21,7 +21,6 @@ vim.cmd [[
   autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]]
-
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -45,10 +44,11 @@ require('packer').startup(function ()
   use 'godlygeek/tabular'
   use 'mattn/emmet-vim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } ; require('plugin-settings/treesitter')
-  -- use 'lewis6991/spellsitter.nvim' ; require('plugin-settings/spellsitter')
+  use 'lewis6991/spellsitter.nvim' ; require('plugin-settings/spellsitter')
   use 'RRethy/nvim-treesitter-textsubjects' ; require('plugin-settings.treesitter-text-subjects')
   use 'neovim/nvim-lspconfig' ; require('plugin-settings/nvim-lsp')
   use 'williamboman/nvim-lsp-installer' ; require('plugin-settings/lsp-installer')
+  use 'nvim-orgmode/orgmode' ; require('plugin-settings/orgmode')
 
   -- cmp plugins
   use 'hrsh7th/nvim-cmp' ; require('plugin-settings/nvim-cmp') -- completion plugin
