@@ -37,40 +37,55 @@ local theme = {
   },
 
   terminal = {
-    a = { bg = colors.bright_purple,   fg = colors.black, gui = 'bold', },
+    a = { bg = colors.bright_purple, fg = colors.black, gui = 'bold', },
     b = { bg = colors.black,         fg = colors.white, },
     c = { bg = colors.grey0,         fg = colors.grey4, }
   },
 }
 
-local function inactive_txt()
-  return [[INACTIVE]]
-end
-
 local success, lualine = pcall(require, 'lualine')
 if not success then return end
 
 lualine.setup {
-  options = {
-    theme = theme,
-    -- section_separators = { '', '' },
-    -- section_separators = { '', '' },
-    -- section_separators = { '▌', '▐' },
-    section_separators = { '', '' },
-    component_separators = { '•', '•' },
-    -- component_separators = { ' ', ' ' },
-    icons_enabled = true,
-  },
-  sections = {
-    lualine_a = { { 'mode', upper = true, }, },
-    -- lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
-    lualine_b = { { 'branch', icon = '', }, { 'diff', color_added = colors.green, color_modified = colors.cyan, color_removed = colors.red }, },
-    lualine_c = { { 'filename', file_status = true, path = 1, }, },
-    lualine_x = {
+	options = {
+    globalstatus = true,
+		theme = theme,
+		-- section_separators = { '', '' },
+		-- section_separators = { '', '' },
+		-- section_separators = { '▌', '▐' },
+		section_separators = { '', '' },
+		component_separators = { '•', '•' },
+		-- component_separators = { ' ', ' ' },
+		icons_enabled = true,
+	},
+	sections = {
+		lualine_a = {
+      {
+        'mode',
+        upper = true,
+      },
+    },
+		lualine_b = {
+      {
+        'diff',
+        color_added = colors.green,
+        color_modified = colors.cyan,
+        color_removed = colors.red
+      },
+    },
+		lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        path = 1,
+      },
+    },
+		lualine_x = {
       {
         'diagnostics',
         sources = { 'nvim_lsp', },
         symbols = { error = '●', warn = '●', info = '●' },
+        -- symbols = { error = '●', warn = '●', info = '●', },
         color_error = colors.red,
         color_warn = colors.yellow,
         color_info = colors.blue
@@ -92,3 +107,6 @@ lualine.setup {
   },
   extensions = { 'fzf' }
 }
+
+local function inactive_txt() return [[INACTIVE]] end
+
