@@ -75,6 +75,7 @@ require('packer').startup(function ()
   use 'kyazdani42/nvim-tree.lua' ; require('plugin-settings/nvim-tree')
   use 'hoob3rt/lualine.nvim' ; require('plugin-settings/lualine')
   use 'nanozuki/tabby.nvim' ; require('plugin-settings/tabby')
+  use 'rcarriga/nvim-notify' ; require('plugin-settings.nvim-notify')
 
   -- Colorschemes
   use 'morhetz/gruvbox'
