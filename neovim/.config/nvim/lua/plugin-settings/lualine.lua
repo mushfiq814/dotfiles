@@ -65,6 +65,7 @@ lualine.setup {
     component_separators = { '•', '•' },
     -- component_separators = { ' ', ' ' },
     icons_enabled = true,
+    disabled_filetypes = { 'alpha', 'NvimTree' },
   },
   sections = {
     lualine_a = {
