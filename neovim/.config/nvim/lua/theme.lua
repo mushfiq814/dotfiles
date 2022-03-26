@@ -73,9 +73,10 @@ if not status_ok then vim.notify('colorscheme ' .. theme .. ' not found!') end
 if (light) then vim.cmd('set background=light') end
 vim.cmd('hi! Normal guibg=NONE ctermbg=NONE')
 vim.cmd('hi! SignColumn guibg=NONE')
-vim.cmd('hi! LineNr guibg=#2d2d2d')
-vim.cmd('hi! LineNrAbove guibg=NONE')
-vim.cmd('hi! LineNrBelow guibg=NONE')
+vim.cmd('hi! LineNr guibg=' .. COLORS.grey0)
+vim.cmd('hi! LineNrAbove guibg=NONE guifg=' .. COLORS.grey3)
+vim.cmd('hi! LineNrBelow guibg=NONE guifg=' .. COLORS.grey3)
+vim.cmd('hi! CursorLine guibg=' .. COLORS.grey0)
 b.syntax = 'ON'
 g.termguicolors = true
 
