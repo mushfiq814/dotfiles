@@ -35,6 +35,7 @@ o.listchars = {
 }
 w.foldenable = true
 o.foldlevelstart = 10
+w.cursorline = true
 
 -- searching
 g.nohlsearch = true
