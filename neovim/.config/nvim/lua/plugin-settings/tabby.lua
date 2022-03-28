@@ -26,7 +26,7 @@ local cwd = function()
 end
 
 local tabname = function(tabid)
-  return vim.api.nvim_tabpage_get_number(tabid)
+  return require('tabby.util').get_tab_name(tabid, vim.api.nvim_tabpage_get_number)
 end
 
 local gitbranch = function()
