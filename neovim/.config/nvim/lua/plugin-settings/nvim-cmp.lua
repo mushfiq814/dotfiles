@@ -10,30 +10,30 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
+  Text          = "",
+  Method        = "m",
+  Function      = "",
+  Constructor   = "",
+  Field         = "",
+  Variable      = "",
+  Class         = "",
+  Interface     = "",
+  Module        = "",
+  Property      = "",
+  Unit          = "",
+  Value         = "",
+  Enum          = "",
+  Keyword       = "",
+  Snippet       = "",
+  Color         = "",
+  File          = "",
+  Reference     = "",
+  Folder        = "",
+  EnumMember    = "",
+  Constant      = "",
+  Struct        = "",
+  Event         = "",
+  Operator      = "",
   TypeParameter = "",
 }
 
@@ -96,7 +96,6 @@ cmp.setup({
     format = function(entry, vim_item)
       -- Kind icons
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
@@ -107,11 +106,11 @@ cmp.setup({
     end,
   },
   sources = {
-  { name = "nvim_lsp" },
-  { name = "luasnip" },
-  { name = "buffer" },
-  { name = "path" },
-  { name = "orgmode" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+    { name = "orgmode" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -129,11 +128,14 @@ cmp.setup({
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you installed it.
-  }, {
-    { name = 'buffer' },
-  })
+  sources = cmp.config.sources(
+    {
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you installed it.
+    },
+    {
+      { name = 'buffer' },
+    }
+  )
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -145,11 +147,14 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-  { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
+  sources = cmp.config.sources(
+    {
+      { name = 'path' }
+    },
+    {
+      { name = 'cmdline' }
+    }
+  )
 })
 
 -- Setup lspconfig.

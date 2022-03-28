@@ -14,10 +14,10 @@ keymap('i', 'jk', '<Esc>', opts)
 keymap('n', '<C-w>F', ':wincmd _ | :wincmd |<CR>', opts)
 -- Make all splits equal; should do the opposite of <C-w>F
 keymap('n', '<C-w>f', ':wincmd =<CR>', opts)
-keymap('n', '<C-h>', '<C-w><C-h><CR>', opts)
-keymap('n', '<C-j>', '<C-w><C-j><CR>', opts)
-keymap('n', '<C-k>', '<C-w><C-k><CR>', opts)
-keymap('n', '<C-l>', '<C-w><C-l><CR>', opts)
+-- keymap('n', '<C-h>', '<C-w><C-h><CR>', opts)
+-- keymap('n', '<C-j>', '<C-w><C-j><CR>', opts)
+-- keymap('n', '<C-k>', '<C-w><C-k><CR>', opts)
+-- keymap('n', '<C-l>', '<C-w><C-l><CR>', opts)
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize -2<CR>', opts)
 keymap('n', '<C-Down>', ':resize +2<CR>', opts)
@@ -34,6 +34,14 @@ keymap('n', '<leader>z', ':set wrap!<CR>', opts)
 -- open config files
 keymap('n', '<leader>ve', ':edit $MYVIMRC<CR>', opts)
 keymap('n', '<leader>ze', ':edit ~/.zshrc<CR>', opts)
+keymap('n', '<leader>te', ':edit ~/.tmux.conf<CR>', opts)
+
+local winTermPathRegex =
+  '~/windows/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_*/LocalState/settings.json'
+local handle = io.popen('ls ' .. winTermPathRegex)
+local winTermPath = handle:read("*a")
+handle:close()
+keymap('n', '<leader>we', ':edit ' .. winTermPath, opts)
 
 -- Folding/Unfolding
 keymap('n', '<tab>', 'za', opts)

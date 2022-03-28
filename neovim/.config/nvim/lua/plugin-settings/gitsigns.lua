@@ -13,8 +13,8 @@ gitsigns.setup {
     add          = { hl = 'GitSignsAdd'   , text = '▌', numhl='GitSignsAdd'   , linehl='GitSignsAdd'    },
     change       = { hl = 'GitSignsChange', text = '▌', numhl='GitSignsChange', linehl='GitSignsChange' },
     delete       = { hl = 'GitSignsDelete', text = '▌', numhl='GitSignsDelete', linehl='GitSignsDelete' },
-    topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDelete', linehl='GitSignsDelete' },
-    changedelete = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChange', linehl='GitSignsChange' },
+    topdelete    = { hl = 'GitSignsDelete', text = '⫧', numhl='GitSignsDelete', linehl='GitSignsDelete' },
+    changedelete = { hl = 'GitSignsChange', text = '▶', numhl='GitSignsChange', linehl='GitSignsChange' },
   },
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = true,  -- Toggle with `:Gitsigns toggle_numhl`
@@ -55,5 +55,6 @@ local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 keymap('n', '<leader>gb', ':Gitsigns blame_line { full = true }<CR>', opts)
+keymap('n', '<leader>gh', ':Gitsigns preview_hunk<CR>', opts)
 keymap('n', '[c', ':Gitsigns prev_hunk<CR>', opts)
 keymap('n', ']c', ':Gitsigns next_hunk<CR>', opts)

@@ -84,6 +84,7 @@ require('packer').startup(function ()
   use 'sainnhe/sonokai'
   use 'NLKNguyen/papercolor-theme'
   use 'navarasu/onedark.nvim' ; require('plugin-settings/onedark')
+  use 'eddyekofo94/gruvbox-flat.nvim'
 
   use 'lukas-reineke/indent-blankline.nvim' ; require('plugin-settings/indent-blankline')
   use 'junegunn/goyo.vim'
