@@ -24,7 +24,7 @@ keymap('n', '<leader>b', ':Telescope buffers prompt_prefix=\\ 🔍\\ <CR>', opts
 keymap('n', '<leader>h', ':Telescope help_tags prompt_prefix=\\ 🔍\\ <CR>', opts)
 keymap('n', '<leader>s', ':Telescope spell_suggest prompt_prefix=\\ ✅\\ <CR>', opts)
 keymap('n', '<leader>rc', ':Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>', opts)
--- ':lua require\'telescope.builtin\'.find_files(require(\'telescope.themes\').get_dropdown({}))<cr>',
+keymap('n', '<leader>gr', ':lua require(\'telescope.builtin\').lsp_references(require(\'telescope.themes\').get_ivy({}))<CR><ESC>', opts)
 
 -- custom pickers
 
@@ -35,4 +35,3 @@ keymap(
   ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/.config/nvim\' })<cr>',
   opts
 )
-
