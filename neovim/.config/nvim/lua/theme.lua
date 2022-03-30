@@ -42,6 +42,9 @@ local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. selectedTheme.name)
 if not status_ok then vim.notify('colorscheme ' .. selectedTheme.name .. ' not found!') end
 
 if (selectedTheme.light) then vim.cmd('set background=light') end
+
+vim.cmd('hi! NormalFloat guibg=NONE')
+vim.cmd('hi! FloatBorder guibg=NONE guifg=' .. COLORS.white)
 vim.cmd('hi! Normal guibg=NONE ctermbg=NONE')
 vim.cmd('hi! SignColumn guibg=NONE')
 vim.cmd('hi! LineNr guibg=' .. COLORS.grey0)
