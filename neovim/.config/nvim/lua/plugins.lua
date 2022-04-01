@@ -76,6 +76,12 @@ require('packer').startup(function ()
   use 'hoob3rt/lualine.nvim' ; require('plugin-settings/lualine')
   use 'nanozuki/tabby.nvim' ; require('plugin-settings/tabby')
   use 'rcarriga/nvim-notify' ; require('plugin-settings.nvim-notify')
+  use 'lukas-reineke/indent-blankline.nvim' ; require('plugin-settings/indent-blankline')
+  use 'junegunn/goyo.vim'
+  use 'goolord/alpha-nvim' ; require('plugin-settings/alpha')
+  use 'norcalli/nvim-colorizer.lua' ; require'colorizer'.setup()
+  use 'fladson/vim-kitty'
+  use 'folke/zen-mode.nvim' ; require('plugin-settings/zen-mode')
 
   -- Colorschemes
   use 'morhetz/gruvbox'
@@ -85,12 +91,6 @@ require('packer').startup(function ()
   use 'NLKNguyen/papercolor-theme'
   use 'navarasu/onedark.nvim' ; require('plugin-settings/onedark')
   use 'eddyekofo94/gruvbox-flat.nvim'
-
-  use 'lukas-reineke/indent-blankline.nvim' ; require('plugin-settings/indent-blankline')
-  use 'junegunn/goyo.vim'
-  use 'goolord/alpha-nvim' ; require('plugin-settings/alpha')
-  use 'norcalli/nvim-colorizer.lua' ; require'colorizer'.setup()
-  use 'fladson/vim-kitty'
 
   -- Development Tools
   use 'tpope/vim-fugitive'
