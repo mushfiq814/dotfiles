@@ -48,6 +48,25 @@ EOF
 endfunction
 ]]
 
+-- add markdown table divider
+vim.cmd [[
+function! AddTableDivider () abort
+lua << EOF
+-- TODO: call Tabularize function to align
+-- get current line number
+-- TODO: change this to get header line number
+local lineNr = vim.api.nvim_win_get_cursor(0)[1]
+-- get current line
+local line = vim.api.nvim_buf_get_lines(0, lineNr-1, lineNr, {})[1]
+-- replace any non bar chars with dashes
+local tableSeparator = line:gsub('[^|]', '-')
+-- insert separator after header
+vim.api.nvim_buf_set_lines(0, lineNr, lineNr, true, { tableSeparator })
+-- TODO: make sure Tabularize does not mess with newly added separator line
+EOF
+endfunction
+]]
+
 -- vim.cmd [[
 -- function! <SID>functions#SynStack()
 -- 	if !exists("*synstack")

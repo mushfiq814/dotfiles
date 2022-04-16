@@ -20,6 +20,7 @@ zenmode.setup {
       cursorcolumn = false, -- disable/enable cursor column
       foldcolumn = '0', -- disable/enable fold column
       list = false, -- disable/enable whitespace characters
+      wrap = true, -- disable/enable line wrap
     },
   },
   plugins = {
