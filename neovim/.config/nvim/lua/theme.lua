@@ -26,6 +26,7 @@ elseif (selectedTheme.name == 'gruvbox-flat') then
   vim.g.gruvbox_dark_float = false
   vim.g.gruvbox_hide_inactive_statusline = true
   vim.g.gruvbox_flat_style = 'hard'
+  vim.cmd('hi! Folded guibg=' .. COLORS.black .. ' guifg=' .. COLORS.neutral_blue)
 elseif (selectedTheme.name == 'PaperColor') then
   vim.cmd('hi! Comment guibg=NONE guifg=#636361')
   vim.cmd('hi! NonText guibg=NONE guifg=#636361')
