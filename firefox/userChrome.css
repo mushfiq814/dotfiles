@@ -28,7 +28,7 @@ tab,
 tree,
 .tree-rows {
   -moz-appearance: none !important;
-  font-family: 'Fira Code', monospace !important;
+  font-family: 'FiraCode NF', monospace !important;
   font-weight: bold;
   font-style: normal !important;
   color: var(--accent-light) !important;
@@ -136,5 +136,10 @@ tab {
 
 #star-button[starred] {
   list-style-image: url("images/bookmark.png") !important;
+}
+
+/* Drop Down List */
+#ContentSelectDropdown > menupopup > :not([_moz-menuactive="true"]) {
+  background-color: black !important;
 }
 
