@@ -77,6 +77,12 @@ alias pip='python3 -m pip'
 # launch vimwiki
 alias vw='$EDITOR ~/windows/vimwiki/index.md'
 
+# autolaunch ytfzf with thumbnail support
+alias ytfzf='ytfzf -t'
+
+# neofetch
+alias fetch='neofetch --backend kitty --source ~/Pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
+
 # }}}
 
 # Functions {{{
@@ -370,5 +376,7 @@ PS1="💻 "\
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
+
+fetch
 
 # vim:foldmethod=marker:foldlevel=0
