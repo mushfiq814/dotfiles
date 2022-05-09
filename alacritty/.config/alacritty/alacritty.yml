@@ -12,15 +12,15 @@ window:
 
 font:
   normal:
-    family: "FIraCode Nerd Font"
+    family: "LigaSauceCodePro Nerd Font"
     style: SemiBold
 
   bold:
-    family: "FIraCode Nerd Font"
+    family: "LigaSauceCodePro Nerd Font"
     style: Bold
 
   italic:
-    family: "FIraCode Nerd Font"
+    family: "LigaSauceCodePro Nerd Font"
     style: Italic
 
   size: 8.0
