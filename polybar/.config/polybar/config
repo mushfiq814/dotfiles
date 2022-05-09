@@ -1,0 +1,372 @@
+;==========================================================
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+; Colors {{{
+[colors]
+
+blackTr = #991d2021
+black   = #1d2021
+grey0   = #282828
+grey1   = #504945
+grey2   = #7c6f64
+grey3   = #a89984
+grey4   = #ebdbb2
+white   = #fbf1c7
+blue0   = #458588
+blue1   = #83a598
+red0    = #cc241d
+red1    = #fb4934
+orange0 = #d65d0e
+orange1 = #fe8019
+yellow0 = #d79921
+yellow1 = #fabd2f
+green0  = #98971a
+green1  = #b8bb26
+purple0 = #b16286
+purple1 = #d3869b
+cyan0   = #689d6a
+cyan1   = #8ec07c
+
+foreground = ${self.white}
+background = ${self.blackTr}
+alert = ${self.red0}
+; }}}
+
+; Bar Settings {{{
+[bar/mushfiq]
+width = 100%
+height = 27
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.red0}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Retina
+font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
+; font-0 = SF Pro Display:pixelsize=10:style=Semibold
+; font-1 = SF Pro Display:pixelsize=10:style=Bold
+
+modules-left = i3 xwindow
+modules-right = backlight pulseaudio memory cpu wlan battery date powermenu
+
+tray-position = none
+tray-padding = 0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+; }}}
+
+; CentroBar (for Dell Ultrawide) {{{
+[bar/centrobar]
+monitor = ${env:MONITOR:DP-3-1-8}
+width = 100%
+height = 27
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.red0}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Retina
+font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
+; font-0 = SF Pro Display:pixelsize=10:style=Semibold
+; font-1 = SF Pro Display:pixelsize=10:style=Bold
+
+modules-left = i3 xwindow
+modules-right = backlight pulseaudio memory cpu wlan battery date powermenu
+
+tray-position = none
+tray-padding = 0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+; }}}
+
+; Secondary Bar (for portrait screen) {{{
+[bar/portrait]
+monitor = ${env:MONITOR:DP-1}
+width = 100%
+height = 20
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = ${colors.red0}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = LigaSauceCodePro Nerd Font:pixelsize=9:style=Retina
+font-1 = LigaSauceCodePro Nerd Font:pixelsize=9:style=Bold
+
+modules-left = i3 xwindow
+modules-right = date
+
+tray-position = none
+tray-padding = 0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+; }}}
+
+; i3 {{{
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-default = 
+
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.yellow1}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.black}
+label-focused-underline= ${colors.cyan1}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+; }}}
+
+; xwindow {{{
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:100:%
+; }}}
+
+; Backlight {{{
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+enable-scroll = true
+
+format = <label>
+
+label = %percentage%%
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
+
+; }}}
+
+; pulseaudio {{{
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${colors.white}
+
+format-muted = <label-muted>
+label-muted =  muted
+label-muted-foreground = ${colors.red1}
+
+click-right = pavucontrol
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green1}
+bar-volume-foreground-1 = ${colors.green1}
+bar-volume-foreground-2 = ${colors.green1}
+bar-volume-foreground-3 = ${colors.green1}
+bar-volume-foreground-4 = ${colors.green1}
+bar-volume-foreground-5 = ${colors.yellow1}
+bar-volume-foreground-6 = ${colors.red1}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 0
+bar-volume-fill = ─
+bar-volume-fill-font = 0
+bar-volume-empty = ─
+bar-volume-empty-font = 0
+bar-volume-empty-foreground = ${colors.grey4}
+; }}}
+
+; memory {{{
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "MEM "
+format-prefix-foreground = ${colors.grey4}
+format-underline = ${colors.cyan1}
+label = %percentage_used%%
+; }}}
+
+; cpu {{{
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.grey4}
+format-underline = ${colors.purple1}
+label = %percentage:2%%
+; }}}
+
+; wlan {{{
+[module/wlan]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+label-connected =  %downspeed%
+label-connected-foreground = ${colors.foreground}
+format-connected-underline = ${colors.green1}
+
+label-disconnected = not connected
+label-disconnected-foreground = ${colors.foreground}
+format-disconnected-underline = ${colors.green0}
+; }}}
+
+; battery {{{
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-discharging = <label-discharging>
+label-discharging = BAT %percentage%%
+format-discharging-underline = ${colors.orange1}
+
+format-charging = <label-charging>
+label-charging = BAT ﮣ %percentage%%
+label-charging-foreground = ${colors.green0}
+label-charging-font = 2
+format-charging-underline = ${colors.orange0}
+; }}}
+
+; date {{{
+[module/date]
+type = internal/date
+interval = 5
+date = "%Y-%m-%d"
+time = %H:%M:%S
+format-underline = ${colors.blue1}
+label = %date% %time%
+; }}}
+
+; powermenu {{{
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+
+label-open = ⏻
+label-open-foreground = ${colors.orange1}
+label-close = 
+label-close-foreground = ${colors.red1}
+label-separator = |
+label-separator-foreground = ${colors.grey4}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini:foldmethod=marker:foldlevel=0
