@@ -54,7 +54,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -213,8 +213,14 @@ bindsym $mod+r mode "resize"
 # Start compton with custom config
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
 
+# Start polybar
+exec --no-startup-id rebar
+
+# Start feh for wallpapers
+exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers
+
 # Start syncthing
 exec --no-startup-id syncthing
 
-# Start feh for wallpapers
-exec --no-startup-id feh --no-fehbg --bg-fill '~/Pictures/wallpapers/kaGnnFN4Ahk_Full.jpg'
+# Start terminal
+exec --no-startup-id kitty
