@@ -64,8 +64,6 @@ module-margin-right = 1
 
 font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Retina
 font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
-; font-0 = SF Pro Display:pixelsize=10:style=Semibold
-; font-1 = SF Pro Display:pixelsize=10:style=Bold
 
 modules-left = i3 xwindow
 modules-right = backlight pulseaudio memory cpu wlan battery date powermenu
@@ -166,7 +164,7 @@ wrapping-scroll = false
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
-ws-icon-2 = 3;
+ws-icon-2 = 3;
 ws-icon-default = 
 
 label-mode-padding = 1
@@ -176,7 +174,7 @@ label-mode-background = ${colors.yellow1}
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-background = ${colors.black}
-label-focused-underline= ${colors.cyan1}
+label-focused-underline= ${colors.orange1}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -214,15 +212,14 @@ card = intel_backlight
 
 enable-scroll = true
 
-format = <label>
+format = ﯦ <label-backlight> <bar-backlight>
 
-label = %percentage%%
+label-backlight = %percentage%%
 
-; Only applies if <bar> is used
-bar-width = 10
-bar-indicator = |
-bar-fill = ─
-bar-empty = ─
+bar-backlight-width = 10
+bar-backlight-indicator = |
+bar-backlight-fill = ─
+bar-backlight-empty = ─
 
 ; }}}
 
@@ -262,7 +259,7 @@ bar-volume-empty-foreground = ${colors.grey4}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "MEM "
+format-prefix = " "
 format-prefix-foreground = ${colors.grey4}
 format-underline = ${colors.cyan1}
 label = %percentage_used%%
@@ -292,7 +289,7 @@ interval = 3.0
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
-label-connected =  %downspeed%
+label-connected = %essid%  %downspeed%
 label-connected-foreground = ${colors.foreground}
 format-connected-underline = ${colors.green1}
 
