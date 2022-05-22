@@ -12,7 +12,7 @@ local themes = {
   { name = 'gruvbox-flat' , light = false , color = colors.gruvbox_flat  },
   { name = 'onedark'      , light = true  , color = colors.onedark_light },
 }
-local selectedTheme = themes[3]
+local selectedTheme = themes[4]
 COLORS = selectedTheme.color
 
 -- theme specific highlights
@@ -42,11 +42,16 @@ end
 local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. selectedTheme.name)
 if not status_ok then vim.notify('colorscheme ' .. selectedTheme.name .. ' not found!') end
 
-if (selectedTheme.light) then vim.cmd('set background=light') end
-
-vim.cmd('hi! NormalFloat guibg=NONE')
+if (selectedTheme.light) then
+  vim.cmd('set background=light')
+  vim.cmd('hi! NormalFloat guibg=white')
+  vim.cmd('hi! Normal guibg=white')
+else
+  vim.cmd('set background=dark')
+  vim.cmd('hi! NormalFloat guibg=NONE')
+  vim.cmd('hi! Normal guibg=NONE ctermbg=NONE')
+end
 vim.cmd('hi! FloatBorder guibg=NONE guifg=' .. COLORS.white)
-vim.cmd('hi! Normal guibg=NONE ctermbg=NONE')
 vim.cmd('hi! SignColumn guibg=NONE')
 vim.cmd('hi! LineNr guibg=' .. COLORS.grey0)
 vim.cmd('hi! LineNrAbove guibg=NONE guifg=' .. COLORS.grey3)
