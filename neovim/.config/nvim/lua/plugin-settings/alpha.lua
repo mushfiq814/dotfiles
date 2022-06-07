@@ -3,7 +3,7 @@ if not status_ok then return end
 local dashboard = require 'alpha.themes.dashboard'
 
 dashboard.section.buttons.val = {
-  dashboard.button("e", "📃  New file", ":enew<CR>"),
+  dashboard.button("i", "📃  New file", ":enew<CR>"),
 	dashboard.button("f", "🔍  Find file", ":Telescope find_files<CR>"),
 	dashboard.button("v", "💼  Vim Options", ":Telescope vim_options<CR>"),
 	dashboard.button("r", "🚀  Recent", ":Telescope oldfiles<CR>"),

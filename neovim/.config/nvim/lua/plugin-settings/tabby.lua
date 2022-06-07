@@ -85,7 +85,7 @@ local line = {
     label = function(winid)
       return {
         '  ' .. filename.unique(winid) .. ' ',
-        hl = { fg = palette.bg1, bg = palette.bg2 },
+        hl = { fg = palette.ac2_2, bg = palette.bg2 },
       }
     end,
     left_sep = { separator.left, hl = { fg = palette.bg2, bg = palette.bg0 } },
