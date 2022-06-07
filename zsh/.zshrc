@@ -69,13 +69,24 @@ alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes
 alias fox='powershell.exe Start-Process -FilePath Firefox -ArgumentList'
 
 # open in default program
-alias open='powershell.exe Invoke-Item'
+# alias open='powershell.exe Invoke-Item'
+alias open='xdg-open'
 
 # python3 and pip3; WARNING: replaces pip version2 command name
 alias pip='python3 -m pip'
 
 # launch vimwiki
 alias vw='$EDITOR ~/windows/vimwiki/index.md'
+
+# autolaunch ytfzf with thumbnail support
+alias ytfzf='ytfzf -t'
+
+# neofetch
+alias fetch='neofetch --backend kitty --source ~/Pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
+
+alias fd='fdfind'
+
+alias wifictl='nmtui'
 
 # }}}
 
@@ -354,7 +365,7 @@ SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLV
 PS1="💻 "\
 "%F{$YE1}%n%f"\
 "%F{$MA1}:%f"\
-"%F{$GR1}arch %f"\
+"%F{$GR1}%m %f"\
 "["\
 "%F{$CY1}%1d%f"\
 "]"\
@@ -370,5 +381,7 @@ PS1="💻 "\
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
+
+fetch
 
 # vim:foldmethod=marker:foldlevel=0
