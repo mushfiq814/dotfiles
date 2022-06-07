@@ -1,0 +1,2 @@
+#!/bin/sh
+echo '{ "command": ["get_property", "metadata"] }' | socat - /tmp/mpvsocket | jq '.data | .artist, .title' | sed 's/["]//g' | awk -v d=" - " '{s=(NR==1?s:s d)$0}END{print s}'
