@@ -52,11 +52,13 @@ else
   vim.cmd('hi! Normal guibg=NONE ctermbg=NONE')
 end
 vim.cmd('hi! FloatBorder guibg=NONE guifg=' .. COLORS.white)
+vim.cmd('hi! Pmenu guibg=NONE')
 vim.cmd('hi! SignColumn guibg=NONE')
 vim.cmd('hi! LineNr guibg=' .. COLORS.grey0)
 vim.cmd('hi! LineNrAbove guibg=NONE guifg=' .. COLORS.grey3)
 vim.cmd('hi! LineNrBelow guibg=NONE guifg=' .. COLORS.grey3)
 vim.cmd('hi! CursorLine guibg=' .. COLORS.grey0)
+vim.cmd('hi! Folded guibg=' .. COLORS.grey2 .. ' guifg=' .. COLORS.white)
 b.syntax = 'ON'
 g.termguicolors = true
 
