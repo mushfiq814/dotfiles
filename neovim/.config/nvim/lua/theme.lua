@@ -12,7 +12,7 @@ local themes = {
   { name = 'gruvbox-flat' , light = false , color = colors.gruvbox_flat  },
   { name = 'onedark'      , light = true  , color = colors.onedark_light },
 }
-local selectedTheme = themes[4]
+local selectedTheme = themes[3]
 COLORS = selectedTheme.color
 
 -- theme specific highlights
