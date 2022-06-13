@@ -1,41 +1,34 @@
 #!/bin/sh
 
-external_monitors() {
-  xrandr                                                                 \
-  --output DP-1-1 --primary --mode 2560x1440 --pos 0x240 --rotate normal \
-  --output DP-3 --mode 1920x1080 --pos 2560x0 --rotate right             \
-  --output eDP-1 --off                                                   \
-  --output DP-1 --off                                                    \
-  --output HDMI-1 --off                                                  \
-  --output DP-2 --off                                                    \
-  --output DP-4 --off                                                    \
-  --output DP-1-2 --off                                                  \
-  --output DP-1-3 --off                                                  \
-  --output DVI-I-4-4 --off                                               \
-  --output DVI-I-3-3 --off                                               \
-  --output DVI-I-2-2 --off                                               \
-  --output DVI-I-1-1 --off
+LAPTOP="eDP-1"
+ULTRAWIDE="DP-1"
+PORTRAIT="DP-3-1-8"
+
+# turn_off() {
+  
+# }
+
+ultrawide_only() {
+  xrandr --output $ULTRAWIDE --primary --mode 2560x1440 --pos 0x240 --rotate normal
 }
 
-laptop_monitor_only() {
-  xrandr                                                    \
-  --output eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal \
-  --output DP-1 --off                                       \
-  --output HDMI-1 --off                                     \
-  --output DP-2 --off                                       \
-  --output DP-3 --off                                       \
-  --output DP-4 --off                                       \
-  --output DP-1-1 --off                                     \
-  --output DP-1-2 --off                                     \
-  --output DP-1-3 --off                                     \
-  --output DVI-I-4-4 --off                                  \
-  --output DVI-I-3-3 --off                                  \
-  --output DVI-I-2-2 --off                                  \
-  --output DVI-I-1-1 --off
+portrait_only() {
+  xrandr --output $PORTRAIT --mode 1920x1080 --pos 2560x0 --rotate right
+}
+
+internal_only() {
+  xrandr --output $LAPTOP --mode 1920x1200 --pos 0x0 --rotate normal
+}
+
+external() {
+  turn_off
+  internal_only
+  ultrawide_only
+  portrait_only
 }
 
 case $1 in
-  "laptop") laptop_monitor_only ;;
-  "external") external_monitors ;;
+  "laptop") internal_only ;;
+  "external") external ;;
   *) echo "Invalid Option. Please select either 'laptop' or 'external'" ;;
 esac
