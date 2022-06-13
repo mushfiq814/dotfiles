@@ -19,12 +19,6 @@
 # source this file
 alias soz='source ~/.zshrc'
 
-# ls aliases (try saying that 5 times)
-# alias ls='ls --color=auto -1'
-# alias ll='ls -alF'
-# alias la='ls -la'
-# alias l='ls -CF'
-
 # exa (an ls alternative); NOTE: overrides the ls aliases
 alias ls='exa --oneline --icons'
 alias la='exa --long --all --icons'
@@ -42,6 +36,9 @@ alias egrep='egrep --color=auto'
 alias ga='git add'
 alias gs='git status'
 alias gl=prettyGitLog
+alias gco='git checkout'
+alias gc='git commit'
+alias gb='git branch'
 
 # silent mode for make (suppress output)
 alias make='make -s'
@@ -81,6 +78,18 @@ alias vw='$EDITOR ~/windows/vimwiki/index.md'
 # autolaunch ytfzf with thumbnail support
 alias ytfzf='ytfzf -t'
 
+# music
+mpv_command="mpv $HOME/Music/*.mp3"
+mpv_command+=" --no-audio-display"
+mpv_command+=" --gapless-audio=yes"
+mpv_command+=" --shuffle"
+# mpv_command+=" --term-playing-msg=\\\n\$\{media-artist\}"
+mpv_command+=" --input-ipc-server=/tmp/mpvsocket"
+# mpv_command+=" --display-tags-clr"
+mpv_command+=" --display-tags-set=Artist,Title"
+mpv_command+=" --msg-level=cplayer=error,ffmpeg/demuxer=error"
+alias play=$mpv_command
+
 # neofetch
 alias fetch='neofetch --backend kitty --source ~/Pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
 
@@ -114,7 +123,7 @@ function prettyGitLog() {
 	format+="$subject"
 
 	# call git log with custom format and append any flags passed in
-	git log --pretty=$format $1
+	git log $@ --pretty=$format
 }
 # }}}
 
@@ -207,18 +216,71 @@ setopt APPEND_HISTORY
 
 # }}}
 
+# Prompt {{{
+
+# Colors {{{
+BB0='0'  # black
+RE0='1'  # red
+GR0='2'  # green
+YE0='3'  # yellow
+BL0='4'  # blue
+MA0='5'  # purple
+CY0='6'  # cyan
+WH0='7'  # white
+BB1='8'  # bright black
+RE1='9'  # bright red
+GR1='10' # bright green
+YE1='11' # bright yellow
+BL1='12' # bright blue
+MA1='13' # bright purple
+CY1='14' # bright cyan
+WH1='15' # bright white
+# }}}
+
+# Prompt Helpers {{{
+COL_BAR='%F{$RE0}%f'\
+'%K{$RE0}%F{$YE0}░▒▓█%k%f'\
+'%K{$YE0}%F{$GR0}░▒▓█%k%f'\
+'%K{$GR0}%F{$BL0}░▒▓%k%f'\
+'%F{$BL0}%f '
+
+SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLVL})"%f"
+# }}}
+
+# function to set prompt
+set_prompt () {
+	PROMPT=""
+	PROMPT+="＞ "
+  # PROMPT+="💻 "
+	PROMPT+="%F{$YE1}%n%f"
+	PROMPT+="%F{$MA1}:%f"
+  PROMPT+="%F{$GR1}%m %f"
+	PROMPT+="["
+	PROMPT+="%F{$CY1}%1d%f"
+	PROMPT+="]"
+	PROMPT+="%F{$MA1}${vcs_info_msg_0_}%f"
+	PROMPT+="%(1j. .)"
+  # PROMPT+="%(1j. 💬.)"
+	PROMPT+=" %B${SUFFIX}%b "
+  # PROMPT+="$COL_BAR"
+}
+
+# }}}
+
 # Version Control Info for Prompt {{{
 
 autoload -Uz vcs_info
 # only enable git since this is the only vcs I care about (for now)
 zstyle ':vcs_info:*' enable git
 # run vcs_info just before a prompt is displayed (precmd)
-precmd() {
-	vcs_info
-}
+precmd() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+precmd_functions+=( set_prompt )
 # enable substitution in the prompt
 setopt prompt_subst
 
+# only enable git since this is the only vcs I care about (for now)
+zstyle ':vcs_info:*' enable git
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
 # Set custom strings for an unstaged vcs repo changes
@@ -241,6 +303,8 @@ autoload -Uz colors && colors
 setopt AUTO_CD
 # enable comments in interactive mode
 setopt INTERACTIVE_COMMENTS
+# for tmux to display colors properly
+export TERM="screen-256color"
 
 # }}}
 
@@ -333,55 +397,14 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # }}}
 
-# Prompt {{{
-
-# Colors {{{
-BB0='0'  # black
-RE0='1'  # red
-GR0='2'  # green
-YE0='3'  # yellow
-BL0='4'  # blue
-MA0='5'  # purple
-CY0='6'  # cyan
-WH0='7'  # white
-BB1='8'  # bright black
-RE1='9'  # bright red
-GR1='10' # bright green
-YE1='11' # bright yellow
-BL1='12' # bright blue
-MA1='13' # bright purple
-CY1='14' # bright cyan
-WH1='15' # bright white
-# }}}
-
-COL_BAR='%F{$RE0}%f'\
-'%K{$RE0}%F{$YE0}░▒▓█%k%f'\
-'%K{$YE0}%F{$GR0}░▒▓█%k%f'\
-'%K{$GR0}%F{$BL0}░▒▓%k%f'\
-'%F{$BL0}%f '
-
-SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLVL})"%f"
-
-PS1="💻 "\
-"%F{$YE1}%n%f"\
-"%F{$MA1}:%f"\
-"%F{$GR1}%m %f"\
-"["\
-"%F{$CY1}%1d%f"\
-"]"\
-"%F{$MA1}${vcs_info_msg_0_}%f"\
-"%(1j. 💬.)"\
-" %B${SUFFIX}%b "
-# $COL_BAR\
-
-
-# }}}
-
 # Zsh Plugins; NOTE: SHOULD BE LAST. {{{
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
 
+# Call function {{{
 fetch
+set_prompt
+# }}}
 
 # vim:foldmethod=marker:foldlevel=0
