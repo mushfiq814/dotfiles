@@ -15,18 +15,19 @@ gaps inner 10
 # gaps outer 0
 
 # Window borders
-client.focused          #4c7899 #285577 #ffffff #ff9ef4   #abb2bf
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+# class                 border  backgr. text    indicator child_border
+client.focused          #8ec07c #689d6a #fbf1c7 #d65d0e   #d65d0e
+client.focused_inactive #333333 #5f676a #fbf1c7 #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
+client.urgent           #2f343a #cc241d #fbf1c7 #cc241d   #cc241d
+client.placeholder      #000000 #0c0c0c #fbf1c7 #000000   #0c0c0c
+client.background       #fbf1c7
 
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font LigaSauceCodePro Nerd Font:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -59,8 +60,9 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# start rofi/dmenu (a program launcher)
+# bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -189,10 +191,17 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 10%
-bindsym XF86MonBrightnessDown exec light -U 10%
-bindsym F7 exec light -A 10%
-bindsym F6 exec light -U 10%
+bindsym XF86MonBrightnessUp exec light -A 1%
+bindsym XF86MonBrightnessDown exec light -U 1%
+bindsym F7 exec light -A 1%
+bindsym F6 exec light -U 1%
+
+# change wallpapers
+bindsym $mod+shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers
+
+# screenkey
+# bindsym $mod+shift+k exec --no-startup-id screenkey
+# bindsym $mod+shift+k exec --no-startup-id pkill -f screenkey
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -227,6 +236,9 @@ exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers
 
 # Start syncthing
 exec --no-startup-id syncthing
+
+# start dunst (notification daemon)
+exec --no-startup-id dunst
 
 # Start terminal
 exec --no-startup-id kitty

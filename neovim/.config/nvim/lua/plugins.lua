@@ -49,6 +49,7 @@ require('packer').startup(function ()
   use 'neovim/nvim-lspconfig' ; require('plugin-settings/nvim-lsp')
   use 'williamboman/nvim-lsp-installer' ; require('plugin-settings/lsp-installer')
   use 'nvim-orgmode/orgmode' ; require('plugin-settings/orgmode')
+  use 'simrat39/symbols-outline.nvim'
 
   -- cmp plugins
   use 'hrsh7th/nvim-cmp' ; require('plugin-settings/nvim-cmp') -- completion plugin

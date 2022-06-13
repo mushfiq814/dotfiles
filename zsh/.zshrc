@@ -342,6 +342,11 @@ _comp_options+=(globdots)
 
 # Program Specific Settings {{{
 
+# Node Package Manager {{{
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# }}}
+
 # Node Version Manager (NVM) {{{
 # NVM slows down zsh initialization by a lot.
 # This enables lazy loading nvm 
@@ -368,9 +373,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # }}}
 
 # Fuzzy Finder {{{
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# source /usr/share/fzf/completion.zsh
-# source /usr/share/fzf/key-bindings.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 # }}}
 
 # Go Compiler {{{

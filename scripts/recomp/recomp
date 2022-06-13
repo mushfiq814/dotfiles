@@ -1,0 +1,4 @@
+#!/bin/sh
+echo 'reloading compton...'
+pkill compton
+compton --config ~/.config/compton/compton.conf

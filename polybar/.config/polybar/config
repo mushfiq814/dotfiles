@@ -35,6 +35,16 @@ purple1 = #d3869b
 cyan0   = #689d6a
 cyan1   = #8ec07c
 
+accent  = #fe8019
+
+item0 = #8ec07c
+item1 = #8ec07c
+item2 = #8ec07c
+item3 = #8ec07c
+item4 = #8ec07c
+item5 = #8ec07c
+item6 = #8ec07c
+
 foreground = ${self.white}
 background = ${self.blackTr}
 alert = ${self.red0}
@@ -64,9 +74,10 @@ module-margin-right = 1
 
 font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Retina
 font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
+font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
-modules-right = backlight pulseaudio memory cpu wlan battery date powermenu
+modules-right = backlight pulseaudio memory cpu wlan battery date
 
 tray-position = none
 tray-padding = 0
@@ -199,7 +210,7 @@ label-urgent-padding = 2
 ; xwindow {{{
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:100:%
+label = %title:0:80:%
 ; }}}
 
 ; Backlight {{{
@@ -210,16 +221,15 @@ type = internal/backlight
 ; $ ls -1 /sys/class/backlight/
 card = intel_backlight
 
-enable-scroll = true
+format = <ramp> <label>
+label = %percentage%%
 
-format = ﯦ <label-backlight> <bar-backlight>
-
-label-backlight = %percentage%%
-
-bar-backlight-width = 10
-bar-backlight-indicator = |
-bar-backlight-fill = ─
-bar-backlight-empty = ─
+ramp-0 =  BRI
+ramp-1 =  BRI
+ramp-2 =  BRI
+ramp-3 =  BRI
+ramp-4 =  BRI
+ramp-foreground = ${colors.accent}
 
 ; }}}
 
@@ -227,52 +237,39 @@ bar-backlight-empty = ─
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume =  %percentage%%
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
 label-volume-foreground = ${colors.white}
 
 format-muted = <label-muted>
-label-muted =  muted
+label-muted = 婢 muted
 label-muted-foreground = ${colors.red1}
 
-click-right = pavucontrol
+ramp-volume-0 = 奔 VOL
+ramp-volume-1 = 墳 VOL
+ramp-volume-2 =  VOL
+ramp-volume-foreground = ${colors.accent}
 
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.green1}
-bar-volume-foreground-1 = ${colors.green1}
-bar-volume-foreground-2 = ${colors.green1}
-bar-volume-foreground-3 = ${colors.green1}
-bar-volume-foreground-4 = ${colors.green1}
-bar-volume-foreground-5 = ${colors.yellow1}
-bar-volume-foreground-6 = ${colors.red1}
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 0
-bar-volume-fill = ─
-bar-volume-fill-font = 0
-bar-volume-empty = ─
-bar-volume-empty-font = 0
-bar-volume-empty-foreground = ${colors.grey4}
 ; }}}
 
 ; memory {{{
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.grey4}
-format-underline = ${colors.cyan1}
+format-prefix = " MEM "
+format-prefix-foreground = ${colors.accent}
 label = %percentage_used%%
+label-foreground = ${colors.grey4}
 ; }}}
 
 ; cpu {{{
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
-format-prefix-foreground = ${colors.grey4}
-format-underline = ${colors.purple1}
-label = %percentage:2%%
+format-prefix = " CPU "
+format-prefix-foreground = ${colors.accent}
+label = %percentage%%
+label-foreground = ${colors.grey4}
 ; }}}
 
 ; wlan {{{
@@ -289,13 +286,10 @@ interval = 3.0
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
-label-connected = %essid%  %downspeed%
-label-connected-foreground = ${colors.foreground}
-format-connected-underline = ${colors.green1}
-
-label-disconnected = not connected
-label-disconnected-foreground = ${colors.foreground}
-format-disconnected-underline = ${colors.green0}
+label-connected = %{F#fe8019}%{F-} %essid% %{F#fe8019}%{F-} %downspeed%
+label-connected-foreground = ${colors.grey4}
+label-disconnected = %{F#fe8019}睊%{F-} no internet
+label-disconnected-foreground = ${colors.red1}
 ; }}}
 
 ; battery {{{
@@ -303,27 +297,47 @@ format-disconnected-underline = ${colors.green0}
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 98
+full-at = 101
 
-format-discharging = <label-discharging>
-label-discharging = BAT %percentage%%
-format-discharging-underline = ${colors.orange1}
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+label-discharging-foreground = ${colors.grey4}
 
-format-charging = <label-charging>
-label-charging = BAT ﮣ %percentage%%
-label-charging-foreground = ${colors.green0}
+ramp-capacity-0 =  BAT
+ramp-capacity-1 =  BAT
+ramp-capacity-2 =  BAT
+ramp-capacity-3 =  BAT
+ramp-capacity-4 =  BAT
+ramp-capacity-foreground = ${colors.accent}
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%%
+label-charging-foreground = ${colors.green1}
 label-charging-font = 2
-format-charging-underline = ${colors.orange0}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.green0}
+animation-charging-framerate = 750
+
+label-full =  Full
+label-full-font = 2
+label-full-foreground = ${colors.green0}
+
 ; }}}
 
 ; date {{{
 [module/date]
 type = internal/date
-interval = 5
-date = "%Y-%m-%d"
-time = %H:%M:%S
-format-underline = ${colors.blue1}
-label = %date% %time%
+interval = 1
+; use `man date` to find out format options
+date = "%a %Y-%m-%d"
+time = %r
+label = %{F#fe8019}%{F-} %date% %{F#fe8019}%{F-} %time%
+label-foreground = ${colors.white}
 ; }}}
 
 ; powermenu {{{
