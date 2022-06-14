@@ -26,3 +26,12 @@ vim.cmd('highlight link NotifyWARNBody  Normal')
 vim.cmd('highlight link NotifyINFOBody  Normal')
 vim.cmd('highlight link NotifyDEBUGBody Normal')
 vim.cmd('highlight link NotifyTRACEBody Normal')
+
+-- keybindings
+-- dismiss notifications
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>dd',
+  ':lua require("notify").dismiss()<CR>',
+  { noremap = true, silent = true }
+)
