@@ -1,10 +1,13 @@
 #!/bin/sh
-today=$(date +'%e')
-# to remove backspace chars in cal output
-clean_regex="s/_\x08 _\x08/ /g"
-# to add formatting around current date
-today_regex="s/\\b$today\b/<b>\0<\/b>/"
 
-cal_output=$(cal | sed -e "$clean_regex")
-echo $cal_output
-# dunstify "CALENDAR" "$cal"
+today=$(date +'%e')
+# to add formatting around current date
+today_regex="s/\\b$today\b/<span background='white' foreground='black'>\0<\/span>/"
+
+# to remove backspace chars in cal output
+clean_regex="s/_\x08//g"
+# clean_regex="s/_\x08 _\x08/ /g"
+
+cal_output=$(cal | sed -e "$clean_regex" -e "$today_regex")
+dunstify "CALENDAR" "$cal_output"
+
