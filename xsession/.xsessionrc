@@ -1,0 +1,14 @@
+# touchpad natural scrolling and tap to click
+deviceId=$(xinput list | grep Touchpad | cut -d'=' -f 2 | cut -d'[' -f 1)
+natural_scrolling_id=$(xinput list-props $deviceId | \
+                       grep -i "Natural Scrolling Enabled (" | \
+                       cut -d'(' -f2 | cut -d')' -f 1)
+tapping_enabled_id=$(xinput list-props $deviceId | \
+                     grep -i "Tapping Enabled (" | \
+                     cut -d'(' -f2 | cut -d')' -f 1)
+
+xinput --set-prop $deviceId $natural_scrolling_id 1
+xinput --set-prop $deviceId $tapping_enabled_id 1
+
+# keyboard repeat
+xset r rate 200 90
