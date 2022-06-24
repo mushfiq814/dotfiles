@@ -196,34 +196,22 @@ bindsym XF86MonBrightnessDown exec light -U 1%
 bindsym F7 exec light -A 1%
 bindsym F6 exec light -U 1%
 
+# keyboard delay controls
+bindsym $mod+shift+control+k exec --no-startup-id xset r rate 250 90
+
 # change wallpapers
 bindsym $mod+shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers
+
+# show calendar
+bindsym $mod+c exec --no-startup-id calnotify
+
+# displays
+bindsym $mod+shift+control+1 exec --no-startup-id monitorset internal
+bindsym $mod+shift+control+2 exec --no-startup-id monitorset external
 
 # screenkey
 # bindsym $mod+shift+k exec --no-startup-id screenkey
 # bindsym $mod+shift+k exec --no-startup-id pkill -f screenkey
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#	position top
-#	status_command i3status
-#	separator_symbol " "
-#	# font pango:FiraCode Nerd Font 11
-#	font pango:SF Pro Display Bold 11
-
-#	colors {
-#		statusline  #ffffffff
-#		background  #1f1f1f33
-#		separator   #ccccccff
-
-#		#name              #border   #bg       #text
-#		focused_workspace  #2f2f2fff #4f4f4fff #ffffffff
-#		active_workspace   #2f2f2fff #2f2f2fff #ffffffff
-#		inactive_workspace #2f2f2fff #2f2f2fff #ffffffff
-#		urgent_workspace   #2f2f2fff #2f2f2fff #ffffffff
-#  }
-#}
 
 # Start compton with custom config
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
