@@ -1,34 +1,44 @@
 #!/bin/sh
 
-LAPTOP="eDP-1"
-ULTRAWIDE="DP-1"
-PORTRAIT="DP-3-1-8"
+INTERNAL="eDP-1"
+ULTRAWIDE="DP-3-1-8"
+PORTRAIT=""
 
-# turn_off() {
-  
-# }
-
-ultrawide_only() {
-  xrandr --output $ULTRAWIDE --primary --mode 2560x1440 --pos 0x240 --rotate normal
+internal_on() {
+  xrandr --output $INTERNAL --mode 1920x1200
+}
+internal_off() {
+  xrandr --output $INTERNAL --off
 }
 
-portrait_only() {
-  xrandr --output $PORTRAIT --mode 1920x1080 --pos 2560x0 --rotate right
+ultrawide_on() {
+  xrandr --output $ULTRAWIDE --mode 2560x1440
+}
+ultrawide_off() {
+  xrandr --output $ULTRAWIDE --off
+}
+
+portrait_on() {
+  xrandr --output $PORTRAIT --mode 1920x1080
+}
+portrait_on() {
+  xrandr --output $PORTRAIT --off
 }
 
 internal_only() {
-  xrandr --output $LAPTOP --mode 1920x1200 --pos 0x0 --rotate normal
+  internal_on && ultrawide_off
 }
 
-external() {
-  turn_off
-  internal_only
-  ultrawide_only
-  portrait_only
+ultrawide_only() {
+  ultrawide_on && internal_off
 }
+
+# portrait_only() {
+#   xrandr --output $PORTRAIT --mode 1920x1080 --pos 2560x0 --rotate right
+# }
 
 case $1 in
-  "laptop") internal_only ;;
-  "external") external ;;
-  *) echo "Invalid Option. Please select either 'laptop' or 'external'" ;;
+  "internal") internal_only ;;
+  "external") ultrawide_only ;;
+  *) echo "Invalid Option. Please select either 'internal' or 'external'" ;;
 esac
