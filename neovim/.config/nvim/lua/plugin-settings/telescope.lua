@@ -25,6 +25,7 @@ keymap('n', '<leader>h', ':Telescope help_tags prompt_prefix=\\ 🔍\\ <CR>', op
 keymap('n', '<leader>s', ':Telescope spell_suggest prompt_prefix=\\ ✅\\ <CR>', opts)
 keymap('n', '<leader>rc', ':Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>', opts)
 keymap('n', '<leader>gr', ':lua require(\'telescope.builtin\').lsp_references(require(\'telescope.themes\').get_ivy({}))<CR><ESC>', opts)
+keymap('n', '<leader>rr', ':Telescope resume prompt_prefix=\\ ♦️\\ <CR>', opts)
 
 -- custom pickers
 
