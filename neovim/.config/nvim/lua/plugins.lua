@@ -41,15 +41,17 @@ require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
 
   -- Programming Language Plugins
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim" ; require("plugin-settings/mason")
+  use 'neovim/nvim-lspconfig' ; require('plugin-settings/nvim-lsp')
   use 'godlygeek/tabular'
   use 'mattn/emmet-vim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } ; require('plugin-settings/treesitter')
   use 'lewis6991/spellsitter.nvim' ; require('plugin-settings/spellsitter')
   use 'RRethy/nvim-treesitter-textsubjects' ; require('plugin-settings.treesitter-text-subjects')
-  use 'neovim/nvim-lspconfig' ; require('plugin-settings/nvim-lsp')
-  use 'williamboman/nvim-lsp-installer' ; require('plugin-settings/lsp-installer')
   use 'nvim-orgmode/orgmode' ; require('plugin-settings/orgmode')
-  use 'simrat39/symbols-outline.nvim'
+  use 'simrat39/symbols-outline.nvim' ; require('symbols-outline').setup()
+  use 'jose-elias-alvarez/null-ls.nvim' ; require('plugin-settings.null-ls')
 
   -- cmp plugins
   use 'hrsh7th/nvim-cmp' ; require('plugin-settings/nvim-cmp') -- completion plugin
@@ -58,16 +60,19 @@ require('packer').startup(function ()
   use 'hrsh7th/cmp-cmdline' -- cmdline completions
   use 'saadparwaiz1/cmp_luasnip' -- snippet completions
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Navigation Plugins
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim' ; require('plugin-settings/telescope')
+  use 'nvim-telescope/telescope-media-files.nvim' ; require('telescope').load_extension('media_files')
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'masukomi/vim-markdown-folding'
-  use 'nvim-lua/plenary.nvim'
   use 'psliwka/vim-smoothie'
   use 'rstacruz/vim-closer'
 
@@ -83,6 +88,9 @@ require('packer').startup(function ()
   use 'norcalli/nvim-colorizer.lua' ; require'colorizer'.setup()
   use 'fladson/vim-kitty'
   use 'folke/zen-mode.nvim' ; require('plugin-settings/zen-mode')
+  use 'numToStr/FTerm.nvim'
+  use 'edluffy/hologram.nvim' ; require('hologram').setup({ auto_display = true })
+  use 'samodostal/image.nvim' ; require('plugin-settings/image')
 
   -- Colorschemes
   use 'morhetz/gruvbox'
@@ -92,6 +100,8 @@ require('packer').startup(function ()
   use 'NLKNguyen/papercolor-theme'
   use 'navarasu/onedark.nvim' ; require('plugin-settings/onedark')
   use 'eddyekofo94/gruvbox-flat.nvim'
+  use({ "catppuccin/nvim", as = "catppuccin" }) ; require('plugin-settings/catppuccin')
+  use 'shaunsingh/moonlight.nvim'
 
   -- Development Tools
   use 'tpope/vim-fugitive'
@@ -101,6 +111,17 @@ require('packer').startup(function ()
   use 'jkramer/vim-checkbox'
   use 'tyru/capture.vim'
   use 'lewis6991/gitsigns.nvim' ; require('plugin-settings.gitsigns')
+  use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function ()
+      require"octo".setup()
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
