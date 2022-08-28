@@ -252,3 +252,7 @@ exec --no-startup-id dunst
 
 # Start terminal
 exec --no-startup-id kitty
+
+# screensaver
+# exec --no-startup-id xset dpms 60
+# exec --no-startup-id xautolock -time 1 -locker i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c '#000000'
