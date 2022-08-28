@@ -102,6 +102,11 @@ syn match markdownQuoteEnd /\w"/ms=s+1 conceal cchar=”
 
 " Footnote: [^1]: Text
 
+" Checkbox: [ ] [X] [x]
+syn match markdownCheckboxFull '^\(\t\|\s\)*\(*\|-\) \[X\]' conceal cchar=
+syn match markdownCheckboxFull '^\(\t\|\s\)*\(*\|-\) \[x\]' conceal cchar=
+syn match markdownCheckboxEmpty '^\(\t\|\s\)*\(*\|-\) \[ \]' conceal cchar=
+
 " Custom coloring and rendering
 hi! markdownHeadingIcon   guifg=#7C6F64  guibg=#282828  gui=bold
 hi! markdownH1            guifg=#BFF1DE  guibg=#282828  gui=bold
