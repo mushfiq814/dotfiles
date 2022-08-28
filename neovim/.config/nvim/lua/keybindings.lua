@@ -80,5 +80,12 @@ keymap('n', '<leader>p', ':cd %:h | !pandoc %:p'
 				 .. ' && powershell.exe "Invoke-Item ~/downloads/documents/pandoc-markdown-preview.html"<CR><CR>', opts)
 
 -- Prettier
-keymap('n', '<leader>f', ':!prettier --write %<CR><CR>', opts)
+keymap('n', '<leader>fp', ':!prettier --write %<CR><CR>', opts)
+keymap('n', '<leader>fr', ':!rustywind --write %<CR><CR>', opts)
+
+-- change local working directory
+keymap('n', '<leader>cd', ':lcd %:h<CR>', opts)
+
+-- source current lua file
+keymap('n', '<leader>so', ':source % <bar> lua vim.notify("NeoVim config reloaded")<CR>', opts)
 
