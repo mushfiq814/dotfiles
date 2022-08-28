@@ -228,6 +228,9 @@ bindsym $mod+shift+control+3 exec --no-startup-id monitorset ultrawide
 bindsym $mod+shift+control+Escape exec --no-startup-id monitorset dim-external
 bindsym $mod+shift+control+q exec --no-startup-id monitorset undim-external
 
+# emoji-panel via rofi
+bindsym $mod+shift+control+space exec --no-startup-id ~/dotfiles/scripts/emoji-rofi-menu/emoji-menu.sh
+
 # screenkey
 # bindsym $mod+shift+k exec --no-startup-id screenkey
 # bindsym $mod+shift+k exec --no-startup-id pkill -f screenkey
