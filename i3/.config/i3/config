@@ -223,6 +223,10 @@ bindsym $mod+c exec --no-startup-id calnotify
 # displays
 bindsym $mod+shift+control+1 exec --no-startup-id monitorset internal
 bindsym $mod+shift+control+2 exec --no-startup-id monitorset external
+bindsym $mod+shift+control+3 exec --no-startup-id monitorset ultrawide
+# display dim
+bindsym $mod+shift+control+Escape exec --no-startup-id monitorset dim-external
+bindsym $mod+shift+control+q exec --no-startup-id monitorset undim-external
 
 # screenkey
 # bindsym $mod+shift+k exec --no-startup-id screenkey
