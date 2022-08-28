@@ -213,7 +213,9 @@ bindsym $mod+shift+control+8 exec --no-startup-id pacmd set-default-sink bluez_s
 bindsym $mod+shift+control+k exec --no-startup-id xset r rate 250 90
 
 # change wallpapers
-bindsym $mod+shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers
+bindsym $mod+shift+w exec --no-startup-id pkill xwinwrap | feh --randomize --bg-fill ~/Pictures/wallpapers
+bindsym $mod+shift+control+x exec --no-startup-id pkill xwinwrap
+bindsym $mod+shift+control+w exec --no-startup-id xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --loop --no-audio --panscan="1.0" "$(ls ~/Pictures/video-wallpapers/*mp4 | shuf -n 1)"
 
 # show calendar
 bindsym $mod+c exec --no-startup-id calnotify
