@@ -40,6 +40,9 @@ vim.diagnostic.config({
 
 lspconfig.tsserver.setup{}
 lspconfig.sumneko_lua.setup{}
+lspconfig.tailwindcss.setup{}
+lspconfig.jsonls.setup{}
+lspconfig.prismals.setup{}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
