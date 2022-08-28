@@ -7,15 +7,20 @@ if not success then return end
 -- see :help `nvim_open_win()`
 local border = 'rounded'
 -- can also be an array as follows
+local borders = {
+  "⎾","▔","🭾",
+  "▏"," ","▕",
+  "⌞","▁","🭿",
+}
 -- local border = {
---   {"⎾", "FloatBorder"},
---   {"▔", "FloatBorder"},
---   {"🭾", "FloatBorder"},
---   {"▕", "FloatBorder"},
---   {"🭿", "FloatBorder"},
---   {"▁", "FloatBorder"},
---   {"⌞", "FloatBorder"},
---   {"▏", "FloatBorder"},
+--   {borders[1], "FloatBorder"},
+--   {borders[2], "FloatBorder"},
+--   {borders[3], "FloatBorder"},
+--   {borders[6], "FloatBorder"},
+--   {borders[9], "FloatBorder"},
+--   {borders[8], "FloatBorder"},
+--   {borders[7], "FloatBorder"},
+--   {borders[4], "FloatBorder"},
 -- }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
