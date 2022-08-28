@@ -26,6 +26,7 @@ alias lg='exa --long --all --icons --git'
 
 # bat (a cat alternative)
 alias bat='batcat'
+alias cat='bat'
 
 # grep aliases
 alias grep='grep --color=auto'
@@ -39,6 +40,9 @@ alias gl=prettyGitLog
 alias gco='git checkout'
 alias gc='git commit'
 alias gb='git branch'
+alias gfo='git fetch origin'
+alias gcod='git checkout dev'
+alias gpod='git pull origin dev'
 
 # silent mode for make (suppress output)
 alias make='make -s'
@@ -61,9 +65,18 @@ alias trc='$EDITOR ~/.tmux.conf'
 alias dm='cd /mnt/c/Users/mushf/disciplined-minds'
 alias usf='cd /mnt/c/Users/mushf/OneDrive/USF'
 alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
+alias DW='cd ~/downloads'
+alias PR='cd ~/projects'
+alias ORC='cd ~/projects/orchestra'
+alias ORCPR='cd ~/projects/orchestra-pr-review'
 
-# open in firefox
-alias fox='powershell.exe Start-Process -FilePath Firefox -ArgumentList'
+# package manager
+alias sai='sudo apt install'
+
+# npm
+alias nr='npm run'
+alias nrd='npm run dev'
+alias nrs='npm run start'
 
 # open in default program
 # alias open='powershell.exe Invoke-Item'
@@ -96,6 +109,15 @@ alias fetch='neofetch --backend kitty --source ~/Pictures/wallpapers/UvSvAAP.jpg
 alias fd='fdfind'
 
 alias wifictl='nmtui'
+
+# csv viewer (tidy-viewer)
+alias tv='tidy-viewer'
+
+# blender
+alias blender='~/.steam/debian-installation/steamapps/common/Blender/blender'
+
+# i3lock
+alias lock='i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c "#000000"'
 
 # }}}
 
