@@ -111,6 +111,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "path" },
     { name = "orgmode" },
+    { name = 'nvim_lsp_signature_help' },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -123,7 +124,7 @@ cmp.setup({
     },
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
     native_menu = false,
   },
 })
