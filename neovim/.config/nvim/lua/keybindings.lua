@@ -9,16 +9,19 @@ local opts = { noremap = true, silent = true }
 -- Easier Escape from Insert Mode
 keymap('i', 'jk', '<Esc>', opts)
 
--- Windows
--- Focus current window to full screen
+-- window management
+-- splits
+keymap('n', '<C-=>', ':vsplit<CR>', opts)
+keymap('n', '<C-->', ':split<CR>', opts)
+-- new tab
+keymap('n', '<C-t>', ':tabnew<CR>', opts)
+-- new terminal
+keymap('n', '<C-/>', ':terminal<CR>', opts)
+-- focus current window to full screen
 keymap('n', '<C-w>F', ':wincmd _ | :wincmd |<CR>', opts)
--- Make all splits equal; should do the opposite of <C-w>F
+-- make all splits equal; should do the opposite of <C-w>F
 keymap('n', '<C-w>f', ':wincmd =<CR>', opts)
--- keymap('n', '<C-h>', '<C-w><C-h><CR>', opts)
--- keymap('n', '<C-j>', '<C-w><C-j><CR>', opts)
--- keymap('n', '<C-k>', '<C-w><C-k><CR>', opts)
--- keymap('n', '<C-l>', '<C-w><C-l><CR>', opts)
--- Resize with arrows
+-- resize with arrows
 keymap('n', '<C-Up>', ':resize -2<CR>', opts)
 keymap('n', '<C-Down>', ':resize +2<CR>', opts)
 keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
