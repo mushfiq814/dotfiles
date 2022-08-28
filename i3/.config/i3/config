@@ -16,7 +16,7 @@ gaps inner 10
 
 # Window borders
 # class                 border  backgr. text    indicator child_border
-client.focused          #8ec07c #689d6a #fbf1c7 #d65d0e   #d65d0e
+client.focused          #8ec07c #689d6a #fbf1c7 #d3869b   #d3869b
 client.focused_inactive #333333 #5f676a #fbf1c7 #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #cc241d #fbf1c7 #cc241d   #cc241d
