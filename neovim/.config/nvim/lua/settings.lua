@@ -22,7 +22,7 @@ o.swapfile = false
 o.wrap = false
 o.linebreak = true
 o.spell = false
-o.clipboard = 'unnamed'
+o.clipboard = 'unnamed,unnamedplus'
 o.foldenable = true
 o.foldlevelstart = 10
 o.list = true
@@ -36,6 +36,9 @@ o.listchars = {
 w.foldenable = true
 o.foldlevelstart = 10
 w.cursorline = true
+o.splitright = true
+o.splitbelow = true
+o.winbar = "%f %m"
 
 -- searching
 g.nohlsearch = true
