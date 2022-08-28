@@ -422,6 +422,27 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 # }}}
 
+# Fly.io {{{
+export FLYCTL_INSTALL="/home/mushfiq/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+# }}}
+
+# Spicetify {{{
+export PATH=$PATH:/home/mushfiq/.spicetify
+# }}}
+
+# bitwarden {{{
+# shell completions
+# eval "$(bw completion --shell zsh); compdef _bw bw;"
+export BW_SESSION="afewn7S/XLLCOqM5jBLiNIWo8KkPE2qjZNUO3RTeLOE2vbbJnxBX9bs1So0tpK+mV8YhuubTxBcOMvHRGaqmjA=="
+# }}}
+
+# github cli {{{
+# shell completions
+# eval "$(gh completion -s zsh); compdef _gh gh;"
+
+# }}}
+
 # }}}
 
 # Zsh Plugins; NOTE: SHOULD BE LAST. {{{
