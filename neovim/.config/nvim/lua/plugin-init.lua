@@ -1,4 +1,4 @@
-local list = require('./plugins')
+local list = require('plugins')
 
 -- copied from https://github.com/LunarVim/Neovim-from-scratch/blob/03-plugins/lua/user/plugins.lua
 -- Automatically install packer

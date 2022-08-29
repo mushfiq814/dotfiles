@@ -1,7 +1,4 @@
 local list = {
-  { name = 'kyazdani42/nvim-tree.lua', config = 'plugin-settings/nvim-tree' },
-  { name = 'hoob3rt/lualine.nvim', config = 'plugin-settings/lualine' },
-  { name = 'folke/zen-mode.nvim', config = 'plugin-settings/zen-mode' },
   -- Programming Language Plugins
   { name = 'williamboman/mason.nvim' },
   { name = 'williamboman/mason-lspconfig.nvim', config = 'plugin-settings/mason' },
@@ -35,9 +32,12 @@ local list = {
 
   -- UI
   { name = 'kyazdani42/nvim-web-devicons' },
+  { name = 'kyazdani42/nvim-tree.lua', config = 'plugin-settings/nvim-tree' },
+  { name = 'hoob3rt/lualine.nvim', config = 'plugin-settings/lualine' },
   { name = 'nanozuki/tabby.nvim', config = 'plugin-settings/tabby' },
   { name = 'rcarriga/nvim-notify', config = 'plugin-settings/nvim-notify' },
   { name = 'lukas-reineke/indent-blankline.nvim', config = 'plugin-settings/indent-blankline' },
+  { name = 'folke/zen-mode.nvim', config = 'plugin-settings/zen-mode' },
   { name = 'goolord/alpha-nvim', config = 'plugin-settings/alpha' },
   { name = 'norcalli/nvim-colorizer.lua', config = 'plugin-settings/colorizer' },
   { name = 'fladson/vim-kitty' },
