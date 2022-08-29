@@ -1,9 +1,10 @@
-set from = "mushfiq.minds@gmail.com"
-set realname = "Mushfiq Mahmud"
-set smtp_url = "smtps://mushfiq.minds@smtp.gmail.com:587/"
-set imap_user = "mushfiq.minds@gmail.com"
+set imap_user = "mushfiq8194@gmail.com"
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
+set imap_check_subscribed
+set from = "mushfiq8194@gmail.com"
+set realname = "Mushfiq Mahmud"
+set smtp_url = "smtps://mushfiq8194@smtp.gmail.com:587/"
 set postponed = "+[Gmail].Drafts"
 set trash = "+[Gmail].Trash"
 set record = "+[Gmail].Sent Mail"
@@ -22,21 +23,23 @@ set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
 # source colors file
-source ~/.config/mutt/colors.muttrc
+# source ~/.config/mutt/colors.muttrc
+source ~/.config/mutt/gruvbox.muttrc
 
 # # Sidebar
-# set sidebar_visible = yes
-# set sidebar_width = 20
-# set sidebar_short_path = yes
-# set sidebar_next_new_wrap = yes
-# set mail_check_stats
-# set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
+# set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 
 # # Default index colors:
-# color index yellow default '.*'
-# color index_author red default '.*'
-# color index_number blue default
-# color index_subject cyan default '.*'
+color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.*'
 
 # # New mail is boldened:
 # color index brightyellow black "~N"
@@ -47,4 +50,4 @@ source ~/.config/mutt/colors.muttrc
 # set status_chars  = " *%A"
 # set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
-source "gpg -d ~/.config/mutt/password.gpg |"
+# source "gpg -d ~/.config/mutt/password.gpg |"
