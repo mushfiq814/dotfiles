@@ -92,8 +92,41 @@ ONEDARK_LIGHT    = {
   faded_aqua     = '#2b5d63',
 }
 
+CATPPUCCIN = {
+  black  = "#11111B",
+  grey0  = "#313244",
+  grey1  = "#45475A",
+  grey2  = "#6C7086",
+  grey3  = "#7F849C",
+  grey4  = "#A6ADC8",
+  white  = "#CDD6F4",
+
+  bright_red       = "#EBA0AC",
+  bright_orange    = "#F2CDCD",
+  bright_yellow    = "#F5E0DC",
+  bright_purple    = "#F5C2E7",
+  bright_blue      = "#B4BEFE",
+  bright_aqua      = "#89DCEB",
+  bright_green     = "#74C7EC",
+  neutral_red       = "#F38BA8",
+  neutral_orange    = "#FAB387",
+  neutral_yellow    = "#F9E2AF",
+  neutral_purple    = "#CBA6F7",
+  neutral_blue      = "#89B4FA",
+  neutral_aqua      = "#94E2D5",
+  neutral_green     = "#A6E3A1",
+  faded_red       = "#F38BA8",
+  faded_orange    = "#FAB387",
+  faded_yellow    = "#F9E2AF",
+  faded_purple    = "#CBA6F7",
+  faded_blue      = "#89B4FA",
+  faded_aqua      = "#94E2D5",
+  faded_green     = "#A6E3A1",
+}
+
 return {
   gruvbox = GRUVBOX,
   gruvbox_flat = GRUVBOX_FLAT,
   onedark_light = ONEDARK_LIGHT,
+  catppuccin = CATPPUCCIN,
 }
