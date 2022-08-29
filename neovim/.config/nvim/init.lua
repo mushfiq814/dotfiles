@@ -2,7 +2,7 @@
 
 require('theme')
 require('keybindings')
-require('plugins')
+require('plugin-init')
 require('settings')
 require('functions')
 require('commands')

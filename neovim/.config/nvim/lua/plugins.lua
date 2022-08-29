@@ -1,132 +1,61 @@
--- copied from https://github.com/LunarVim/Neovim-from-scratch/blob/03-plugins/lua/user/plugins.lua
--- Automatically install packer
-local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = vim.fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer...close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-  autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
-
-require('packer').startup(function ()
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
+local list = {
+  { name = 'kyazdani42/nvim-tree.lua', config = 'plugin-settings/nvim-tree' },
+  { name = 'hoob3rt/lualine.nvim', config = 'plugin-settings/lualine' },
+  { name = 'folke/zen-mode.nvim', config = 'plugin-settings/zen-mode' },
   -- Programming Language Plugins
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim" ; require("plugin-settings/mason")
-  use 'neovim/nvim-lspconfig' ; require('plugin-settings/nvim-lsp')
-  use 'godlygeek/tabular'
-  use 'mattn/emmet-vim'
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } ; require('plugin-settings/treesitter')
-  use 'lewis6991/spellsitter.nvim' ; require('plugin-settings/spellsitter')
-  use 'RRethy/nvim-treesitter-textsubjects' ; require('plugin-settings.treesitter-text-subjects')
-  use 'nvim-orgmode/orgmode' ; require('plugin-settings/orgmode')
-  use 'simrat39/symbols-outline.nvim' ; require('symbols-outline').setup()
-  use 'jose-elias-alvarez/null-ls.nvim' ; require('plugin-settings.null-ls')
+  { name = 'williamboman/mason.nvim' },
+  { name = 'williamboman/mason-lspconfig.nvim', config = 'plugin-settings/mason' },
+  { name = 'neovim/nvim-lspconfig', config = 'plugin-settings/nvim-lsp' },
+  { name = 'godlygeek/tabular' },
+  { name = 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = 'plugin-settings/treesitter' },
+  { name = 'lewis6991/spellsitter.nvim', config = 'plugin-settings/spellsitter' },
+  { name = 'RRethy/nvim-treesitter-textsubjects', config = 'plugin-settings/treesitter-text-subjects' },
+  { name = 'simrat39/symbols-outline.nvim', config = 'plugin-settings/symbols-outline' },
+  { name = 'jose-elias-alvarez/null-ls.nvim', config = 'plugin-settings.null-ls' },
 
   -- cmp plugins
-  use 'hrsh7th/nvim-cmp' ; require('plugin-settings/nvim-cmp') -- completion plugin
-  use 'hrsh7th/cmp-buffer' -- buffer completions
-  use 'hrsh7th/cmp-path' -- path completions
-  use 'hrsh7th/cmp-cmdline' -- cmdline completions
-  use 'saadparwaiz1/cmp_luasnip' -- snippet completions
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  { name = 'hrsh7th/nvim-cmp', config = 'plugin-settings/nvim-cmp' },
+  { name = 'hrsh7th/cmp-buffer' }, -- buffer completions
+  { name = 'hrsh7th/cmp-path' }, -- path completions
+  { name = 'hrsh7th/cmp-cmdline' }, -- cmdline completions
+  { name = 'saadparwaiz1/cmp_luasnip' }, -- snippet completions
+  { name = 'hrsh7th/cmp-nvim-lsp' },
+  { name = 'hrsh7th/cmp-nvim-lsp-signature-help' },
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  { name = "L3MON4D3/LuaSnip" },
+  { name = "rafamadriz/friendly-snippets" },
 
   -- Navigation Plugins
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim' ; require('plugin-settings/telescope')
-  use 'nvim-telescope/telescope-media-files.nvim' ; require('telescope').load_extension('media_files')
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'masukomi/vim-markdown-folding'
-  use 'psliwka/vim-smoothie'
-  use 'rstacruz/vim-closer'
+  { name = 'nvim-lua/popup.nvim' },
+  { name = 'nvim-lua/plenary.nvim' },
+  { name = 'nvim-telescope/telescope.nvim', config = 'plugin-settings/telescope' },
+  { name = 'nvim-telescope/telescope-media-files.nvim', config = 'plugin-settings/telescope-media-files' },
+  { name = 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
 
   -- UI
-  use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua' ; require('plugin-settings/nvim-tree')
-  use 'hoob3rt/lualine.nvim' ; require('plugin-settings/lualine')
-  use 'nanozuki/tabby.nvim' ; require('plugin-settings/tabby')
-  use 'rcarriga/nvim-notify' ; require('plugin-settings.nvim-notify')
-  use 'lukas-reineke/indent-blankline.nvim' ; require('plugin-settings/indent-blankline')
-  use 'junegunn/goyo.vim'
-  use 'goolord/alpha-nvim' ; require('plugin-settings/alpha')
-  use 'norcalli/nvim-colorizer.lua' ; require'colorizer'.setup()
-  use 'fladson/vim-kitty'
-  use 'folke/zen-mode.nvim' ; require('plugin-settings/zen-mode')
-  use 'numToStr/FTerm.nvim'
-  use 'edluffy/hologram.nvim' ; require('hologram').setup({ auto_display = true })
-  use 'samodostal/image.nvim' ; require('plugin-settings/image')
+  { name = 'kyazdani42/nvim-web-devicons' },
+  { name = 'nanozuki/tabby.nvim', config = 'plugin-settings/tabby' },
+  { name = 'rcarriga/nvim-notify', config = 'plugin-settings/nvim-notify' },
+  { name = 'lukas-reineke/indent-blankline.nvim', config = 'plugin-settings/indent-blankline' },
+  { name = 'goolord/alpha-nvim', config = 'plugin-settings/alpha' },
+  { name = 'norcalli/nvim-colorizer.lua', config = 'plugin-settings/colorizer' },
+  { name = 'fladson/vim-kitty' },
+  { name = 'edluffy/hologram.nvim', config = 'plugin-settings/hologram' },
+  { name = 'samodostal/image.nvim', config = 'plugin-settings/image' },
 
   -- Colorschemes
-  use 'morhetz/gruvbox'
-  use 'Shadorain/shadotheme'
-  use 'whatyouhide/vim-gotham'
-  use 'sainnhe/sonokai'
-  use 'NLKNguyen/papercolor-theme'
-  use 'navarasu/onedark.nvim' ; require('plugin-settings/onedark')
-  use 'eddyekofo94/gruvbox-flat.nvim'
-  use({ "catppuccin/nvim", as = "catppuccin" }) ; require('plugin-settings/catppuccin')
-  use 'shaunsingh/moonlight.nvim'
+  { name = 'morhetz/gruvbox' },
+  { name = 'navarasu/onedark.nvim', config = 'plugin-settings/onedark' },
+  { name = 'eddyekofo94/gruvbox-flat.nvim' },
+  { name = ({ "catppuccin/nvim", as = "catppuccin" }), config = 'plugin-settings/catppuccin' },
 
   -- Development Tools
-  use 'tpope/vim-fugitive'
-  use 'mbbill/undotree'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-commentary'
-  use 'jkramer/vim-checkbox'
-  use 'tyru/capture.vim'
-  use 'lewis6991/gitsigns.nvim' ; require('plugin-settings.gitsigns')
-  use {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function ()
-      require"octo".setup()
-    end
-  }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
-
+  { name = 'tpope/vim-fugitive' },
+  { name = 'tpope/vim-surround' },
+  { name = 'tpope/vim-commentary' },
+  { name = 'jkramer/vim-checkbox' },
+  { name = 'lewis6991/gitsigns.nvim', config = 'plugin-settings.gitsigns' },
+  { name = 'pwntester/octo.nvim', config = 'octo' },
+}
+return list
