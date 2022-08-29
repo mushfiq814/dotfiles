@@ -1,0 +1,38 @@
+#!/bin/bash
+
+TOKEN=YOUR_API_TOKEN
+
+if [[ $TOKEN -eq "YOUR_API_TOKEN" ]]; then
+  echo "api token not set. exiting..."
+  exit 1
+fi
+ISSUE_ID="$1"
+
+read -r -d '' QUERY << EOM
+{
+  issue (id: "$ISSUE_ID") {
+    dueDate
+    createdAt
+    updatedAt
+    startedAt
+    title
+    description
+    state { name }
+    assignee { name }
+    creator { name }
+    priorityLabel
+    estimate
+  }
+}
+EOM
+QUERY=$(echo $QUERY | sed 's/"/\\"/g')
+
+RES=$(curl \
+  --silent \
+  --request POST "https://api.linear.app/graphql" \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/json" \
+  --data-raw "{\"query\":\"$QUERY\",\"variables\":{}}" \
+  | jq '.data.issue.title'
+)
+echo $RES
