@@ -39,13 +39,6 @@ keymap('n', '<leader>ve', ':edit $MYVIMRC<CR>', opts)
 keymap('n', '<leader>ze', ':edit ~/.zshrc<CR>', opts)
 keymap('n', '<leader>te', ':edit ~/.tmux.conf<CR>', opts)
 
-local winTermPathRegex =
-  '~/windows/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_*/LocalState/settings.json'
-local handle = io.popen('ls ' .. winTermPathRegex)
-local winTermPath = handle:read("*a")
-handle:close()
-keymap('n', '<leader>we', ':edit ' .. winTermPath, opts)
-
 -- Folding/Unfolding
 keymap('n', '<tab>', 'za', opts)
 
@@ -57,11 +50,6 @@ keymap('n', '<ESC>', ':noh<CR>', opts)
 
 -- local vimwikiDir
 local vimwikiDir = '~/vimwiki'
--- if 2 then
---   vimwikiDir = '~/vimwiki'
--- else
---   vimwikiDir = '~/windows/vimwiki'
--- end
 -- Open personal wiki index page
 keymap('n', '<leader>ww', ':edit ' .. vimwikiDir .. '/index.md<CR>', opts)
 -- Open personal wiki diary page
@@ -71,13 +59,14 @@ keymap('n', '<leader>w<leader>w', ':edit ' .. vimwikiDir .. '/diary/diary.md<CR>
 keymap('n', '<leader>p', ':cd %:h | !pandoc %:p'
 				 .. ' --css $HOME/dotfiles/pandoc/mvp.css'
 				 .. ' --template $HOME/dotfiles/pandoc/template.html'
-				 .. ' --output ~/downloads/documents/pandoc-markdown-preview.html'
+				 .. ' --output ~/downloads/pandoc-markdown-preview.html'
 				 .. ' --to html'
 				 .. ' --standalone'
 				 .. ' --self-contained'
 				 .. ' --mathjax'
 				 .. ' --highlight-style tango'
-				 .. ' && powershell.exe "Invoke-Item ~/downloads/documents/pandoc-markdown-preview.html"<CR><CR>', opts)
+				 .. ' && xdg-open ~/downloads/pandoc-markdown-preview.html<CR>'
+  , opts)
 
 -- Prettier
 keymap('n', '<leader>fp', ':!prettier --write %<CR><CR>', opts)
