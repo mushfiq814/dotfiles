@@ -1,0 +1,9 @@
+/*
+ * config file for rofi
+ * vim:ft=css
+ */
+
+configuration {
+  show-icons: false;
+  theme: "~/.config/rofi/theme.rasi";
+}
