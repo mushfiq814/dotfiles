@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]
+then
+  # present a list of all items
+  ITEM=$(bw list items | jq '.[].name' | uniq | sed 's/^"\|"$//g' | rofi -dmenu -p item)
+else
+  # get item from arguments
+  ITEM=$@
+fi
+
+# get username and password for all matching items
+JSON=$(bw list items --search $ITEM | jq '[.[].login | { username, password }]')
+
+# present a list of usernames
+USERNAME=$(echo $JSON | jq '.[].username' | sed 's/^"\|"$//g' | rofi -dmenu -p 🔎)
+
+# check whether username exists
+if [ "$USERNAME" = "" ]
+then
+  dunstify --appname="bitwarden script" --block --urgency=2 "Username could not be captured!"
+fi
+
+# filter out password using username
+PASSWORD=$(echo $JSON | jq "map(select(.username == \"$USERNAME\")) | .[0].password" | sed 's/^"\|"$//g')
+
+# paste password to clipboard
+echo $PASSWORD | xclip -r -selection clipboard
+
+dunstify --appname="bitwarden script" "Password copied to clipboard"
