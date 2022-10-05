@@ -70,85 +70,8 @@ font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
 font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
-modules-right = backlight spotify spotify-prev spotify-play-pause spotify-next pulseaudio memory cpu wlan battery date
-
-tray-position = none
-tray-padding = 0
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-enable-ipc = true
-; }}}
-
-; CentroBar (for Dell Ultrawide) {{{
-[bar/centrobar]
-monitor = ${env:MONITOR:DP-3-1-8}
-width = 100%
-height = 27
-radius = 0.0
-fixed-center = false
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = ${colors.red0}
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 2
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 1
-
-font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Retina
-font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
-; font-0 = SF Pro Display:pixelsize=10:style=Semibold
-; font-1 = SF Pro Display:pixelsize=10:style=Bold
-
-modules-left = i3 xwindow
-modules-right = backlight pulseaudio memory cpu wlan battery date powermenu
-
-tray-position = none
-tray-padding = 0
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-enable-ipc = true
-; }}}
-
-; Secondary Bar (for portrait screen) {{{
-[bar/portrait]
-monitor = ${env:MONITOR:DP-1}
-width = 100%
-height = 20
-radius = 0.0
-fixed-center = false
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = ${colors.red0}
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 2
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 1
-
-font-0 = LigaSauceCodePro Nerd Font:pixelsize=9:style=Retina
-font-1 = LigaSauceCodePro Nerd Font:pixelsize=9:style=Bold
-
-modules-left = i3 xwindow
-modules-right = date
+modules-center = spotify spotify-prev spotify-play-pause spotify-next pulseaudio pacmd
+modules-right = backlight memory cpu wlan battery date
 
 tray-position = none
 tray-padding = 0
@@ -252,6 +175,18 @@ ramp-volume-1 = 墳 VOL
 ramp-volume-2 =  VOL
 ramp-volume-foreground = ${colors.accent}
 
+; }}}
+
+; output-device {{{
+[module/pacmd]
+type = custom/script
+tail = true
+interval = 1
+; prefix symbol is shown before the text
+format-prefix = "蓼 "
+format-prefix-foreground = ${colors.accent}
+format = <label>
+exec = /usr/local/bin/get-audio-device
 ; }}}
 
 ; spotify {{{
