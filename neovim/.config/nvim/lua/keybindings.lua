@@ -56,7 +56,7 @@ keymap('n', '<leader>ww', ':edit ' .. vimwikiDir .. '/index.md<CR>', opts)
 keymap('n', '<leader>w<leader>w', ':edit ' .. vimwikiDir .. '/diary/diary.md<CR>', opts)
 
 -- compile markdown to html
-keymap('n', '<leader>p', ':cd %:h | !pandoc %:p'
+keymap('n', '<leader>pp', ':cd %:h | !pandoc %:p'
 				 .. ' --css $HOME/dotfiles/pandoc/mvp.css'
 				 .. ' --template $HOME/dotfiles/pandoc/template.html'
 				 .. ' --output ~/downloads/pandoc-markdown-preview.html'
@@ -77,4 +77,40 @@ keymap('n', '<leader>cd', ':lcd %:h<CR>', opts)
 
 -- source current lua file
 keymap('n', '<leader>so', ':source % <bar> lua vim.notify("NeoVim config reloaded")<CR>', opts)
+
+local telescope_available, telescope = pcall(require, 'telescope')
+if telescope_available then
+  keymap('n', '<C-p>', ':Telescope find_files find_command=rg,--hidden,--files prompt_prefix=\\ 🔍\\ <CR>', opts)
+  keymap('n', '<leader>b',  ':Telescope buffers prompt_prefix=\\ 🔍\\ <CR>', opts)
+  keymap('n', '<leader>br', ':Telescope git_branches prompt_prefix=\\ \\ <CR>', opts)
+  keymap('n', '<leader>fg', ':Telescope live_grep prompt_prefix=\\ 🔍\\ <CR>', opts)
+  keymap('n', '<leader>gr', ':lua require(\'telescope.builtin\').lsp_references(require(\'telescope.themes\').get_ivy({}))<CR>', opts)
+  keymap('n', '<leader>h',  ':Telescope help_tags prompt_prefix=\\ 🆘\\ <CR>', opts)
+  keymap('n', '<leader>rc', ':Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>', opts)
+  keymap('n', '<leader>rr', ':Telescope resume prompt_prefix=\\ ⏰\\ <CR>', opts)
+  keymap('n', '<leader>ss', ':Telescope spell_suggest prompt_prefix=\\ ✅\\ <CR>', opts)
+
+  -- open file picker for neovim settings
+  keymap(
+    'n',
+    '<leader>v<C-p>',
+    ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/.config/nvim\' })<cr>',
+    opts
+  )
+  -- open live grep for neovim settings
+  keymap(
+    'n',
+    '<leader>vfg',
+    ':lua require\'telescope.builtin\'.live_grep({ cwd = \'~/.config/nvim\' })<cr>',
+    opts
+  )
+
+  -- open project directory
+  keymap(
+    'n',
+    '<leader>pr',
+    ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles\', hidden = true })<cr>',
+    opts
+  )
+end
 
