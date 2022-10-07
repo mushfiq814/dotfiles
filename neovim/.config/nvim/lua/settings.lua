@@ -12,7 +12,7 @@ o.expandtab = true -- insert mode: Disable inserting spaces for tabs
 
 -- ui
 o.number = true
-o.relativenumber = true
+o.relativenumber = false
 o.showmode = false
 o.showcmd = false
 o.showmatch = true
@@ -21,24 +21,29 @@ o.mouse = 'a'
 o.swapfile = false
 o.wrap = false
 o.linebreak = true
-o.spell = false
+o.spell = true
 o.clipboard = 'unnamed,unnamedplus'
-o.foldenable = true
 o.foldlevelstart = 10
+w.foldenable = true
 o.list = true
 o.listchars = {
 	tab = '▶ ',
-	precedes = '↪',
-	extends = '↪',
+	precedes = '⋯',
+	extends = '⋯',
 	space = '•',
 	trail = '■',
 }
-w.foldenable = true
-o.foldlevelstart = 10
 w.cursorline = true
 o.splitright = true
 o.splitbelow = true
-o.winbar = "%f %m"
+
+-- GUI
+if vim.g.neovide then
+  -- Put anything you want to happen only in Neovide here
+  vim.o.guifont = "LigaSauceCodePro Nerd Font,Noto Color Emoji:h11"
+  vim.g.neovide_cursor_vfx_mode = "sonicboom"
+  vim.g.neovide_transparency = 0.7
+end
 
 -- searching
 g.nohlsearch = true
@@ -52,5 +57,4 @@ o.path:append('**')
 o.wildmenu = true
 o.wildignore:append('**/node_modules/**')
 o.hidden = true
-
 
