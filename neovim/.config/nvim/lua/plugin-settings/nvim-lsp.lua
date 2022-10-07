@@ -38,11 +38,31 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-lspconfig.tsserver.setup{}
-lspconfig.sumneko_lua.setup{}
+local navic_success, navic = pcall(require, 'nvim-navic')
+if not navic_success then return end
+
+lspconfig.tsserver.setup{
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
+lspconfig.sumneko_lua.setup{
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
 lspconfig.tailwindcss.setup{}
-lspconfig.jsonls.setup{}
+lspconfig.jsonls.setup{
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
 lspconfig.prismals.setup{}
+lspconfig.bashls.setup{
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
