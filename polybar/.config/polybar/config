@@ -35,8 +35,8 @@ purple1 = #d3869b
 cyan0   = #689d6a
 cyan1   = #8ec07c
 
-accent  = #d3869b
-accent-light = #b16286
+accent  = ${self.purple1}
+accent-light = ${self.purple0}
 
 foreground = ${self.white}
 background = ${self.blackTr}
@@ -155,8 +155,7 @@ ramp-1 =  BRI
 ramp-2 =  BRI
 ramp-3 =  BRI
 ramp-4 =  BRI
-ramp-foreground = nil
-; ramp-background = ${colors.accent}
+ramp-foreground = ${colors.accent}
 
 ; }}}
 
@@ -235,8 +234,17 @@ type = internal/memory
 interval = 2
 format-prefix = " MEM "
 format-prefix-foreground = ${colors.accent}
-label = %percentage_used: 2%%
-label-foreground = ${colors.grey4}
+format = <bar-used>
+
+bar-used-indicator =
+bar-used-width = 5
+bar-used-foreground-0 = ${colors.cyan1}
+bar-used-foreground-1 = ${colors.cyan0}
+bar-used-foreground-2 = ${colors.yellow1}
+bar-used-foreground-3 = ${colors.orange1}
+bar-used-fill = ●
+bar-used-empty = ●
+bar-used-empty-foreground = ${colors.grey1}
 ; }}}
 
 ; cpu {{{
@@ -245,8 +253,17 @@ type = internal/cpu
 interval = 2
 format-prefix = " CPU "
 format-prefix-foreground = ${colors.accent}
-label = %percentage: 2%%
-label-foreground = ${colors.grey4}
+format = <bar-load>
+
+bar-load-indicator =
+bar-load-width = 5
+bar-load-foreground-0 = ${colors.cyan1}
+bar-load-foreground-1 = ${colors.cyan0}
+bar-load-foreground-2 = ${colors.yellow1}
+bar-load-foreground-3 = ${colors.orange1}
+bar-load-fill = ●
+bar-load-empty = ●
+bar-load-empty-foreground = ${colors.grey1}
 ; }}}
 
 ; wlan {{{
