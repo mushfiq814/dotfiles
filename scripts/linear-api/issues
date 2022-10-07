@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOKEN=YOUR_API_TOKEN
+TOKEN=$(cat ~/downloads/programs/linear-tracker-token)
 
 if [[ $TOKEN -eq "YOUR_API_TOKEN" ]]; then
   echo "api token not set. exiting..."
