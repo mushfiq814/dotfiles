@@ -56,19 +56,14 @@ alias zrc='$EDITOR ~/.zshrc'
 alias v='$EDITOR'
 alias vrc='$EDITOR /etc/vim/vimrc'
 alias nvrc='$EDITOR ~/.config/nvim/init.vim'
-alias wrc='$EDITOR /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json'
-# alias wrc='$EDITOR /mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_*/LocalState/settings.json'
-alias frc='$EDITOR /mnt/c/Users/mushf/AppData/Roaming/Mozilla/Firefox/Profiles/3qkb6j9y.default-1586366854597/chrome'
 alias trc='$EDITOR ~/.tmux.conf'
 
 # filesystem aliases
-alias dm='cd /mnt/c/Users/mushf/disciplined-minds'
-alias usf='cd /mnt/c/Users/mushf/OneDrive/USF'
+
 alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
 alias DW='cd ~/downloads'
-alias PR='cd ~/projects'
+alias PR=showProjects
 alias ORC='cd ~/projects/orchestra'
-alias ORCPR='cd ~/projects/orchestra-pr-review'
 
 # package manager
 alias sai='sudo apt install'
@@ -86,7 +81,7 @@ alias open='xdg-open'
 alias pip='python3 -m pip'
 
 # launch vimwiki
-alias vw='$EDITOR ~/windows/vimwiki/index.md'
+alias vw='$EDITOR ~/vimwiki/index.md'
 
 # autolaunch ytfzf with thumbnail support
 alias ytfzf='ytfzf -t'
@@ -122,6 +117,12 @@ alias lock='i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c "#000000"'
 # }}}
 
 # Functions {{{
+
+# showProjects {{{
+function showProjects() {
+  cd ~/projects/$('ls' ~/projects | fzf)
+}
+# }}}
 
 # prettyGitLog {{{
 function prettyGitLog() {
@@ -223,7 +224,7 @@ bindkey '^e' edit-command-line
 # History {{{
 
 # enable history
-export HISTSIZE=2000
+export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=~/.zsh_history
 
