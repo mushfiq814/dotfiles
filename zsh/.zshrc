@@ -51,12 +51,12 @@ alias make='make -s'
 alias yt='youtube-dl -x --audio-format mp3'
 
 # config files aliases
-alias brc='$EDITOR ~/.bashrc'
-alias zrc='$EDITOR ~/.zshrc'
-alias v='$EDITOR'
-alias vrc='$EDITOR /etc/vim/vimrc'
-alias nvrc='$EDITOR ~/.config/nvim/init.vim'
-alias trc='$EDITOR ~/.tmux.conf'
+alias v='nvim --listen /tmp/nvim-server.pipe'
+alias brc='v ~/.bashrc'
+alias zrc='v ~/.zshrc'
+alias vrc='v /etc/vim/vimrc'
+alias nvrc='v ~/.config/nvim/init.vim'
+alias trc='v ~/.tmux.conf'
 
 # filesystem aliases
 
@@ -81,7 +81,7 @@ alias open='xdg-open'
 alias pip='python3 -m pip'
 
 # launch vimwiki
-alias vw='$EDITOR ~/vimwiki/index.md'
+alias vw='v ~/vimwiki/index.md'
 
 # autolaunch ytfzf with thumbnail support
 alias ytfzf='ytfzf -t'
@@ -272,7 +272,7 @@ SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLV
 
 # function to set prompt
 set_prompt () {
-	PROMPT=""
+	PROMPT="%B"
 	PROMPT+="＞ "
   # PROMPT+="💻 "
 	PROMPT+="%F{$YE1}%n%f"
@@ -299,6 +299,7 @@ zstyle ':vcs_info:*' enable git
 precmd() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 precmd_functions+=( set_prompt )
+# precmd_functions+=( fetch )
 # enable substitution in the prompt
 setopt prompt_subst
 
@@ -365,16 +366,17 @@ _comp_options+=(globdots)
 
 # Program Specific Settings {{{
 
-# Node Package Manager {{{
-NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-# }}}
-
 # Node Version Manager (NVM) {{{
+
+# resolve node path for nvm version
+# export NODE_PATH=/home/mushfiq/.nvm/versions/node/v18.0.0/bin/node
+# export PATH="$(dirname $NODE_PATH):$PATH"
+export PATH="/home/mushfiq/.local/share/npm/bin:$PATH"
+
 # NVM slows down zsh initialization by a lot.
-# This enables lazy loading nvm 
+# This enables lazy loading nvm
 lazynvm() {
-	echo 'lazy loading nvm...'
+	# echo 'lazy loading nvm...'
 	unset -f nvm node npm npx
 	export NVM_DIR=~/.nvm
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
@@ -397,8 +399,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Fuzzy Finder {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+# source /usr/share/fzf/key-bindings.zsh
 # }}}
 
 # Go Compiler {{{
@@ -452,8 +454,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # }}}
 
 # Call function {{{
-fetch
 set_prompt
+'cat' ~/Pictures/ascii/hi.ascii
+# fetch
 # }}}
 
 # vim:foldmethod=marker:foldlevel=0
