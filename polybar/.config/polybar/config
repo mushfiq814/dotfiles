@@ -9,39 +9,7 @@
 ;
 ;==========================================================
 
-; Colors {{{
-[colors]
-
-blackTr = #991d2021
-black   = #1d2021
-grey0   = #282828
-grey1   = #504945
-grey2   = #7c6f64
-grey3   = #a89984
-grey4   = #ebdbb2
-white   = #fbf1c7
-blue0   = #458588
-blue1   = #83a598
-red0    = #cc241d
-red1    = #fb4934
-orange0 = #d65d0e
-orange1 = #fe8019
-yellow0 = #d79921
-yellow1 = #fabd2f
-green0  = #98971a
-green1  = #b8bb26
-purple0 = #b16286
-purple1 = #d3869b
-cyan0   = #689d6a
-cyan1   = #8ec07c
-
-accent  = ${self.purple1}
-accent-light = ${self.purple0}
-
-foreground = ${self.white}
-background = ${self.blackTr}
-alert = ${self.red0}
-; }}}
+include-file = $HOME/.config/polybar/colors
 
 ; Bar Settings {{{
 [bar/mushfiq]
@@ -65,13 +33,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Retina
+font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
 font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
 font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
-modules-center = spotify spotify-prev spotify-play-pause spotify-next pulseaudio pacmd
-modules-right = backlight memory cpu wlan battery date
+modules-center = spotify pulseaudio pacmd
+modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect backlight memory cpu wlan battery date
 
 tray-position = none
 tray-padding = 0
@@ -228,6 +196,15 @@ format-foreground = ${colors.accent-light}
 click-left = playerctl next -p spotify
 ; }}}
 
+; colorscheme {{{
+[module/colorscheme]
+type = custom/script
+exec = echo "💡"
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/colorscheme
+; }}}
+
 ; memory {{{
 [module/memory]
 type = internal/memory
@@ -244,7 +221,7 @@ bar-used-foreground-2 = ${colors.yellow1}
 bar-used-foreground-3 = ${colors.orange1}
 bar-used-fill = ●
 bar-used-empty = ●
-bar-used-empty-foreground = ${colors.grey1}
+bar-used-empty-foreground = ${colors.grey2}
 ; }}}
 
 ; cpu {{{
@@ -263,7 +240,7 @@ bar-load-foreground-2 = ${colors.yellow1}
 bar-load-foreground-3 = ${colors.orange1}
 bar-load-fill = ●
 bar-load-empty = ●
-bar-load-empty-foreground = ${colors.grey1}
+bar-load-empty-foreground = ${colors.grey2}
 ; }}}
 
 ; wlan {{{
@@ -340,6 +317,15 @@ time = %r
 label = %{F#d3869b}%{F-} %date% %{F#d3869b}%{F-} %time%
 label-foreground = ${colors.white}
 ; }}}
+;
+; btconnect {{{
+[module/btconnect]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/btconnect
+; }}}
 
 ; powermenu {{{
 [module/powermenu]
@@ -358,6 +344,8 @@ menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = power off
 menu-0-1-exec = menu-open-2
+menu-0-2 = 😅
+menu-0-2-exec = menu-open-3
 
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
@@ -368,7 +356,9 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+; }}}
 
+; settings {{{
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -376,9 +366,12 @@ screenchange-reload = true
 ;compositing-foreground = source
 ;compositing-border = over
 ;pseudo-transparency = false
+; }}}
 
+; global/wm {{{
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+; }}}
 
 ; vim:ft=dosini:foldmethod=marker:foldlevel=0
