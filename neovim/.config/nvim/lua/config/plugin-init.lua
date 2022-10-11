@@ -1,4 +1,4 @@
-local list = require('plugins')
+local list = require('config/plugins')
 
 -- copied from https://github.com/LunarVim/Neovim-from-scratch/blob/03-plugins/lua/user/plugins.lua
 -- Automatically install packer
@@ -25,9 +25,7 @@ vim.cmd [[
 ]]
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+if not status_ok then return end
 
 -- Have packer use a popup window
 packer.init {
@@ -38,7 +36,7 @@ packer.init {
   },
 }
 
-require('packer').startup(function ()
+packer.startup(function ()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 

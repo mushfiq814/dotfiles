@@ -6,6 +6,7 @@ nvim_treesitter.setup {
     'typescript',
     'javascript',
     'lua',
+    'query',
     'json',
     'jsonc',
     'markdown',

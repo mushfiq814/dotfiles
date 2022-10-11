@@ -8,9 +8,9 @@ if not success then return end
 local border = 'rounded'
 -- can also be an array as follows
 local borders = {
-  "⎾","▔","🭾",
-  "▏"," ","▕",
-  "⌞","▁","🭿",
+  "⎾", "▔", "🭾",
+  "▏", " ", "▕",
+  "⌞", "▁", "🭿",
 }
 -- local border = {
 --   {borders[1], "FloatBorder"},
@@ -41,24 +41,27 @@ vim.diagnostic.config({
 local navic_success, navic = pcall(require, 'nvim-navic')
 if not navic_success then return end
 
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
 }
-lspconfig.sumneko_lua.setup{
+lspconfig.sumneko_lua.setup {
+  settings = {
+    Lua = { diagnostics = { globals = { 'vim', 'use' } } },
+  },
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
 }
-lspconfig.tailwindcss.setup{}
-lspconfig.jsonls.setup{
+lspconfig.tailwindcss.setup {}
+lspconfig.jsonls.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
 }
-lspconfig.prismals.setup{}
-lspconfig.bashls.setup{
+lspconfig.prismals.setup {}
+lspconfig.bashls.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
@@ -85,4 +88,3 @@ keymap('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
 keymap('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
 keymap('n', '[v', ':lua vim.diagnostic.goto_prev()<CR>', opts)
 keymap('n', ']v', ':lua vim.diagnostic.goto_next()<CR>', opts)
-

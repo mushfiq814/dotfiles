@@ -1,6 +1,7 @@
 local success, notify = pcall(require, 'notify')
 if not success then return end
-local colors = require('theme').colors
+local colorsLoaded, colors = pcall(require, 'config/colors')
+if not colorsLoaded then return end
 
 -- set nvim-notify as default notify function for other plugins
 vim.notify = notify
@@ -26,6 +27,8 @@ vim.cmd('highlight link NotifyWARNBody  Normal')
 vim.cmd('highlight link NotifyINFOBody  Normal')
 vim.cmd('highlight link NotifyDEBUGBody Normal')
 vim.cmd('highlight link NotifyTRACEBody Normal')
+
+notify.setup({ background_color = "#000000" })
 
 -- keybindings
 -- dismiss notifications

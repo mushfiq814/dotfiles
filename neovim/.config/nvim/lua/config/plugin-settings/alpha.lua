@@ -40,6 +40,6 @@ dashboard.config = {
   },
 }
 
-dashboard.section.header.val = require('utils/ascii_art')
+dashboard.section.header.val = require('config/utils/ascii_art')
 
 alpha.setup(dashboard.config)

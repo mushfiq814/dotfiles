@@ -1,6 +1,7 @@
 local success, gitsigns = pcall(require, 'gitsigns')
 if not success then return end
-local colors = require('theme').colors
+local colorsLoaded, colors = pcall(require, 'config/colors')
+if not colorsLoaded then return end
 
 -- color highlights
 vim.cmd('hi! GitSignsAdd guifg='          .. colors.bright_green .. ' guibg=#')

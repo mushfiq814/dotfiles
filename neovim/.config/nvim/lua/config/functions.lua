@@ -1,3 +1,22 @@
+-- edited from https://git.sr.ht/~henriquehbr/dots/tree/main/item/nvim/.config/nvim/lua/config/commands.lua
+function reload_config()
+  for package_name, _ in pairs(package.loaded) do
+    -- NOTE: for this to work, all custom lua modules need
+    -- to be specified/loaded under the `lua/config` directory
+    local prefix = "config"
+    if package_name:match("^" .. prefix) then
+      package.loaded[package_name] = nil
+    end
+  end
+
+  vim.cmd("luafile " .. vim.env.MYVIMRC)
+  -- vim.cmd("luafile " .. vim.env.MYVIMRC)
+  vim.cmd "doautocmd VimEnter"
+  vim.cmd("redraw!")
+  vim.cmd("edit")
+  vim.notify("Reloaded config")
+end
+
 vim.cmd [[
 function! FollowMarkdownLink() abort
 lua << EOF
@@ -66,13 +85,3 @@ vim.api.nvim_buf_set_lines(0, lineNr, lineNr, true, { tableSeparator })
 EOF
 endfunction
 ]]
-
--- vim.cmd [[
--- function! <SID>functions#SynStack()
--- 	if !exists("*synstack")
--- 		return
--- 	endif
--- 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
--- endfunction
--- " nmap <leader>;; :call <SID>SynStack()<CR>
--- ]]

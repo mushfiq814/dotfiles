@@ -1,8 +1,7 @@
-local colors_loaded, colors = pcall(require, 'theme')
+local colors_loaded, colors = pcall(require, 'config/colors')
 if not colors_loaded then return end
-local theme = colors.colors
-local background = theme.black
-local foreground = theme.white
+local background = colors.black
+local foreground = colors.white
 
 local function mode()
   -- from https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
@@ -34,7 +33,8 @@ local function mode()
   return "%#" .. modes[current_mode].highlight .. "#" .. mode .. "%#Normal#"
 end
 
-local function gitbranch()
+BRANCHES = {}
+local function cacheGitBranch()
   local handle = io.popen('git rev-parse --abbrev-ref HEAD 2> /dev/null')
   local branch_name = handle:read('*a')
   branch_name = string.gsub(branch_name, '[^%w-\\.]', '')
@@ -43,8 +43,21 @@ local function gitbranch()
   if branch_name == nil or branch_name == '' then
     return ''
   else
+    BRANCHES[vim.api.nvim_get_current_buf()] = branch_name
     return '%#statusLineBranch#  ' .. branch_name .. ' %#Normal#'
   end
+end
+
+local augroupGitBranch = vim.api.nvim_create_augroup('statusLineGitBranchGroup', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = augroupGitBranch,
+  callback = function() cacheGitBranch() end
+})
+local function retrieveBranchFromCache()
+  if #(BRANCHES) then return '' end
+  local branch_name = BRANCHES[vim.api.nvim_get_current_buf()]
+  if #(branch_name) then return '' end
+  return '%#statusLineBranch#  ' .. BRANCHES[vim.api.nvim_get_current_buf()] .. ' %#Normal#'
 end
 
 local function lspDiagnosticCounts()
@@ -119,7 +132,8 @@ local function lineinfo()
   local currentLineStr = string.format("%3d", currentLine)
   local currentColumnStr = string.format("%-3d", currentColumn)
 
-  return '%#statusLineProgress# ' .. progressStr .. '%#statusLineRowCol# ' .. currentLineStr .. ':' .. currentColumnStr .. ' %#Normal#'
+  return '%#statusLineProgress# ' ..
+      progressStr .. '%#statusLineRowCol# ' .. currentLineStr .. ':' .. currentColumnStr .. ' %#Normal#'
 end
 
 local function cwd()
@@ -157,56 +171,58 @@ end
 function MyStatusLine()
   local statusline = table.concat({
     mode(),
-    gitbranch(),
+    tabpages(),
+    retrieveBranchFromCache(),
     cwd(),
     spacer(),
     lspDiagnosticCounts(),
     activeLlspClient(),
     filetype(),
-    tabpages(),
     lineinfo(),
   })
   return statusline
 end
-
 vim.o.statusline = "%{%v:lua.MyStatusLine()%}"
+
+-- remove native tabline
+vim.o.showtabline = false
 
 -- global statusline
 vim.o.laststatus = 3
 
 local function highlights()
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineModeNormal gui=bold guibg="
-    .. theme.bright_aqua
+    .. colors.bright_aqua
     .. " guifg="
-    .. theme.grey0
+    .. colors.grey0
   )
   vim.cmd(
     "highlight! statusLineModeInsert gui=bold guibg="
-    .. theme.bright_blue
+    .. colors.bright_blue
     .. " guifg="
-    .. theme.grey0
+    .. colors.grey0
   )
   vim.cmd(
     "highlight! statusLineModeVisual gui=bold guibg="
-    .. theme.bright_orange
+    .. colors.bright_orange
     .. " guifg="
-    .. theme.grey0
+    .. colors.grey0
   )
   vim.cmd(
     "highlight! statusLineModeCommand gui=bold guibg="
-    .. theme.bright_yellow
+    .. colors.bright_yellow
     .. " guifg="
-    .. theme.grey0
+    .. colors.grey0
   )
   vim.cmd(
     "highlight! statusLineModeTerminal gui=bold guibg="
-    .. theme.bright_purple
+    .. colors.bright_purple
     .. " guifg="
-    .. theme.grey0
+    .. colors.grey0
   )
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineBranch gui=bold guibg="
     .. background
@@ -218,63 +234,63 @@ local function highlights()
     "highlight! statusLineDiagnosticsError guibg="
     .. background
     .. " guifg="
-    .. theme.bright_red
+    .. colors.bright_red
   )
   vim.cmd(
     "highlight! statusLineDiagnosticsWarning guibg="
     .. background
     .. " guifg="
-    .. theme.bright_yellow
+    .. colors.bright_yellow
   )
   vim.cmd(
     "highlight! statusLineDiagnosticsInfo guibg="
     .. background
     .. " guifg="
-    .. theme.bright_aqua
+    .. colors.bright_aqua
   )
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineFileType guifg="
     .. foreground
     .. " guibg="
     .. background
   )
-  -- 
-  -- 
+  --
+  --
   vim.cmd(
     "highlight! statusLineProgress guifg="
-    .. theme.bright_purple
+    .. colors.bright_purple
     .. " guibg="
-    .. theme.grey0
+    .. colors.grey0
   )
   vim.cmd(
     "highlight! statusLineRowCol gui=bold guifg="
-    .. theme.bright_aqua
+    .. colors.bright_aqua
     .. " guibg="
-    .. theme.grey0
+    .. colors.grey0
   )
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineSpacer guibg="
     .. background
     .. " guifg="
     .. foreground
   )
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineCwd guibg="
     .. background
     .. " guifg="
-    .. theme.bright_blue
+    .. colors.bright_blue
   )
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineLspClient guibg="
     .. background
     .. " guifg="
-    .. theme.bright_orange
+    .. colors.bright_orange
   )
-  -- 
+  --
   vim.cmd(
     "highlight! statusLineTabNormal guibg="
     .. background
@@ -283,15 +299,16 @@ local function highlights()
   )
   vim.cmd(
     "highlight! statuslineTabActive guibg="
-    .. theme.faded_aqua
+    .. colors.faded_purple
     .. " guifg="
     .. background
   )
   vim.cmd(
     "highlight! statuslineTabInactive guibg="
-    .. theme.grey1
+    .. colors.grey2
     .. " guifg="
-    .. theme.white
+    .. colors.white
   )
 end
+
 highlights()

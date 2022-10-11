@@ -1,8 +1,8 @@
-local colors_loaded, colors = pcall(require, 'theme')
+local colors_loaded, colors = pcall(require, 'config/colors')
 if not colors_loaded then return end
-local theme = colors.colors
-local background = theme.black
-local foreground = theme.white
+local lightMode = colors.mode == "light"
+local background = colors.black
+local foreground = colors.white
 
 local function filename()
   local filename = vim.fn.expand("%:t")
@@ -33,16 +33,17 @@ local function highlights()
   -- 
   vim.cmd(
     "highlight! winbarFileName gui=bold guifg="
-    .. theme.white
+    -- .. (lightMode and background or foreground)
+    .. background
     .. " guibg="
-    .. theme.faded_purple
+    .. (lightMode and colors.bright_purple or colors.faded_purple)
   )
   -- 
   vim.cmd(
     "highlight! winbarTags guifg="
     .. foreground
     .. " guibg="
-    .. theme.grey0
+    .. colors.grey1
   )
 end
 highlights()
