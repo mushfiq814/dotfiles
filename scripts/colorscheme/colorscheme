@@ -1,0 +1,211 @@
+#!/bin/sh
+
+# show list of available colorschemes
+THEME=$(for file in $HOME/.config/colorscheme/colors/*.json; do
+  basename $file .json;
+done | rofi -dmenu)
+
+# get colors from desired colorscheme
+COLORS=$(cat $HOME/.config/colorscheme/colors/$THEME.json)
+EXIT_CODE=$?
+if [ $EXIT_CODE != 0 ]; then
+  exit 1
+fi
+
+# store values
+# TODO: find more efficient/readable way to do this
+MODE=$(echo "$COLORS" | jq -r ".mode")
+ACCENT_KEY=$(echo "$COLORS" | jq -r ".accent")
+ACCENT=$(echo "$COLORS" | jq -r ".$ACCENT_KEY")
+BLACK=$(echo "$COLORS" | jq -r ".black")
+GREY0=$(echo "$COLORS" | jq -r ".grey0")
+GREY1=$(echo "$COLORS" | jq -r ".grey1")
+GREY2=$(echo "$COLORS" | jq -r ".grey2")
+GREY3=$(echo "$COLORS" | jq -r ".grey3")
+GREY4=$(echo "$COLORS" | jq -r ".grey4")
+GREY5=$(echo "$COLORS" | jq -r ".grey5")
+WHITE=$(echo "$COLORS" | jq -r ".white")
+BRIGHT_RED=$(echo "$COLORS" | jq -r ".bright_red")
+NEUTRAL_RED=$(echo "$COLORS" | jq -r ".neutral_red")
+FADED_RED=$(echo "$COLORS" | jq -r ".faded_red")
+BRIGHT_GREEN=$(echo "$COLORS" | jq -r ".bright_green")
+NEUTRAL_GREEN=$(echo "$COLORS" | jq -r ".neutral_green")
+FADED_GREEN=$(echo "$COLORS" | jq -r ".faded_green")
+BRIGHT_YELLOW=$(echo "$COLORS" | jq -r ".bright_yellow")
+NEUTRAL_YELLOW=$(echo "$COLORS" | jq -r ".neutral_yellow")
+FADED_YELLOW=$(echo "$COLORS" | jq -r ".faded_yellow")
+BRIGHT_BLUE=$(echo "$COLORS" | jq -r ".bright_blue")
+NEUTRAL_BLUE=$(echo "$COLORS" | jq -r ".neutral_blue")
+FADED_BLUE=$(echo "$COLORS" | jq -r ".faded_blue")
+BRIGHT_PURPLE=$(echo "$COLORS" | jq -r ".bright_purple")
+NEUTRAL_PURPLE=$(echo "$COLORS" | jq -r ".neutral_purple")
+FADED_PURPLE=$(echo "$COLORS" | jq -r ".faded_purple")
+BRIGHT_AQUA=$(echo "$COLORS" | jq -r ".bright_aqua")
+NEUTRAL_AQUA=$(echo "$COLORS" | jq -r ".neutral_aqua")
+FADED_AQUA=$(echo "$COLORS" | jq -r ".faded_aqua")
+BRIGHT_ORANGE=$(echo "$COLORS" | jq -r ".bright_orange")
+NEUTRAL_ORANGE=$(echo "$COLORS" | jq -r ".neutral_orange")
+FADED_ORANGE=$(echo "$COLORS" | jq -r ".faded_orange")
+echo "MUSHFIQ: theme $THEME ($MODE) with accent: $ACCENT"
+
+# kitty: set colors file
+echo "MUSHFIQ: setting kitty colors"
+# NOTE: remember to include $HOME/.config/kitty/colors.conf in kitty config file
+cat << EOF > $HOME/.config/kitty/colors.conf
+# theme: $THEME
+foreground $WHITE
+background $BLACK
+color0     $BLACK
+color8     $GREY1
+color1     $BRIGHT_RED
+color9     $NEUTRAL_RED
+color2     $BRIGHT_GREEN
+color10    $NEUTRAL_GREEN
+color3     $BRIGHT_YELLOW
+color11    $NEUTRAL_YELLOW
+color4     $BRIGHT_BLUE
+color12    $NEUTRAL_BLUE
+color5     $BRIGHT_PURPLE
+color13    $NEUTRAL_PURPLE
+color6     $BRIGHT_AQUA
+color14    $NEUTRAL_AQUA
+color7     $GREY3
+color15    $WHITE
+
+url_color  $ACCENT
+
+selection_foreground $BLACK
+selection_background $WHITE
+cursor $WHITE
+cursor_text_color $BLACK
+EOF
+
+# polybar: set colors file
+echo "MUSHFIQ: setting polybar colors"
+# get transparent black color in AARRGGBB format
+BLACK_TR="99$(expr substr $BLACK 2 $(expr length $BLACK))"
+cat << EOF > $HOME/.config/polybar/colors
+[colors]
+blackTr = $BLACK_TR
+black   = $BLACK
+grey0   = $GREY0
+grey1   = $GREY1
+grey2   = $GREY2
+grey3   = $GREY3
+grey4   = $GREY4
+white   = $WHITE
+blue0   = $NEUTRAL_BLUE
+blue1   = $BRIGHT_BLUE
+red0    = $NEUTRAL_RED
+red1    = $BRIGHT_RED
+orange0 = $NEUTRAL_ORANGE
+orange1 = $BRIGHT_ORANGE
+yellow0 = $NEUTRAL_YELLOW
+yellow1 = $BRIGHT_YELLOW
+green0  = $NEUTRAL_GREEN
+green1  = $BRIGHT_GREEN
+purple0 = $NEUTRAL_PURPLE
+purple1 = $BRIGHT_PURPLE
+cyan0   = $NEUTRAL_AQUA
+cyan1   = $BRIGHT_AQUA
+
+accent  = $ACCENT
+accent-light = $ACCENT
+
+foreground = \${self.white}
+background = \${self.blackTr}
+alert = \${self.red0}
+EOF
+
+# i3: set colors file
+echo "MUSHFIQ: setting i3 colors"
+i3_sed_replace_colors ()
+{
+  sed -i "s/^\bclient\.$1\(\s*#[0-9a-fA-F]\{6\}\)\+/client\.$1 $2 $3 $4 $5 $6/g" $HOME/.config/i3/config
+}
+i3_sed_replace_colors "focused"            $BRIGHT_AQUA $NEUTRAL_AQUA $WHITE $ACCENT   $ACCENT
+i3_sed_replace_colors "focused_inactive"   "#333333" "#5f676a" $WHITE "#484e50" "#5f676a"
+i3_sed_replace_colors "unfocused"          "#333333" "#222222" "#888888" "#292d2e" "#222222"
+i3_sed_replace_colors "urgent"             "#2f343a" $NEUTRAL_RED $WHITE $NEUTRAL_RED $NEUTRAL_RED
+i3_sed_replace_colors "placeholder"        "#000000" "#0c0c0c" $WHITE "#000000" "#0c0c0c"
+i3_sed_replace_colors "background"         $WHITE
+
+# nvim: set colors file
+echo "MUSHFIQ: setting nvim colors"
+cat << EOF > $HOME/.config/nvim/lua/config/colors.lua
+return {
+  theme          = "$THEME",
+  mode           = "$MODE",
+  black          = "$BLACK",
+  grey0          = "$GREY0",
+  grey1          = "$GREY1",
+  grey2          = "$GREY2",
+  grey3          = "$GREY3",
+  grey4          = "$GREY4",
+  grey5          = "$GREY5",
+  white          = "$WHITE",
+  bright_red     = "$BRIGHT_RED",
+  neutral_red    = "$NEUTRAL_RED",
+  faded_red      = "$FADED_RED",
+  bright_green   = "$BRIGHT_GREEN",
+  neutral_green  = "$NEUTRAL_GREEN",
+  faded_green    = "$FADED_GREEN",
+  bright_yellow  = "$BRIGHT_YELLOW",
+  neutral_yellow = "$NEUTRAL_YELLOW",
+  faded_yellow   = "$FADED_YELLOW",
+  bright_blue    = "$BRIGHT_BLUE",
+  neutral_blue   = "$NEUTRAL_BLUE",
+  faded_blue     = "$FADED_BLUE",
+  bright_purple  = "$BRIGHT_PURPLE",
+  neutral_purple = "$NEUTRAL_PURPLE",
+  faded_purple   = "$FADED_PURPLE",
+  bright_aqua    = "$BRIGHT_AQUA",
+  neutral_aqua   = "$NEUTRAL_AQUA",
+  faded_aqua     = "$FADED_AQUA",
+  bright_orange  = "$BRIGHT_ORANGE",
+  neutral_orange = "$NEUTRAL_ORANGE",
+  faded_orange   = "$FADED_ORANGE",
+}
+EOF
+
+# rofi: set colors file
+echo "MUSHFIQ: setting rofi colors"
+cat << EOF > $HOME/.config/rofi/colors.rasi
+* {
+  al:       $BLACK;
+  bg:       $GREY0;
+  se:       $GREY0;
+  fg:       $WHITE;
+  ac:       $ACCENT;
+  red:      $BRIGHT_RED;
+  green:    $BRIGHT_GREEN;
+  yellow:   $BRIGHT_YELLOW;
+  blue:     $BRIGHT_BLUE;
+  purple:   $BRIGHT_PURPLE;
+  aqua:     $BRIGHT_AQUA;
+}
+EOF
+
+# TODO: firefox/chrome config
+
+# reload kitty
+echo "MUSHFIQ: reloading kitty"
+killall -SIGUSR1 kitty
+
+# reload i3 config
+echo "MUSHFIQ: reloading i3"
+i3 restart
+
+# reload neovim
+echo "MUSHFIQ: reloading neovim"
+NVIM_SERVER="/tmp/nvim-server.pipe"
+NVIM=$(which nvim)
+# call reload function in nvim
+$NVIM --server $NVIM_SERVER --remote-send ":lua reload_config()<CR>" & 2> /dev/null
+
+# reload polybar
+# NOTE: this script needs to be present
+# TODO: add error handling for all dependencies
+echo "MUSHFIQ: reloading polybar"
+pkill polybar && /usr/local/bin/polybar mushfiq &
+
