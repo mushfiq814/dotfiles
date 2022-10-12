@@ -39,9 +39,9 @@ font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
 modules-center = spotify pulseaudio pacmd
-modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect backlight memory cpu wlan battery date
+modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect backlight memory cpu wlan battery date time
 
-tray-position = none
+tray-position = right
 tray-padding = 0
 
 cursor-click = pointer
@@ -199,7 +199,7 @@ click-left = playerctl next -p spotify
 ; colorscheme {{{
 [module/colorscheme]
 type = custom/script
-exec = echo "💡"
+exec = echo ""
 format = <label>
 format-foreground = ${colors.accent-light}
 click-left = /usr/local/bin/colorscheme
@@ -310,14 +310,26 @@ label-full-foreground = ${colors.cyan0}
 ; date {{{
 [module/date]
 type = internal/date
-interval = 1
+interval = 120
 ; use `man date` to find out format options
 date = "%a %Y-%m-%d"
-time = %r
-label = %{F#d3869b}%{F-} %date% %{F#d3869b}%{F-} %time%
+format =  <label>
+format-foreground = ${colors.accent}
+label = %date%
 label-foreground = ${colors.white}
 ; }}}
-;
+
+; time {{{
+[module/time]
+type = internal/date
+interval = 1
+time = %r
+format =  <label>
+format-foreground = ${colors.accent}
+label = %time%
+label-foreground = ${colors.white}
+; }}}
+
 ; btconnect {{{
 [module/btconnect]
 type = custom/script
