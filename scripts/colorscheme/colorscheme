@@ -1,21 +1,27 @@
 #!/bin/sh
 
-# show list of available colorschemes
-THEME=$(for file in $HOME/.config/colorscheme/colors/*.json; do
+# show list of available colorschemes and accents
+THEME=$(for file in $HOME/dotfiles/scripts/colorscheme/colors/*.json; do
   basename $file .json;
 done | rofi -dmenu)
+ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
+EXIT_CODE=$?
+if [ $EXIT_CODE != 0 ]; then
+  notify-send "colorscheme aborted"
+  exit 1
+fi
 
 # get colors from desired colorscheme
 COLORS=$(cat $HOME/.config/colorscheme/colors/$THEME.json)
 EXIT_CODE=$?
 if [ $EXIT_CODE != 0 ]; then
+  notify-send "colors file for $THEME not found! Aborting..."
   exit 1
 fi
 
 # store values
 # TODO: find more efficient/readable way to do this
 MODE=$(echo "$COLORS" | jq -r ".mode")
-ACCENT_KEY=$(echo "$COLORS" | jq -r ".accent")
 ACCENT=$(echo "$COLORS" | jq -r ".$ACCENT_KEY")
 BLACK=$(echo "$COLORS" | jq -r ".black")
 GREY0=$(echo "$COLORS" | jq -r ".grey0")
@@ -83,7 +89,13 @@ EOF
 # polybar: set colors file
 echo "MUSHFIQ: setting polybar colors"
 # get transparent black color in AARRGGBB format
-BLACK_TR="99$(expr substr $BLACK 2 $(expr length $BLACK))"
+BLACK_TR="$(expr substr $BLACK 2 $(expr length $BLACK))"
+# less transparent for light theme
+if [ $MODE = "light" ]; then
+  BLACK_TR="#DD$BLACK_TR"
+else
+  BLACK_TR="#99$BLACK_TR"
+fi
 cat << EOF > $HOME/.config/polybar/colors
 [colors]
 blackTr = $BLACK_TR
@@ -186,7 +198,39 @@ cat << EOF > $HOME/.config/rofi/colors.rasi
 }
 EOF
 
-# TODO: firefox/chrome config
+# qutebrowser: set theme
+QUTEBROWSER_CONFIG="$HOME/.config/qutebrowser/config.py"
+echo $QUTEBROWSER_CONFIG
+sed -i "s/^MODE = \"\(light\|dark\)\"/MODE = \"$MODE\"/g" $QUTEBROWSER_CONFIG
+sed -i "s/^BLACK = \".*\"/BLACK = \"$BLACK\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^GREY0 = \".*\"/GREY0 = \"$GREY0\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^GREY1 = \".*\"/GREY1 = \"$GREY1\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^GREY2 = \".*\"/GREY2 = \"$GREY2\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^GREY3 = \".*\"/GREY3 = \"$GREY3\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^GREY4 = \".*\"/GREY4 = \"$GREY4\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^GREY5 = \".*\"/GREY5 = \"$GREY5\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^WHITE = \".*\"/WHITE = \"$WHITE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_RED = \".*\"/BRIGHT_RED = \"$BRIGHT_RED\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_RED = \".*\"/NEUTRAL_RED = \"$NEUTRAL_RED\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_RED = \".*\"/FADED_RED = \"$FADED_RED\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_GREEN = \".*\"/BRIGHT_GREEN = \"$BRIGHT_GREEN\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_GREEN = \".*\"/NEUTRAL_GREEN = \"$NEUTRAL_GREEN\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_GREEN = \".*\"/FADED_GREEN = \"$FADED_GREEN\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_YELLOW = \".*\"/BRIGHT_YELLOW = \"$BRIGHT_YELLOW\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_YELLOW = \".*\"/NEUTRAL_YELLOW = \"$NEUTRAL_YELLOW\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_YELLOW = \".*\"/FADED_YELLOW = \"$FADED_YELLOW\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_BLUE = \".*\"/BRIGHT_BLUE = \"$BRIGHT_BLUE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_BLUE = \".*\"/NEUTRAL_BLUE = \"$NEUTRAL_BLUE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_BLUE = \".*\"/FADED_BLUE = \"$FADED_BLUE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_PURPLE = \".*\"/BRIGHT_PURPLE = \"$BRIGHT_PURPLE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_PURPLE = \".*\"/NEUTRAL_PURPLE = \"$NEUTRAL_PURPLE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_PURPLE = \".*\"/FADED_PURPLE = \"$FADED_PURPLE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_AQUA = \".*\"/BRIGHT_AQUA = \"$BRIGHT_AQUA\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_AQUA = \".*\"/NEUTRAL_AQUA = \"$NEUTRAL_AQUA\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_AQUA = \".*\"/FADED_AQUA = \"$FADED_AQUA\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^BRIGHT_ORANGE = \".*\"/BRIGHT_ORANGE = \"$BRIGHT_ORANGE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^NEUTRAL_ORANGE = \".*\"/NEUTRAL_ORANGE = \"$NEUTRAL_ORANGE\"/" $QUTEBROWSER_CONFIG
+sed -i "s/^FADED_ORANGE = \".*\"/FADED_ORANGE = \"$FADED_ORANGE\"/" $QUTEBROWSER_CONFIG
 
 # reload kitty
 echo "MUSHFIQ: reloading kitty"
