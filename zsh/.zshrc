@@ -25,7 +25,6 @@ alias la='exa --long --all --icons'
 alias lg='exa --long --all --icons --git'
 
 # bat (a cat alternative)
-alias bat='batcat'
 alias cat='bat'
 
 # grep aliases
