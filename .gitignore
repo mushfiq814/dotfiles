@@ -11,10 +11,11 @@ readme.html
 **/test.ps1
 **/test.sh
 
-# neovim plugins
+# neovim plugins/generated files
 neovim/.config/nvim/.netrwhist
 neovim/.config/nvim/autoload/
 neovim/.config/nvim/plugged/
+neovim/.config/nvim/lua/config/colors.lua
 
 # password files
 mutt/.config/mutt/winehq.key
