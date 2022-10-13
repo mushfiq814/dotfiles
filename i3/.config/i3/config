@@ -236,7 +236,7 @@ bindsym $mod+shift+control+space exec --no-startup-id ~/dotfiles/scripts/emoji-r
 # bindsym $mod+shift+k exec --no-startup-id pkill -f screenkey
 
 # Start compton with custom config
-exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id recomp
 
 # Start polybar
 exec --no-startup-id rebar
