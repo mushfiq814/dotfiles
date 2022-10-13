@@ -9,8 +9,11 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# gaps
+# window class name specific rules
 for_window [class="^.*"] border pixel 2
+for_window [class="floating"] floating enable, resize set 640 480
+
+# gaps
 gaps inner 10
 # gaps outer 0
 
