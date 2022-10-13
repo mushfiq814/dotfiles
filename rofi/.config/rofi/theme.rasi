@@ -17,7 +17,7 @@ configuration {
   display-drun: "D";
 }
 
-@import "gruvbox.rasi"
+@import "colors.rasi"
 
 * {
   background-color: @bg;
