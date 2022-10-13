@@ -80,8 +80,6 @@ syn region markdownCode
 	\ start='\%(^\|\s\)\zs`\ze\S'ms=s+1
 	\ end='\S\zs`'me=e-1 keepend contains=@Spell oneline
 
-" Task List: * [ ] Not Done OR - [X] Done OR + [x] also done
-
 " BlockQuote: > This is a quote
 syn region markdownBlockQuote start='^\s*> ' end='$'
 	\ contains=markdownCode,markdownStrike,markdownBoldItalic,markdownBold,markdownItalic,
@@ -102,10 +100,12 @@ syn match markdownQuoteEnd /\w"/ms=s+1 conceal cchar=”
 
 " Footnote: [^1]: Text
 
-" Checkbox: [ ] [X] [x]
-syn match markdownCheckboxFull '^\(\t\|\s\)*\(*\|-\) \[X\]' conceal cchar=
-syn match markdownCheckboxFull '^\(\t\|\s\)*\(*\|-\) \[x\]' conceal cchar=
-syn match markdownCheckboxEmpty '^\(\t\|\s\)*\(*\|-\) \[ \]' conceal cchar=
+" Checkbox: * [ ] Not Done OR - [X] Done OR + [x] also done
+syn match markdownCheckboxFull  /^\(\t\|\s\)*\zs[-+*] \[X\] /me=e-1 conceal cchar=
+syn match markdownCheckboxFull  /^\(\t\|\s\)*\zs[-+*] \[x\] /me=e-1 conceal cchar=
+syn match markdownCheckboxEmpty /^\(\t\|\s\)*\zs[-+*] \[ \] /me=e-1 conceal cchar=
+syn match markdownCheckboxNext  /^\(\t\|\s\)*\zs[-+*] \[>\] /me=e-1 conceal cchar=
+syn match markdownCheckboxNext  /^\(\t\|\s\)*\zs[-+*] \[<\] /me=e-1 conceal cchar=
 
 " Custom coloring and rendering
 hi! markdownHeadingIcon   guifg=#7C6F64  guibg=#282828  gui=bold

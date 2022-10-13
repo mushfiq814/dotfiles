@@ -1,0 +1,15 @@
+#!/bin/sh
+
+DEVICES=$(bluetoothctl devices)
+SELECTION=$(echo "$DEVICES" | awk -F' ' '{print $3}' | rofi -dmenu -i -p "connect to which device?")
+if [ -z "$SELECTION" ]
+then
+  exit 0
+fi
+ID=$(echo "$DEVICES" | grep "$SELECTION" | awk -F' ' '{print $2}')
+if [ -z "$ID" ]
+then
+  exit 0
+fi
+echo "connecting to $SELECTION..."
+bluetoothctl connect "$ID"

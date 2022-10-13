@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pacmd list-sinks | grep -A80 "* index" | grep -i "device.description" | awk -F' = ' '{ print $2 }' | tr -d '"'

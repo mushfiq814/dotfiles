@@ -1,6 +1,5 @@
 #!/bin/node
 import { auth, calendar, calendar_v3 } from "@googleapis/calendar";
-// import type Schema$Event from calendar_v3.Schema$Event;
 import { Event } from "./utils/types";
 import { reduceEvent } from "./utils/eventReducer";
 import "dotenv/config";
@@ -61,7 +60,7 @@ const getCalendarEvents = async (
   });
 
   const items = res?.data?.items ?? [];
-  return items.map((e: Schema$Event) => reduceEvent(e));
+  return items.map((e: calendar_v3.Schema$Event) => reduceEvent(e));
 };
 
 // main method

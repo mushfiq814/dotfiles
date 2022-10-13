@@ -1,0 +1,307 @@
+#!/bin/sh
+
+# paths for config files
+APPNAME="colorscheme script"
+COLORS_DIR="$HOME/dotfiles/scripts/colorscheme/colors"
+COLORS_FILES="$COLORS_DIR/*.json"
+KITTY_COLORS_FILE="$HOME/.config/kitty/colors.conf"
+POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
+I3_CONFIG_FILE="$HOME/.config/i3/config"
+NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
+ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
+QUTEBROWSER_CONFIG_FILE="$HOME/.config/qutebrowser/config.py"
+
+quit_on_error () {
+  # if there was an error in the last command, quit
+  if [ $? != 0 ]; then
+    # if argument with message was passed in, send notification
+    if [ $# != 0 ]; then
+      notify-send "$1"
+    fi
+    exit 1
+  fi
+}
+
+quit_on_file_dne () {
+  # if no argument with filepath was passed in, quit
+  if [ $# = 0 ]; then
+    notify-send -a "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
+    exit 1
+  fi
+  if [ ! -e "$1" ]; then
+    notify-send -a "$APPNAME" "$1 was not found. Exiting..."
+    exit 1
+  fi
+}
+
+# show list of available colorschemes and accents
+quit_on_file_dne $COLORS_FILES
+THEME=$(for file in $COLORS_FILES; do
+  basename $file .json;
+done | rofi -dmenu)
+quit_on_error "Error with selecting colorscheme. Aborting..."
+ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
+quit_on_error "Error with selecting accent color. Aborting..."
+
+# get colors from desired colorscheme
+COLORS=$(cat $COLORS_DIR/$THEME.json)
+quit_on_error "colors file for $THEME not found! Aborting..."
+
+# store values
+# TODO: find more efficient/readable way to do this
+MODE=$(echo "$COLORS" | jq -r ".mode")
+ACCENT=$(echo "$COLORS" | jq -r ".$ACCENT_KEY")
+BLACK=$(echo "$COLORS" | jq -r ".black")
+GREY0=$(echo "$COLORS" | jq -r ".grey0")
+GREY1=$(echo "$COLORS" | jq -r ".grey1")
+GREY2=$(echo "$COLORS" | jq -r ".grey2")
+GREY3=$(echo "$COLORS" | jq -r ".grey3")
+GREY4=$(echo "$COLORS" | jq -r ".grey4")
+GREY5=$(echo "$COLORS" | jq -r ".grey5")
+WHITE=$(echo "$COLORS" | jq -r ".white")
+BRIGHT_RED=$(echo "$COLORS" | jq -r ".bright_red")
+NEUTRAL_RED=$(echo "$COLORS" | jq -r ".neutral_red")
+FADED_RED=$(echo "$COLORS" | jq -r ".faded_red")
+BRIGHT_GREEN=$(echo "$COLORS" | jq -r ".bright_green")
+NEUTRAL_GREEN=$(echo "$COLORS" | jq -r ".neutral_green")
+FADED_GREEN=$(echo "$COLORS" | jq -r ".faded_green")
+BRIGHT_YELLOW=$(echo "$COLORS" | jq -r ".bright_yellow")
+NEUTRAL_YELLOW=$(echo "$COLORS" | jq -r ".neutral_yellow")
+FADED_YELLOW=$(echo "$COLORS" | jq -r ".faded_yellow")
+BRIGHT_BLUE=$(echo "$COLORS" | jq -r ".bright_blue")
+NEUTRAL_BLUE=$(echo "$COLORS" | jq -r ".neutral_blue")
+FADED_BLUE=$(echo "$COLORS" | jq -r ".faded_blue")
+BRIGHT_PURPLE=$(echo "$COLORS" | jq -r ".bright_purple")
+NEUTRAL_PURPLE=$(echo "$COLORS" | jq -r ".neutral_purple")
+FADED_PURPLE=$(echo "$COLORS" | jq -r ".faded_purple")
+BRIGHT_AQUA=$(echo "$COLORS" | jq -r ".bright_aqua")
+NEUTRAL_AQUA=$(echo "$COLORS" | jq -r ".neutral_aqua")
+FADED_AQUA=$(echo "$COLORS" | jq -r ".faded_aqua")
+BRIGHT_ORANGE=$(echo "$COLORS" | jq -r ".bright_orange")
+NEUTRAL_ORANGE=$(echo "$COLORS" | jq -r ".neutral_orange")
+FADED_ORANGE=$(echo "$COLORS" | jq -r ".faded_orange")
+echo "COLORSCHEME: theme $THEME ($MODE) with accent: $ACCENT"
+# TODO: add check for all color values to exist
+
+# kitty: set colors file
+echo "COLORSCHEME: setting kitty colors"
+# NOTE: remember to include $KITTY_COLORS_FILE in kitty config file
+cat << EOF > $KITTY_COLORS_FILE
+# theme: $THEME
+foreground $WHITE
+background $BLACK
+color0     $BLACK
+color8     $GREY1
+color1     $BRIGHT_RED
+color9     $NEUTRAL_RED
+color2     $BRIGHT_GREEN
+color10    $NEUTRAL_GREEN
+color3     $BRIGHT_YELLOW
+color11    $NEUTRAL_YELLOW
+color4     $BRIGHT_BLUE
+color12    $NEUTRAL_BLUE
+color5     $BRIGHT_PURPLE
+color13    $NEUTRAL_PURPLE
+color6     $BRIGHT_AQUA
+color14    $NEUTRAL_AQUA
+color7     $GREY3
+color15    $WHITE
+
+url_color  $ACCENT
+
+selection_foreground $BLACK
+selection_background $WHITE
+cursor $WHITE
+cursor_text_color $BLACK
+EOF
+
+# polybar: set colors file
+echo "COLORSCHEME: setting polybar colors"
+# get transparent black color in AARRGGBB format
+BLACK_TR="$(expr substr $BLACK 2 $(expr length $BLACK))"
+# less transparent for light theme
+if [ $MODE = "light" ]; then
+  BLACK_TR="#DD$BLACK_TR"
+else
+  BLACK_TR="#99$BLACK_TR"
+fi
+cat << EOF > $POLYBAR_COLORS_FILE
+[colors]
+blackTr = $BLACK_TR
+black   = $BLACK
+grey0   = $GREY0
+grey1   = $GREY1
+grey2   = $GREY2
+grey3   = $GREY3
+grey4   = $GREY4
+white   = $WHITE
+blue0   = $NEUTRAL_BLUE
+blue1   = $BRIGHT_BLUE
+red0    = $NEUTRAL_RED
+red1    = $BRIGHT_RED
+orange0 = $NEUTRAL_ORANGE
+orange1 = $BRIGHT_ORANGE
+yellow0 = $NEUTRAL_YELLOW
+yellow1 = $BRIGHT_YELLOW
+green0  = $NEUTRAL_GREEN
+green1  = $BRIGHT_GREEN
+purple0 = $NEUTRAL_PURPLE
+purple1 = $BRIGHT_PURPLE
+cyan0   = $NEUTRAL_AQUA
+cyan1   = $BRIGHT_AQUA
+
+accent  = $ACCENT
+accent-light = $ACCENT
+
+foreground = \${self.white}
+background = \${self.blackTr}
+alert = \${self.red0}
+EOF
+
+# i3: set colors file
+echo "COLORSCHEME: setting i3 colors"
+i3_sed_replace_colors () {
+  if [ ! -e $I3_CONFIG_FILE ]; then
+    notify-send -a "$APPNAME" "i3 config file not found at $I3_CONFIG_FILE! Aborting..."
+  fi
+  if [ $# -eq 6 ]; then
+    x="$1 $2 $3 $4 $5 $6"
+  else
+    x="$1 $2"
+  fi
+  replacement_regex="s/^\bclient\.$1\(\s*#[0-9a-fA-F]\{6\}\)\+/client\.$x/g" \
+  sed -i $replacement_regex $I3_CONFIG_FILE
+}
+i3_sed_replace_colors "focused"            $BRIGHT_AQUA $NEUTRAL_AQUA $WHITE $ACCENT   $ACCENT
+i3_sed_replace_colors "focused_inactive"   "#333333" "#5f676a" $WHITE "#484e50" "#5f676a"
+i3_sed_replace_colors "unfocused"          "#333333" "#222222" "#888888" "#292d2e" "#222222"
+i3_sed_replace_colors "urgent"             "#2f343a" $NEUTRAL_RED $WHITE $NEUTRAL_RED $NEUTRAL_RED
+i3_sed_replace_colors "placeholder"        "#000000" "#0c0c0c" $WHITE "#000000" "#0c0c0c"
+i3_sed_replace_colors "background"         $WHITE
+
+# nvim: set colors file
+echo "COLORSCHEME: setting nvim colors"
+cat << EOF > $NVIM_COLORS_FILE
+return {
+  theme          = "$THEME",
+  mode           = "$MODE",
+  black          = "$BLACK",
+  grey0          = "$GREY0",
+  grey1          = "$GREY1",
+  grey2          = "$GREY2",
+  grey3          = "$GREY3",
+  grey4          = "$GREY4",
+  grey5          = "$GREY5",
+  white          = "$WHITE",
+  bright_red     = "$BRIGHT_RED",
+  neutral_red    = "$NEUTRAL_RED",
+  faded_red      = "$FADED_RED",
+  bright_green   = "$BRIGHT_GREEN",
+  neutral_green  = "$NEUTRAL_GREEN",
+  faded_green    = "$FADED_GREEN",
+  bright_yellow  = "$BRIGHT_YELLOW",
+  neutral_yellow = "$NEUTRAL_YELLOW",
+  faded_yellow   = "$FADED_YELLOW",
+  bright_blue    = "$BRIGHT_BLUE",
+  neutral_blue   = "$NEUTRAL_BLUE",
+  faded_blue     = "$FADED_BLUE",
+  bright_purple  = "$BRIGHT_PURPLE",
+  neutral_purple = "$NEUTRAL_PURPLE",
+  faded_purple   = "$FADED_PURPLE",
+  bright_aqua    = "$BRIGHT_AQUA",
+  neutral_aqua   = "$NEUTRAL_AQUA",
+  faded_aqua     = "$FADED_AQUA",
+  bright_orange  = "$BRIGHT_ORANGE",
+  neutral_orange = "$NEUTRAL_ORANGE",
+  faded_orange   = "$FADED_ORANGE",
+}
+EOF
+
+# rofi: set colors file
+echo "COLORSCHEME: setting rofi colors"
+cat << EOF > $ROFI_COLORS_FILE
+* {
+  al:       $BLACK;
+  bg:       $GREY0;
+  se:       $GREY0;
+  fg:       $WHITE;
+  ac:       $ACCENT;
+  red:      $BRIGHT_RED;
+  green:    $BRIGHT_GREEN;
+  yellow:   $BRIGHT_YELLOW;
+  blue:     $BRIGHT_BLUE;
+  purple:   $BRIGHT_PURPLE;
+  aqua:     $BRIGHT_AQUA;
+}
+EOF
+
+# qutebrowser: set theme
+echo "COLORSCHEME: setting qutebrowser colors"
+if [ -e $QUTEBROWSER_CONFIG_FILE ]; then
+  sed -i "s/^MODE = \"\(light\|dark\)\"/MODE = \"$MODE\"/g" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BLACK = \".*\"/BLACK = \"$BLACK\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^GREY0 = \".*\"/GREY0 = \"$GREY0\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^GREY1 = \".*\"/GREY1 = \"$GREY1\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^GREY2 = \".*\"/GREY2 = \"$GREY2\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^GREY3 = \".*\"/GREY3 = \"$GREY3\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^GREY4 = \".*\"/GREY4 = \"$GREY4\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^GREY5 = \".*\"/GREY5 = \"$GREY5\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^WHITE = \".*\"/WHITE = \"$WHITE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_RED = \".*\"/BRIGHT_RED = \"$BRIGHT_RED\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_RED = \".*\"/NEUTRAL_RED = \"$NEUTRAL_RED\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_RED = \".*\"/FADED_RED = \"$FADED_RED\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_GREEN = \".*\"/BRIGHT_GREEN = \"$BRIGHT_GREEN\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_GREEN = \".*\"/NEUTRAL_GREEN = \"$NEUTRAL_GREEN\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_GREEN = \".*\"/FADED_GREEN = \"$FADED_GREEN\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_YELLOW = \".*\"/BRIGHT_YELLOW = \"$BRIGHT_YELLOW\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_YELLOW = \".*\"/NEUTRAL_YELLOW = \"$NEUTRAL_YELLOW\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_YELLOW = \".*\"/FADED_YELLOW = \"$FADED_YELLOW\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_BLUE = \".*\"/BRIGHT_BLUE = \"$BRIGHT_BLUE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_BLUE = \".*\"/NEUTRAL_BLUE = \"$NEUTRAL_BLUE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_BLUE = \".*\"/FADED_BLUE = \"$FADED_BLUE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_PURPLE = \".*\"/BRIGHT_PURPLE = \"$BRIGHT_PURPLE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_PURPLE = \".*\"/NEUTRAL_PURPLE = \"$NEUTRAL_PURPLE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_PURPLE = \".*\"/FADED_PURPLE = \"$FADED_PURPLE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_AQUA = \".*\"/BRIGHT_AQUA = \"$BRIGHT_AQUA\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_AQUA = \".*\"/NEUTRAL_AQUA = \"$NEUTRAL_AQUA\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_AQUA = \".*\"/FADED_AQUA = \"$FADED_AQUA\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^BRIGHT_ORANGE = \".*\"/BRIGHT_ORANGE = \"$BRIGHT_ORANGE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^NEUTRAL_ORANGE = \".*\"/NEUTRAL_ORANGE = \"$NEUTRAL_ORANGE\"/" $QUTEBROWSER_CONFIG_FILE
+  sed -i "s/^FADED_ORANGE = \".*\"/FADED_ORANGE = \"$FADED_ORANGE\"/" $QUTEBROWSER_CONFIG_FILE
+else
+  notify-send -a "$APPNAME" "qutebrowser config not found at $QUTEBROWSER_CONFIG_FILE! Skipping qutebrowser theme..."
+fi
+
+# TODO: add dunst colors
+
+# reload kitty
+echo "COLORSCHEME: reloading kitty"
+killall -SIGUSR1 kitty
+
+# reload i3 config
+echo "COLORSCHEME: reloading i3"
+i3 restart
+
+# reload neovim
+echo "COLORSCHEME: reloading neovim"
+NVIM_SERVER="/tmp/nvim-server.pipe"
+if [ -e $NVIM_SERVER ]; then
+  NVIM=$(which nvim)
+  # call reload function in nvim
+  # NOTE: this function needs to exist
+  $NVIM --server $NVIM_SERVER --remote-send ":lua reload_config()<CR>" & 2> /dev/null
+else
+  notify-send -a "$APPNAME" \
+    "nvim server pipe not found at $NVIM_SERVER. No neovim instance is probably running. Skipping neovim theme..."
+fi
+
+# reload polybar
+echo "COLORSCHEME: reloading polybar"
+# TODO: find a way to check whether the name for the polybar bar exists
+pkill polybar && /usr/local/bin/polybar mushfiq &
+
+# reload qutebrowser
+echo "COLORSCHEME: reloading qutebrowser"
+qutebrowser ":restart"
+
+# TODO: add error handling for all dependencies
