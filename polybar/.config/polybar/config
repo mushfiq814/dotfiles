@@ -41,7 +41,8 @@ modules-left = i3 xwindow
 modules-center = spotify pulseaudio pacmd
 modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect backlight memory cpu wlan battery date time
 
-tray-position = right
+; tray-position options: left, center, right, none
+tray-position = none
 tray-padding = 0
 
 cursor-click = pointer
