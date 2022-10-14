@@ -298,7 +298,8 @@ fi
 # reload polybar
 echo "COLORSCHEME: reloading polybar"
 # TODO: find a way to check whether the name for the polybar bar exists
-pkill polybar && /usr/local/bin/polybar mushfiq &
+POLYBAR=$(which polybar)
+pkill polybar && $POLYBAR mushfiq &
 
 # reload qutebrowser
 echo "COLORSCHEME: reloading qutebrowser"
