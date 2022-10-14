@@ -6,6 +6,8 @@
 
 # generated files
 readme.html
+rofi/.config/rofi/colors.rasi
+neovim/.config/nvim/lua/config/colors.lua
 
 # files for testing
 **/test.ps1
@@ -15,7 +17,6 @@ readme.html
 neovim/.config/nvim/.netrwhist
 neovim/.config/nvim/autoload/
 neovim/.config/nvim/plugged/
-neovim/.config/nvim/lua/config/colors.lua
 
 # password files
 mutt/.config/mutt/winehq.key
