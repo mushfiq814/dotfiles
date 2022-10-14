@@ -10,4 +10,4 @@ require('config/functions')
 require('config/commands')
 require('config/autocommands')
 
--- plugins listed at ./lua/plugins
+-- plugins listed at ./lua/config/plugins
