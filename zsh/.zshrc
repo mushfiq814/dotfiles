@@ -62,7 +62,6 @@ alias trc='v ~/.tmux.conf'
 alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
 alias DW='cd ~/downloads'
 alias PR=showProjects
-alias ORC='cd ~/projects/orchestra'
 
 # package manager
 alias sai='sudo apt install'
@@ -272,7 +271,6 @@ SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLV
 # function to set prompt
 set_prompt () {
 	PROMPT="%B"
-	PROMPT+="＞ "
   # PROMPT+="💻 "
 	PROMPT+="%F{$YE1}%n%f"
 	PROMPT+="%F{$MA1}:%f"
