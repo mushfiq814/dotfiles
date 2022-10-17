@@ -434,7 +434,7 @@ export PATH=$PATH:/home/mushfiq/.spicetify
 # bitwarden {{{
 # shell completions
 # eval "$(bw completion --shell zsh); compdef _bw bw;"
-export BW_SESSION="afewn7S/XLLCOqM5jBLiNIWo8KkPE2qjZNUO3RTeLOE2vbbJnxBX9bs1So0tpK+mV8YhuubTxBcOMvHRGaqmjA=="
+export BW_SESSION="$(cat ~/.secrets/BW_SESSION)"
 # }}}
 
 # github cli {{{
@@ -452,7 +452,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
 # Call function {{{
 set_prompt
-'cat' ~/Pictures/ascii/hi.ascii
+'cat' ~/pictures/ascii/hi.ascii
 # fetch
 # }}}
 
