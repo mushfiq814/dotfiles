@@ -40,7 +40,8 @@ THEME=$(for file in $COLORS_FILES; do
   basename $file .json;
 done | rofi -dmenu)
 quit_on_error "Error with selecting colorscheme. Aborting..."
-ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
+# ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
+ACCENT_KEY="neutral_aqua"
 quit_on_error "Error with selecting accent color. Aborting..."
 
 # get colors from desired colorscheme
