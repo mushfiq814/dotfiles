@@ -13,6 +13,9 @@ keymap('i', 'jk', '<Esc>', opts)
 -- splits
 keymap('n', '<C-=>', ':vsplit<CR>', opts)
 keymap('n', '<C-->', ':split<CR>', opts)
+-- splits duplicated
+keymap('n', '<C-w>=', ':vsplit<CR>', opts)
+keymap('n', '<C-w>-', ':split<CR>', opts)
 -- new tab
 keymap('n', '<C-t>', ':tabnew<CR>', opts)
 -- new terminal
