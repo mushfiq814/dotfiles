@@ -4,12 +4,15 @@
 APPNAME="colorscheme script"
 COLORS_DIR="$HOME/dotfiles/scripts/colorscheme/colors"
 COLORS_FILES="$COLORS_DIR/*.json"
+UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 KITTY_COLORS_FILE="$HOME/.config/kitty/colors.conf"
 POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
+SKETCHYBAR_COLORS_FILE="$HOME/.config/sketchybar/colors"
 I3_CONFIG_FILE="$HOME/.config/i3/config"
 NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
 ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
 QUTEBROWSER_COLORS_FILE="$HOME/.config/qutebrowser/colors.py"
+ITERM_CONFIG_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
 
 quit_on_error () {
   # if there was an error in the last command, quit
@@ -81,6 +84,15 @@ FADED_AQUA=$(echo "$COLORS" | jq -r ".faded_aqua")
 BRIGHT_ORANGE=$(echo "$COLORS" | jq -r ".bright_orange")
 NEUTRAL_ORANGE=$(echo "$COLORS" | jq -r ".neutral_orange")
 FADED_ORANGE=$(echo "$COLORS" | jq -r ".faded_orange")
+
+# get transparent black color in AARRGGBB format
+BLACK_TR="${BLACK:1}"
+if [ $MODE = "light" ]; then
+  # less transparent for light theme
+  BLACK_TR="#DD$BLACK_TR"
+else
+  BLACK_TR="#99$BLACK_TR"
+fi
 echo "COLORSCHEME: theme $THEME ($MODE) with accent: $ACCENT"
 # TODO: add check for all color values to exist
 
@@ -118,14 +130,6 @@ EOF
 
 # polybar: set colors file
 echo "COLORSCHEME: setting polybar colors"
-# get transparent black color in AARRGGBB format
-BLACK_TR="$(expr substr $BLACK 2 $(expr length $BLACK))"
-# less transparent for light theme
-if [ $MODE = "light" ]; then
-  BLACK_TR="#DD$BLACK_TR"
-else
-  BLACK_TR="#99$BLACK_TR"
-fi
 cat << EOF > $POLYBAR_COLORS_FILE
 [colors]
 blackTr = $BLACK_TR
