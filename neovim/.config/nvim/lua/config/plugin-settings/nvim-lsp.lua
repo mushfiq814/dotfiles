@@ -54,13 +54,11 @@ lspconfig.sumneko_lua.setup {
     navic.attach(client, bufnr)
   end
 }
-lspconfig.tailwindcss.setup {}
 lspconfig.jsonls.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
 }
-lspconfig.prismals.setup {}
 lspconfig.bashls.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
