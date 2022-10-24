@@ -9,5 +9,5 @@ mason_lsp_config.setup({
     "tsserver",
     "jsonls",
   },
-  automatic_installation = true
+  automatic_installation = false
 })
