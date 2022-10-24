@@ -1,0 +1,168 @@
+# colors file
+COLORS="$HOME/.config/sketchybar/colors"
+source "$COLORS"
+
+# Bar Appearance
+sketchybar --bar height=22            \
+                 blur_radius=50       \
+                 position=top         \
+                 sticky=off           \
+                 padding_left=10      \
+                 padding_right=10     \
+                 color=0x${BLACKTR:1}
+
+# Changing Defaults
+sketchybar --default                  \
+  updates=when_shown                  \
+  drawing=on                          \
+  label.font="LigaSauceCodePro Nerd Font:Bold:13.0" \
+  icon.font="LigaSauceCodePro Nerd Font:Bold:13.0"  \
+  label.color=0xff${WHITE:1}          \
+  background.padding_left=5           \
+  background.padding_right=4          \
+  label.padding_left=4                \
+  label.padding_right=4
+
+# Spaces
+SPACE='sketchybar -m --set spaces label="$(echo SPACE)"'
+sketchybar -m                         \
+  --add item spaces left              \
+  --set spaces                        \
+    update_freq=1                     \
+    icon=""                          \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$SPACE"                   \
+    label.color="0xFF${WHITE:1}"
+
+sketchybar -m                                   \
+  --add space home left                         \
+  --set home                                    \
+    associated_space=1                          \
+    background.padding_left=15                  \
+    icon.padding_left=15                        \
+    icon.padding_right=15                       \
+    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon=ﮟ                                      \
+    icon.color="0xFF${ACCENT:1}"                \
+    click_script="yabai -m space --focus 1"     \
+                                                \
+  --add space comms left                        \
+    --set comms                                 \
+    associated_space=2                          \
+    icon.padding_right=15                       \
+    icon=                                      \
+    y_offset=-1                                 \
+    icon.color="0xFF${ACCENT:1}"                \
+    icon.highlight_color="0xFF${ACCENT:1}"      \
+    click_script="yabai -m space --focus 2"     \
+                                                \
+  --add space music left                        \
+  --set music                                   \
+    associated_space=3                          \
+    icon.padding_right=15                       \
+    y_offset=-1                                 \
+    icon=                                      \
+    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon.color="0xFF${ACCENT:1}"                \
+    click_script="yabai -m space --focus 3"     \
+                                                \
+  --add space invest left                       \
+  --set invest                                  \
+    associated_space=4                          \
+    icon.padding_right=15                       \
+    icon=                                      \
+    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon.color="0xFF${ACCENT:1}"                \
+    click_script="yabai -m space --focus 4"     \
+                                                \
+  --add space misc left                         \
+  --set misc                                    \
+    associated_space=5                          \
+    icon=                                      \
+    icon.padding_right=15                       \
+    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon.color="0xFF${ACCENT:1}"                \
+    click_script="yabai -m space --focus 5"
+
+# Date Time
+TIME='sketchybar -m --set time label="$(date +"%r")"'
+sketchybar -m                         \
+  --add item time right               \
+  --set time                          \
+    update_freq=1                     \
+    icon=""                          \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$TIME"                    \
+    label.color="0xFF${WHITE:1}"
+
+DATE='sketchybar -m --set date label="$(date +"%a %Y-%m-%d")"'
+sketchybar -m                         \
+  --add item date right               \
+  --set date                          \
+    update_freq=60                    \
+    label.padding_right=5             \
+    icon=""                          \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$DATE"                    \
+    label.color="0xFF${WHITE:1}"
+
+#   睊
+WLAN='sketchybar -m --set wlan label="$(echo dummy-wifi)"'
+sketchybar -m                         \
+  --add item wlan right               \
+  --set wlan                          \
+    update_freq=3                     \
+    icon=" "                         \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$WLAN"                    \
+    label.color="0xFF${WHITE:1}"
+
+#     
+BATTERY='sketchybar -m --set battery label="$(echo NaN%)"'
+sketchybar -m                         \
+  --add item battery right            \
+  --set battery                       \
+    update_freq=3                     \
+    icon=""                          \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$BATTERY"                 \
+    label.color="0xFF${WHITE:1}"
+
+CPU='sketchybar -m --set cpu label="$(echo NaN%)"'
+sketchybar -m                         \
+  --add item cpu right                \
+  --set cpu                           \
+    update_freq=3                     \
+    icon=" CPU"                      \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$CPU"                     \
+    label.color="0xFF${WHITE:1}"
+
+MEMORY='sketchybar -m --set memory label="$(echo NaN%)"'
+sketchybar -m                         \
+  --add item memory right             \
+  --set memory                        \
+    update_freq=3                     \
+    icon=" MEM"                      \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$MEMORY"                  \
+    label.color="0xFF${WHITE:1}"
+
+#     
+BACKLIGHT='sketchybar -m --set backlight label="$(echo NaN%)"'
+sketchybar -m                         \
+  --add item backlight right          \
+  --set backlight                     \
+    update_freq=3                     \
+    icon=" BRI"                      \
+    icon.color="0xFF${ACCENT:1}"      \
+    script="$BACKLIGHT"               \
+    label.color="0xFF${WHITE:1}"
+
+# Finalizing Setup
+# The below command is only needed at the end of the initial configuration and
+# should never be run in an item script.
+sketchybar --update
+echo "sketchybar configuration loaded.."
+
+# vim:ft=bash
