@@ -2,6 +2,9 @@
 COLORS="$HOME/.config/sketchybar/colors"
 source "$COLORS"
 
+# scripts dir
+SCRIPTS="$HOME/.config/sketchybar/scripts"
+
 # Bar Appearance
 sketchybar --bar height=22            \
                  blur_radius=50       \
@@ -24,65 +27,46 @@ sketchybar --default                  \
   label.padding_right=4
 
 # Spaces
-SPACE='sketchybar -m --set spaces label="$(echo SPACE)"'
-sketchybar -m                         \
-  --add item spaces left              \
-  --set spaces                        \
-    update_freq=1                     \
-    icon=""                          \
-    icon.color="0xFF${ACCENT:1}"      \
-    script="$SPACE"                   \
-    label.color="0xFF${WHITE:1}"
-
 sketchybar -m                                   \
-  --add space home left                         \
-  --set home                                    \
+  --add space space0 left                       \
+  --set space0                                  \
     associated_space=1                          \
-    background.padding_left=15                  \
-    icon.padding_left=15                        \
-    icon.padding_right=15                       \
-    icon.highlight_color="0xFF${ACCENT:1}"      \
-    icon=ﮟ                                      \
+    icon=1                                      \
     icon.color="0xFF${ACCENT:1}"                \
+    icon.highlight_color="0xFF${WHITE:1}"       \
     click_script="yabai -m space --focus 1"     \
                                                 \
-  --add space comms left                        \
-    --set comms                                 \
+  --add space space1 left                       \
+  --set space1                                  \
     associated_space=2                          \
-    icon.padding_right=15                       \
-    icon=                                      \
-    y_offset=-1                                 \
+    icon=2                                      \
     icon.color="0xFF${ACCENT:1}"                \
-    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon.highlight_color="0xFF${WHITE:1}"       \
     click_script="yabai -m space --focus 2"     \
                                                 \
-  --add space music left                        \
-  --set music                                   \
+  --add space space2 left                       \
+  --set space2                                  \
     associated_space=3                          \
-    icon.padding_right=15                       \
-    y_offset=-1                                 \
-    icon=                                      \
-    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon=3                                      \
     icon.color="0xFF${ACCENT:1}"                \
+    icon.highlight_color="0xFF${WHITE:1}"       \
     click_script="yabai -m space --focus 3"     \
                                                 \
-  --add space invest left                       \
-  --set invest                                  \
+  --add space space3 left                       \
+  --set space3                                  \
     associated_space=4                          \
-    icon.padding_right=15                       \
-    icon=                                      \
-    icon.highlight_color="0xFF${ACCENT:1}"      \
+    icon=4                                      \
     icon.color="0xFF${ACCENT:1}"                \
-    click_script="yabai -m space --focus 4"     \
-                                                \
-  --add space misc left                         \
-  --set misc                                    \
-    associated_space=5                          \
-    icon=                                      \
-    icon.padding_right=15                       \
-    icon.highlight_color="0xFF${ACCENT:1}"      \
-    icon.color="0xFF${ACCENT:1}"                \
-    click_script="yabai -m space --focus 5"
+    icon.highlight_color="0xFF${WHITE:1}"       \
+    click_script="yabai -m space --focus 4"
+
+# Window Title
+sketchybar -m                         \
+  --add item title left               \
+  --set title                         \
+    label.color="0xFF${WHITE:1}"      \
+    update_freq=1                     \
+    script="$SCRIPTS/title"
 
 # Date Time
 TIME='sketchybar -m --set time label="$(date +"%r")"'
@@ -107,46 +91,40 @@ sketchybar -m                         \
     label.color="0xFF${WHITE:1}"
 
 #   睊
-WLAN='sketchybar -m --set wlan label="$(echo dummy-wifi)"'
 sketchybar -m                         \
   --add item wlan right               \
   --set wlan                          \
     update_freq=3                     \
     icon=" "                         \
     icon.color="0xFF${ACCENT:1}"      \
-    script="$WLAN"                    \
-    label.color="0xFF${WHITE:1}"
+    label.color="0xFF${WHITE:1}"      \
+    script="$SCRIPTS/wlan"
 
-#     
-BATTERY='sketchybar -m --set battery label="$(echo NaN%)"'
 sketchybar -m                         \
   --add item battery right            \
   --set battery                       \
     update_freq=3                     \
-    icon=""                          \
     icon.color="0xFF${ACCENT:1}"      \
-    script="$BATTERY"                 \
-    label.color="0xFF${WHITE:1}"
+    label.color="0xFF${WHITE:1}"      \
+    script="$SCRIPTS/battery"
 
-CPU='sketchybar -m --set cpu label="$(echo NaN%)"'
 sketchybar -m                         \
   --add item cpu right                \
   --set cpu                           \
     update_freq=3                     \
     icon=" CPU"                      \
     icon.color="0xFF${ACCENT:1}"      \
-    script="$CPU"                     \
-    label.color="0xFF${WHITE:1}"
+    label.color="0xFF${WHITE:1}"      \
+    script="$SCRIPTS/cpu"
 
-MEMORY='sketchybar -m --set memory label="$(echo NaN%)"'
 sketchybar -m                         \
   --add item memory right             \
   --set memory                        \
     update_freq=3                     \
     icon=" MEM"                      \
     icon.color="0xFF${ACCENT:1}"      \
-    script="$MEMORY"                  \
-    label.color="0xFF${WHITE:1}"
+    label.color="0xFF${WHITE:1}"      \
+    script="$SCRIPTS/mem"
 
 #     
 BACKLIGHT='sketchybar -m --set backlight label="$(echo NaN%)"'
