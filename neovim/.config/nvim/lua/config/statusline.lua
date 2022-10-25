@@ -3,31 +3,31 @@ if not colors_loaded then return end
 local background = colors.black
 local foreground = colors.white
 
+-- from https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
+local modes = {
+  ["n"] = { name = "NORMAL", highlight = "statusLineModeNormal" },
+  ["no"] = { name = "NORMAL", highlight = "statusLineModeNormal" },
+  ["v"] = { name = "VISUAL", highlight = "statusLineModeVisual" },
+  ["V"] = { name = "V-LINE", highlight = "statusLineModeVisual" },
+  [""] = { name = "V-BLOCK", highlight = "statusLineModeVisual" },
+  ["s"] = { name = "SELECT", highlight = "statusLineModeNormal" },
+  ["S"] = { name = "SELECT LINE", highlight = "statusLineModeNormal" },
+  [""] = { name = "SELECT BLOCK", highlight = "statusLineModeNormal" },
+  ["i"] = { name = "INSERT", highlight = "statusLineModeInsert" },
+  ["ic"] = { name = "INSERT", highlight = "statusLineModeInsert" },
+  ["R"] = { name = "REPLACE", highlight = "statusLineModeNormal" },
+  ["Rv"] = { name = "VISUAL REPLACE", highlight = "statusLineModeNormal" },
+  ["c"] = { name = "COMMAND", highlight = "statusLineModeCommand" },
+  ["cv"] = { name = "VIM EX", highlight = "statusLineModeNormal" },
+  ["ce"] = { name = "EX", highlight = "statusLineModeNormal" },
+  ["r"] = { name = "PROMPT", highlight = "statusLineModeNormal" },
+  ["rm"] = { name = "MOAR", highlight = "statusLineModeNormal" },
+  ["r?"] = { name = "CONFIRM", highlight = "statusLineModeNormal" },
+  ["!"] = { name = "SHELL", highlight = "statusLineModeNormal" },
+  ["t"] = { name = "TERMINAL", highlight = "statusLineModeTerminal" },
+  ["nt"] = { name = "TERMINAL", highlight = "statusLineModeTerminal" },
+}
 local function mode()
-  -- from https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
-  local modes = {
-    ["n"] = { name = "NORMAL", highlight = "statusLineModeNormal" },
-    ["no"] = { name = "NORMAL", highlight = "statusLineModeNormal" },
-    ["v"] = { name = "VISUAL", highlight = "statusLineModeVisual" },
-    ["V"] = { name = "V-LINE", highlight = "statusLineModeVisual" },
-    [""] = { name = "V-BLOCK", highlight = "statusLineModeVisual" },
-    ["s"] = { name = "SELECT", highlight = "statusLineModeNormal" },
-    ["S"] = { name = "SELECT LINE", highlight = "statusLineModeNormal" },
-    [""] = { name = "SELECT BLOCK", highlight = "statusLineModeNormal" },
-    ["i"] = { name = "INSERT", highlight = "statusLineModeInsert" },
-    ["ic"] = { name = "INSERT", highlight = "statusLineModeInsert" },
-    ["R"] = { name = "REPLACE", highlight = "statusLineModeNormal" },
-    ["Rv"] = { name = "VISUAL REPLACE", highlight = "statusLineModeNormal" },
-    ["c"] = { name = "COMMAND", highlight = "statusLineModeCommand" },
-    ["cv"] = { name = "VIM EX", highlight = "statusLineModeNormal" },
-    ["ce"] = { name = "EX", highlight = "statusLineModeNormal" },
-    ["r"] = { name = "PROMPT", highlight = "statusLineModeNormal" },
-    ["rm"] = { name = "MOAR", highlight = "statusLineModeNormal" },
-    ["r?"] = { name = "CONFIRM", highlight = "statusLineModeNormal" },
-    ["!"] = { name = "SHELL", highlight = "statusLineModeNormal" },
-    ["t"] = { name = "TERMINAL", highlight = "statusLineModeTerminal" },
-    ["nt"] = { name = "TERMINAL", highlight = "statusLineModeTerminal" },
-  }
   local current_mode = vim.api.nvim_get_mode().mode
   local mode = string.format(" %s ", modes[current_mode].name):upper()
   return "%#" .. modes[current_mode].highlight .. "#" .. mode .. "%#Normal#"
@@ -54,10 +54,9 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   callback = function() cacheGitBranch() end
 })
 local function retrieveBranchFromCache()
-  if #(BRANCHES) then return '' end
-  local branch_name = BRANCHES[vim.api.nvim_get_current_buf()]
-  if #(branch_name) then return '' end
-  return '%#statusLineBranch#  ' .. BRANCHES[vim.api.nvim_get_current_buf()] .. ' %#Normal#'
+  local branch_name = BRANCHES[vim.api.nvim_get_current_buf()] or nil
+  if branch_name == nil or #(branch_name) < 1 then return '' end
+  return '%#statusLineBranch#  ' .. branch_name .. ' %#Normal#'
 end
 
 local function lspDiagnosticCounts()
@@ -82,9 +81,9 @@ local function lspDiagnosticCounts()
 end
 
 local function filename()
-  local filename = vim.fn.expand("%:f")
-  if vim.bo.modified then filename = filename .. " ● " end
-  return filename
+  local file = vim.fn.expand("%:~:.")
+  if vim.bo.modified then file = file .. "%#statusLineFileNameModified# ● %#Normal#" end
+  return "%#statusLineFileName#" .. file .. "%#Normal#"
 end
 
 local function filetype()
@@ -121,19 +120,30 @@ local function lineinfo()
   local progress = math.ceil(100 * currentLine / lines)
 
   local progressStr = ""
-  if progress == 0 or currentLine == 1 then
-    progressStr = "TOP"
-  elseif progress == 100 then
-    progressStr = "BOT"
+  if progress >= 0 and progress < 12.5 then
+    progressStr = "█"
+  elseif progress >= 12.5 and progress < 25 then
+    progressStr = "▇"
+  elseif progress >= 25 and progress < 37.5 then
+    progressStr = "▆"
+  elseif progress >= 37.5 and progress < 50 then
+    progressStr = "▅"
+  elseif progress >= 50 and progress < 62.5 then
+    progressStr = "▄"
+  elseif progress >= 62.5 and progress < 75 then
+    progressStr = "▃"
+  elseif progress >= 75 and progress < 87.5 then
+    progressStr = "▂"
   else
-    progressStr = string.format("%2i%%%%", progress)
+    progressStr = "▁"
   end
 
   local currentLineStr = string.format("%3d", currentLine)
   local currentColumnStr = string.format("%-3d", currentColumn)
 
-  return '%#statusLineProgress# ' ..
-      progressStr .. '%#statusLineRowCol# ' .. currentLineStr .. ':' .. currentColumnStr .. ' %#Normal#'
+  return
+    '%#statusLineProgress#' .. progressStr
+    .. '%#statusLineRowCol# ' .. currentLineStr .. ':' .. currentColumnStr .. ' %#Normal#'
 end
 
 local function cwd()
@@ -164,24 +174,49 @@ local function tabpages()
   return tabStr
 end
 
+-- make statusline smaller depending on screen size
+WINCOLS = nil
+local augroupResize = vim.api.nvim_create_augroup('statusLineResizeGroup', { clear = true })
+vim.api.nvim_create_autocmd({ 'VimResized' }, {
+  group = augroupResize,
+  callback = function()
+    WINCOLS = vim.o.columns
+  end
+})
+
 local function spacer()
   return '%#statusLineCwd#%=%#Normal#'
 end
 
 function MyStatusLine()
-  local statusline = table.concat({
-    mode(),
-    tabpages(),
-    retrieveBranchFromCache(),
-    cwd(),
-    spacer(),
-    lspDiagnosticCounts(),
-    activeLlspClient(),
-    filetype(),
-    lineinfo(),
-  })
+  local statusline = ''
+  if WINCOLS and WINCOLS < 100 then
+    -- vim.notify('small')
+    statusline = table.concat({
+      mode(),
+      tabpages(),
+      cwd(),
+      spacer(),
+      filetype(),
+      lineinfo(),
+    })
+  else
+    statusline = table.concat({
+      mode(),
+      tabpages(),
+      retrieveBranchFromCache(),
+      cwd(),
+      filename(),
+      spacer(),
+      lspDiagnosticCounts(),
+      activeLlspClient(),
+      filetype(),
+      lineinfo(),
+    })
+  end
   return statusline
 end
+
 vim.o.statusline = "%{%v:lua.MyStatusLine()%}"
 
 -- remove native tabline
@@ -190,125 +225,26 @@ vim.o.showtabline = false
 -- global statusline
 vim.o.laststatus = 3
 
-local function highlights()
-  --
-  vim.cmd(
-    "highlight! statusLineModeNormal gui=bold guibg="
-    .. colors.bright_aqua
-    .. " guifg="
-    .. colors.grey0
-  )
-  vim.cmd(
-    "highlight! statusLineModeInsert gui=bold guibg="
-    .. colors.bright_blue
-    .. " guifg="
-    .. colors.grey0
-  )
-  vim.cmd(
-    "highlight! statusLineModeVisual gui=bold guibg="
-    .. colors.bright_orange
-    .. " guifg="
-    .. colors.grey0
-  )
-  vim.cmd(
-    "highlight! statusLineModeCommand gui=bold guibg="
-    .. colors.bright_yellow
-    .. " guifg="
-    .. colors.grey0
-  )
-  vim.cmd(
-    "highlight! statusLineModeTerminal gui=bold guibg="
-    .. colors.bright_purple
-    .. " guifg="
-    .. colors.grey0
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineBranch gui=bold guibg="
-    .. background
-    .. " guifg="
-    .. foreground
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineDiagnosticsError guibg="
-    .. background
-    .. " guifg="
-    .. colors.bright_red
-  )
-  vim.cmd(
-    "highlight! statusLineDiagnosticsWarning guibg="
-    .. background
-    .. " guifg="
-    .. colors.bright_yellow
-  )
-  vim.cmd(
-    "highlight! statusLineDiagnosticsInfo guibg="
-    .. background
-    .. " guifg="
-    .. colors.bright_aqua
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineFileType guifg="
-    .. foreground
-    .. " guibg="
-    .. background
-  )
-  --
-  --
-  vim.cmd(
-    "highlight! statusLineProgress guifg="
-    .. colors.bright_purple
-    .. " guibg="
-    .. colors.grey0
-  )
-  vim.cmd(
-    "highlight! statusLineRowCol gui=bold guifg="
-    .. colors.bright_aqua
-    .. " guibg="
-    .. colors.grey0
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineSpacer guibg="
-    .. background
-    .. " guifg="
-    .. foreground
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineCwd guibg="
-    .. background
-    .. " guifg="
-    .. colors.bright_blue
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineLspClient guibg="
-    .. background
-    .. " guifg="
-    .. colors.bright_orange
-  )
-  --
-  vim.cmd(
-    "highlight! statusLineTabNormal guibg="
-    .. background
-    .. " guifg="
-    .. foreground
-  )
-  vim.cmd(
-    "highlight! statuslineTabActive guibg="
-    .. colors.faded_purple
-    .. " guifg="
-    .. background
-  )
-  vim.cmd(
-    "highlight! statuslineTabInactive guibg="
-    .. colors.grey2
-    .. " guifg="
-    .. colors.white
-  )
-end
+local color_utils = require('config/color-utils')
+local hi = color_utils.highlight
 
-highlights()
+hi.statusLineModeNormal = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = 'bold', }
+hi.statusLineModeInsert = { guifg = colors.grey0, guibg = colors.bright_blue, gui = 'bold', }
+hi.statusLineModeVisual = { guifg = colors.grey0, guibg = colors.bright_orange, gui = 'bold', }
+hi.statusLineModeCommand = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = 'bold', }
+hi.statusLineModeTerminal = { guifg = colors.grey0, guibg = colors.bright_purple, gui = 'bold', }
+hi.statusLineTabNormal = { guifg = foreground, guibg = background, }
+hi.statuslineTabActive = { guifg = background, guibg = colors.faded_purple, }
+hi.statuslineTabInactive = { guifg = colors.white, guibg = colors.grey2, }
+hi.statusLineBranch = { guifg = foreground, guibg = background, gui = 'bold', }
+hi.statusLineCwd = { guifg = colors.bright_blue, guibg = background, }
+hi.statusLineFileName = { guifg = colors.bright_aqua, guibg = background, }
+hi.statusLineFileNameModified = { guifg = colors.bright_red, guibg = background, }
+hi.statusLineSpacer = { guifg = foreground, guibg = background, }
+hi.statusLineDiagnosticsError = { guifg = colors.bright_red, guibg = background, }
+hi.statusLineDiagnosticsWarning = { guifg = colors.bright_yellow, guibg = background, }
+hi.statusLineDiagnosticsInfo = { guibg = background, guifg = colors.bright_aqua, }
+hi.statusLineLspClient = { guibg = background, guifg = colors.bright_orange, }
+hi.statusLineFileType = { guifg = foreground, guibg = background, }
+hi.statusLineProgress = { guibg = colors.bright_purple, guifg = colors.grey0, }
+hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = colors.grey0, gui = 'bold', }
