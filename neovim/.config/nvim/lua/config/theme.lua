@@ -94,10 +94,10 @@ hi.Type         = { guifg = colors.bright_yellow, guibg = nil, gui = 'none', gui
 hi.Typedef      = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 
 -- Diff highlighting
-hi.DiffAdd     = { guifg = colors.black, guibg = colors.neutral_green, gui = nil, guisp = nil }
-hi.DiffChange  = { guifg = colors.grey2, guibg = colors.black, gui = nil, guisp = nil }
-hi.DiffDelete  = { guifg = colors.bright_red, guibg = colors.black, gui = nil, guisp = nil }
-hi.DiffText    = { guifg = colors.bright_blue, guibg = colors.black, gui = nil, guisp = nil }
+hi.DiffAdd     = { guifg = colors.black, guibg = colors.bright_green, gui = nil, guisp = nil }
+hi.DiffChange  = { guifg = colors.grey2, guibg = colors.bright_blue, gui = nil, guisp = nil }
+hi.DiffDelete  = { guifg = colors.bright_red, guibg = colors.bright_red, gui = nil, guisp = nil }
+hi.DiffText    = { guifg = colors.black, guibg = colors.bright_blue, gui = nil, guisp = nil }
 hi.DiffAdded   = { guifg = colors.bright_green, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffFile    = { guifg = colors.bright_red, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffNewFile = { guifg = colors.bright_green, guibg = colors.black, gui = nil, guisp = nil }
