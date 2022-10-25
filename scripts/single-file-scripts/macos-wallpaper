@@ -1,0 +1,6 @@
+#!/bin/sh
+
+shopt -s extglob
+IMG=$('ls' $HOME/Pictures/wallpapers/*.@(png|jpg) | sort -R | tail -1)
+
+osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$IMG\""

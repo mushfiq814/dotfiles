@@ -4,6 +4,9 @@ alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
+# toggle floating window
+shift + alt - space : yabai -m window --toggle float
+
 # Quit focused window
 shift + alt - q : yabai -m window --close
 
@@ -43,3 +46,6 @@ cmd - f [
   "kitty": osascript -e 'display notification "hello kitty" with title "kitty"'
   "Terminal": echo "hello terminal"
 ]
+
+# change wallpaper
+shift + alt - w : /usr/local/bin/macos-wallpaper
