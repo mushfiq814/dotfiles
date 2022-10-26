@@ -20,9 +20,9 @@ My configuration files for different programs that I use. This repo uses [GNU St
 
 ## How it Looks
 
-![windows terminal + zsh + neovim + tmux](./images/overview.png)
+![2022-10-25T19-58-12-729864742](https://user-images.githubusercontent.com/32845348/197903873-c6850947-7d03-4189-bc48-0392af9a53ea.png)
 
-## Setup
+## Setup!
 
 Make sure `stow` is installed
 
