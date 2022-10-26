@@ -20,7 +20,12 @@ My configuration files for different programs that I use. This repo uses [GNU St
 
 ## How it Looks
 
-![2022-10-25T19-58-12-729864742](https://user-images.githubusercontent.com/32845348/197903873-c6850947-7d03-4189-bc48-0392af9a53ea.png)
+![polybar, neovim & qutebrowser with catppuccin theme](https://user-images.githubusercontent.com/32845348/197903873-c6850947-7d03-4189-bc48-0392af9a53ea.png)
+
+![polybar, neovim & qutebrowser with ayu-light theme](https://user-images.githubusercontent.com/32845348/197916219-6fb2fc55-4780-4f59-a350-188dacf30346.png)
+
+![rofi launcher with ayu-light theme](https://user-images.githubusercontent.com/32845348/197916240-ff5a6929-a3d3-49a6-b3ac-9b7267c22997.png)
+
 
 ## Setup!
 
