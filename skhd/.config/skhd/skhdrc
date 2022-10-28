@@ -49,3 +49,17 @@ cmd - f [
 
 # change wallpaper
 shift + alt - w : /usr/local/bin/macos-wallpaper
+
+# open terminal
+alt - return : /usr/bin/osascript -e "tell application \"iTerm\" to create window with default profile"
+
+# reload window manager
+shift + alt - r : brew services restart yabai
+# stop window manager
+lctrl + alt - r : brew services stop yabai
+
+# float / unfloat window and center on screen
+alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# toggle sticky(+float), topmost, picture-in-picture
+alt - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
