@@ -15,7 +15,7 @@ local function navicTags()
   local navicLoaded, nvim_navic = pcall(require, 'nvim-navic')
   if navicLoaded then
     local current_tag = nvim_navic.get_location()
-    if current_tag == "" then return '' end
+    if not nvim_navic.is_available() then return '' end
    return " %#winbarTags# > " .. current_tag .. " %#Normal#"
   end
 end
