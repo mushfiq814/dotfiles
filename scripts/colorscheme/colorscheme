@@ -12,6 +12,7 @@ I3_CONFIG_FILE="$HOME/.config/i3/config"
 NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
 ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
 QUTEBROWSER_COLORS_FILE="$HOME/.config/qutebrowser/colors.py"
+RAZERKBD_COLORS_FILE="$HOME/.config/razerkbd/colors.py"
 ITERM_CONFIG_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
 
 notify () {
@@ -360,6 +361,41 @@ NEUTRAL_ORANGE = "$NEUTRAL_ORANGE"
 FADED_ORANGE   = "$FADED_ORANGE"
 EOF
 
+# razerkbd: set theme
+echo "COLORSCHEME: setting razerkbd colors"
+cat << EOF > $RAZERKBD_COLORS_FILE
+MODE           = "$MODE"
+BLACK          = "$BLACK"
+GREY0          = "$GREY0"
+GREY1          = "$GREY1"
+GREY2          = "$GREY2"
+GREY3          = "$GREY3"
+GREY4          = "$GREY4"
+GREY5          = "$GREY5"
+WHITE          = "$WHITE"
+BRIGHT_RED     = "$BRIGHT_RED"
+NEUTRAL_RED    = "$NEUTRAL_RED"
+FADED_RED      = "$FADED_RED"
+BRIGHT_GREEN   = "$BRIGHT_GREEN"
+NEUTRAL_GREEN  = "$NEUTRAL_GREEN"
+FADED_GREEN    = "$FADED_GREEN"
+BRIGHT_YELLOW  = "$BRIGHT_YELLOW"
+NEUTRAL_YELLOW = "$NEUTRAL_YELLOW"
+FADED_YELLOW   = "$FADED_YELLOW"
+BRIGHT_BLUE    = "$BRIGHT_BLUE"
+NEUTRAL_BLUE   = "$NEUTRAL_BLUE"
+FADED_BLUE     = "$FADED_BLUE"
+BRIGHT_PURPLE  = "$BRIGHT_PURPLE"
+NEUTRAL_PURPLE = "$NEUTRAL_PURPLE"
+FADED_PURPLE   = "$FADED_PURPLE"
+BRIGHT_AQUA    = "$BRIGHT_AQUA"
+NEUTRAL_AQUA   = "$NEUTRAL_AQUA"
+FADED_AQUA     = "$FADED_AQUA"
+BRIGHT_ORANGE  = "$BRIGHT_ORANGE"
+NEUTRAL_ORANGE = "$NEUTRAL_ORANGE"
+FADED_ORANGE   = "$FADED_ORANGE"
+EOF
+
 # TODO: add dunst colors
 
 # reload kitty
@@ -382,6 +418,9 @@ else
   notify "$APPNAME" \
     "nvim server pipe not found at $NVIM_SERVER. No neovim instance is probably running. Skipping neovim theme..."
 fi
+
+# reload razerkbd
+$HOME/.config/razerkbd/razerkbd
 
 # reload polybar
 echo "COLORSCHEME: reloading polybar"
