@@ -8,13 +8,13 @@ configuration {
   fixed-num-lines: true;
   show-icons: false;
   sidebar-mode: true;
-  scroll-method: 1;
-  window-format: "[{w}] ··· {c} ···   {t}";
+  scroll-method: 2;
   click-to-exit: true;
   combi-hide-mode-prefix: false;
-  display-window: "W";
-  display-run: "H";
-  display-drun: "D";
+  display-calc: "";
+  display-run: "";
+  display-drun: "";
+  display-emoji: "";
 }
 
 @import "colors.rasi"
@@ -143,7 +143,8 @@ button {
 }
 
 button selected {
-  text-color: @fg;
+  background-color: @ac;
+  text-color: @se;
   border: 3px;
   border-radius: 20px;
   border-color: @ac;
