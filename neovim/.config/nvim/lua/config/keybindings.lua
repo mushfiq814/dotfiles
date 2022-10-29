@@ -97,14 +97,14 @@ if telescope_available then
   keymap(
     'n',
     '<leader>v<C-p>',
-    ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/.config/nvim\' })<cr>',
+    ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles/neovim/.config/nvim\' })<cr>',
     opts
   )
   -- open live grep for neovim settings
   keymap(
     'n',
     '<leader>vfg',
-    ':lua require\'telescope.builtin\'.live_grep({ cwd = \'~/.config/nvim\' })<cr>',
+    ':lua require\'telescope.builtin\'.live_grep({ cwd = \'~/dotfiles/neovim/.config/nvim\' })<cr>',
     opts
   )
 

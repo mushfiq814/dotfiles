@@ -1,5 +1,11 @@
 #!/bin/sh
 
-WLAN=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk 'NR==13 {print $2}')
+CURRENT_WIFI="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)"
+SSID="$(echo "$CURRENT_WIFI" | grep -o "SSID: .*" | sed 's/^SSID: //')"
+CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"
 
-sketchybar -m --set wlan label=$WLAN
+if [ "$SSID" = "" ]; then
+  sketchybar --set wlan label="no-internet" icon="睊 "
+else
+  sketchybar --set wlan label="$SSID  ${CURR_TX}Mbps" icon=" "
+fi

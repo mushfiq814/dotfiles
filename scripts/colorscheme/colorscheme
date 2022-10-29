@@ -14,12 +14,21 @@ ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
 QUTEBROWSER_COLORS_FILE="$HOME/.config/qutebrowser/colors.py"
 ITERM_CONFIG_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
 
+notify () {
+  UNAME=$(uname -s)
+  if [ $UNAME = "Darwin" ]; then
+    osascript -e "display notification \"$2\" with title \"$1\""
+  else
+    notify-send -a "$1" "$2"
+  fi
+}
+
 quit_on_error () {
   # if there was an error in the last command, quit
   if [ $? != 0 ]; then
     # if argument with message was passed in, send notification
     if [ $# != 0 ]; then
-      notify-send "$1"
+      notify "$APPNAME" "$1"
     fi
     exit 1
   fi
@@ -28,11 +37,11 @@ quit_on_error () {
 quit_on_file_dne () {
   # if no argument with filepath was passed in, quit
   if [ $# = 0 ]; then
-    notify-send -a "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
+    notify "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
     exit 1
   fi
   if [ ! -e "$1" ]; then
-    notify-send -a "$APPNAME" "$1 was not found. Exiting..."
+    notify "$APPNAME" "$1 was not found. Exiting..."
     exit 1
   fi
 }
@@ -370,7 +379,7 @@ if [ -e $NVIM_SERVER ]; then
   # NOTE: this function needs to exist
   $NVIM --server $NVIM_SERVER --remote-send ":lua reload_config()<CR>" & 2> /dev/null
 else
-  notify-send -a "$APPNAME" \
+  notify "$APPNAME" \
     "nvim server pipe not found at $NVIM_SERVER. No neovim instance is probably running. Skipping neovim theme..."
 fi
 
@@ -384,9 +393,18 @@ pkill polybar && $POLYBAR mushfiq &
 echo "COLORSCHEME: reloading qutebrowser"
 qutebrowser ":restart"
 
-# on MacOS, turn dark mode on/off
 UNAME=$(uname -s)
 if [ $UNAME = "Darwin" ]; then
+  # reload sketchybar
+  echo "COLORSCHEME: reloading sketchybar"
+  brew services restart sketchybar
+
+  # reload yabai
+  echo "COLORSCHEME: reloading yabai"
+  brew services restart yabai
+
+  # on MacOS, turn dark mode on/off
+  echo "COLORSCHEME: setting MacOS theme to $MODE mode"
   if [ $MODE = "light" ]; then
     osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to false'
   else
