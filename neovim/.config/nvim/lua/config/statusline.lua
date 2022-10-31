@@ -121,21 +121,21 @@ local function lineinfo()
 
   local progressStr = ""
   if progress >= 0 and progress < 12.5 then
-    progressStr = "█"
+    progressStr = "██"
   elseif progress >= 12.5 and progress < 25 then
-    progressStr = "▇"
+    progressStr = "▇▇"
   elseif progress >= 25 and progress < 37.5 then
-    progressStr = "▆"
+    progressStr = "▆▆"
   elseif progress >= 37.5 and progress < 50 then
-    progressStr = "▅"
+    progressStr = "▅▅"
   elseif progress >= 50 and progress < 62.5 then
-    progressStr = "▄"
+    progressStr = "▄▄"
   elseif progress >= 62.5 and progress < 75 then
-    progressStr = "▃"
+    progressStr = "▃▃"
   elseif progress >= 75 and progress < 87.5 then
-    progressStr = "▂"
+    progressStr = "▂▂"
   else
-    progressStr = "▁"
+    progressStr = "▁▁"
   end
 
   local currentLineStr = string.format("%3d", currentLine)
@@ -246,5 +246,5 @@ hi.statusLineDiagnosticsWarning = { guifg = colors.bright_yellow, guibg = backgr
 hi.statusLineDiagnosticsInfo = { guibg = background, guifg = colors.bright_aqua, }
 hi.statusLineLspClient = { guibg = background, guifg = colors.bright_orange, }
 hi.statusLineFileType = { guifg = foreground, guibg = background, }
-hi.statusLineProgress = { guibg = colors.bright_purple, guifg = colors.grey0, }
+hi.statusLineProgress = { guibg = colors.bright_yellow, guifg = colors.grey3, }
 hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = colors.grey0, gui = 'bold', }
