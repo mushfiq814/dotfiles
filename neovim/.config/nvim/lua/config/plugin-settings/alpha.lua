@@ -3,19 +3,21 @@ if not status_ok then return end
 local dashboard = require 'alpha.themes.dashboard'
 
 dashboard.section.buttons.val = {
-  dashboard.button("i", "📃  New file", ":enew<CR>"),
-	dashboard.button("f", "🔍  Find file", ":Telescope find_files<CR>"),
-	dashboard.button("v", "💼  Vim Options", ":Telescope vim_options<CR>"),
-	dashboard.button("r", "🚀  Recent", ":Telescope oldfiles<CR>"),
-	dashboard.button("s", "🔧  Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-	dashboard.button("q", "❌  Quit", ":qa<CR>"),
+  dashboard.button("i", "  New file", ":enew<CR>"),
+	dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
+	dashboard.button("v", "הּ  Vim Options", ":Telescope vim_options<CR>"),
+	dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
+	dashboard.button("s", "  Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+	dashboard.button("q", "  Quit", ":qa<CR>"),
 }
 
 -- get fortune footer
-local handle = io.popen('fortune')
-local fortune = handle:read("*a")
-handle:close()
-dashboard.section.footer.val = fortune
+local handle = io.popen('fortune') or nil
+if handle ~= nil then
+  local fortune = handle:read("*a")
+  dashboard.section.footer.val = fortune
+  handle:close()
+end
 
 
 local function padding(value)
