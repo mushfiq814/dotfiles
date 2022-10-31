@@ -39,7 +39,7 @@ font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
 modules-center = spotify pulseaudio pacmd
-modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect backlight memory cpu wlan battery date time
+modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect paselectsink paselectsource backlight memory cpu wlan battery date time
 
 ; tray-position options: left, center, right, none
 tray-position = none
@@ -197,15 +197,6 @@ format-foreground = ${colors.accent-light}
 click-left = playerctl next -p spotify
 ; }}}
 
-; colorscheme {{{
-[module/colorscheme]
-type = custom/script
-exec = echo ""
-format = <label>
-format-foreground = ${colors.accent-light}
-click-left = /usr/local/bin/colorscheme
-; }}}
-
 ; memory {{{
 [module/memory]
 type = internal/memory
@@ -331,6 +322,15 @@ label = %time%
 label-foreground = ${colors.white}
 ; }}}
 
+; colorscheme {{{
+[module/colorscheme]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/colorscheme
+; }}}
+
 ; btconnect {{{
 [module/btconnect]
 type = custom/script
@@ -338,6 +338,24 @@ exec = echo ""
 format = <label>
 format-foreground = ${colors.accent-light}
 click-left = /usr/local/bin/btconnect
+; }}}
+
+; paselect sink (audio output) {{{
+[module/paselectsink]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/paselect sink
+; }}}
+
+; paselect source (audio input) {{{
+[module/paselectsource]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/paselect source
 ; }}}
 
 ; powermenu {{{

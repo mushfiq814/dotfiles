@@ -39,7 +39,10 @@ c.colors.downloads.error.bg = BRIGHT_RED
 c.colors.hints.bg = WHITE
 c.colors.hints.fg = BLACK
 c.colors.hints.match.fg = BRIGHT_PURPLE
+c.colors.messages.error.bg = BRIGHT_RED
+c.colors.messages.error.fg = BLACK
 c.colors.messages.info.bg = BLACK
+c.colors.messages.info.fg = WHITE
 c.colors.statusbar.command.bg = GREY0
 c.colors.statusbar.command.fg = WHITE
 c.colors.statusbar.insert.bg = BRIGHT_BLUE
@@ -48,6 +51,7 @@ c.colors.statusbar.normal.bg = BLACK
 c.colors.statusbar.normal.fg = WHITE
 c.colors.statusbar.passthrough.bg = BRIGHT_PURPLE
 c.colors.statusbar.passthrough.fg = WHITE
+c.colors.statusbar.progress.bg = BLACK
 c.colors.statusbar.url.error.fg = BRIGHT_RED
 c.colors.statusbar.url.fg = WHITE
 c.colors.statusbar.url.hover.fg = BRIGHT_AQUA
@@ -71,8 +75,8 @@ c.colors.tabs.selected.even.bg = BLACK
 c.colors.tabs.selected.even.fg = WHITE
 c.colors.tabs.selected.odd.bg = BLACK
 c.colors.tabs.selected.odd.fg = WHITE
-c.colors.webpage.darkmode.enabled = MODE == "dark"
 c.colors.webpage.bg = BLACK
+c.colors.webpage.darkmode.enabled = MODE == "dark"
 
 # fonts
 FONT_SIZE = 11
@@ -82,6 +86,12 @@ c.fonts.completion.entry = 'default_size default_family'
 c.fonts.debug_console = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
 c.fonts.statusbar = 'default_size default_family'
+c.fonts.web.family.standard = 'default_family'
+c.fonts.web.family.fixed = 'LigaSauceCodePro Nerd Font'
+c.fonts.web.family.serif = 'SF Pro Text'
+c.fonts.web.family.sans_serif = 'SF Pro Text'
+c.fonts.web.family.cursive = 'SF Pro Text'
+c.fonts.web.family.fantasy = 'SF Pro Text'
 c.fonts.tabs.selected = str(FONT_SIZE - 2) + 'pt default_family'
 c.fonts.tabs.unselected= str(FONT_SIZE - 2) + 'pt default_family'
 c.fonts.hints = str(FONT_SIZE - 2) + 'pt default_family'

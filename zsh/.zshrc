@@ -408,10 +408,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/.local/bin
 # }}}
 
-# WSL PulseAudio Server {{{
-export PULSE_SERVER=tcp:localhost
-# }}}
-
 # Colorful Man Pages {{{
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'

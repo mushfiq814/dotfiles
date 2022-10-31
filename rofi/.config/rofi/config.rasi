@@ -4,6 +4,7 @@
  */
 
 configuration {
+  modes: "run,calc,emoji,drun";
   show-icons: false;
 }
 
