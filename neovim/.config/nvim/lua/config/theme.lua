@@ -247,7 +247,7 @@ if utils.hex_re:match_str(colors.black) and utils.hex_re:match_str(colors.grey0)
   hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = colors.bright_red, gui = nil, guisp = nil }
   hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
   hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
-  hi.TelescopePreviewLine  = { guifg = nil, guibg = colors.grey0, gui = 'none', guisp = nil }
+  hi.TelescopePreviewLine  = { guifg = nil, guibg = colors.grey2, gui = 'none', guisp = nil }
 end
 
 -- nvim-notify
