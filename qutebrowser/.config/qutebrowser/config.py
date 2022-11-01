@@ -1,4 +1,5 @@
 from colors import *
+from qutebrowser.mainwindow import tabwidget
 
 config.load_autoconfig(False)
 
@@ -95,6 +96,10 @@ c.fonts.web.family.fantasy = 'SF Pro Text'
 c.fonts.tabs.selected = str(FONT_SIZE - 2) + 'pt default_family'
 c.fonts.tabs.unselected= str(FONT_SIZE - 2) + 'pt default_family'
 c.fonts.hints = str(FONT_SIZE - 2) + 'pt default_family'
+
+# tab icons
+tabwidget.TabWidget.MUTE_STRING = "🔇"
+tabwidget.TabWidget.AUDIBLE_STRING = "🔊"
 
 # bindings for normal mode
 config.bind('M', 'hint links spawn mpv {hint-url}')
