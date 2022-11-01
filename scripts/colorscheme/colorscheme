@@ -103,6 +103,14 @@ if [ $MODE = "light" ]; then
 else
   BLACK_TR="#99$BLACK_TR"
 fi
+
+# background opacity
+if [ $MODE = "light" ]; then
+  OPACITY="0.9"
+else
+  OPACITY="0.4"
+fi
+
 echo "COLORSCHEME: theme $THEME ($MODE) with accent: $ACCENT"
 # TODO: add check for all color values to exist
 
@@ -136,6 +144,9 @@ selection_foreground $BLACK
 selection_background $WHITE
 cursor $WHITE
 cursor_text_color $BLACK
+
+background_opacity $OPACITY
+dim_opacity 1.0
 EOF
 
 # iterm2 colors file
