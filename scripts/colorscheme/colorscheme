@@ -8,7 +8,7 @@ UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 KITTY_COLORS_FILE="$HOME/.config/kitty/colors.conf"
 POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
 SKETCHYBAR_COLORS_FILE="$HOME/.config/sketchybar/colors"
-I3_CONFIG_FILE="$HOME/.config/i3/config"
+I3_COLORS_FILE="$HOME/.config/i3/colors"
 NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
 ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
 QUTEBROWSER_COLORS_FILE="$HOME/.config/qutebrowser/colors.py"
@@ -251,24 +251,18 @@ EOF
 
 # i3: set colors file
 echo "COLORSCHEME: setting i3 colors"
-i3_sed_replace_colors () {
-  if [ ! -e $I3_CONFIG_FILE ]; then
-    notify-send -a "$APPNAME" "i3 config file not found at $I3_CONFIG_FILE! Aborting..."
-  fi
-  if [ $# -eq 6 ]; then
-    x="$1 $2 $3 $4 $5 $6"
-  else
-    x="$1 $2"
-  fi
-  replacement_regex="s/^\bclient\.$1\(\s*#[0-9a-fA-F]\{6\}\)\+/client\.$x/g" \
-  sed -i $replacement_regex $I3_CONFIG_FILE
-}
-i3_sed_replace_colors "focused"            $BRIGHT_AQUA $NEUTRAL_AQUA $WHITE $ACCENT   $ACCENT
-i3_sed_replace_colors "focused_inactive"   "#333333" "#5f676a" $WHITE "#484e50" "#5f676a"
-i3_sed_replace_colors "unfocused"          "#333333" "#222222" "#888888" "#292d2e" "#222222"
-i3_sed_replace_colors "urgent"             "#2f343a" $NEUTRAL_RED $WHITE $NEUTRAL_RED $NEUTRAL_RED
-i3_sed_replace_colors "placeholder"        "#000000" "#0c0c0c" $WHITE "#000000" "#0c0c0c"
-i3_sed_replace_colors "background"         $WHITE
+cat << EOF > $I3_COLORS_FILE
+# Window borders
+# class                 border  backgr. text    indicator child_border
+client.focused          $BRIGHT_AQUA $NEUTRAL_AQUA $WHITE $ACCENT   $ACCENT
+client.focused_inactive #333333 #5f676a $WHITE #484e50 #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e #222222
+client.urgent           #2f343a $NEUTRAL_RED $WHITE $NEUTRAL_RED $NEUTRAL_RED
+client.placeholder      #000000 #0c0c0c $WHITE #000000 #0c0c0c
+client.background       $WHITE
+
+# vim:filetype=i3config
+EOF
 
 # nvim: set colors file
 echo "COLORSCHEME: setting nvim colors"
