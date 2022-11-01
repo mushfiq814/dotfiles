@@ -34,12 +34,12 @@ local hi = color_utils.highlight
 
 hi.winbarFileName = {
   guifg = colors.black,
-  guibg = (lightMode and colors.bright_purple or colors.faded_purple),
+  guibg = colors.neutral_purple,
   gui = 'bold',
 }
 hi.winbarFileNameModified = {
   guifg = colors.black,
-  guibg = colors.bright_red,
+  guibg = colors.neutral_aqua,
 }
 hi.winbarTags = {
   guifg = colors.white,
