@@ -16,7 +16,7 @@ local function navicTags()
   if navicLoaded then
     local current_tag = nvim_navic.get_location()
     if not nvim_navic.is_available() then return '' end
-   return " %#winbarTags# > " .. current_tag .. " %#Normal#"
+   return " %#winbarTags# > " .. current_tag .. "%#winbarTags# %#Normal#"
   end
 end
 
@@ -41,7 +41,41 @@ hi.winbarFileNameModified = {
   guifg = colors.black,
   guibg = colors.neutral_aqua,
 }
-hi.winbarTags = {
-  guifg = colors.white,
-  guibg = colors.grey1,
-}
+
+local function winbarTagHighlight (group, guifg)
+  hi[group] = { guibg = colors.grey1, guifg = guifg }
+end
+local function winbarTagHighlightIcon (group)
+  hi[group] = { guibg = colors.grey1, guifg = colors.bright_green }
+end
+
+winbarTagHighlight("winbarTags", colors.white)
+winbarTagHighlight("NavicText", colors.white)
+winbarTagHighlight("NavicSeparator", colors.bright_orange)
+
+winbarTagHighlightIcon("NavicIconsArray")
+winbarTagHighlightIcon("NavicIconsBoolean")
+winbarTagHighlightIcon("NavicIconsClass")
+winbarTagHighlightIcon("NavicIconsConstant")
+winbarTagHighlightIcon("NavicIconsConstructor")
+winbarTagHighlightIcon("NavicIconsEnum")
+winbarTagHighlightIcon("NavicIconsEnumMember")
+winbarTagHighlightIcon("NavicIconsEvent")
+winbarTagHighlightIcon("NavicIconsField")
+winbarTagHighlightIcon("NavicIconsFile")
+winbarTagHighlightIcon("NavicIconsFunction")
+winbarTagHighlightIcon("NavicIconsInterface")
+winbarTagHighlightIcon("NavicIconsKey")
+winbarTagHighlightIcon("NavicIconsMethod")
+winbarTagHighlightIcon("NavicIconsModule")
+winbarTagHighlightIcon("NavicIconsNamespace")
+winbarTagHighlightIcon("NavicIconsNull")
+winbarTagHighlightIcon("NavicIconsNumber")
+winbarTagHighlightIcon("NavicIconsObject")
+winbarTagHighlightIcon("NavicIconsOperator")
+winbarTagHighlightIcon("NavicIconsPackage")
+winbarTagHighlightIcon("NavicIconsProperty")
+winbarTagHighlightIcon("NavicIconsString")
+winbarTagHighlightIcon("NavicIconsStruct")
+winbarTagHighlightIcon("NavicIconsTypeParameter")
+winbarTagHighlightIcon("NavicIconsVariable")
