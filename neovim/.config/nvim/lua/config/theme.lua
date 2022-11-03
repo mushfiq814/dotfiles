@@ -1,5 +1,8 @@
 local colorsFound, colors = pcall(require, 'config/colors')
-if not colorsFound then return end
+if not colorsFound then
+  vim.notify('please generate colors file using the colorscheme script')
+  return
+end
 
 vim.bo.syntax = 'ON'
 vim.opt.termguicolors = true
