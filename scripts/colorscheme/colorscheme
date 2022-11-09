@@ -9,6 +9,7 @@ KITTY_COLORS_FILE="$HOME/.config/kitty/colors.conf"
 POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
 SKETCHYBAR_COLORS_FILE="$HOME/.config/sketchybar/colors"
 I3_COLORS_FILE="$HOME/.config/i3/colors"
+YABAI_COLORS_FILE="$HOME/.config/yabai/colors"
 NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
 ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
 QUTEBROWSER_COLORS_FILE="$HOME/.config/qutebrowser/colors.py"
@@ -273,6 +274,36 @@ client.placeholder      #000000 #0c0c0c $WHITE #000000 #0c0c0c
 client.background       $WHITE
 
 # vim:filetype=i3config
+EOF
+
+# yabai set colors file
+echo "COLORSCHEME: setting yabai colors"
+cat << EOF > $YABAI_COLORS_FILE
+#!/bin/sh
+
+BLACKTR="$BLACK_TR"
+BLACK="$BLACK"
+GREY0="$GREY0"
+GREY1="$GREY1"
+GREY2="$GREY2"
+GREY3="$GREY3"
+GREY4="$GREY4"
+WHITE="$WHITE"
+BLUE0="$NEUTRAL_BLUE"
+BLUE1="$BRIGHT_BLUE"
+RED0="$NEUTRAL_RED"
+RED1="$BRIGHT_RED"
+ORANGE0="$NEUTRAL_ORANGE"
+ORANGE1="$BRIGHT_ORANGE"
+YELLOW0="$NEUTRAL_YELLOW"
+YELLOW1="$BRIGHT_YELLOW"
+GREEN0="$NEUTRAL_GREEN"
+GREEN1="$BRIGHT_GREEN"
+PURPLE0="$NEUTRAL_PURPLE"
+PURPLE1="$BRIGHT_PURPLE"
+CYAN0="$NEUTRAL_AQUA"
+CYAN1="$BRIGHT_AQUA"
+ACCENT="$ACCENT"
 EOF
 
 # nvim: set colors file

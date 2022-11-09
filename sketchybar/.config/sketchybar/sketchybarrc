@@ -34,7 +34,7 @@ sketchybar -m                                   \
     icon=1                                      \
     icon.color="0xFF${ACCENT:1}"                \
     icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="yabai -m space --focus 1"     \
+    click_script="osascript -e 'tell application \"System Events\" to key code 18 using option down'"     \
                                                 \
   --add space space1 left                       \
   --set space1                                  \
@@ -42,7 +42,7 @@ sketchybar -m                                   \
     icon=2                                      \
     icon.color="0xFF${ACCENT:1}"                \
     icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="yabai -m space --focus 2"     \
+    click_script="osascript -e 'tell application \"System Events\" to key code 19 using option down'"     \
                                                 \
   --add space space2 left                       \
   --set space2                                  \
@@ -50,7 +50,7 @@ sketchybar -m                                   \
     icon=3                                      \
     icon.color="0xFF${ACCENT:1}"                \
     icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="yabai -m space --focus 3"     \
+    click_script="osascript -e 'tell application \"System Events\" to key code 20 using option down'"     \
                                                 \
   --add space space3 left                       \
   --set space3                                  \
@@ -58,7 +58,7 @@ sketchybar -m                                   \
     icon=4                                      \
     icon.color="0xFF${ACCENT:1}"                \
     icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="yabai -m space --focus 4"
+    click_script="osascript -e 'tell application \"System Events\" to key code 21 using option down'"
 
 # Window Title
 sketchybar -m                         \
