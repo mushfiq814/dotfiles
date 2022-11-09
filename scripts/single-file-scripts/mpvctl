@@ -1,0 +1,118 @@
+#!/bin/sh
+
+MPVSOCKET="/tmp/mpvsocket"
+MUSIC_DIR="$HOME/music/*.mp3"
+
+update_polybar_hook() {
+  PARENT_BAR="mushfiq"
+  PARENT_BAR_PID=$(
+    pgrep -a "polybar" \
+    | grep "$PARENT_BAR" \
+    | cut -d " " -f1
+  )
+  HOOK="mpv-play-pause"
+  HOOK_NUMBER="$1"
+
+  while IFS= read -r id
+  do
+    polybar-msg -p "$id" hook $HOOK $HOOK_NUMBER 1>/dev/null 2>&1
+  done < <(echo "$PARENT_BAR_PID")
+}
+
+start() {
+  nohup mpv $MUSIC_DIR --shuffle > /dev/null 2>&1 &
+}
+
+stop() {
+  pkill mpv
+}
+
+get_play_status() {
+  PAUSE=$(
+    echo '{ "command": ["get_property", "pause"] }' \
+    | socat - /tmp/mpvsocket \
+    | jq .data
+  )
+  if [[ $PAUSE == "true" ]]; then
+    STATUS="PAUSED"
+  else
+    STATUS="PLAYING"
+  fi
+  echo $STATUS
+}
+
+toggle_playback() {
+  echo '{ "command": ["cycle", "pause" ] }' \
+  | socat - $MPVSOCKET
+
+  status=$(get_play_status)
+  if [[ $status == "PLAYING" ]]; then
+    update_polybar_hook 1
+  else
+    update_polybar_hook 2
+  fi
+}
+
+next_track() {
+  echo 'playlist-next' \
+  | socat - $MPVSOCKET
+
+  status=$(get_play_status)
+  if [[ $status == "PAUSED" ]]; then
+    toggle_playback
+  fi
+}
+
+prev_track() {
+  echo 'playlist-prev' \
+  | socat - $MPVSOCKET
+
+  status=$(get_play_status)
+  if [[ $status == "PAUSED" ]]; then
+    toggle_playback
+  fi
+}
+
+get_position() {
+  echo '{ "command": ["get_property_string", "time-pos"] }' \
+  | socat - $MPVSOCKET \
+  | jq .data \
+  | tr '"' ' ' \
+  | cut -d '.' -f 1
+  # printf '%d:%02d:%02d' $(($POSITION/3600)) $(($POSITION%3600/60)) $(($POSITION%60))
+}
+
+get_remaining() {
+  echo '{ "command": ["get_property_string", "time-remaining"] }' \
+  | socat - $MPVSOCKET \
+  | jq .data \
+  | tr '"' ' ' \
+  | cut -d '.' -f 1
+  # printf ' %d:%02d:%02d\n' $(($REMAINING/3600)) $(($REMAINING%3600/60)) $(($REMAINING%60))
+}
+
+get_metadata() {
+  echo '{ "command": ["get_property", "filtered-metadata"] }' \
+  | socat - /tmp/mpvsocket \
+  | jq -r '.data | .Artist, .Title' \
+  | paste -s -d - \
+  | sed 's/-/ - /'
+}
+
+if [[ $1 == "play" || $1 == "start" ]]; then
+  start
+elif [[ $1 == "toggle" ]]; then
+  toggle_playback
+elif [[ $1 == "stop" ]]; then
+  stop
+elif [[ $1 == "next" ]]; then
+  next_track
+elif [[ $1 == "prev" ]]; then
+  prev_track
+elif [[ $1 == "meta" ]]; then
+  get_metadata
+elif [[ $1 == "status" ]]; then
+  get_play_status
+else
+  echo "invalid argument"
+fi
