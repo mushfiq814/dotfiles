@@ -38,8 +38,8 @@ font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
 font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
-modules-center = spotify pulseaudio pacmd
-modules-right = spotify-prev spotify-play-pause spotify-next colorscheme btconnect paselectsink paselectsource backlight memory cpu wlan battery date time
+modules-center = mpv pulseaudio pacmd
+modules-right = mpv-prev mpv-play-pause mpv-next colorscheme btconnect paselectsink paselectsource backlight memory cpu wlan battery date time
 
 ; tray-position options: left, center, right, none
 tray-position = none
@@ -152,11 +152,43 @@ ramp-volume-foreground = ${colors.accent}
 type = custom/script
 tail = true
 interval = 1
-; prefix symbol is shown before the text
 format-prefix = "蓼 "
 format-prefix-foreground = ${colors.accent}
 format = <label>
 exec = /usr/local/bin/get-audio-device
+; }}}
+
+; mpv {{{
+[module/mpv]
+type = custom/script
+tail = true
+exec-if = pidof mpv
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent}
+format = <label>
+exec = mpvctl meta
+
+[module/mpv-prev]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent}
+click-left = mpvctl prev
+
+[module/mpv-play-pause]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = echo ""
+format-foreground = ${colors.accent}
+initial = 1
+click-left = mpvctl toggle
+
+[module/mpv-next]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent}
+click-left = mpvctl next
 ; }}}
 
 ; spotify {{{
@@ -164,7 +196,6 @@ exec = /usr/local/bin/get-audio-device
 type = custom/script
 tail = true
 interval = 1
-; prefix symbol is shown before the text
 format-prefix = "  "
 format-prefix-foreground = ${colors.accent}
 format = <label>
