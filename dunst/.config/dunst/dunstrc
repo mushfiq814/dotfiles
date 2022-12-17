@@ -1,6 +1,6 @@
 [global]
     follow = mouse
-    width = 300
+    width = (0,300)
     height = (0,300)
     origin = top-right
     offset = 20x50

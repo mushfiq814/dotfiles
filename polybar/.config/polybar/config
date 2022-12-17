@@ -39,7 +39,7 @@ font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
 modules-center = mpv pulseaudio pacmd
-modules-right = mpv-prev mpv-play-pause mpv-next colorscheme btconnect paselectsink paselectsource backlight memory cpu wlan battery date time
+modules-right = mpv-prev mpv-play-pause mpv-next colorscheme btconnect paselectsink paselectsource memory cpu wlan battery date time
 
 ; tray-position options: left, center, right, none
 tray-position = none
@@ -269,12 +269,10 @@ bar-load-empty-foreground = ${colors.grey2}
 ; wlan {{{
 [module/wlan]
 type = internal/network
-interface = wlp0s20f3
+interface = wlan0
 interval = 3.0
 ; All labels support the following tokens:
-;   %ifname%    [wireless+wired]
 ;   %local_ip%  [wireless+wired]
-;   %local_ip6% [wireless+wired]
 ;   %essid%     [wireless]
 ;   %signal%    [wireless]
 ;   %upspeed%   [wireless+wired]

@@ -6,4 +6,4 @@ then
 fi
 
 date=$(date +%Y-%m-%dT%H-%M-%S-%N)
-maim -s "$HOME/Pictures/screenshots/$date.png"
+maim $@ -s "$HOME/pictures/screenshots/$date.png"

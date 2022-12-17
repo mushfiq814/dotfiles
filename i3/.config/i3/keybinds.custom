@@ -51,8 +51,8 @@ bindsym $mod+shift+control+9 exec --no-startup-id paselect sink
 bindsym $mod+shift+control+0 exec --no-startup-id paselect source
 
 # volume control
-bindsym --whole-window Button9 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym --whole-window Button8 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym --whole-window Button9 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --whole-window Button8 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # keyboard delay controls
 bindsym $mod+shift+control+k exec --no-startup-id xset r rate 250 90
