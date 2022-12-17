@@ -95,8 +95,8 @@ get_metadata() {
   echo '{ "command": ["get_property", "filtered-metadata"] }' \
   | socat - /tmp/mpvsocket \
   | jq -r '.data | .Artist, .Title' \
-  | paste -s -d - \
-  | sed 's/-/ - /'
+  | paste -s -d \~ \
+  | sed 's/~/ - /'
 }
 
 if [[ $1 == "play" || $1 == "start" ]]; then
