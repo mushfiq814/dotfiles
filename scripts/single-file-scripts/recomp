@@ -1,5 +1,5 @@
 #!/bin/sh
 echo 'reloading picom...'
 pkill picom
-# picom --experimental-backends --config ~/.config/picom/picom.conf
-picom --config ~/.config/picom/picom.conf
+picom --experimental-backends --config ~/.config/picom/picom.conf
+# picom --config ~/.config/picom/picom.conf
