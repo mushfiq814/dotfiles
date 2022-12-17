@@ -384,8 +384,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Fuzzy Finder {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# source /usr/share/fzf/completion.zsh
-# source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 # }}}
 
 # Go Compiler {{{
