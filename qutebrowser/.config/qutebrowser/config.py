@@ -81,14 +81,14 @@ c.colors.webpage.darkmode.enabled = MODE == "dark"
 
 # fonts
 FONT_SIZE = 11
-c.fonts.default_family = 'LigaSauceCodePro Nerd Font'
+c.fonts.default_family = 'LigaSaucyCodePro Nerd Font'
 c.fonts.default_size = str(FONT_SIZE) + 'pt'
 c.fonts.completion.entry = 'default_size default_family'
 c.fonts.debug_console = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
 c.fonts.statusbar = 'default_size default_family'
 c.fonts.web.family.standard = 'default_family'
-c.fonts.web.family.fixed = 'LigaSauceCodePro Nerd Font'
+c.fonts.web.family.fixed = 'LigaSaucyCodePro Nerd Font'
 c.fonts.web.family.serif = 'SF Pro Text'
 c.fonts.web.family.sans_serif = 'SF Pro Text'
 c.fonts.web.family.cursive = 'SF Pro Text'

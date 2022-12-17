@@ -33,8 +33,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
-font-1 = LigaSauceCodePro Nerd Font:pixelsize=10:style=Bold
+font-0 = LigaSaucyCodePro Nerd Font:pixelsize=10:style=Bold
+font-1 = LigaSaucyCodePro Nerd Font:pixelsize=10:style=Regular
 font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
 
 modules-left = i3 xwindow
@@ -279,18 +279,12 @@ interval = 3.0
 ;   %signal%    [wireless]
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-label-connected = 
+label-connected =   %essid%
+label-connected-maxlen = 30
+label-connected-minlen = 0
 label-connected-foreground = ${colors.accent}
 label-disconnected = 睊
 label-disconnected-foreground = ${colors.red1}
-
-; label-connected = %{F#d3869b}%{F-} %essid% %{F#d3869b}%{F-} %downspeed%
-; label-connected-maxlen = 60
-; label-connected-minlen = 60
-; label-connected-foreground = ${colors.grey4}
-; label-disconnected = %{F#d3869b}睊%{F-} no internet
-; label-disconnected-foreground = ${colors.red1}
 ; }}}
 
 ; battery {{{
