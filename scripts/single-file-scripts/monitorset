@@ -1,62 +1,36 @@
 #!/bin/sh
 
-INTERNAL="eDP-1"
-ULTRAWIDE="DP-1-1-8"
-PORTRAIT="DP-3"
+PRIMARY="eDP-1"
+PRIMARY_MODE="1920x1080"
+SECONDARY="DP-2-1-8"
+SECONDARY_MODE="2560x1440"
 
-internal_on() {
-  xrandr --output $INTERNAL --mode 1920x1200
+display_on() {
+  xrandr --output $1 --primary --mode $2
 }
-internal_off() {
-  xrandr --output $INTERNAL --off
+display_off() {
+  xrandr --output $1 --off
 }
-internal_dim() {
-  xrandr --output $INTERNAL --brightness 0
+display_dim() {
+  xrandr --output $1 --brightness 0
 }
-
-ultrawide_on() {
-  xrandr --output $ULTRAWIDE --mode 2560x1440 --pos 0x240
-}
-ultrawide_off() {
-  xrandr --output $ULTRAWIDE --off
-}
-ultrawide_dim() {
-  xrandr --output $ULTRAWIDE --brightness 0
+display_undim() {
+  xrandr --output $1 --brightness 1
 }
 
-portrait_on() {
-  xrandr --output $PORTRAIT --mode 1920x1080 --pos 2560x0 --rotate right
+primary_only() {
+  display_on $PRIMARY $PRIMARY_MODE && display_off $SECONDARY
 }
-portrait_off() {
-  xrandr --output $PORTRAIT --off
-}
-portrait_dim() {
-  xrandr --output $PORTRAIT --brightness 0
-}
-
-internal_only() {
-  internal_on && ultrawide_off && portrait_off
-}
-ultrawide_only() {
-  internal_off && ultrawide_on && portrait_off
-}
-external() {
-  internal_off && ultrawide_on && portrait_on
-}
-undim_internal() {
-  xrandr --output $INTERNAL --brightness 1
-}
-undim_external() {
-  xrandr --output $ULTRAWIDE --brightness 1 --output $PORTRAIT --brightness 1
+secondary_only() {
+  display_off $PRIMARY && display_on $SECONDARY $SECONDARY_MODE
 }
 
 case $1 in
-  "internal") internal_only ;;
-  "ultrawide") ultrawide_only ;;
-  "external") external ;;
-  "dim-internal") internal_dim ;;
-  "dim-external") ultrawide_dim && portrait_dim ;;
-  "undim-internal") undim_internal ;;
-  "undim-external") undim_external ;;
-  *) echo "Invalid Option. Please select either 'internal', 'external', 'ultrawide', 'dim-internal', 'dim-external', 'undim-internal' or 'undim-external'" ;;
+  "primary") primary_only ;;
+  "secondary") secondary_only ;;
+  "dim-primary") display_dim $PRIMARY ;;
+  "dim-secondary") display_dim $SECONDARY ;;
+  "undim-primary") display_undim $PRIMARY ;;
+  "undim-secondary") display_undim $SECONDARY ;;
+  *) echo "Invalid Option. Please select either 'primary', 'secondary', 'dim-primary', 'dim-secondary', 'undim-primary' or 'undim-secondary'" ;;
 esac
