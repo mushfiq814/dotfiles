@@ -57,9 +57,9 @@ toggle_playback() {
   fi
 
   if [[ $status == "PLAYING" ]]; then
-    update_polybar_hook 1
-  else
     update_polybar_hook 2
+  else
+    update_polybar_hook 1
   fi
 }
 
