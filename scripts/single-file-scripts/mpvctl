@@ -28,6 +28,12 @@ stop() {
 }
 
 get_play_status() {
+  if [ -z $(pidof mpv) ];
+  then
+    echo "STOPPED";
+    exit;
+  fi
+
   PAUSE=$(
     echo '{ "command": ["get_property", "pause"] }' \
     | socat - /tmp/mpvsocket \
@@ -42,10 +48,14 @@ get_play_status() {
 }
 
 toggle_playback() {
-  echo '{ "command": ["cycle", "pause" ] }' \
-  | socat - $MPVSOCKET
-
   status=$(get_play_status)
+  if [[ $status == "STOPPED" ]]; then
+    start
+  else
+    echo '{ "command": ["cycle", "pause" ] }' \
+    | socat - $MPVSOCKET
+  fi
+
   if [[ $status == "PLAYING" ]]; then
     update_polybar_hook 1
   else
@@ -54,20 +64,28 @@ toggle_playback() {
 }
 
 next_track() {
-  echo 'playlist-next' \
-  | socat - $MPVSOCKET
-
   status=$(get_play_status)
+  if [[ $status == "STOPPED" ]]; then
+    start
+  else
+    echo 'playlist-next' \
+    | socat - $MPVSOCKET
+  fi
+
   if [[ $status == "PAUSED" ]]; then
     toggle_playback
   fi
 }
 
 prev_track() {
-  echo 'playlist-prev' \
-  | socat - $MPVSOCKET
-
   status=$(get_play_status)
+  if [[ $status == "STOPPED" ]]; then
+    start
+  else
+    echo 'playlist-prev' \
+    | socat - $MPVSOCKET
+  fi
+
   if [[ $status == "PAUSED" ]]; then
     toggle_playback
   fi
