@@ -1,0 +1,24 @@
+#!/bin/sh
+
+CONFIG_DIR="$HOME/.config"
+
+choose_config () {
+  PROGRAM=$(ls $CONFIG_DIR | fzf)
+  echo $PROGRAM
+}
+
+modify_config () {
+  if [ $# -eq 0 ]
+  then
+    echo "[configctl] No program specified to modify_config"
+    exit
+  fi
+  $EDITOR $CONFIG_DIR/$1
+}
+
+case "$1" in
+  1) echo "test"
+  ;;
+  *) modify_config $(choose_config)
+  ;;
+esac

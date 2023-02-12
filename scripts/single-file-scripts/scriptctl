@@ -1,0 +1,35 @@
+#!/bin/sh
+
+SCRIPT_DIR="$HOME/dotfiles/scripts/single-file-scripts"
+
+choose_script () {
+  SCRIPT=$(ls $SCRIPT_DIR | fzf)
+  echo $SCRIPT
+}
+
+modify_script () {
+  if [ $# -eq 0 ]
+  then
+    echo "[scriptctl] No script specified to modify_script"
+    exit
+  fi
+  $EDITOR $SCRIPT_DIR/$1
+}
+
+copy_to_path () {
+  if [ $# -eq 0 ]
+  then
+    echo "[scriptctl] No script specified to copy_to_path"
+    exit
+  fi
+  sudo cp "$SCRIPT_DIR/$1" /usr/local/bin/
+}
+
+case "$1" in
+  cp) copy_to_path $(choose_script)
+  ;;
+  modify) modify_script $(choose_script)
+  ;;
+  *) modify_script $(choose_script)
+  ;;
+esac
