@@ -1,0 +1,49 @@
+#!/bin/sh
+
+PRIMARY_XRANDR="eDP-1" # needed for xrandr
+SECONDARY_DDC="i2c-19" # needed for ddccontrol. find by `sudo ddccontrol -p`
+CURRENT_DISPLAY_FILE="$HOME/.config/current_display"
+
+find_current_display() {
+  return cat $CURRENT_DISPLAY_FILE
+}
+
+brightness_up() {
+  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY_XRANDR" ]]; then
+    value=$(basename $(brightnessctl s 1%+ | grep -Eo "[0-9]+%") %)
+  else
+    value=$(
+      /usr/bin/ddccontrol -r 0x10 -W 5 dev:/dev/$SECONDARY_DDC 2> /dev/null \
+      | grep 'Brightness' \
+      | sed 's/Control 0x10: +\/\([0-9]\+\).*\[Brightness\]/\1/'
+    )
+  fi
+  echo $value
+}
+
+brightness_down() {
+  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY_XRANDR" ]]; then
+    value=$(basename $(brightnessctl s 1%- | grep -Eo "[0-9]+%") %)
+  else
+    value=$(
+      /usr/bin/ddccontrol -r 0x10 -W -5 dev:/dev/$SECONDARY_DDC 2> /dev/null \
+      | grep 'Brightness' \
+      | sed 's/Control 0x10: +\/\([0-9]\+\).*\[Brightness\]/\1/'
+    )
+  fi
+  echo $value
+}
+
+show_notification() {
+  dunstify -a " " -h string:x-canonical-private-synchronous:brightness "Backlight ($1)" -h int:value:"$1"
+}
+
+if [[ $1 == "+" || $1 == "up" || $1 == "inc" ]]; then
+  VAL=$(brightness_up)
+  show_notification $VAL
+elif [[ $1 == "-" || $1 == "down" || $1 == "dec" ]]; then
+  VAL=$(brightness_down)
+  show_notification $VAL
+else
+  echo "invalid argument"
+fi
