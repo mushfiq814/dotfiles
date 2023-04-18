@@ -4,6 +4,7 @@ from qutebrowser.mainwindow import tabwidget
 config.load_autoconfig(False)
 
 c.content.autoplay = False
+c.content.notifications.enabled = False
 c.downloads.location.directory = '~/downloads'
 c.editor.command = ['kitty', '--class', 'floating', '-e', 'nvim', '{file}', '-c','normal {line}G{column0}1']
 c.statusbar.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
@@ -37,6 +38,11 @@ c.colors.contextmenu.selected.bg = GREY1
 c.colors.contextmenu.selected.fg = WHITE
 c.colors.downloads.bar.bg = BLACK
 c.colors.downloads.error.bg = BRIGHT_RED
+c.colors.downloads.error.fg = WHITE
+c.colors.downloads.start.bg = NEUTRAL_BLUE
+c.colors.downloads.start.fg = BLACK
+c.colors.downloads.stop.bg = NEUTRAL_GREEN
+c.colors.downloads.stop.fg = BLACK
 c.colors.hints.bg = WHITE
 c.colors.hints.fg = BLACK
 c.colors.hints.match.fg = BRIGHT_PURPLE
@@ -79,20 +85,35 @@ c.colors.tabs.selected.odd.fg = WHITE
 c.colors.webpage.bg = BLACK
 c.colors.webpage.darkmode.enabled = MODE == "dark"
 
+# site permissions
+with config.pattern('https://mail.google.com') as p:
+    p.content.register_protocol_handler = False
+with config.pattern('https://calendar.google.com') as p:
+    p.content.register_protocol_handler = False
+
+# clipboard access
+with config.pattern('https://github.com') as p:
+    p.content.javascript.can_access_clipboard = True
+with config.pattern('https://bitwarden.com') as p:
+    p.content.javascript.can_access_clipboard = True
+
 # fonts
 FONT_SIZE = 11
-c.fonts.default_family = 'LigaSaucyCodePro Nerd Font'
+MONO_FONT = 'LigaSaucyCodePro Nerd Font'
+REGULAR_FONT = ''
+
+c.fonts.default_family = MONO_FONT
 c.fonts.default_size = str(FONT_SIZE) + 'pt'
 c.fonts.completion.entry = 'default_size default_family'
 c.fonts.debug_console = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
 c.fonts.statusbar = 'default_size default_family'
+c.fonts.web.family.cursive = REGULAR_FONT
+c.fonts.web.family.fantasy = REGULAR_FONT
+c.fonts.web.family.fixed = MONO_FONT
+c.fonts.web.family.sans_serif = REGULAR_FONT
+c.fonts.web.family.serif = REGULAR_FONT
 c.fonts.web.family.standard = 'default_family'
-c.fonts.web.family.fixed = 'LigaSaucyCodePro Nerd Font'
-c.fonts.web.family.serif = 'SF Pro Text'
-c.fonts.web.family.sans_serif = 'SF Pro Text'
-c.fonts.web.family.cursive = 'SF Pro Text'
-c.fonts.web.family.fantasy = 'SF Pro Text'
 c.fonts.tabs.selected = str(FONT_SIZE - 2) + 'pt default_family'
 c.fonts.tabs.unselected= str(FONT_SIZE - 2) + 'pt default_family'
 c.fonts.hints = str(FONT_SIZE - 2) + 'pt default_family'
