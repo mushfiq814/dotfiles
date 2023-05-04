@@ -110,7 +110,6 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "orgmode" },
     { name = 'nvim_lsp_signature_help' },
   },
   confirm_opts = {
