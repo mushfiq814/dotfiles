@@ -4,6 +4,7 @@ local list = {
   { name = 'williamboman/mason-lspconfig.nvim', config = 'config/plugin-settings/mason' },
   { name = 'neovim/nvim-lspconfig', config = 'config/plugin-settings/nvim-lsp' },
   { name = 'jose-elias-alvarez/null-ls.nvim', config = 'config/plugin-settings/null-ls' },
+  { name = 'mfussenegger/nvim-dap' },
 
   -- treesitter
   { name = 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = 'config/plugin-settings/treesitter' },
@@ -46,6 +47,8 @@ local list = {
   -- { name = 'samodostal/image.nvim', config = 'config/plugin-settings/image' },
 
   -- Development Tools
+  { name = 'TimUntersberger/neogit', config = 'config/plugin-settings/neogit' },
+  { name = 'sindrets/diffview.nvim' },
   { name = 'tpope/vim-fugitive' },
   { name = 'numToStr/Comment.nvim', config = 'config/plugin-settings/comment' },
   { name = 'lewis6991/gitsigns.nvim', config = 'config/plugin-settings.gitsigns' },
