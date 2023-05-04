@@ -32,38 +32,17 @@ sketchybar --default                  \
   label.padding_right=4
 
 # Spaces
-sketchybar -m                                   \
-  --add space space0 left                       \
-  --set space0                                  \
-    associated_space=1                          \
-    icon=1                                      \
-    icon.color="0xFF${ACCENT:1}"                \
-    icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="osascript -e 'tell application \"System Events\" to key code 18 using option down'"     \
-                                                \
-  --add space space1 left                       \
-  --set space1                                  \
-    associated_space=2                          \
-    icon=2                                      \
-    icon.color="0xFF${ACCENT:1}"                \
-    icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="osascript -e 'tell application \"System Events\" to key code 19 using option down'"     \
-                                                \
-  --add space space2 left                       \
-  --set space2                                  \
-    associated_space=3                          \
-    icon=3                                      \
-    icon.color="0xFF${ACCENT:1}"                \
-    icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="osascript -e 'tell application \"System Events\" to key code 20 using option down'"     \
-                                                \
-  --add space space3 left                       \
-  --set space3                                  \
-    associated_space=4                          \
-    icon=4                                      \
-    icon.color="0xFF${ACCENT:1}"                \
-    icon.highlight_color="0xFF${WHITE:1}"       \
-    click_script="osascript -e 'tell application \"System Events\" to key code 21 using option down'"
+for i in $(yabai -m query --windows | jq '.[].space' | sort -u); do
+  KEYCODE=$(echo "17 + $i" | bc);
+  sketchybar -m                                   \
+    --add space "space$i" left                    \
+    --set "space$i"                               \
+      associated_space=$i                         \
+      icon=$i                                     \
+      icon.color="0xFF${ACCENT:1}"                \
+      icon.highlight_color="0xFF${WHITE:1}"       \
+      click_script="osascript -e 'tell application \"System Events\" to key code $KEYCODE using option down'"
+done
 
 # Window Title
 sketchybar -m                         \
