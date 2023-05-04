@@ -20,13 +20,13 @@ require('lazy').setup({
   { 'williamboman/mason-lspconfig.nvim', config = function() require('config/plugin-settings/mason') end },
   { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end },
   { 'jose-elias-alvarez/null-ls.nvim', config = function() require('config/plugin-settings/null-ls') end },
-  { 'mfussenegger/nvim-dap', lazy = true},
+  { 'mfussenegger/nvim-dap', lazy = true },
   { 'mfussenegger/nvim-jdtls', lazy = true },
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require('config/plugin-settings/treesitter') end },
-  { 'nvim-treesitter/playground', lazy = true },
-  { 'simrat39/symbols-outline.nvim', config = function() require('config/plugin-settings/symbols-outline') end, lazy = true },
+  { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
+  { 'simrat39/symbols-outline.nvim', config = function() require('config/plugin-settings/symbols-outline') end, cmd = "SymbolsOutline" },
 
   -- cmp plugins
   { 'hrsh7th/nvim-cmp', config = function() require('config/plugin-settings/nvim-cmp') end },
@@ -55,7 +55,7 @@ require('lazy').setup({
   { 'kyazdani42/nvim-tree.lua', config = function() require('config/plugin-settings/nvim-tree') end, cmd = { 'NvimTreeOpen', 'NvimTreeToggle' }, keys = '<C-n>' },
   { 'rcarriga/nvim-notify', config = function() require('config/plugin-settings/nvim-notify') end },
   { 'lukas-reineke/indent-blankline.nvim', config = function() require('config/plugin-settings/indent-blankline') end },
-  { 'folke/zen-mode.nvim', config = function() require('config/plugin-settings/zen-mode') end, lazy = true },
+  { 'folke/zen-mode.nvim', config = function() require('config/plugin-settings/zen-mode') end, keys = '<leader>x' },
   { 'NvChad/nvim-colorizer.lua', config = function() require('config/plugin-settings/nvim-colorizer') end, lazy = true },
   -- { 'fladson/vim-kitty' },
   -- { 'edluffy/hologram.nvim', config = function() require('config/plugin-settings/hologram') end },
@@ -64,12 +64,12 @@ require('lazy').setup({
   -- Development Tools
   { 'TimUntersberger/neogit', config = function() require('config/plugin-settings/neogit') end, lazy = true },
   { 'sindrets/diffview.nvim', lazy = true },
-  { 'tpope/vim-fugitive', lazy = true, cmd = 'G' },
+  { 'tpope/vim-fugitive', cmd = 'G' },
   { 'numToStr/Comment.nvim', config = function() require('config/plugin-settings/comment') end, keys = { 'gcc', 'gc' } },
   { 'lewis6991/gitsigns.nvim', config = function() require('config/plugin-settings.gitsigns') end },
 
   -- replace eventually
-  { 'jkramer/vim-checkbox', lazy = true },
-  { 'godlygeek/tabular', lazy = true },
+  { 'jkramer/vim-checkbox', keys = '<leader>tt' },
+  { 'godlygeek/tabular', keys = '<leader>a', cmd = 'Tabularize' },
   { 'goolord/alpha-nvim', config = function() require('config/plugin-settings/alpha') end, priority = 1000 },
 })
