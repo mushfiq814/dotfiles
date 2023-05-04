@@ -19,3 +19,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 -- assign filetype to jsonc for json files to enable comments
 vim.cmd('au FileType json set filetype=jsonc')
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = { "*" },
+    command = "normal zx zR",
+})
