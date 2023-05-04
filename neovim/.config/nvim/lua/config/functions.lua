@@ -1,3 +1,7 @@
+function sum_cols()
+  vim.cmd([[echo eval(join(split(@", '\_s\+'), '+'))]])
+end
+
 -- edited from https://git.sr.ht/~henriquehbr/dots/tree/main/item/nvim/.config/nvim/lua/config/commands.lua
 function reload_config()
   for package_name, _ in pairs(package.loaded) do
