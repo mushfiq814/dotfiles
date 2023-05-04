@@ -115,5 +115,8 @@ if telescope_available then
     ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles\', hidden = true })<cr>',
     opts
   )
+
+  -- yank filepath
+  keymap('n', '<leader>yy', ':let @+ = expand("%")<CR>', opts)
 end
 
