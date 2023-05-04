@@ -23,6 +23,12 @@ yabai -m rule --add app="^Simulator$"               sticky=on layer=above manage
 yabai -m rule --add app="^Path Finder$"             manage=off
 yabai -m rule --add app="^Time Out$"                manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
+yabai -m rule --add app="^choose$"                  sticky=on layer=above manage=off
+
+yabai -m config auto_padding on
+yabai -m config auto_padding_min_aspect 3.00
+yabai -m config auto_padding_width 80
+yabai -m config auto_padding_height 1200
 
 source ~/.config/yabai/colors
 
@@ -41,7 +47,7 @@ yabai -m config                               \
   insert_feedback_color        0xff${RED0:1}  \
   active_window_border_color   0xff${ACCENT:1}\
   normal_window_border_color   0xff${GREY0:1} \
-  window_border_width          2              \
+  window_border_width          1              \
   window_border_radius         12             \
   window_border_blur           off            \
   window_border_hidpi          on             \
@@ -49,13 +55,13 @@ yabai -m config                               \
   split_ratio                  0.50           \
   split_type                   auto           \
   auto_balance                 off            \
-  top_padding                  30             \
-  bottom_padding               10             \
-  left_padding                 10             \
-  right_padding                10             \
-  window_gap                   10             \
+  top_padding                  40             \
+  bottom_padding               20             \
+  left_padding                 20             \
+  right_padding                20             \
+  window_gap                   20             \
   layout                       bsp            \
-  mouse_modifier               fn             \
+  mouse_modifier               cmd            \
   mouse_action1                move           \
   mouse_action2                resize         \
   mouse_drop_action            swap
