@@ -315,8 +315,11 @@ hi['@text.title'] = { guifg = colors.bright_aqua, guibg = nil, gui = 'bold', gui
 hi['@text.reference'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.literal'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.uri'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+hi['@text.strong'] = { guifg = colors.bright_orange, guibg = nil, gui = 'bold', guisp = nil }
 hi['@punctuation.delimiter'] = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.special'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.bracket'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
+hi['@puntuation.strikethrough'] = { guifg = colors.bright_redbright_yellow, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
 hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 
 -- highlight groups
