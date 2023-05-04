@@ -114,16 +114,34 @@ sketchybar -m                         \
     label.color="0xFF${WHITE:1}"      \
     script="$SCRIPTS/mem"
 
-#     
-BACKLIGHT='sketchybar -m --set backlight label="$(echo NaN%)"'
 sketchybar -m                         \
-  --add item backlight right          \
-  --set backlight                     \
+  --add item vpn right                \
+  --set vpn                           \
     update_freq=3                     \
-    icon=" BRI"                      \
+    icon=" VPN"                      \
+    script="$SCRIPTS/vpncheck"
+
+sketchybar -m                         \
+  --add item mpv-controls-next right  \
+  --set mpv-controls-next             \
+    script="$SCRIPTS/mpv-controls"
+sketchybar -m                         \
+  --add item mpv-controls-toggle right\
+  --set mpv-controls-toggle           \
+    script="$SCRIPTS/mpv-controls"
+sketchybar -m                         \
+  --add item mpv-controls-prev right  \
+  --set mpv-controls-prev             \
+    script="$SCRIPTS/mpv-controls"
+
+sketchybar -m                         \
+  --add item mpv center               \
+  --set mpv                           \
+    update_freq=1                     \
+    icon="ﱘ"                          \
     icon.color="0xFF${ACCENT:1}"      \
-    script="$BACKLIGHT"               \
-    label.color="0xFF${WHITE:1}"
+    label.color="0xFF${WHITE:1}"      \
+    script="$SCRIPTS/mpv"
 
 # Finalizing Setup
 # The below command is only needed at the end of the initial configuration and
