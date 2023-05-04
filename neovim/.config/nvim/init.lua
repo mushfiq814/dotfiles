@@ -1,5 +1,5 @@
 -- plugins
-require('config/plugin-init')
+require('config/plugins')
 
 -- UI/UX
 require('config/theme')
