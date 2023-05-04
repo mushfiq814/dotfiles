@@ -1,0 +1,7 @@
+#!/bin/bash
+
+MUSIC=$(
+  ncmpcpp --current-song='%a - %t'
+)
+
+sketchybar -m --set ncmpcpp label="$MUSIC"

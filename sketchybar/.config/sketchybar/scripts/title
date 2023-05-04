@@ -1,5 +1,12 @@
 #!/bin/sh
 
+IS_SHORT=$1
+if [ $IS_SHORT ]; then
+  CUTOFF=30
+else
+  CUTOFF=80
+fi
+
 WINDOW=$(/opt/homebrew/bin/yabai -m query --windows --window)
 WINDOW_APP=$(echo $WINDOW | jq -r ".app")
 WINDOW_TITLE=$(echo $WINDOW | jq -r ".title")
@@ -9,8 +16,8 @@ if [[ $WINDOW_APP = "iTerm2" ]]; then
 elif [[ $WINDOW_TITLE = "" ]]; then
   TITLE=$WINDOW_APP
 else
-  if [[ ${#WINDOW_TITLE} -gt 80 ]]; then
-    TITLE="$(echo "$WINDOW_TITLE" | cut -c 1-50)…"
+  if [[ ${#WINDOW_TITLE} -gt $CUTOFF ]]; then
+    TITLE="$(echo "$WINDOW_TITLE" | head -c $CUTOFF)…"
   else
     TITLE=$WINDOW_TITLE
   fi

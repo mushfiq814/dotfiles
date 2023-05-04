@@ -1,0 +1,16 @@
+#!/bin/sh
+
+source "$HOME/.config/sketchybar/colors"
+
+STATE=$(/opt/cisco/anyconnect/bin/vpn state | grep -i "state: connected" | wc -l)
+
+if [ $STATE -eq 0 ]
+then
+  # CONNECTED="NO"
+  COLOR="0xFF${RED0:1}"
+else
+  # CONNECTED="YES"
+  COLOR="0xFF${GREEN0:1}"
+fi
+
+sketchybar -m --set vpn icon.color="$COLOR"

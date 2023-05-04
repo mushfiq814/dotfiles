@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TRACK="$(echo "$INFO" | jq -r .Name | cut -c1-20)"
+ARTIST="$(echo "$INFO" | jq -r .Artist | cut -c1-20)"
+
+echo "following..."
+echo "$INFO"
+
+# sketchybar --set spotify label="$ARTIST - $TRACK"
+sketchybar --set spotify label="Hello"

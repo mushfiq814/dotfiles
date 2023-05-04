@@ -5,6 +5,11 @@ source "$COLORS"
 # scripts dir
 SCRIPTS="$HOME/.config/sketchybar/scripts"
 
+SCREEN_WIDTH=$(system_profiler SPDisplaysDataType | awk '/Resolution/{print $2}')
+SCREEN_WIDTH_THRESHOLD=1000
+IS_SHORT=$(test $SCREEN_WIDTH -gt $SCREEN_WIDTH_THRESHOLD; echo $?)
+IS_SHORT=1
+
 # Bar Appearance
 sketchybar --bar height=22            \
                  blur_radius=50       \
@@ -66,7 +71,7 @@ sketchybar -m                         \
   --set title                         \
     label.color="0xFF${WHITE:1}"      \
     update_freq=1                     \
-    script="$SCRIPTS/title"
+    script="$SCRIPTS/title $IS_SHORT"
 
 # Date Time
 TIME='sketchybar -m --set time label="$(date +"%r")"'
@@ -79,7 +84,11 @@ sketchybar -m                         \
     script="$TIME"                    \
     label.color="0xFF${WHITE:1}"
 
-DATE='sketchybar -m --set date label="$(date +"%a %Y-%m-%d")"'
+if [ "$IS_SHORT" = "1" ]; then
+  DATE='sketchybar -m --set date label="$(date +"%m/%d")"'
+else
+  DATE='sketchybar -m --set date label="$(date +"%a %Y-%m-%d")"'
+fi
 sketchybar -m                         \
   --add item date right               \
   --set date                          \
@@ -98,7 +107,7 @@ sketchybar -m                         \
     icon=" "                         \
     icon.color="0xFF${ACCENT:1}"      \
     label.color="0xFF${WHITE:1}"      \
-    script="$SCRIPTS/wlan"
+    script="$SCRIPTS/wlan $IS_SHORT"
 
 sketchybar -m                         \
   --add item battery right            \

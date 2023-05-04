@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DATA=$(
+  echo '{ "command": ["get_property", "metadata"] }' \
+  | socat - /tmp/mpvsocket
+)
+
+MUSIC=$(
+  echo "$DATA" | jq -r '.data | .artist, .title' \
+  | awk -v d=" - " '{s=(NR==1?s:s d)$0}END{print s}'
+)
+
+sketchybar -m --set mpv label="$MUSIC"
