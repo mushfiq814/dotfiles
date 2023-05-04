@@ -1,5 +1,6 @@
 local success, comment = pcall(require, 'Comment')
 if not success then return end
+
 comment.setup({
   ---Add a space b/w comment and the line
   padding = true,

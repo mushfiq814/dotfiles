@@ -13,10 +13,4 @@ telescope.setup({
     -- other defaults configuration here
   },
   -- other configuration values here
-  extensions = {
-    media_files = {
-      filetypes = {"png", "jpg", "pdf", "jpeg"},
-      find_cmd = "rg"
-    }
-  }
 })

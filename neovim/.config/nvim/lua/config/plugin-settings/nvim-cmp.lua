@@ -8,7 +8,6 @@ if not snip_status_ok then return end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
   Text          = "",
   Method        = "m",

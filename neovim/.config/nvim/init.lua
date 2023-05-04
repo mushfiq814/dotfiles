@@ -1,13 +1,13 @@
--- packer installed plugin directory: ~/.local/share/nvim/site/pack/packer/start/
-
-require('config/theme')
-require('config/keybindings')
+-- plugins
 require('config/plugin-init')
-require('config/settings')
+
+-- UI/UX
+require('config/theme')
 require('config/winbar')
 require('config/statusline')
+require('config/settings')
+
+require('config/keybindings')
 require('config/functions')
 require('config/commands')
 require('config/autocommands')
-
--- plugins listed at ./lua/config/plugins
