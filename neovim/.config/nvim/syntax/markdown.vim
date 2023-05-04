@@ -124,7 +124,7 @@ hi! markdownLinkTitle     guifg=#FABD2F                 gui=underline
 hi! markdownLinkUrl       guifg=#7C6F64                 gui=underline
 hi! Oddlines              guifg=None     guibg=#2d2d2d
 " Conceal Highlight Color
-hi! Conceal               guifg=#BCFFA4                 gui=bold
+" hi! Conceal               guifg=#BCFFA4                 gui=bold
 
 " Highlight Groups
 hi! def link markdownBlockQuote         Comment
