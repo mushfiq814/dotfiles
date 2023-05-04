@@ -16,9 +16,9 @@ end
 local hi = utils.highlight
 
 -- Vim editor colors
-hi.Normal       = { guifg = colors.grey4, guibg = colors.black, gui = nil, guisp = nil }
-hi.EndOfBuffer  = { guifg = colors.grey2, guibg = colors.black, gui = nil, guisp = nil }
-hi.Pmenu        = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
+hi.Normal       = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
+hi.EndOfBuffer  = { guifg = colors.grey2, guibg = nil, gui = nil, guisp = nil }
+hi.Pmenu        = { guifg = colors.grey4, guibg = colors.black, gui = nil, guisp = nil }
 hi.Bold         = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil }
 hi.Debug        = { guifg = colors.bright_red, guibg = nil, gui = nil, guisp = nil }
 hi.Directory    = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
@@ -99,7 +99,7 @@ hi.Typedef      = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp 
 -- Diff highlighting
 hi.DiffAdd     = { guifg = colors.black, guibg = colors.bright_green, gui = nil, guisp = nil }
 hi.DiffChange  = { guifg = colors.grey2, guibg = colors.bright_blue, gui = nil, guisp = nil }
-hi.DiffDelete  = { guifg = colors.bright_red, guibg = colors.bright_red, gui = nil, guisp = nil }
+hi.DiffDelete  = { guifg = colors.black, guibg = colors.bright_red, gui = nil, guisp = nil }
 hi.DiffText    = { guifg = colors.black, guibg = colors.bright_blue, gui = nil, guisp = nil }
 hi.DiffAdded   = { guifg = colors.bright_green, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffFile    = { guifg = colors.bright_red, guibg = colors.black, gui = nil, guisp = nil }
@@ -325,7 +325,7 @@ hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = ni
 -- highlight groups
 vim.cmd('set background=' .. colors.mode)
 vim.cmd('hi! SignColumn guibg=None')
-vim.cmd('hi! Conceal guifg=' .. (colors.mode == "light" and colors.faded_blue or colors.bright_blue) .. ' guibg = ' .. colors.black)
+vim.cmd('hi! Conceal guifg=' .. (colors.mode == "light" and colors.faded_orange or colors.bright_orange) .. ' guibg = ' .. 'None')
 
 -- Neovim LSP virtual diagnostics
 vim.cmd('sign define DiagnosticSignError text= texthl=LspDiagnosticsDefaultError       linehl= numhl=')
