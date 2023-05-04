@@ -59,6 +59,7 @@ lspconfig.jsonls.setup {
     navic.attach(client, bufnr)
   end
 }
+lspconfig.marksman.setup{}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap

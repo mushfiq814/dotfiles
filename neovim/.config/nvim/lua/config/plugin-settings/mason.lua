@@ -8,6 +8,7 @@ mason_lsp_config.setup({
   ensure_installed = {
     "tsserver",
     "jsonls",
+    "marksman",
   },
   automatic_installation = false
 })
