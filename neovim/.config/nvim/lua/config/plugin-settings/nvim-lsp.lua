@@ -46,7 +46,7 @@ lspconfig.tsserver.setup {
     navic.attach(client, bufnr)
   end
 }
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = { diagnostics = { globals = { 'vim', 'use' } } },
   },
