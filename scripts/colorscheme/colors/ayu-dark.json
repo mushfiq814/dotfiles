@@ -1,0 +1,57 @@
+{
+  "mode": "dark",
+
+  "black": "#10141c",
+  "grey0": "#141821",
+  "grey1": "#302d41",
+  "grey2": "#575268",
+  "grey3": "#6e6c7c",
+  "grey4": "#6c7380",
+  "grey5": "#acb6bf",
+  "white": "#bfbdb6",
+
+// #3388ff
+// #39bae6
+// #59c2ff
+// #73b8ff
+// #80b5ff
+// #95e6cb
+//
+// #7fd962
+// #aad94c
+//
+// #c594c5
+// #d2a6ff
+//
+// #d95757
+// #f07178
+// #f26d78
+//
+// #f29668
+// #ff8f40
+// #ffb454
+// #e6b450
+// #e6b673
+
+  "bright_red": "#f28fad",
+  "neutral_red": "#ec5b87",
+  "faded_red": "#e62861",
+  "bright_orange": "#f8bd96",
+  "neutral_orange": "#f49a5e",
+  "faded_orange": "#f17726",
+  "bright_yellow": "#fae3b0",
+  "neutral_yellow": "#f6cc70",
+  "faded_yellow": "#f2b838",
+  "bright_green": "#abe9b3",
+  "neutral_green": "#7bdc88",
+  "faded_green": "#4bd05c",
+  "bright_aqua": "#b5e8e0",
+  "neutral_aqua": "#86d9cc",
+  "faded_aqua": "#56cbb8",
+  "bright_blue": "#96cdfb",
+  "neutral_blue": "#5cb1f9",
+  "faded_blue": "#2296f7",
+  "bright_purple": "#ddb6f2",
+  "neutral_purple": "#c480e8",
+  "faded_purple": "#ab4adf"
+}
