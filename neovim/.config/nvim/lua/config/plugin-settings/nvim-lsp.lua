@@ -59,11 +59,6 @@ lspconfig.jsonls.setup {
     navic.attach(client, bufnr)
   end
 }
-lspconfig.bashls.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
