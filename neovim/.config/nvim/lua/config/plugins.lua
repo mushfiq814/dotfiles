@@ -21,6 +21,7 @@ require('lazy').setup({
   { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end },
   { 'jose-elias-alvarez/null-ls.nvim', config = function() require('config/plugin-settings/null-ls') end },
   { 'mfussenegger/nvim-dap', lazy = true},
+  { 'mfussenegger/nvim-jdtls', lazy = true },
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require('config/plugin-settings/treesitter') end },
