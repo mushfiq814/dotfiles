@@ -67,7 +67,7 @@ keymap('n', '<leader>pp', ':cd %:h | !pandoc %:p'
 				 .. ' --standalone'
 				 .. ' --self-contained'
 				 .. ' --mathjax'
-				 .. ' --highlight-style tango'
+				 .. ' --highlight-style haddock'
 				 .. ' && xdg-open ~/downloads/pandoc-markdown-preview.html<CR>'
   , opts)
 
