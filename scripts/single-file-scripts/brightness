@@ -9,11 +9,11 @@ find_current_display() {
 }
 
 brightness_up() {
-  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY_XRANDR" ]]; then
+  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "$PRIMARY_XRANDR" ]]; then
     value=$(basename $(brightnessctl s 1%+ | grep -Eo "[0-9]+%") %)
   else
     value=$(
-      /usr/bin/ddccontrol -r 0x10 -W 5 dev:/dev/$SECONDARY_DDC 2> /dev/null \
+      /usr/bin/ddccontrol -r 0x10 -W 5 dev:/dev/$SECONDARY_DDC \
       | grep 'Brightness' \
       | sed 's/Control 0x10: +\/\([0-9]\+\).*\[Brightness\]/\1/'
     )
@@ -22,11 +22,11 @@ brightness_up() {
 }
 
 brightness_down() {
-  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY_XRANDR" ]]; then
+  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "$PRIMARY_XRANDR" ]]; then
     value=$(basename $(brightnessctl s 1%- | grep -Eo "[0-9]+%") %)
   else
     value=$(
-      /usr/bin/ddccontrol -r 0x10 -W -5 dev:/dev/$SECONDARY_DDC 2> /dev/null \
+      /usr/bin/ddccontrol -r 0x10 -W -5 dev:/dev/$SECONDARY_DDC \
       | grep 'Brightness' \
       | sed 's/Control 0x10: +\/\([0-9]\+\).*\[Brightness\]/\1/'
     )
