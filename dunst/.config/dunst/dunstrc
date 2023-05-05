@@ -16,13 +16,11 @@
     padding = 8
     horizontal_padding = 8
     text_icon_padding = 0
-    frame_width = 2
-    # frame_color = "#d3869b"
-    frame_color = "#d3872b"
+    frame_width = 0
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = Liga Saucy Code Pro Nerd Font 18
+    font = Liga Saucy Code Pro Nerd Font 10
     line_height = 0
     markup = full
  
@@ -64,18 +62,18 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#1d2021"
-    foreground = "#ddc7a1"
+    # background = set in ./dunstrc.d/colors.conf
+    # foreground = set in ./dunstrc.d/colors.conf
     timeout = 10
 
 [urgency_normal]
-    background = "#1d2021"
-    foreground = "#ddc7a1"
+    # background = set in ./dunstrc.d/colors.conf
+    # foreground = set in ./dunstrc.d/colors.conf
     timeout = 10
 
 [urgency_critical]
-    background = "#ea6962"
-    foreground = "#1d2021"
+    # background = set in ./dunstrc.d/colors.conf
+    # foreground = set in ./dunstrc.d/colors.conf
     timeout = 30
 
 # vim:ft=cfg
