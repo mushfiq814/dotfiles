@@ -49,7 +49,7 @@ o.fillchars = {
   diff = '-', -- deleted lines of the 'diff' option
   msgsep = ' ', -- message separator 'display'
   eob = '·', -- empty lines at the end of a buffer
-  lastline = '@', -- 'display' contains lastline/truncate
+  lastline = ' ', -- 'display' contains lastline/truncate
 }
 w.cursorline = true
 o.splitright = true
