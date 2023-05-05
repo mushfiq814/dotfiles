@@ -226,7 +226,7 @@ vim.o.showtabline = false
 -- global statusline
 vim.o.laststatus = 3
 
-local color_utils = require('config/color-utils')
+local color_utils = require('config/utils/color-utils')
 local hi = color_utils.highlight
 
 hi.statusLineModeNormal = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = 'bold', }

@@ -8,7 +8,7 @@ vim.bo.syntax = 'ON'
 vim.opt.termguicolors = true
 
 -- edited from https://github.com/RRethy/nvim-base16/
-local utils = require('config/color-utils')
+local utils = require('config/utils/color-utils')
 
 if vim.fn.exists('syntax_on') then
   vim.cmd('syntax reset')

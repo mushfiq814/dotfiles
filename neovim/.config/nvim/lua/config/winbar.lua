@@ -29,7 +29,7 @@ end
 
 vim.o.winbar = "%{%v:lua.MyWinbar()%}"
 
-local color_utils = require('config/color-utils')
+local color_utils = require('config/utils/color-utils')
 local hi = color_utils.highlight
 
 hi.winbarFileName = {
