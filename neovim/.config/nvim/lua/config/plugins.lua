@@ -60,6 +60,8 @@ require('lazy').setup({
   -- { 'fladson/vim-kitty' },
   -- { 'edluffy/hologram.nvim', config = function() require('config/plugin-settings/hologram') end },
   -- { 'samodostal/image.nvim', config = function() require('config/plugin-settings/image') end },
+  { 'm00qek/baleia.nvim' },
+  { 'samodostal/image.nvim', config = function() require('config/plugin-settings/image') end },
 
   -- Development Tools
   { 'TimUntersberger/neogit', config = function() require('config/plugin-settings/neogit') end, lazy = true },

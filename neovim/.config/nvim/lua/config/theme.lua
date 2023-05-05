@@ -320,7 +320,7 @@ hi['@markdown_check'] = { guifg = colors.faded_red, guibg = nil, gui = nil, guis
 hi['@markdown_list_marker'] = { guifg = colors.faded_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.bracket'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@puntuation.strikethrough'] = { guifg = colors.bright_orange, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
-hi['@text.strike'] = { guifg = colors.bright_orange, guibg = nil, gui = 'strikethroughm,italic', guisp = nil }
+hi['@text.strike'] = { guifg = colors.bright_orange, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
 hi['@text.strong'] = { guifg = colors.bright_orange, guibg = nil, gui = 'bold', guisp = nil }
 hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.delimiter'] = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
