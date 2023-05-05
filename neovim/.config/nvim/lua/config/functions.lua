@@ -21,6 +21,32 @@ function reload_config()
   vim.notify("Reloaded config")
 end
 
+function alignMarkdownTable()
+  vim.cmd.Tabularize()
+  -- get current line number
+  local lineNr = vim.api.nvim_win_get_cursor(0)[1]
+  -- get current line
+  local line = vim.api.nvim_buf_get_lines(0, lineNr-1, lineNr, {})[1]
+  -- replace any non bar chars with dashes
+  local tableSeparator = line:gsub('[^|]', '-')
+  -- insert separator after header
+  -- vim.api.nvim_buf_set_lines(0, lineNr, lineNr, true, { tableSeparator })
+  -- TODO: make sure Tabularize does not mess with newly added separator line
+  local parser = vim.treesitter.get_parser(0, vim.o.filetype)
+  local root = parser:parse()[1]:root()
+  local query = vim.treesitter.parse_query(vim.o.filetype, [[
+    (pipe_table_delimiter_row) @var
+  ]])
+  for id, captures, metadata in query:iter_matches(root, lineNr) do
+    print(vim.inspect({
+      id = id,
+      captures = captures,
+      metadata = metadata,
+    }))
+    -- id(captures)
+  end
+end
+
 vim.cmd [[
 function! FollowMarkdownLink() abort
 lua << EOF
