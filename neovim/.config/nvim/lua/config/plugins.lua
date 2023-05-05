@@ -13,8 +13,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+
+local modulesDir = '/home/mushfiq/.config/nvim/lua/config/'
 -- load package manager
 require('lazy').setup({
+  -- local
+  { dir = modulesDir .. 'theme.lua', name = 'theme', config = function() require('config/theme') end },
+  { dir = modulesDir .. 'winbar.lua', name = 'winbar', config = function() require('config/winbar') end },
+  { dir = modulesDir .. 'statusline.lua', name = 'statusline', config = function() require('config/statusline') end },
+  { dir = modulesDir .. 'settings.lua', name = 'settings', config = function() require('config/settings') end },
+  { dir = modulesDir .. 'keybindings.lua', name = 'keybindings', config = function() require('config/keybindings') end },
+  { dir = modulesDir .. 'functions.lua', name = 'functions', config = function() require('config/functions') end },
+  { dir = modulesDir .. 'commands.lua', name = 'commands', config = function() require('config/commands') end },
+  { dir = modulesDir .. 'autocommands.lua', name = 'autocommands', config = function() require('config/autocommands') end },
+
   -- language server
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim', config = function() require('config/plugin-settings/mason') end },
@@ -25,7 +37,7 @@ require('lazy').setup({
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require('config/plugin-settings/treesitter') end },
-  { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
+  { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' } },
   { 'simrat39/symbols-outline.nvim', config = function() require('config/plugin-settings/symbols-outline') end, cmd = "SymbolsOutline" },
 
   -- cmp plugins
@@ -67,7 +79,7 @@ require('lazy').setup({
   { 'TimUntersberger/neogit', config = function() require('config/plugin-settings/neogit') end, lazy = true },
   { 'sindrets/diffview.nvim', lazy = true },
   { 'tpope/vim-fugitive', cmd = 'G' },
-  { 'numToStr/Comment.nvim', config = function() require('config/plugin-settings/comment') end, keys = { 'gcc', 'gc' } },
+  { 'numToStr/Comment.nvim', config = function() require('config/plugin-settings/comment') end, keys = { { 'gc', mode = { "n", "v" } }, 'gcc' } },
   { 'lewis6991/gitsigns.nvim', config = function() require('config/plugin-settings.gitsigns') end },
 
   -- replace eventually
@@ -75,3 +87,5 @@ require('lazy').setup({
   { 'godlygeek/tabular', keys = '<leader>a', cmd = 'Tabularize' },
   { 'goolord/alpha-nvim', config = function() require('config/plugin-settings/alpha') end, priority = 1000 },
 })
+
+-- vim:nospell
