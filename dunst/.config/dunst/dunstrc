@@ -1,6 +1,6 @@
 [global]
     follow = mouse
-    width = 300
+    width = (0,300)
     height = (0,300)
     origin = top-right
     offset = 20x50
@@ -17,11 +17,12 @@
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 2
-    frame_color = "#d3869b"
+    # frame_color = "#d3869b"
+    frame_color = "#d3872b"
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = LigaSauceCodePro Nerd Font Medium 10
+    font = Liga Saucy Code Pro Nerd Font 18
     line_height = 0
     markup = full
  

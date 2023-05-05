@@ -1,4 +1,4 @@
 #!/bin/sh
-echo 'reloading compton...'
-pkill compton
-compton --experimental-backends --config ~/.config/compton/compton.conf
+echo 'reloading picom...'
+pkill picom
+picom --config ~/.config/picom/picom.conf

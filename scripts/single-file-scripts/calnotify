@@ -9,5 +9,5 @@ clean_regex="s/_\x08//g"
 # clean_regex="s/_\x08 _\x08/ /g"
 
 cal_output=$(cal | sed -e "$clean_regex" -e "$today_regex")
-dunstify "CALENDAR" "$cal_output"
+dunstify --appname="Calendar" "CALENDAR" "$cal_output"
 

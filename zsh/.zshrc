@@ -84,18 +84,6 @@ alias vw='v ~/vimwiki/index.md'
 # autolaunch ytfzf with thumbnail support
 alias ytfzf='ytfzf -t'
 
-# music
-mpv_command="mpv $HOME/Music/*.mp3"
-mpv_command+=" --no-audio-display"
-mpv_command+=" --gapless-audio=yes"
-mpv_command+=" --shuffle"
-# mpv_command+=" --term-playing-msg=\\\n\$\{media-artist\}"
-mpv_command+=" --input-ipc-server=/tmp/mpvsocket"
-# mpv_command+=" --display-tags-clr"
-mpv_command+=" --display-tags-set=Artist,Title"
-mpv_command+=" --msg-level=cplayer=error,ffmpeg/demuxer=error"
-alias play=$mpv_command
-
 # neofetch
 alias fetch='neofetch --backend kitty --source ~/Pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
 
@@ -144,7 +132,7 @@ function prettyGitLog() {
 	format+="$subject"
 
 	# call git log with custom format and append any flags passed in
-	git log $@ --pretty=$format
+	git log --pretty=$format $@
 }
 # }}}
 
@@ -396,8 +384,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Fuzzy Finder {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# source /usr/share/fzf/completion.zsh
-# source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 # }}}
 
 # Go Compiler {{{
