@@ -59,7 +59,7 @@ lspconfig.jsonls.setup {
     navic.attach(client, bufnr)
   end
 }
-lspconfig.marksman.setup{}
+lspconfig.marksman.setup {}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
@@ -72,7 +72,6 @@ keymap('n', '<leader>ka', ':lua vim.diagnostic.setqflist()<CR>', opts)
 keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
 keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
 keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
-keymap('n', 'gw', ':lua vim.lsp.buf.document_symbol()<CR>', opts)
 keymap('n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>', opts)
 keymap('n', '<leader>ff', ':lua vim.lsp.buf.format { async = true }<CR>', opts)
 -- this is done in telescope keybinds now
