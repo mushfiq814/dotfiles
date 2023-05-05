@@ -336,3 +336,8 @@ vim.cmd('sign define DiagnosticSignError text= texthl=LspDiagnosticsDefaultEr
 vim.cmd('sign define DiagnosticSignWarn  text= texthl=LspDiagnosticsDefaultWarning     linehl= numhl=')
 vim.cmd('sign define DiagnosticSignInfo  text= texthl=LspDiagnosticsDefaultInformation linehl= numhl=')
 vim.cmd('sign define DiagnosticSignHint  text= texthl=LspDiagnosticsDefaultHint        linehl= numhl=')
+
+hi.healthSuccess  = { guifg = colors.neutral_aqua, guibg = nil, gui = 'bold' }
+hi.healthHelp     = { guifg = colors.faded_blue, guibg = nil, gui = 'bold' }
+hi.healthError    = { guifg = colors.bright_red, guibg = nil, gui = 'bold' }
+hi.healthWarning  = { guifg = colors.bright_orange, guibg = nil, gui = 'bold' }
