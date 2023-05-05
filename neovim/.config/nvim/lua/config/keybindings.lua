@@ -68,7 +68,7 @@ keymap('n', '<leader>pp', ':cd %:h | !pandoc %:p'
 				 .. ' --self-contained'
 				 .. ' --mathjax'
 				 .. ' --highlight-style haddock'
-				 .. ' && xdg-open ~/downloads/pandoc-markdown-preview.html<CR>'
+				 .. ' && xdg-open ~/downloads/pandoc-markdown-preview.html &<CR>'
   , opts)
 
 -- Prettier
