@@ -19,6 +19,9 @@
 # source this file
 alias soz='source ~/.zshrc'
 
+# package install
+alias pac='sudo pacman -Syu'
+
 # exa (an ls alternative); NOTE: overrides the ls aliases
 alias ls='exa --oneline --icons'
 alias la='exa --long --all --icons'
@@ -85,9 +88,7 @@ alias vw='v ~/vimwiki/index.md'
 alias ytfzf='ytfzf -t'
 
 # neofetch
-alias fetch='neofetch --backend kitty --source ~/Pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
-
-alias fd='fdfind'
+alias fetch='neofetch --backend kitty --source ~/pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
 
 alias wifictl='nmtui'
 
@@ -313,7 +314,7 @@ setopt AUTO_CD
 # enable comments in interactive mode
 setopt INTERACTIVE_COMMENTS
 # for tmux to display colors properly
-export TERM="screen-256color"
+export TERM="xterm-256color"
 
 # }}}
 
@@ -436,8 +437,8 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
 # Call function {{{
 set_prompt
-'cat' ~/pictures/ascii/hi.ascii
-# fetch
+# 'cat' ~/pictures/ascii/hi.ascii
+fetch
 # }}}
 
 # vim:foldmethod=marker:foldlevel=0
