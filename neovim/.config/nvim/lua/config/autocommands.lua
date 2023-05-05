@@ -19,7 +19,16 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 -- assign filetype to jsonc for json files to enable comments
 vim.cmd('au FileType json set filetype=jsonc')
 
+-- auto calculate folds
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = { "*" },
-    command = "normal zx zR",
+  pattern = { "*" },
+  command = "normal zx zR",
+})
+
+-- turn off spell for images
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.webp" },
+  callback = function ()
+    vim.wo.spell = false
+  end,
 })
