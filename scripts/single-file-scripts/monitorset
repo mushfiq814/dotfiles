@@ -1,9 +1,10 @@
 #!/bin/sh
 
 PRIMARY="eDP-1"
-PRIMARY_MODE="1920x1080"
-SECONDARY="DP-2-1-8"
+PRIMARY_MODE="1920x1200"
+SECONDARY="DP-1-1-8"
 SECONDARY_MODE="2560x1440"
+CURRENT_DISPLAY_FILE="$HOME/.config/current_display"
 
 display_on() {
   xrandr --output $1 --primary --mode $2
@@ -20,9 +21,32 @@ display_undim() {
 
 primary_only() {
   display_on $PRIMARY $PRIMARY_MODE && display_off $SECONDARY
+  echo "PRIMARY" > $CURRENT_DISPLAY_FILE
 }
 secondary_only() {
   display_off $PRIMARY && display_on $SECONDARY $SECONDARY_MODE
+  echo "SECONDARY" > $CURRENT_DISPLAY_FILE
+}
+
+detect_current_resolution() {
+  xrandr --prop \
+  | grep -i 'current' \
+  | sed 's/^.*current\s\([0-9]\+\sx\s[0-9]\+\).*$/\1/g' \
+  | sed 's/ //g'
+}
+
+secondary_is_connected() {
+  if [[ $(xrandr --prop | grep -i "$SECONDARY connected") ]];
+  then
+    return 0;
+  else
+    return 1;
+  fi
+}
+
+autodetect_secondary() {
+  secondary_is_connected && secondary_only
+  dunstify -a "monitorset" "Auto switched to secondary display"
 }
 
 case $1 in
@@ -32,5 +56,13 @@ case $1 in
   "dim-secondary") display_dim $SECONDARY ;;
   "undim-primary") display_undim $PRIMARY ;;
   "undim-secondary") display_undim $SECONDARY ;;
-  *) echo "Invalid Option. Please select either 'primary', 'secondary', 'dim-primary', 'dim-secondary', 'undim-primary' or 'undim-secondary'" ;;
+  "autodetect-secondary") autodetect_secondary ;;
+  *) echo "Invalid Option. Please select one of the following."
+    echo  "  primary"
+    echo  "  secondary"
+    echo  "  dim-primary"
+    echo  "  dim-secondary"
+    echo  "  undim-primary"
+    echo  "  undim-secondary"
+    echo  "  autodetect-secondary" ;;
 esac
