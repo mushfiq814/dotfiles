@@ -20,10 +20,11 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 vim.cmd('au FileType json set filetype=jsonc')
 
 -- auto calculate folds
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = { "*" },
-  command = "normal zx zR",
-})
+-- NOTE: turned off since it collides with telescope
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+--   pattern = { "*" },
+--   command = "normal zx zR",
+-- })
 
 -- turn off spell for images
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
