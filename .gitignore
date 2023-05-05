@@ -8,6 +8,7 @@
 readme.html
 rofi/.config/rofi/colors.rasi
 neovim/.config/nvim/lua/config/colors.lua
+i3/.config/i3/colors
 
 # files for testing
 **/test.ps1
