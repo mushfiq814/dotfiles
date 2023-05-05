@@ -9,6 +9,7 @@ mason_lsp_config.setup({
     "tsserver",
     "jsonls",
     "marksman",
+    "lua_ls",
   },
   automatic_installation = false
 })
