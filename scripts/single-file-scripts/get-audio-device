@@ -1,3 +1,10 @@
 #!/bin/sh
 
-ponymix | grep -A1 -i "sink" | tail -n 1 | sed 's/^\s\+//'
+device=$(ponymix | grep -A1 -i "sink" | tail -n 1 | sed 's/^\s\+//')
+
+case "$device" in
+  "Tiger Lake-LP Smart Sound Technology Audio Controller Speaker + Headphones") echo "laptop-audio"
+  ;;
+  *) echo $device
+  ;;
+esac
