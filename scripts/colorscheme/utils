@@ -16,3 +16,14 @@ hex2rgb () {
   B=$(hex2decimal ${1:5:2})
   echo "$R:$G:$B"
 }
+
+rgb2hex () {
+  if [[ ! $# -eq 3 ]]; then
+    echo "need 3 args for red, green and blue!"
+  fi
+  R=$(printf '%02x' $1)
+  G=$(printf '%02x' $2)
+  B=$(printf '%02x' $3)
+
+  echo "#$R$G$B"
+}
