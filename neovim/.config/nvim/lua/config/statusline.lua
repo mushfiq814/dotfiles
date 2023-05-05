@@ -1,6 +1,6 @@
 local colors_loaded, colors = pcall(require, 'config/colors')
 if not colors_loaded then return end
-local background = colors.black
+local background = colors.grey0
 local foreground = colors.white
 
 -- from https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
@@ -248,4 +248,4 @@ hi.statusLineDiagnosticsInfo = { guibg = background, guifg = colors.bright_aqua,
 hi.statusLineLspClient = { guibg = background, guifg = colors.bright_orange, }
 hi.statusLineFileType = { guifg = foreground, guibg = background, }
 hi.statusLineProgress = { guibg = colors.bright_yellow, guifg = colors.grey3, }
-hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = colors.grey0, gui = 'bold', }
+hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = background, gui = 'bold', }
