@@ -1,9 +1,3 @@
-# Use pactl to adjust volume in PulseAudio.
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-
 # start a terminal
 bindsym $mod+Return exec kitty
 
@@ -34,33 +28,29 @@ bindsym $mod+shift+control+q exec --no-startup-id monitorset undim-secondary
 bindsym $mod+shift+control+p exec --no-startup-id ~/dotfiles/scripts/bitwarden/bitwarden
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightnessctl s 1%-
-bindsym XF86MonBrightnessDown exec brightnessctl s 1%+
-bindsym F8 exec brightnessctl s 1%-
-bindsym F9 exec brightnessctl s 1%+
+bindsym XF86MonBrightnessUp exec brightness +
+bindsym XF86MonBrightnessDown exec brightness -
+bindsym F6 exec brightness -
+bindsym F7 exec brightness +
 
 # music controls
-bindsym $win+Left exec --no-startup-id playerctl previous
-bindsym $win+Down exec --no-startup-id playerctl play-pause
-bindsym $win+Right exec --no-startup-id playerctl next
-
-# audio outputs
-# pulseaudio select sinks: output
-bindsym $mod+shift+control+9 exec --no-startup-id paselect sink
-# pulseaudio select sources: input
-bindsym $mod+shift+control+0 exec --no-startup-id paselect source
+bindsym $win+Left exec --no-startup-id mpvctl prev
+bindsym $win+Down exec --no-startup-id mpvctl toggle
+bindsym $win+Right exec --no-startup-id mpvctl next
 
 # volume control
-bindsym --whole-window Button9 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym --whole-window Button8 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --whole-window Button9 exec --no-startup-id volume +
+bindsym --whole-window Button8 exec --no-startup-id volume -
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume +
+bindsym XF86AudioLowerVolume exec --no-startup-id volume -
 
 # keyboard delay controls
-bindsym $mod+shift+control+k exec --no-startup-id xset r rate 250 90
+bindsym $mod+shift+control+k exec --no-startup-id setkbrate
 
 # change wallpapers
 # FIY: to change the anchor position really tall or wide pictures
 # feh --bg-fill --geometry '+0+3000' example.jpg
-bindsym $mod+shift+w exec --no-startup-id pkill xwinwrap | feh --randomize --bg-fill ~/pictures/wallpapers-with-resolution/desktop
+bindsym $mod+shift+w exec --no-startup-id pkill xwinwrap | feh --randomize --bg-fill ~/pictures/wallpapers
 bindsym $mod+shift+control+x exec --no-startup-id pkill xwinwrap
 bindsym $mod+shift+control+w exec --no-startup-id xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --loop --no-audio --panscan="1.0" "$(ls ~/Pictures/video-wallpapers/*mp4 | shuf -n 1)"
 
