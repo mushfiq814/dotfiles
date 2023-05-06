@@ -2,7 +2,17 @@ local success, colorizer = pcall(require, 'colorizer')
 if not success then return end
 
 colorizer.setup{
-  filetypes = { "*" },
+  filetypes = {
+    "markdown",
+    "shell",
+    "sh",
+    "json",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "css",
+    "html",
+  },
   user_default_options = {
     RGB = true, -- #RGB hex codes
     RRGGBB = true, -- #RRGGBB hex codes
