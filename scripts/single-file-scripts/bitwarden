@@ -4,6 +4,8 @@ if [ $# -eq 0 ]
 then
   # present a list of all items
   ITEM=$(bw list items | jq -r '.[].name' | uniq | sed 's/.*/\L\0/' | rofi -dmenu -p item)
+  # TODO: filter by specific fields
+  # jq -r ".[0] | .name + \":\" + .id + \":\" + .login.uris[0].uri + \":\" + .revisionDate"
 else
   # get item from arguments
   ITEM=$@
