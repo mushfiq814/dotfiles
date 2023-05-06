@@ -13,8 +13,13 @@ function reload_config()
     end
   end
 
-  vim.cmd("luafile " .. vim.env.MYVIMRC)
+  -- TODO: not supported currently with lazy.nvim
+  -- INFO: https://github.com/folke/lazy.nvim/issues/445
   -- vim.cmd("luafile " .. vim.env.MYVIMRC)
+  require('config/winbar')
+  require('config/statusline')
+  require('config/theme')
+
   vim.cmd "doautocmd VimEnter"
   vim.cmd("redraw!")
   vim.cmd("edit")
