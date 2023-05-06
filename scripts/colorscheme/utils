@@ -27,3 +27,35 @@ rgb2hex () {
 
   echo "#$R$G$B"
 }
+
+notify () {
+  UNAME=$(uname -s)
+  if [ $UNAME = "Darwin" ]; then
+    osascript -e "display notification \"$2\" with title \"$1\""
+  else
+    notify-send -a "$1" "$2"
+  fi
+}
+
+quit_on_error () {
+  # if there was an error in the last command, quit
+  if [ $? != 0 ]; then
+    # if argument with message was passed in, send notification
+    if [ $# != 0 ]; then
+      notify "$APPNAME" "$1"
+    fi
+    exit 1
+  fi
+}
+
+quit_on_file_dne () {
+  # if no argument with filepath was passed in, quit
+  if [ $# = 0 ]; then
+    notify "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
+    exit 1
+  fi
+  if [ ! -e "$1" ]; then
+    notify "$APPNAME" "$1 was not found. Exiting..."
+    exit 1
+  fi
+}

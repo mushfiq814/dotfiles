@@ -7,84 +7,54 @@
 APPNAME="colorscheme script"
 COLORS_DIR="$HOME/dotfiles/scripts/colorscheme/colors"
 COLORS_FILES="$COLORS_DIR/*"
-UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 
-# source env file
+# source env file (for environment variables)
 source $HOME/dotfiles/.env
 
-notify () {
-  UNAME=$(uname -s)
-  if [ $UNAME = "Darwin" ]; then
-    osascript -e "display notification \"$2\" with title \"$1\""
-  else
-    notify-send -a "$1" "$2"
-  fi
-}
+# source utils file (for helper functions)
+source $HOME/dotfiles/scripts/colorscheme/utils
 
-quit_on_error () {
-  # if there was an error in the last command, quit
-  if [ $? != 0 ]; then
-    # if argument with message was passed in, send notification
-    if [ $# != 0 ]; then
-      notify "$APPNAME" "$1"
-    fi
-    exit 1
-  fi
-}
-
-quit_on_file_dne () {
-  # if no argument with filepath was passed in, quit
-  if [ $# = 0 ]; then
-    notify "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
-    exit 1
-  fi
-  if [ ! -e "$1" ]; then
-    notify "$APPNAME" "$1 was not found. Exiting..."
-    exit 1
-  fi
-}
-
-# show list of available colorschemes and accents
+# show list of available colorschemes
 quit_on_file_dne $COLORS_FILES
 THEME=$(for file in $COLORS_FILES; do
   basename $file .json;
 done | rofi -dmenu)
 quit_on_error "Error with selecting colorscheme. Aborting..."
-# ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
+
+# show list of available accents
+ACCENT_KEY="NEUTRAL_$(echo -e "RED\nGREEN\nYELLOW\nBLUE\nPURPLE\nAQUA\nORANGE" | rofi -dmenu)"
 quit_on_error "Error with selecting accent color. Aborting..."
 
 # get colors from desired colorscheme
 THEME_FILE="$COLORS_DIR/$THEME"
 source $THEME_FILE
 quit_on_error "colors file for $THEME not found! Aborting..."
-ACCENT="$NEUTRAL_ORANGE"
 
-# get transparent black color in AARRGGBB format
+# get accent from colors file and selected accent key
+ACCENT=$(eval echo \$$ACCENT_KEY)
+
 BLACK_TR="${BLACK:1}"
 if [ $MODE = "light" ]; then
-  # less transparent for light theme
+  # get transparent black color in AARRGGBB format
   BLACK_TR="#DD$BLACK_TR"
-else
-  BLACK_TR="#99$BLACK_TR"
-fi
-
-# background opacity
-if [ $MODE = "light" ]; then
+  # background opacity
   OPACITY="0.9"
 else
+  # less transparent for light theme
+  BLACK_TR="#99$BLACK_TR"
   OPACITY="0.4"
 fi
 
-$HOME/dotfiles/scripts/colorscheme/programs/dunst $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/i3 $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/iterm $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/kitty $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/macostheme $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/nvim $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/polybar $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/qutebrowser $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/razerkbd $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/rofi $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/sketchybar $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/xborders $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/yabai $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_DUNST       )) && $HOME/dotfiles/scripts/colorscheme/programs/dunst       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_I3          )) && $HOME/dotfiles/scripts/colorscheme/programs/i3          $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_ITERM       )) && $HOME/dotfiles/scripts/colorscheme/programs/iterm       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_KITTY       )) && $HOME/dotfiles/scripts/colorscheme/programs/kitty       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_MACOSTHEME  )) && $HOME/dotfiles/scripts/colorscheme/programs/macostheme  $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_NVIM        )) && $HOME/dotfiles/scripts/colorscheme/programs/nvim        $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_POLYBAR     )) && $HOME/dotfiles/scripts/colorscheme/programs/polybar     $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_QUTEBROWSER )) && $HOME/dotfiles/scripts/colorscheme/programs/qutebrowser $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_RAZERKBD    )) && $HOME/dotfiles/scripts/colorscheme/programs/razerkbd    $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_ROFI        )) && $HOME/dotfiles/scripts/colorscheme/programs/rofi        $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_SKETCHYBAR  )) && $HOME/dotfiles/scripts/colorscheme/programs/sketchybar  $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_XBORDERS    )) && $HOME/dotfiles/scripts/colorscheme/programs/xborders    $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_YABAI       )) && $HOME/dotfiles/scripts/colorscheme/programs/yabai       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
