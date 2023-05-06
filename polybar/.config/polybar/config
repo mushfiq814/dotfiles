@@ -1,4 +1,5 @@
 include-file = $HOME/.config/polybar/colors
+include-file = $HOME/.config/polybar/font
 
 ; Bar Settings {{{
 [bar/mushfiq]
@@ -22,9 +23,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = LigaSaucyCodePro Nerd Font:pixelsize=10:style=Bold
-font-1 = LigaSaucyCodePro Nerd Font:pixelsize=10:style=Regular
-font-2 = Noto Color Emoji:pixelsize=1:style=Regular:scale=10;2
+font-0 = ${font.font_0}
+font-1 = ${font.font_1}
+font-2 = ${font.font_2}
 
 modules-left = i3 xwindow
 modules-center = mpv pulseaudio pacmd

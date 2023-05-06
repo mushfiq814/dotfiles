@@ -25,7 +25,7 @@ bindsym $mod+shift+control+Escape exec --no-startup-id monitorset dim-secondary
 bindsym $mod+shift+control+q exec --no-startup-id monitorset undim-secondary
 
 # bitwarden selector via rofi
-bindsym $mod+shift+control+p exec --no-startup-id ~/dotfiles/scripts/bitwarden/bitwarden
+bindsym $mod+shift+control+p exec --no-startup-id bitwarden
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec brightness +
@@ -48,11 +48,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id volume -
 bindsym $mod+shift+control+k exec --no-startup-id setkbrate
 
 # change wallpapers
-# FIY: to change the anchor position really tall or wide pictures
-# feh --bg-fill --geometry '+0+3000' example.jpg
-bindsym $mod+shift+w exec --no-startup-id pkill xwinwrap | feh --randomize --bg-fill ~/pictures/wallpapers
-bindsym $mod+shift+control+x exec --no-startup-id pkill xwinwrap
-bindsym $mod+shift+control+w exec --no-startup-id xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --loop --no-audio --panscan="1.0" "$(ls ~/Pictures/video-wallpapers/*mp4 | shuf -n 1)"
+bindsym $mod+shift+w exec --no-startup-id rewall
+bindsym $mod+shift+control+w exec --no-startup-id rewall video
 
 # screenkey
 # bindsym $mod+shift+k exec --no-startup-id screenkey

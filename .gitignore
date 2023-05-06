@@ -1,3 +1,6 @@
+# env file
+.env
+
 # for the following, please check scripts/wsl-musicplayer/ for details
 # pid for powershell background musciplayer process
 **/run.pid
@@ -9,6 +12,7 @@ readme.html
 rofi/.config/rofi/colors.rasi
 neovim/.config/nvim/lua/config/colors.lua
 i3/.config/i3/colors
+i3/.config/i3/font
 
 # files for testing
 **/test.ps1

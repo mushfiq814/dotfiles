@@ -4,7 +4,6 @@
  */
 
 configuration {
-  font: "LigaSaucyCodePro Nerd Font 12";
   fixed-num-lines: true;
   show-icons: false;
   sidebar-mode: true;
@@ -18,6 +17,7 @@ configuration {
 }
 
 @import "colors.rasi"
+@import "font.rasi"
 
 * {
   background-color: @bg;

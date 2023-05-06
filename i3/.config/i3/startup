@@ -19,7 +19,7 @@ exec --no-startup-id systemctl start bluetooth.service
 # exec --no-startup-id xautolock -time 1 -locker i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c '#000000'
 
 # auto detect secondary display
-exec --no-startup-id /usr/local/bin/monitorset autodetect-secondary
+exec --no-startup-id monitorset autodetect-secondary
 
 # Start polybar
 exec --no-startup-id rebar
@@ -34,6 +34,6 @@ exec --no-startup-id reborder
 exec --no-startup-id setkbrate
 
 # Start feh for wallpapers
-exec --no-startup-id feh --randomize --bg-fill ~/pictures/wallpapers
+exec --no-startup-id rewall
 
 # vim:filetype=i3config

@@ -1,4 +1,5 @@
 from colors import *
+from font import *
 from qutebrowser.mainwindow import tabwidget
 
 config.load_autoconfig(False)
@@ -96,11 +97,6 @@ with config.pattern('https://github.com') as p:
     p.content.javascript.can_access_clipboard = True
 with config.pattern('https://bitwarden.com') as p:
     p.content.javascript.can_access_clipboard = True
-
-# fonts
-FONT_SIZE = 11
-MONO_FONT = 'LigaSaucyCodePro Nerd Font'
-REGULAR_FONT = ''
 
 c.fonts.default_family = MONO_FONT
 c.fonts.default_size = str(FONT_SIZE) + 'pt'

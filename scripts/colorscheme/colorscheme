@@ -6,15 +6,28 @@ COLORS_DIR="$HOME/dotfiles/scripts/colorscheme/colors"
 COLORS_FILES="$COLORS_DIR/*.json"
 UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 KITTY_COLORS_FILE="$HOME/.config/kitty/colors.conf"
+KITTY_FONT_FILE="$HOME/.config/kitty/font.conf"
 POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
+POLYBAR_FONT_FILE="$HOME/.config/polybar/font"
 SKETCHYBAR_COLORS_FILE="$HOME/.config/sketchybar/colors"
+SKETCHYBAR_FONT_FILE="$HOME/.config/sketchybar/font"
 I3_COLORS_FILE="$HOME/.config/i3/colors"
+I3_FONT_FILE="$HOME/.config/i3/font"
 YABAI_COLORS_FILE="$HOME/.config/yabai/colors"
 NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
 ROFI_COLORS_FILE="$HOME/.config/rofi/colors.rasi"
+ROFI_FONT_FILE="$HOME/.config/rofi/font.rasi"
 QUTEBROWSER_COLORS_FILE="$HOME/.config/qutebrowser/colors.py"
+QUTEBROWSER_FONT_FILE="$HOME/.config/qutebrowser/font.py"
 RAZERKBD_COLORS_FILE="$HOME/.config/razerkbd/colors.py"
-ITERM_CONFIG_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
+ITERM_CONFIG_BASE_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
+ITERM_CONFIG_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
+DUNST_COLORS_FILE="$HOME/.config/dunst/dunstrc.d/colors.conf"
+DUNST_FONT_FILE="$HOME/.config/dunst/dunstrc.d/font.conf"
+XBORDERS_CONFIG_FILE="$HOME/.config/xborders/xborders.json"
+
+# source env file
+source $HOME/dotfiles/.env
 
 notify () {
   UNAME=$(uname -s)
@@ -55,7 +68,7 @@ THEME=$(for file in $COLORS_FILES; do
 done | rofi -dmenu)
 quit_on_error "Error with selecting colorscheme. Aborting..."
 # ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
-ACCENT_KEY="neutral_aqua"
+ACCENT_KEY="neutral_orange"
 quit_on_error "Error with selecting accent color. Aborting..."
 
 # get colors from desired colorscheme
@@ -115,6 +128,46 @@ fi
 echo "COLORSCHEME: theme $THEME ($MODE) with accent: $ACCENT"
 # TODO: add check for all color values to exist
 
+# dunst: set colors
+DUNST_CONFIG_DIR=$(dirname $DUNST_COLORS_FILE)
+if [[ ! -d $DUNST_CONFIG_DIR ]]; then mkdir -p $DUNST_CONFIG_DIR; fi
+
+echo "COLORSCHEME: setting dunst colors"
+cat << EOF > $DUNST_COLORS_FILE
+[global]
+    highlight = "$ACCENT"
+    frame_color = "$ACCENT"
+
+[urgency_low]
+    background = "$BLACK"
+    foreground = "$WHITE"
+
+[urgency_normal]
+    background = "$BLACK"
+    foreground = "$WHITE"
+
+[urgency_critical]
+    background = "$BRIGHT_RED"
+    foreground = "$WHITE"
+
+# vim:ft=cfg
+EOF
+
+echo "COLORSCHEME: setting dunst font"
+cat << EOF > $DUNST_FONT_FILE
+[global]
+    font = $DUNST_FONT
+
+# vim:ft=cfg
+EOF
+
+# xborders: set config file
+echo "COLORSCHEME: setting xborders colors"
+echo $(
+  cat $XBORDERS_CONFIG_FILE \
+  | jq ".[\"border-rgba\"] = \"${ACCENT}ff\"") \
+  > $XBORDERS_CONFIG_FILE
+
 # kitty: set colors file
 echo "COLORSCHEME: setting kitty colors"
 # NOTE: remember to include $KITTY_COLORS_FILE in kitty config file
@@ -150,11 +203,21 @@ background_opacity $OPACITY
 dim_opacity 1.0
 EOF
 
+echo "COLORSCHEME: setting kitty font"
+# NOTE: remember to include $KITTY_FONT_FILE in kitty config file
+cat << EOF > $KITTY_FONT_FILE
+font_family      $KITTY_FONT_1
+italic_font      $KITTY_FONT_2
+bold_font        $KITTY_FONT_3
+bold_italic_font $KITTY_FONT_4
+
+font_size $KITTY_FONT_SIZE
+EOF
+
 # iterm2 colors file
 # TODO: make this faster! cache?
 echo "COLORSCHEME: setting iterm2 colors"
 source "$UTILS_FILE"
-UUID=$(uuidgen)
 
 JQQUERY=""
 iterm2colorconversion () {
@@ -191,8 +254,9 @@ iterm2colorconversion "Selection Color" $WHITE
 iterm2colorconversion "Selected Text Color" $BLACK
 iterm2colorconversion "Cursor Color" $WHITE
 iterm2colorconversion "Cursor Text Color" $BLACK
+
 TMPFILE=$(mktemp)
-cp "$ITERM_CONFIG_FILE" "$TMPFILE" &&
+cp "$ITERM_CONFIG_BASE_FILE" "$TMPFILE" &&
 jq "$JQQUERY" "$TMPFILE" > "$ITERM_CONFIG_FILE" &&
 rm -f -- "$TMPFILE"
 
@@ -231,6 +295,14 @@ background = \${self.blackTr}
 alert = \${self.red0}
 EOF
 
+echo "COLORSCHEME: setting polybar font"
+cat << EOF > $POLYBAR_FONT_FILE
+[font]
+font_0 = $POLYBAR_FONT_0
+font_1 = $POLYBAR_FONT_1
+font_2 = $POLYBAR_FONT_2
+EOF
+
 # sketchybar: set colors file
 echo "COLORSCHEME: setting sketchybar colors"
 cat << EOF > $SKETCHYBAR_COLORS_FILE
@@ -261,6 +333,11 @@ CYAN1="$BRIGHT_AQUA"
 ACCENT="$ACCENT"
 EOF
 
+echo "COLORSCHEME: setting sketchybar font"
+cat << EOF > $SKETCHYBAR_FONT_FILE
+FONT="$SKETCHYBAR_FONT"
+EOF
+
 # i3: set colors file
 echo "COLORSCHEME: setting i3 colors"
 cat << EOF > $I3_COLORS_FILE
@@ -272,6 +349,14 @@ client.unfocused        #333333 #222222 #888888 #292d2e #222222
 client.urgent           #2f343a $NEUTRAL_RED $WHITE $NEUTRAL_RED $NEUTRAL_RED
 client.placeholder      #000000 #0c0c0c $WHITE #000000 #0c0c0c
 client.background       $WHITE
+
+# vim:filetype=i3config
+EOF
+
+echo "COLORSCHEME: setting i3 font"
+cat << EOF > $I3_FONT_FILE
+# Font for window titles.
+font $I3_FONT
 
 # vim:filetype=i3config
 EOF
@@ -362,6 +447,13 @@ cat << EOF > $ROFI_COLORS_FILE
 }
 EOF
 
+echo "COLORSCHEME: setting rofi font"
+cat << EOF > $ROFI_FONT_FILE
+configuration {
+  font: "$ROFI_FONT";
+}
+EOF
+
 # qutebrowser: set theme
 echo "COLORSCHEME: setting qutebrowser colors"
 cat << EOF > $QUTEBROWSER_COLORS_FILE
@@ -395,6 +487,14 @@ FADED_AQUA     = "$FADED_AQUA"
 BRIGHT_ORANGE  = "$BRIGHT_ORANGE"
 NEUTRAL_ORANGE = "$NEUTRAL_ORANGE"
 FADED_ORANGE   = "$FADED_ORANGE"
+EOF
+
+echo "COLORSCHEME: setting qutebrowser font"
+cat << EOF > $QUTEBROWSER_FONT_FILE
+# fonts
+FONT_SIZE = $QUTEBROWSER_FONT_SIZE
+MONO_FONT = '$QUTEBROWSER_MONO_FONT'
+REGULAR_FONT = '$QUTEBROWSER_REGULAR_FONT'
 EOF
 
 # razerkbd: set theme
@@ -432,7 +532,13 @@ NEUTRAL_ORANGE = "$NEUTRAL_ORANGE"
 FADED_ORANGE   = "$FADED_ORANGE"
 EOF
 
-# TODO: add dunst colors
+# reload dunst
+echo "COLORSCHEME: reloading dunst"
+pkill dunst && dunst 1>/dev/null &
+
+# reload xborders
+echo "COLORSCHEME: reloading xborders"
+/usr/local/bin/reborder
 
 # reload kitty
 echo "COLORSCHEME: reloading kitty"

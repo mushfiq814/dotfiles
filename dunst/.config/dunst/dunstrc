@@ -20,7 +20,7 @@
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = Liga Saucy Code Pro Nerd Font 10
+    # font = set in ~/.config/dunst/dunstrc.d/font.conf
     line_height = 0
     markup = full
  
@@ -45,7 +45,6 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    icon_path = /home/eric/.local/share/icons/fontawesome
     sticky_history = yes
     history_length = 20
     always_run_script = true
@@ -61,19 +60,14 @@
 [experimental]
     per_monitor_dpi = false
 
+# colors for the following set in ~/.config/dunst/dunstrc.d/colors.conf
 [urgency_low]
-    # background = set in ./dunstrc.d/colors.conf
-    # foreground = set in ./dunstrc.d/colors.conf
     timeout = 10
 
 [urgency_normal]
-    # background = set in ./dunstrc.d/colors.conf
-    # foreground = set in ./dunstrc.d/colors.conf
     timeout = 10
 
 [urgency_critical]
-    # background = set in ./dunstrc.d/colors.conf
-    # foreground = set in ./dunstrc.d/colors.conf
     timeout = 30
 
 # vim:ft=cfg

@@ -1,6 +1,8 @@
 # colors file
 COLORS="$HOME/.config/sketchybar/colors"
 source "$COLORS"
+FONTS="$HOME/.config/sketchybar/font"
+source "$FONTS"
 
 # scripts dir
 SCRIPTS="$HOME/.config/sketchybar/scripts"
@@ -23,8 +25,8 @@ sketchybar --bar height=22            \
 sketchybar --default                  \
   updates=when_shown                  \
   drawing=on                          \
-  label.font="LigaSauceCodePro Nerd Font:Bold:13.0" \
-  icon.font="LigaSauceCodePro Nerd Font:Bold:13.0"  \
+  label.font="$FONT"                  \
+  icon.font="$FONT"                   \
   label.color=0xff${WHITE:1}          \
   background.padding_left=5           \
   background.padding_right=4          \
