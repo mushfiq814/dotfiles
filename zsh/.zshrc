@@ -21,6 +21,7 @@ alias soz='source ~/.zshrc'
 
 # package install
 alias pac='sudo pacman -Syu'
+alias pacsearch='sudo pacman -Ss'
 
 # exa (an ls alternative); NOTE: overrides the ls aliases
 alias ls='exa --oneline --icons'
