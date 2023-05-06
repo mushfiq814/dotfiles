@@ -2,11 +2,10 @@
 
 THEME_FILE="$1" # theme file containing colors
 ACCENT="$2" # accent color from theme file
-OPACITY="$3"
 BLACK_TR="$4"
 
 source $THEME_FILE
-source $HOME/dotfiles/.env
+source $HOME/dotfiles/.env # for $SKETCHYBAR_FONT
 
 SKETCHYBAR_COLORS_FILE="$HOME/.config/sketchybar/colors"
 SKETCHYBAR_FONT_FILE="$HOME/.config/sketchybar/font"

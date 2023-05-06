@@ -1,12 +1,8 @@
 #!/bin/sh
 
 THEME_FILE="$1" # theme file containing colors
-ACCENT="$2" # accent color from theme file
-OPACITY="$3"
-BLACK_TR="$4"
 
 source $THEME_FILE
-source $HOME/dotfiles/.env
 
 NVIM_COLORS_FILE="$HOME/.config/nvim/lua/config/colors.lua"
 

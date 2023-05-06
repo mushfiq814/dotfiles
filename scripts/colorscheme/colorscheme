@@ -45,16 +45,16 @@ else
   OPACITY="0.4"
 fi
 
-(( $ENABLE_DUNST       )) && $HOME/dotfiles/scripts/colorscheme/programs/dunst       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_I3          )) && $HOME/dotfiles/scripts/colorscheme/programs/i3          $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_ITERM       )) && $HOME/dotfiles/scripts/colorscheme/programs/iterm       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_KITTY       )) && $HOME/dotfiles/scripts/colorscheme/programs/kitty       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_MACOSTHEME  )) && $HOME/dotfiles/scripts/colorscheme/programs/macostheme  $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_NVIM        )) && $HOME/dotfiles/scripts/colorscheme/programs/nvim        $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_POLYBAR     )) && $HOME/dotfiles/scripts/colorscheme/programs/polybar     $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_QUTEBROWSER )) && $HOME/dotfiles/scripts/colorscheme/programs/qutebrowser $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_RAZERKBD    )) && $HOME/dotfiles/scripts/colorscheme/programs/razerkbd    $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_ROFI        )) && $HOME/dotfiles/scripts/colorscheme/programs/rofi        $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_SKETCHYBAR  )) && $HOME/dotfiles/scripts/colorscheme/programs/sketchybar  $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_XBORDERS    )) && $HOME/dotfiles/scripts/colorscheme/programs/xborders    $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-(( $ENABLE_YABAI       )) && $HOME/dotfiles/scripts/colorscheme/programs/yabai       $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+(( $ENABLE_DUNST       )) && $HOME/dotfiles/scripts/colorscheme/programs/dunst       $THEME_FILE $ACCENT
+(( $ENABLE_I3          )) && $HOME/dotfiles/scripts/colorscheme/programs/i3          $THEME_FILE $ACCENT
+(( $ENABLE_ITERM       )) && $HOME/dotfiles/scripts/colorscheme/programs/iterm       $THEME_FILE
+(( $ENABLE_KITTY       )) && $HOME/dotfiles/scripts/colorscheme/programs/kitty       $THEME_FILE $ACCENT $OPACITY
+(( $ENABLE_MACOSTHEME  )) && $HOME/dotfiles/scripts/colorscheme/programs/macostheme  $MODE
+(( $ENABLE_NVIM        )) && $HOME/dotfiles/scripts/colorscheme/programs/nvim        $THEME_FILE
+(( $ENABLE_POLYBAR     )) && $HOME/dotfiles/scripts/colorscheme/programs/polybar     $THEME_FILE $ACCENT $BLACK_TR
+(( $ENABLE_QUTEBROWSER )) && $HOME/dotfiles/scripts/colorscheme/programs/qutebrowser $THEME_FILE
+(( $ENABLE_RAZERKBD    )) && $HOME/dotfiles/scripts/colorscheme/programs/razerkbd    $THEME_FILE
+(( $ENABLE_ROFI        )) && $HOME/dotfiles/scripts/colorscheme/programs/rofi        $THEME_FILE $ACCENT
+(( $ENABLE_SKETCHYBAR  )) && $HOME/dotfiles/scripts/colorscheme/programs/sketchybar  $THEME_FILE $ACCENT $BLACK_TR
+(( $ENABLE_XBORDERS    )) && $HOME/dotfiles/scripts/colorscheme/programs/xborders    $ACCENT
+(( $ENABLE_YABAI       )) && $HOME/dotfiles/scripts/colorscheme/programs/yabai       $THEME_FILE $ACCENT $BLACK_TR

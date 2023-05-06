@@ -1,12 +1,9 @@
 #!/bin/sh
 
 THEME_FILE="$1" # theme file containing colors
-ACCENT="$2" # accent color from theme file
-OPACITY="$3"
-BLACK_TR="$4"
 
 source $THEME_FILE
-source $HOME/dotfiles/.env
+source $HOME/dotfiles/.env # for $ITERM_FONT
 
 ITERM_CONFIG_BASE_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
 ITERM_CONFIG_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
