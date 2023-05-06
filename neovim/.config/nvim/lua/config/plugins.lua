@@ -78,7 +78,7 @@ require('lazy').setup({
   -- Development Tools
   { 'TimUntersberger/neogit', config = function() require('config/plugin-settings/neogit') end, lazy = true },
   { 'sindrets/diffview.nvim', lazy = true },
-  { 'tpope/vim-fugitive', cmd = 'G' },
+  { 'tpope/vim-fugitive', cmd = { 'G', 'Gvdiffsplit' } },
   { 'numToStr/Comment.nvim', config = function() require('config/plugin-settings/comment') end, keys = { { 'gc', mode = { "n", "v" } }, 'gcc' } },
   { 'lewis6991/gitsigns.nvim', config = function() require('config/plugin-settings.gitsigns') end },
 
