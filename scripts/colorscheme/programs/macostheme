@@ -4,7 +4,7 @@ MODE="$1" # light or dark mode
 
 # on MacOS, turn dark mode on/off
 echo "COLORSCHEME: setting MacOS theme to $MODE mode"
-if [ $MODE = "light" ]; then
+if [ "$MODE" = "light" ]; then
   osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to false'
 else
   osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'

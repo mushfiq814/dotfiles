@@ -2,14 +2,14 @@
 
 ACCENT="$1" # accent color from theme file
 
+XBORDERS_CONFIG_BASE_FILE="$HOME/dotfiles/xborders/.config/xborders/xborders.json"
 XBORDERS_CONFIG_FILE="$HOME/.config/xborders/xborders.json"
 
 # xborders: set config file
 echo "COLORSCHEME: setting xborders colors"
-echo $(
-  cat $XBORDERS_CONFIG_FILE \
-  | jq ".[\"border-rgba\"] = \"${ACCENT}ff\"") \
-  > $XBORDERS_CONFIG_FILE
+# shellcheck disable=SC2094
+jq ".[\"border-rgba\"] = \"${ACCENT}ff\"" "$XBORDERS_CONFIG_BASE_FILE" \
+  > "$XBORDERS_CONFIG_FILE"
 
 # reload xborders
 echo "COLORSCHEME: reloading xborders"

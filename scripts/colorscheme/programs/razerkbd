@@ -1,14 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
 
 THEME_FILE="$1" # theme file containing colors
 
-source $THEME_FILE
+# shellcheck source=colors/debug
+source "$THEME_FILE"
 
 RAZERKBD_COLORS_FILE="$HOME/.config/razerkbd/colors.py"
 
 # razerkbd: set theme
 echo "COLORSCHEME: setting razerkbd colors"
-cat << EOF > $RAZERKBD_COLORS_FILE
+cat << EOF > "$RAZERKBD_COLORS_FILE"
 MODE           = "$MODE"
 BLACK          = "$BLACK"
 GREY0          = "$GREY0"
@@ -42,4 +44,4 @@ FADED_ORANGE   = "$FADED_ORANGE"
 EOF
 
 # reload razerkbd
-$HOME/.config/razerkbd/razerkbd
+"$HOME/.config/razerkbd/razerkbd"

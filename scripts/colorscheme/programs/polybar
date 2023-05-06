@@ -1,18 +1,21 @@
-#!/bin/sh
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
 
 THEME_FILE="$1" # theme file containing colors
 ACCENT="$2" # accent color from theme file
-BLACK_TR="$4"
+BLACK_TR="$3"
 
-source $THEME_FILE
-source $HOME/dotfiles/.env # for $POLYBAR_FONT_X
+# shellcheck source=colors/debug
+source "$THEME_FILE"
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env" # for $POLYBAR_FONT_X
 
 POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
 POLYBAR_FONT_FILE="$HOME/.config/polybar/font"
 
 # polybar: set colors file
 echo "COLORSCHEME: setting polybar colors"
-cat << EOF > $POLYBAR_COLORS_FILE
+cat << EOF > "$POLYBAR_COLORS_FILE"
 [colors]
 blackTr = $BLACK_TR
 black   = $BLACK
@@ -46,7 +49,7 @@ alert = \${self.red0}
 EOF
 
 echo "COLORSCHEME: setting polybar font"
-cat << EOF > $POLYBAR_FONT_FILE
+cat << EOF > "$POLYBAR_FONT_FILE"
 [font]
 font_0 = $POLYBAR_FONT_0
 font_1 = $POLYBAR_FONT_1

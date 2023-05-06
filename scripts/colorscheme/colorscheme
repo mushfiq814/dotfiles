@@ -1,23 +1,24 @@
-#!/bin/sh
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
 
 # TODO: add check for all color values to exist
 # TODO: add error handling for all dependencies
 
 # paths for config files
-APPNAME="colorscheme script"
 COLORS_DIR="$HOME/dotfiles/scripts/colorscheme/colors"
-COLORS_FILES="$COLORS_DIR/*"
 
 # source env file (for environment variables)
-source $HOME/dotfiles/.env
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env"
 
 # source utils file (for helper functions)
-source $HOME/dotfiles/scripts/colorscheme/utils
+# shellcheck source=utils
+source "$HOME/dotfiles/scripts/colorscheme/utils"
 
 # show list of available colorschemes
-quit_on_file_dne $COLORS_FILES
-THEME=$(for file in $COLORS_FILES; do
-  basename $file .json;
+quit_on_file_dne "$COLORS_DIR"
+THEME=$(for file in $COLORS_DIR/*; do
+  basename "$file" .json;
 done | rofi -dmenu)
 quit_on_error "Error with selecting colorscheme. Aborting..."
 
@@ -27,14 +28,15 @@ quit_on_error "Error with selecting accent color. Aborting..."
 
 # get colors from desired colorscheme
 THEME_FILE="$COLORS_DIR/$THEME"
-source $THEME_FILE
+# shellcheck source=colors/debug
+source "$THEME_FILE"
 quit_on_error "colors file for $THEME not found! Aborting..."
 
 # get accent from colors file and selected accent key
-ACCENT=$(eval echo \$$ACCENT_KEY)
+ACCENT=$(eval echo \$"$ACCENT_KEY")
 
 BLACK_TR="${BLACK:1}"
-if [ $MODE = "light" ]; then
+if [ "$MODE" = "light" ]; then
   # get transparent black color in AARRGGBB format
   BLACK_TR="#DD$BLACK_TR"
   # background opacity
@@ -45,16 +47,16 @@ else
   OPACITY="0.4"
 fi
 
-(( $ENABLE_DUNST       )) && $HOME/dotfiles/scripts/colorscheme/programs/dunst       $THEME_FILE $ACCENT
-(( $ENABLE_I3          )) && $HOME/dotfiles/scripts/colorscheme/programs/i3          $THEME_FILE $ACCENT
-(( $ENABLE_ITERM       )) && $HOME/dotfiles/scripts/colorscheme/programs/iterm       $THEME_FILE
-(( $ENABLE_KITTY       )) && $HOME/dotfiles/scripts/colorscheme/programs/kitty       $THEME_FILE $ACCENT $OPACITY
-(( $ENABLE_MACOSTHEME  )) && $HOME/dotfiles/scripts/colorscheme/programs/macostheme  $MODE
-(( $ENABLE_NVIM        )) && $HOME/dotfiles/scripts/colorscheme/programs/nvim        $THEME_FILE
-(( $ENABLE_POLYBAR     )) && $HOME/dotfiles/scripts/colorscheme/programs/polybar     $THEME_FILE $ACCENT $BLACK_TR
-(( $ENABLE_QUTEBROWSER )) && $HOME/dotfiles/scripts/colorscheme/programs/qutebrowser $THEME_FILE
-(( $ENABLE_RAZERKBD    )) && $HOME/dotfiles/scripts/colorscheme/programs/razerkbd    $THEME_FILE
-(( $ENABLE_ROFI        )) && $HOME/dotfiles/scripts/colorscheme/programs/rofi        $THEME_FILE $ACCENT
-(( $ENABLE_SKETCHYBAR  )) && $HOME/dotfiles/scripts/colorscheme/programs/sketchybar  $THEME_FILE $ACCENT $BLACK_TR
-(( $ENABLE_XBORDERS    )) && $HOME/dotfiles/scripts/colorscheme/programs/xborders    $ACCENT
-(( $ENABLE_YABAI       )) && $HOME/dotfiles/scripts/colorscheme/programs/yabai       $THEME_FILE $ACCENT $BLACK_TR
+if [[ $ENABLE_DUNST -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/dunst" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_I3 -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/i3" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_ITERM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/iterm" "$THEME_FILE"; fi
+if [[ $ENABLE_KITTY -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/kitty" "$THEME_FILE" "$ACCENT" "$OPACITY"; fi
+if [[ $ENABLE_MACOSTHEME -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/macostheme" "$MODE"; fi
+if [[ $ENABLE_NVIM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/nvim" "$THEME_FILE"; fi
+if [[ $ENABLE_POLYBAR -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/polybar" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
+if [[ $ENABLE_QUTEBROWSER -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/qutebrowser" "$THEME_FILE"; fi
+if [[ $ENABLE_RAZERKBD -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/razerkbd" "$THEME_FILE"; fi
+if [[ $ENABLE_ROFI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/rofi" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_SKETCHYBAR -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/sketchybar" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
+if [[ $ENABLE_XBORDERS -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/xborders" "$ACCENT"; fi
+if [[ $ENABLE_YABAI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/yabai" "$THEME_FILE $ACCENT" "$BLACK_TR"; fi

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+APPNAME="colorscheme script"
+
 hex2decimal () {
   # convert to uppercase for bc
   TEMP=$(echo $1 | tr '[:lower:]' '[:upper:]')
