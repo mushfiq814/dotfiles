@@ -1,0 +1,59 @@
+#!/bin/sh
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+OPACITY="$3"
+BLACK_TR="$4"
+
+source $THEME_FILE
+source $HOME/dotfiles/.env
+
+POLYBAR_COLORS_FILE="$HOME/.config/polybar/colors"
+POLYBAR_FONT_FILE="$HOME/.config/polybar/font"
+
+# polybar: set colors file
+echo "COLORSCHEME: setting polybar colors"
+cat << EOF > $POLYBAR_COLORS_FILE
+[colors]
+blackTr = $BLACK_TR
+black   = $BLACK
+grey0   = $GREY0
+grey1   = $GREY1
+grey2   = $GREY2
+grey3   = $GREY3
+grey4   = $GREY4
+white   = $WHITE
+blue0   = $NEUTRAL_BLUE
+blue1   = $BRIGHT_BLUE
+red0    = $NEUTRAL_RED
+red1    = $BRIGHT_RED
+orange0 = $NEUTRAL_ORANGE
+orange1 = $BRIGHT_ORANGE
+yellow0 = $NEUTRAL_YELLOW
+yellow1 = $BRIGHT_YELLOW
+green0  = $NEUTRAL_GREEN
+green1  = $BRIGHT_GREEN
+purple0 = $NEUTRAL_PURPLE
+purple1 = $BRIGHT_PURPLE
+cyan0   = $NEUTRAL_AQUA
+cyan1   = $BRIGHT_AQUA
+
+accent  = $ACCENT
+accent-light = $ACCENT
+
+foreground = \${self.white}
+background = \${self.blackTr}
+alert = \${self.red0}
+EOF
+
+echo "COLORSCHEME: setting polybar font"
+cat << EOF > $POLYBAR_FONT_FILE
+[font]
+font_0 = $POLYBAR_FONT_0
+font_1 = $POLYBAR_FONT_1
+font_2 = $POLYBAR_FONT_2
+EOF
+
+# reload polybar
+echo "COLORSCHEME: reloading polybar"
+/usr/local/bin/rebar

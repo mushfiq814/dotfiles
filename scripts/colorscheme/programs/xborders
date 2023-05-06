@@ -1,0 +1,20 @@
+#!/bin/sh
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+
+source $THEME_FILE
+source $HOME/dotfiles/.env
+
+XBORDERS_CONFIG_FILE="$HOME/.config/xborders/xborders.json"
+
+# xborders: set config file
+echo "COLORSCHEME: setting xborders colors"
+echo $(
+  cat $XBORDERS_CONFIG_FILE \
+  | jq ".[\"border-rgba\"] = \"${ACCENT}ff\"") \
+  > $XBORDERS_CONFIG_FILE
+
+# reload xborders
+echo "COLORSCHEME: reloading xborders"
+/usr/local/bin/reborder

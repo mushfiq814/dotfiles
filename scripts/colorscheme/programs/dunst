@@ -1,0 +1,45 @@
+#!/bin/sh
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+OPACITY="$3"
+BLACK_TR="$4"
+
+source $THEME_FILE
+source $HOME/dotfiles/.env
+
+DUNST_COLORS_FILE="$HOME/.config/dunst/dunstrc.d/colors.conf"
+DUNST_FONT_FILE="$HOME/.config/dunst/dunstrc.d/font.conf"
+
+# dunst: set colors
+DUNST_CONFIG_DIR=$(dirname $DUNST_COLORS_FILE)
+if [[ ! -d $DUNST_CONFIG_DIR ]]; then mkdir -p $DUNST_CONFIG_DIR; fi
+
+echo "COLORSCHEME: setting dunst colors"
+cat << EOF > $DUNST_COLORS_FILE
+[global]
+    highlight = "$ACCENT"
+    frame_color = "$ACCENT"
+
+[urgency_low]
+    background = "$BLACK"
+    foreground = "$WHITE"
+
+[urgency_normal]
+    background = "$BLACK"
+    foreground = "$WHITE"
+
+[urgency_critical]
+    background = "$BRIGHT_RED"
+    foreground = "$WHITE"
+EOF
+
+echo "COLORSCHEME: setting dunst font"
+cat << EOF > $DUNST_FONT_FILE
+[global]
+    font = $DUNST_FONT
+EOF
+
+# reload dunst
+echo "COLORSCHEME: reloading dunst"
+pkill dunst && dunst 1>/dev/null &

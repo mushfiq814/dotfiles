@@ -1,0 +1,64 @@
+#!/bin/sh
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+OPACITY="$3"
+BLACK_TR="$4"
+
+source $THEME_FILE
+source $HOME/dotfiles/.env
+
+ITERM_CONFIG_BASE_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
+ITERM_CONFIG_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
+UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
+
+# TODO: make this faster! cache?
+echo "COLORSCHEME: setting iterm2 colors"
+source "$UTILS_FILE"
+
+JQQUERY=""
+iterm2colorconversion () {
+  RGB=$(hex2rgb $2)
+  R=$(echo $RGB | cut -d : -f 1)
+  G=$(echo $RGB | cut -d : -f 2)
+  B=$(echo $RGB | cut -d : -f 3)
+  if [ -z "$JQQUERY" ]; then
+    JQQUERY=".Profiles[0][\"$1\"] = { \"Red Component\": $R , \"Green Component\": $G, \"Blue Component\": $B, \"Color Space\": \"sRGB\" }"
+  else
+    JQQUERY="$JQQUERY | .Profiles[0][\"$1\"] = { \"Red Component\": $R , \"Green Component\": $G, \"Blue Component\": $B, \"Color Space\": \"sRGB\" }"
+  fi
+}
+
+iterm2colorconversion "Ansi 0 Color" $BLACK
+iterm2colorconversion "Ansi 1 Color" $BRIGHT_RED
+iterm2colorconversion "Ansi 2 Color" $BRIGHT_GREEN
+iterm2colorconversion "Ansi 3 Color" $BRIGHT_YELLOW
+iterm2colorconversion "Ansi 4 Color" $BRIGHT_BLUE
+iterm2colorconversion "Ansi 5 Color" $BRIGHT_PURPLE
+iterm2colorconversion "Ansi 6 Color" $BRIGHT_AQUA
+iterm2colorconversion "Ansi 7 Color" $GREY3
+iterm2colorconversion "Ansi 8 Color" $GREY1
+iterm2colorconversion "Ansi 9 Color" $NEUTRAL_RED
+iterm2colorconversion "Ansi 10 Color" $NEUTRAL_GREEN
+iterm2colorconversion "Ansi 11 Color" $NEUTRAL_YELLOW
+iterm2colorconversion "Ansi 12 Color" $NEUTRAL_BLUE
+iterm2colorconversion "Ansi 13 Color" $NEUTRAL_PURPLE
+iterm2colorconversion "Ansi 14 Color" $NEUTRAL_AQUA
+iterm2colorconversion "Ansi 15 Color" $WHITE
+iterm2colorconversion "Foreground Color" $WHITE
+iterm2colorconversion "Background Color" $BLACK
+iterm2colorconversion "Selection Color" $WHITE
+iterm2colorconversion "Selected Text Color" $BLACK
+iterm2colorconversion "Cursor Color" $WHITE
+iterm2colorconversion "Cursor Text Color" $BLACK
+
+echo "COLORSCHEME: setting iterm2 fonts"
+JQQUERY="$JQQUERY | .Profiles[0][\"Normal Font\"] = \"$ITERM_FONT\""
+JQQUERY="$JQQUERY | .Profiles[0][\"normal font\"] = \"$ITERM_FONT\""
+
+TMPFILE=$(mktemp)
+cp "$ITERM_CONFIG_BASE_FILE" "$TMPFILE" &&
+jq "$JQQUERY" "$TMPFILE" > "$ITERM_CONFIG_FILE" &&
+rm -f -- "$TMPFILE"
+
+# TODO: find out how to reload iTerm properly

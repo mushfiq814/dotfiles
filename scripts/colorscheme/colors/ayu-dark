@@ -1,0 +1,56 @@
+#!/bin/sh
+
+NAME="ayu-dark"
+MODE="dark"
+BLACK="#10141c"
+GREY0="#141821"
+GREY1="#302d41"
+GREY2="#575268"
+GREY3="#6e6c7c"
+GREY4="#6c7380"
+GREY5="#acb6bf"
+WHITE="#bfbdb6"
+BRIGHT_RED="#f28fad"
+NEUTRAL_RED="#ec5b87"
+FADED_RED="#e62861"
+BRIGHT_ORANGE="#f8bd96"
+NEUTRAL_ORANGE="#f49a5e"
+FADED_ORANGE="#f17726"
+BRIGHT_YELLOW="#fae3b0"
+NEUTRAL_YELLOW="#f6cc70"
+FADED_YELLOW="#f2b838"
+BRIGHT_GREEN="#abe9b3"
+NEUTRAL_GREEN="#7bdc88"
+FADED_GREEN="#4bd05c"
+BRIGHT_AQUA="#b5e8e0"
+NEUTRAL_AQUA="#86d9cc"
+FADED_AQUA="#56cbb8"
+BRIGHT_BLUE="#96cdfb"
+NEUTRAL_BLUE="#5cb1f9"
+FADED_BLUE="#2296f7"
+BRIGHT_PURPLE="#ddb6f2"
+NEUTRAL_PURPLE="#c480e8"
+FADED_PURPLE="#ab4adf"
+
+# #3388ff
+# #39bae6
+# #59c2ff
+# #73b8ff
+# #80b5ff
+# #95e6cb
+#
+# #7fd962
+# #aad94c
+#
+# #c594c5
+# #d2a6ff
+#
+# #d95757
+# #f07178
+# #f26d78
+#
+# #f29668
+# #ff8f40
+# #ffb454
+# #e6b450
+# #e6b673

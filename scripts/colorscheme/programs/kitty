@@ -1,0 +1,61 @@
+#!/bin/sh
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+OPACITY="$3"
+BLACK_TR="$4"
+
+source $THEME_FILE
+source $HOME/dotfiles/.env
+
+KITTY_COLORS_FILE="$HOME/.config/kitty/colors.conf"
+KITTY_FONT_FILE="$HOME/.config/kitty/font.conf"
+
+# kitty: set colors file
+echo "COLORSCHEME: setting kitty colors"
+# NOTE: remember to include $KITTY_COLORS_FILE in kitty config file
+cat << EOF > $KITTY_COLORS_FILE
+foreground $WHITE
+background $BLACK
+color0     $BLACK
+color8     $GREY1
+color1     $BRIGHT_RED
+color9     $NEUTRAL_RED
+color2     $BRIGHT_GREEN
+color10    $NEUTRAL_GREEN
+color3     $BRIGHT_YELLOW
+color11    $NEUTRAL_YELLOW
+color4     $BRIGHT_BLUE
+color12    $NEUTRAL_BLUE
+color5     $BRIGHT_PURPLE
+color13    $NEUTRAL_PURPLE
+color6     $BRIGHT_AQUA
+color14    $NEUTRAL_AQUA
+color7     $GREY3
+color15    $WHITE
+
+url_color  $ACCENT
+
+selection_foreground $BLACK
+selection_background $WHITE
+cursor $WHITE
+cursor_text_color $BLACK
+
+background_opacity $OPACITY
+dim_opacity 1.0
+EOF
+
+echo "COLORSCHEME: setting kitty font"
+# NOTE: remember to include $KITTY_FONT_FILE in kitty config file
+cat << EOF > $KITTY_FONT_FILE
+font_family      $KITTY_FONT_1
+italic_font      $KITTY_FONT_2
+bold_font        $KITTY_FONT_3
+bold_italic_font $KITTY_FONT_4
+
+font_size $KITTY_FONT_SIZE
+EOF
+
+# reload kitty
+echo "COLORSCHEME: reloading kitty"
+killall -SIGUSR1 kitty

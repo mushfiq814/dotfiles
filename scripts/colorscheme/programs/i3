@@ -1,0 +1,45 @@
+#!/bin/sh
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+OPACITY="$3"
+BLACK_TR="$4"
+
+source $THEME_FILE
+source $HOME/dotfiles/.env
+
+I3_COLORS_FILE="$HOME/.config/i3/colors"
+I3_FONT_FILE="$HOME/.config/i3/font"
+
+# i3: set colors file
+echo "COLORSCHEME: setting i3 colors"
+cat << EOF > $I3_COLORS_FILE
+# Window borders
+# class                 border  backgr. text    indicator child_border
+client.focused          $BRIGHT_AQUA $NEUTRAL_AQUA $WHITE $ACCENT   $ACCENT
+client.focused_inactive #333333 #5f676a $WHITE #484e50 #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e #222222
+client.urgent           #2f343a $NEUTRAL_RED $WHITE $NEUTRAL_RED $NEUTRAL_RED
+client.placeholder      #000000 #0c0c0c $WHITE #000000 #0c0c0c
+client.background       $WHITE
+
+# vim:filetype=i3config
+EOF
+
+echo "COLORSCHEME: setting i3 font"
+cat << EOF > $I3_FONT_FILE
+# Font for window titles.
+font $I3_FONT
+
+# vim:filetype=i3config
+EOF
+
+# reload i3 config
+echo "COLORSCHEME: reloading i3"
+i3 restart
+
+# need to add this more times than the generated modeline exists
+# \_(-_-)_/
+# vim:filetype=sh
+# vim:filetype=sh
+# vim:filetype=sh
