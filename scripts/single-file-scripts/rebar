@@ -1,3 +1,4 @@
 #!/bin/sh
 pkill polybar
+# TODO: find a way to check whether the name for the polybar bar exists
 polybar mushfiq
