@@ -12,6 +12,7 @@ colorizer.setup{
     "javascriptreact",
     "css",
     "html",
+    "lua",
   },
   user_default_options = {
     RGB = true, -- #RGB hex codes
