@@ -235,7 +235,7 @@ hi.statusLineModeVisual = { guifg = colors.grey0, guibg = colors.bright_orange, 
 hi.statusLineModeCommand = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = 'bold', }
 hi.statusLineModeTerminal = { guifg = colors.grey0, guibg = colors.bright_purple, gui = 'bold', }
 hi.statusLineTabNormal = { guifg = foreground, guibg = background, }
-hi.statuslineTabActive = { guifg = background, guibg = colors.bright_purple, }
+hi.statuslineTabActive = { guifg = background, guibg = colors.accent, }
 hi.statuslineTabInactive = { guifg = colors.white, guibg = colors.grey2, }
 hi.statusLineBranch = { guifg = foreground, guibg = background, gui = 'bold', }
 hi.statusLineCwd = { guifg = colors.bright_blue, guibg = background, }
