@@ -1,22 +1,15 @@
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
--- options are 'none', 'single', 'double', 'rounded', 'solid', 'shadow'
--- see :help `nvim_open_win()`
--- local border = 'rounded'
--- can also be an array as follows
-local borders = {
-  '🭽', '▔', '🭾',
-  '▏', ' ', '▕',
-  '🭼', '▁', '🭿',
-}
+local border_loaded, borders = pcall(require, 'config/utils/border')
+if not border_loaded then return end
+
 local border = {
-  {borders[1], "FloatBorder"},
-  {borders[2], "FloatBorder"},
-  {borders[3], "FloatBorder"},
-  {borders[6], "FloatBorder"},
-  {borders[9], "FloatBorder"},
-  {borders[8], "FloatBorder"},
-  {borders[7], "FloatBorder"},
-  {borders[4], "FloatBorder"},
+  { borders[1], "FloatBorder" },
+  { borders[2], "FloatBorder" },
+  { borders[3], "FloatBorder" },
+  { borders[6], "FloatBorder" },
+  { borders[9], "FloatBorder" },
+  { borders[8], "FloatBorder" },
+  { borders[7], "FloatBorder" },
+  { borders[4], "FloatBorder" },
 }
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

@@ -78,7 +78,7 @@ hi.Conditional  = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp 
 hi.Constant     = { guifg = colors.bright_orange, guibg = nil, gui = nil, guisp = nil }
 hi.Define       = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
 hi.Delimiter    = { guifg = colors.faded_orange, guibg = nil, gui = nil, guisp = nil }
-hi.Float        = { guifg = colors.bright_orange, guibg = nil, gui = nil, guisp = nil }
+hi.Float        = { guifg = colors.bright_orange, guibg = darkerbg, gui = nil, guisp = nil }
 hi.Function     = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 hi.Identifier   = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
 hi.Include      = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
@@ -221,7 +221,7 @@ hi.TSCurrentScope    = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil }
 hi.NvimInternalError = { guifg = colors.black, guibg = colors.bright_red, gui = 'none', guisp = nil }
 
 hi.NormalFloat  = { guifg = colors.grey4, guibg = colors.grey0, gui = nil, guisp = nil }
-hi.FloatBorder  = { guifg = colors.grey4, guibg = colors.grey0, gui = nil, guisp = nil }
+hi.FloatBorder  = { guifg = colors.grey2, guibg = darkerbg, gui = nil, guisp = nil }
 hi.NormalNC     = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi.TermCursor   = { guifg = colors.black, guibg = colors.grey4, gui = 'none', guisp = nil }
 hi.TermCursorNC = { guifg = colors.black, guibg = colors.grey4, gui = nil, guisp = nil }
@@ -239,8 +239,8 @@ hi.User9 = { guifg = colors.black, guibg = colors.grey1, gui = 'none', guisp = n
 hi.TreesitterContext = { guifg = nil, guibg = colors.grey0, gui = 'italic', guisp = nil }
 
 -- telescope
-hi.TelescopeBorder       = { guifg = colors.grey2, guibg = darkerbg, gui = nil, guisp = nil }
-hi.TelescopePromptBorder = { guifg = colors.grey2, guibg = darkerstatusline, gui = nil, guisp = nil }
+hi.TelescopeBorder       = 'FloatBorder'
+hi.TelescopePromptBorder = 'FloatBorder'
 hi.TelescopePromptNormal = { guifg = colors.grey4, guibg = darkerstatusline, gui = nil, guisp = nil }
 hi.TelescopePromptPrefix = { guifg = colors.bright_red, guibg = darkerstatusline, gui = nil, guisp = nil }
 hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
@@ -251,26 +251,32 @@ hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, g
 hi.TelescopePreviewLine  = { guifg = nil, guibg = colors.grey2, gui = 'none', guisp = nil }
 
 -- nvim-notify
-hi.NotifyERRORBorder = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyWARNBorder  = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyINFOBorder  = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyDEBUGBorder = { guifg = colors.bright_aqua, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyTRACEBorder = { guifg = colors.bright_aqua, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyERRORIcon   = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyWARNIcon    = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyINFOIcon    = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyDEBUGIcon   = { guifg = colors.bright_aqua, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyTRACEIcon   = { guifg = colors.bright_aqua, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyERRORTitle  = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyWARNTitle   = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyINFOTitle   = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyDEBUGTitle  = { guifg = colors.bright_aqua, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyTRACETitle  = { guifg = colors.bright_aqua, guibg = nil, gui = 'none', guisp = nil }
-hi.NotifyERRORBody   = 'Normal'
-hi.NotifyWARNBody    = 'Normal'
-hi.NotifyINFOBody    = 'Normal'
-hi.NotifyDEBUGBody   = 'Normal'
-hi.NotifyTRACEBody   = 'Normal'
+hi.NotifyDEBUGBody   = 'Float'
+hi.NotifyDEBUGBorder = 'FloatBorder'
+hi.NotifyDEBUGIcon   = { guifg = colors.bright_aqua, guibg = darkerbg, gui = 'none', guisp = nil }
+hi.NotifyDEBUGTitle  = { guifg = colors.bright_aqua, guibg = darkerbg, gui = 'bold', guisp = nil }
+
+hi.NotifyERRORBody   = 'Float'
+hi.NotifyERRORBorder = 'FloatBorder'
+hi.NotifyERRORIcon   = { guifg = colors.bright_red, guibg = darkerbg, gui = 'none', guisp = nil }
+hi.NotifyERRORTitle  = { guifg = colors.bright_red, guibg = darkerbg, gui = 'bold', guisp = nil }
+
+hi.NotifyINFOBody    = 'Float'
+hi.NotifyINFOBorder  = 'FloatBorder'
+hi.NotifyINFOIcon    = { guifg = colors.bright_green, guibg = darkerbg, gui = 'none', guisp = nil }
+hi.NotifyINFOTitle   = { guifg = colors.bright_green, guibg = darkerbg, gui = 'bold', guisp = nil }
+
+hi.NotifyTRACEBody   = 'Float'
+hi.NotifyTRACEBorder = 'FloatBorder'
+hi.NotifyTRACEIcon   = { guifg = colors.bright_aqua, guibg = darkerbg, gui = 'none', guisp = nil }
+hi.NotifyTRACETitle  = { guifg = colors.bright_aqua, guibg = darkerbg, gui = 'bold', guisp = nil }
+
+hi.NotifyWARNBody    = 'Float'
+hi.NotifyWARNBorder  = 'FloatBorder'
+hi.NotifyWARNIcon    = { guifg = colors.bright_purple, guibg = darkerbg, gui = 'none', guisp = nil }
+hi.NotifyWARNTitle   = { guifg = colors.bright_purple, guibg = darkerbg, gui = 'bold', guisp = nil }
+
+hi.NotifyBackground  = { guifg = colors.bright_aqua, guibg = darkerbg, gui = 'none', guisp = nil }
 
 -- indentblankline
 hi.IndentBlanklineChar               = { guifg = colors.grey1, gui = 'nocombine' }
