@@ -14,6 +14,9 @@ if vim.fn.exists('syntax_on') then
   vim.cmd('syntax reset')
 end
 local hi = utils.highlight
+local darkerbg           = utils.darken(colors.black, 0.1)
+local darkercursorline   = utils.darken(colors.grey0, 0.1)
+local darkerstatusline   = utils.darken(colors.grey1, 0.1)
 
 -- Vim editor colors
 hi.Normal       = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
@@ -217,8 +220,8 @@ hi.TSCurrentScope    = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil }
 
 hi.NvimInternalError = { guifg = colors.black, guibg = colors.bright_red, gui = 'none', guisp = nil }
 
-hi.NormalFloat  = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
-hi.FloatBorder  = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
+hi.NormalFloat  = { guifg = colors.grey4, guibg = colors.grey0, gui = nil, guisp = nil }
+hi.FloatBorder  = { guifg = colors.grey4, guibg = colors.grey0, gui = nil, guisp = nil }
 hi.NormalNC     = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi.TermCursor   = { guifg = colors.black, guibg = colors.grey4, gui = 'none', guisp = nil }
 hi.TermCursorNC = { guifg = colors.black, guibg = colors.grey4, gui = nil, guisp = nil }
@@ -236,22 +239,16 @@ hi.User9 = { guifg = colors.black, guibg = colors.grey1, gui = 'none', guisp = n
 hi.TreesitterContext = { guifg = nil, guibg = colors.grey0, gui = 'italic', guisp = nil }
 
 -- telescope
-if utils.hex_re:match_str(colors.black) and utils.hex_re:match_str(colors.grey0) and
-    utils.hex_re:match_str(colors.grey1) then
-  local darkerbg           = utils.darken(colors.black, 0.1)
-  local darkercursorline   = utils.darken(colors.grey0, 0.1)
-  local darkerstatusline   = utils.darken(colors.grey1, 0.1)
-  hi.TelescopeBorder       = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
-  hi.TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil, guisp = nil }
-  hi.TelescopePromptNormal = { guifg = colors.grey4, guibg = darkerstatusline, gui = nil, guisp = nil }
-  hi.TelescopePromptPrefix = { guifg = colors.bright_red, guibg = darkerstatusline, gui = nil, guisp = nil }
-  hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
-  hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = colors.bright_green, gui = nil, guisp = nil }
-  hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = colors.bright_red, gui = nil, guisp = nil }
-  hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
-  hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
-  hi.TelescopePreviewLine  = { guifg = nil, guibg = colors.grey2, gui = 'none', guisp = nil }
-end
+hi.TelescopeBorder       = { guifg = colors.grey2, guibg = darkerbg, gui = nil, guisp = nil }
+hi.TelescopePromptBorder = { guifg = colors.grey2, guibg = darkerstatusline, gui = nil, guisp = nil }
+hi.TelescopePromptNormal = { guifg = colors.grey4, guibg = darkerstatusline, gui = nil, guisp = nil }
+hi.TelescopePromptPrefix = { guifg = colors.bright_red, guibg = darkerstatusline, gui = nil, guisp = nil }
+hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
+hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = colors.bright_green, gui = 'bold', guisp = nil }
+hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = colors.bright_red, gui = 'bold', guisp = nil }
+hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = 'bold', guisp = nil }
+hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
+hi.TelescopePreviewLine  = { guifg = nil, guibg = colors.grey2, gui = 'none', guisp = nil }
 
 -- nvim-notify
 hi.NotifyERRORBorder = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
@@ -276,8 +273,10 @@ hi.NotifyDEBUGBody   = 'Normal'
 hi.NotifyTRACEBody   = 'Normal'
 
 -- indentblankline
-hi.IndentBlanklineChar        = { guifg = colors.grey1, gui = 'nocombine' }
-hi.IndentBlanklineContextChar = { guifg = colors.grey3, gui = 'nocombine' }
+hi.IndentBlanklineChar               = { guifg = colors.grey1, gui = 'nocombine' }
+hi.IndentBlanklineContextChar        = { guifg = colors.grey3, gui = 'nocombine' }
+hi.IndentBlanklineSpaceChar          = { guifg = colors.grey2 , gui = 'nocombine' }
+hi.IndentBlanklineSpaceCharBlankline = { guifg = colors.white , gui = 'nocombine' }
 
 -- nvim-cmp
 hi.CmpDocumentationBorder   = { guifg = colors.grey4, guibg = colors.black, gui = nil, guisp = nil }
@@ -325,6 +324,12 @@ hi['@text.strong'] = { guifg = colors.bright_orange, guibg = nil, gui = 'bold', 
 hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.delimiter'] = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.special'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+
+-- gitsigns
+hi.GitSignsAdd          = { guifg = colors.bright_green, guibg= nil }
+hi.GitSignsChange       = { guifg = colors.bright_aqua, guibg= nil }
+hi.GitSignsDelete       = { guifg = colors.bright_red, guibg= nil }
+hi.GitSignsChangeDelete = { guifg = colors.bright_aqua, guibg = colors.bright_red }
 
 -- highlight groups
 vim.cmd('set background=' .. colors.mode)
