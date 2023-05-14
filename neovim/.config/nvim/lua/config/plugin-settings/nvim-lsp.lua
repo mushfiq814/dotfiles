@@ -1,6 +1,3 @@
-local success, lspconfig = pcall(require, 'lspconfig')
-if not success then return end
-
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 
 -- options are 'none', 'single', 'double', 'rounded', 'solid', 'shadow'
@@ -37,29 +34,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
-
-local navic_success, navic = pcall(require, 'nvim-navic')
-if not navic_success then return end
-
-lspconfig.tsserver.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
-lspconfig.lua_ls.setup {
-  settings = {
-    Lua = { diagnostics = { globals = { 'vim', 'use' } } },
-  },
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
-lspconfig.jsonls.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
-lspconfig.marksman.setup {}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
