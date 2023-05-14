@@ -2,6 +2,7 @@
 # shellcheck source-path=scripts/colorscheme
 
 THEME_FILE="$1" # theme file containing colors
+ACCENT="$2"
 
 # shellcheck source=colors/debug
 source "$THEME_FILE"
@@ -14,6 +15,7 @@ cat << EOF > "$NVIM_COLORS_FILE"
 return {
   theme          = "$NAME",
   mode           = "$MODE",
+  accent         = "$ACCENT",
   black          = "$BLACK",
   grey0          = "$GREY0",
   grey1          = "$GREY1",

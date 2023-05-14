@@ -52,7 +52,7 @@ if [[ $ENABLE_I3 -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/i3"
 if [[ $ENABLE_ITERM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/iterm" "$THEME_FILE"; fi
 if [[ $ENABLE_KITTY -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/kitty" "$THEME_FILE" "$ACCENT" "$OPACITY"; fi
 if [[ $ENABLE_MACOSTHEME -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/macostheme" "$MODE"; fi
-if [[ $ENABLE_NVIM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/nvim" "$THEME_FILE"; fi
+if [[ $ENABLE_NVIM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/nvim" "$THEME_FILE" "$ACCENT"; fi
 if [[ $ENABLE_POLYBAR -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/polybar" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
 if [[ $ENABLE_QUTEBROWSER -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/qutebrowser" "$THEME_FILE"; fi
 if [[ $ENABLE_RAZERKBD -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/razerkbd" "$THEME_FILE"; fi
