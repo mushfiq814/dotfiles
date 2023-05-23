@@ -1,0 +1,53 @@
+# data
+data.location=~/.task
+# hooks.location=~/.config/task/hooks
+
+# ui
+row.padding = 20
+column.padding = 2
+recurrence.indicator = 🔁
+dependency.indicator = D
+active.indicator = *
+
+# settings
+weekstart = monday
+calendar.holidays = none
+
+# colors
+rule.color.merge = no
+
+## general
+color.label = bold
+color.project.none = cyan
+color.tag.none = bright cyan
+color.alternate = bright cyan on bright gray4
+
+## highlight
+color.active = black on yellow
+color.tagged = magenta
+color.recurring = magenta
+color.scheduled = on magenta
+
+## due
+color.due = red on bright black
+color.due.today = bold red on bright black
+color.overdue = bold yellow on bright black
+
+# blocks/dependency
+color.blocked = bright white on bright black
+color.blocking = red on bright black
+
+## misc
+color.completed = blue on
+color.deleted = red on
+color.warning = yellow on
+
+## burndown
+color.burndown.done = on cyan
+color.burndown.pending = on red
+color.burndown.started = on yellow
+
+## history
+color.history.done = black on cyan
+color.history.delete = black on red
+color.history.add = black on yellow
