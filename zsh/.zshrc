@@ -63,9 +63,9 @@ alias trc='v ~/.tmux.conf'
 
 # filesystem aliases
 
-alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
 alias DW='cd ~/downloads'
-alias PR=showProjects
+alias PR="showFuzzyDirContents $HOME/projects"
+alias FLASH="showFuzzyDirContents /run/media/mushfiq"
 
 # package manager
 alias sai='sudo apt install'
@@ -106,9 +106,15 @@ alias lock='i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c "#000000"'
 
 # Functions {{{
 
-# showProjects {{{
-function showProjects() {
-  cd ~/projects/$('ls' ~/projects | fzf)
+# showFuzzyDirContents {{{
+function showFuzzyDirContents() {
+  DIR="$1"
+  SELECTION=$('ls' "$DIR" | fzf)
+  if [[ $SELECTION && $? -eq 0 ]]; then
+    cd "$DIR"/"$SELECTION"
+  else
+    notify-send --urgency "critical" -a "zshrc" "ERROR: no directory selected. aborting..."
+  fi
 }
 # }}}
 
