@@ -17,6 +17,7 @@ local hi = utils.highlight
 local darkerbg           = utils.darken(colors.black, 0.1)
 local darkercursorline   = utils.darken(colors.grey0, 0.1)
 local darkerstatusline   = utils.darken(colors.grey1, 0.1)
+local darkeraccent       = utils.darken(colors.accent, 0.1)
 
 -- Vim editor colors
 hi.Normal       = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
@@ -321,15 +322,17 @@ hi['@text.reference'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, 
 hi['@text.literal'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.uri'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 
-hi['@markdown_check'] = { guifg = colors.faded_red, guibg = nil, gui = nil, guisp = nil }
-hi['@markdown_list_marker'] = { guifg = colors.faded_yellow, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.bracket'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
-hi['@puntuation.strikethrough'] = { guifg = colors.bright_orange, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
-hi['@text.strike'] = { guifg = colors.bright_orange, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
-hi['@text.strong'] = { guifg = colors.bright_orange, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markdown_check'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@markdown_list_marker'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.bracket'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.delimiter'] = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.special'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.special'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
+hi['@text.emphasis'] = { guifg = darkeraccent, guibg = nil, gui = 'italic', guisp = nil }
+hi['@text.quote'] = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
+hi['@text.strike'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
+hi['@text.strong'] = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
 
 -- gitsigns
 hi.GitSignsAdd          = { guifg = colors.bright_green, guibg= nil }

@@ -40,6 +40,14 @@ local function rgb_to_hex(r, g, b)
   return bit.tohex(bit.bor(bit.lshift(r, 16), bit.lshift(g, 8), b), 6)
 end
 
+function M.lighten(hex, pct)
+  local r, g, b = hex_to_rgb(string.sub(hex, 2))
+  r = math.max(math.floor(r * pct), 255)
+  g = math.max(math.floor(g * pct), 255)
+  b = math.max(math.floor(b * pct), 255)
+  return string.format("#%s", rgb_to_hex(r, g, b))
+end
+
 function M.darken(hex, pct)
   pct = 1 - pct
   local r, g, b = hex_to_rgb(string.sub(hex, 2))
@@ -49,17 +57,6 @@ function M.darken(hex, pct)
   return string.format("#%s", rgb_to_hex(r, g, b))
 end
 
--- This is a bit of syntactic sugar for creating highlight groups.
---
--- local colorscheme = require('colorscheme')
--- local hi = colorscheme.highlight
--- hi.Comment = { guifg='#ffffff', guibg='#000000', gui='italic', guisp=nil }
--- hi.LspDiagnosticsDefaultError = 'DiagnosticError' -- Link to another group
---
--- This is equivalent to the following vimscript
---
--- hi Comment guifg=#ffffff guibg=#000000 gui=italic
--- hi! link LspDiagnosticsDefaultError DiagnosticError
 M.highlight = setmetatable({}, {
   __newindex = function(_, hlgroup, args)
     if ('string' == type(args)) then
@@ -67,12 +64,8 @@ M.highlight = setmetatable({}, {
       return
     end
 
-    -- if hlgroup == 'SignColumn' then
-    --   print(vim.inspect(args))
-    -- end
-
     local guifg, guibg, gui, guisp = args.guifg or nil, args.guibg or nil, args.gui or nil, args.guisp or nil
-    local cmd = { 'hi', hlgroup }
+    local cmd = { 'hi!', hlgroup }
     if guifg then table.insert(cmd, 'guifg=' .. guifg) end
     if guibg then table.insert(cmd, 'guibg=' .. guibg) end
     if gui then table.insert(cmd, 'gui=' .. gui) end
