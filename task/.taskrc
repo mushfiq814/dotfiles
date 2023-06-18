@@ -16,11 +16,30 @@ calendar.holidays = none
 # colors
 rule.color.merge = no
 
+# | code    | color          |
+# |---------|----------------|
+# | color0  | bright white   |
+# | color1  | bright red     |
+# | color2  | bright green   |
+# | color3  | bright yellow  |
+# | color4  | bright blue    |
+# | color5  | bright magenta |
+# | color6  | bright cyan    |
+# | color7  | bright black   |
+# | color8  | white          |
+# | color9  | red            |
+# | color10 | green          |
+# | color11 | yellow         |
+# | color12 | blue           |
+# | color13 | magenta        |
+# | color14 | cyan           |
+# | color15 | black          |
+
 ## general
 color.label = bold
 color.project.none = cyan
 color.tag.none = bright cyan
-color.alternate = bright cyan on bright gray4
+color.alternate = bright cyan on color8
 
 ## highlight
 color.active = black on yellow
