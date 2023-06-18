@@ -1,7 +1,7 @@
 #!/bin/sh
 
 MPVSOCKET="/tmp/mpvsocket"
-MUSIC_DIR="$HOME/music/*.mp3"
+MUSIC_DIR="$HOME/music/artists"
 
 update_polybar_hook() {
   PARENT_BAR="mushfiq"
@@ -20,7 +20,7 @@ update_polybar_hook() {
 }
 
 start() {
-  nohup mpv $MUSIC_DIR --shuffle > /dev/null 2>&1 &
+  nohup mpv $MUSIC_DIR --no-video --shuffle > /dev/null 2>&1 &
 }
 
 stop() {
