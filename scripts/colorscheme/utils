@@ -31,11 +31,17 @@ rgb2hex () {
 }
 
 notify () {
-  UNAME=$(uname -s)
-  if [ $UNAME = "Darwin" ]; then
+  if command -v "osascript" &> /dev/null
+  then
+    # macos notifications
     osascript -e "display notification \"$2\" with title \"$1\""
-  else
+  elif command -v "notify-send" &> /dev/null
+  then
+    # linux notifications
     notify-send -a "$1" "$2"
+  else
+    # fallback to stdout
+    echo -e "$1: $2"
   fi
 }
 
