@@ -51,7 +51,8 @@ alias gpod='git pull origin dev'
 alias make='make -s'
 
 # youtube download mp3
-alias yt='youtube-dl -x --audio-format mp3'
+alias youtube-dl='yt-dlp'
+alias yt='yt-dlp -x --audio-format mp3'
 
 # config files aliases
 alias v='nvim --listen /tmp/nvim-server.pipe'
