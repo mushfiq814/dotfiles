@@ -9,7 +9,7 @@ c.content.notifications.enabled = False
 c.downloads.location.directory = '~/downloads'
 c.editor.command = ['kitty', '--class', 'floating', '-e', 'nvim', '{file}', '-c','normal {line}G{column0}1']
 c.statusbar.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
-c.statusbar.widgets = ["url", "progress"]
+c.statusbar.widgets = ["url", "search_match", "scroll", "progress"]
 c.tabs.favicons.scale = 1.2
 c.tabs.indicator.width = 0
 c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
@@ -94,9 +94,9 @@ with config.pattern('https://calendar.google.com') as p:
 
 # clipboard access
 with config.pattern('https://github.com') as p:
-    p.content.javascript.can_access_clipboard = True
+    p.content.javascript.clipboard = "access-paste"
 with config.pattern('https://bitwarden.com') as p:
-    p.content.javascript.can_access_clipboard = True
+    p.content.javascript.clipboard = "access-paste"
 
 c.fonts.default_family = MONO_FONT
 c.fonts.default_size = str(FONT_SIZE) + 'pt'
