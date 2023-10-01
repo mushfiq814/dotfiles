@@ -317,17 +317,49 @@ hi.CmpItemKindOperator      = { guifg = colors.grey4, guibg = nil, gui = nil, gu
 hi.CmpItemKindSnippet       = { guifg = colors.grey3, guibg = nil, gui = nil, guisp = nil }
 
 -- markdown
-hi['@text.title'] = { guifg = colors.bright_aqua, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.reference'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.literal'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.uri'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+local function getMdTitleHighlight(level)
+  local darkenFactor = 0.05
+  local titleDarkenFactors = {
+    darkenFactor * 0,
+    darkenFactor * 1,
+    darkenFactor * 2,
+    darkenFactor * 3,
+    darkenFactor * 4,
+    darkenFactor * 5,
+  }
 
-hi['@markdown_check'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@markdown_list_marker'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.bracket'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.delimiter'] = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.special'] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+  return {
+    guifg = utils.darken(colors.bright_aqua, titleDarkenFactors[level]),
+    guibg = nil,
+    gui = 'bold',
+    guisp = nil,
+  }
+end
+
+hi['@text.title.1']             = getMdTitleHighlight(1)
+hi['@text.title.2']             = getMdTitleHighlight(2)
+hi['@text.title.3']             = getMdTitleHighlight(3)
+hi['@text.title.4']             = getMdTitleHighlight(4)
+hi['@text.title.5']             = getMdTitleHighlight(5)
+hi['@text.title.6']             = getMdTitleHighlight(6)
+
+hi['@text.title.1.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.2.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.3.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.4.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.5.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.6.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+
+hi['@text.reference']           = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
+hi['@text.literal']             = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
+hi['@text.uri']                 = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+
+hi['@markdown_check']           = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@markdown_list_marker']     = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@none']                     = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.bracket']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.delimiter']    = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.special']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough,italic', guisp = nil }
 hi['@text.emphasis'] = { guifg = darkeraccent, guibg = nil, gui = 'italic', guisp = nil }
 hi['@text.quote'] = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
