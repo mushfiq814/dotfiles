@@ -85,6 +85,13 @@ c.colors.tabs.selected.odd.bg = BLACK
 c.colors.tabs.selected.odd.fg = WHITE
 c.colors.webpage.bg = BLACK
 c.colors.webpage.darkmode.enabled = MODE == "dark"
+c.colors.webpage.darkmode.algorithm = "lightness-cielab"
+c.colors.webpage.darkmode.contrast = 1
+c.colors.webpage.darkmode.policy.images = "smart"
+c.colors.webpage.darkmode.policy.page = "smart"
+c.colors.webpage.darkmode.threshold.background = 205
+c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.preferred_color_scheme = MODE
 
 # site permissions
 with config.pattern('https://mail.google.com') as p:
