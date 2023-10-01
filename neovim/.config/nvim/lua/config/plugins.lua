@@ -68,7 +68,7 @@ require('lazy').setup({
   { 'rcarriga/nvim-notify', config = function() require('config/plugin-settings/nvim-notify') end },
   { 'lukas-reineke/indent-blankline.nvim', config = function() require('config/plugin-settings/indent-blankline') end },
   { 'folke/zen-mode.nvim', config = function() require('config/plugin-settings/zen-mode') end, keys = '<leader>x' },
-  { 'NvChad/nvim-colorizer.lua', config = function() require('config/plugin-settings/nvim-colorizer') end, lazy = true },
+  { 'NvChad/nvim-colorizer.lua', config = function() require('config/plugin-settings/nvim-colorizer') end, lazy = false },
   -- { 'fladson/vim-kitty' },
   -- { 'edluffy/hologram.nvim', config = function() require('config/plugin-settings/hologram') end },
   -- { 'samodostal/image.nvim', config = function() require('config/plugin-settings/image') end },
