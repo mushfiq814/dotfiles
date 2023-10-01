@@ -37,6 +37,8 @@ color7     $GREY3
 color15    $WHITE
 
 url_color  $ACCENT
+active_border_color $ACCENT
+inactive_border_color $ACCENT
 
 selection_foreground $BLACK
 selection_background $WHITE
