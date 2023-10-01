@@ -84,7 +84,7 @@ c.colors.tabs.selected.even.fg = WHITE
 c.colors.tabs.selected.odd.bg = BLACK
 c.colors.tabs.selected.odd.fg = WHITE
 c.colors.webpage.bg = BLACK
-c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = MODE == "dark"
 
 # site permissions
 with config.pattern('https://mail.google.com') as p:
