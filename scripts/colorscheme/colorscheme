@@ -15,15 +15,21 @@ source "$HOME/dotfiles/.env"
 # shellcheck source=utils
 source "$HOME/dotfiles/scripts/colorscheme/utils"
 
+LAUNCHER_CMD="rofi -dmenu"
+if ! command -v $LAUNCHER_CMD &> /dev/null
+then
+  LAUNCHER_CMD="fzf"
+fi
+
 # show list of available colorschemes
 quit_on_file_dne "$COLORS_DIR"
 THEME=$(for file in $COLORS_DIR/*; do
   basename "$file" .json;
-done | rofi -dmenu)
+done | $LAUNCHER_CMD)
 quit_on_error "Error with selecting colorscheme. Aborting..."
 
 # show list of available accents
-ACCENT_KEY="NEUTRAL_$(echo -e "RED\nGREEN\nYELLOW\nBLUE\nPURPLE\nAQUA\nORANGE" | rofi -dmenu)"
+ACCENT_KEY="NEUTRAL_$(echo -e "RED\nGREEN\nYELLOW\nBLUE\nPURPLE\nAQUA\nORANGE" | $LAUNCHER_CMD)"
 quit_on_error "Error with selecting accent color. Aborting..."
 
 # get colors from desired colorscheme
