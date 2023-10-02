@@ -1,4 +1,4 @@
-local loaded, indent_blankline = pcall(require, 'indent_blankline')
+local loaded, indent_blankline = pcall(require, 'ibl')
 if not loaded then return end
 
 local colorsFound, colors = pcall(require, 'config/colors')
