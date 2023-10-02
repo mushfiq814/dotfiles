@@ -19,6 +19,15 @@ null_ls.setup({
         "html",
       },
     }),
+
+    -- install `pgformatter`
+    null_ls.builtins.formatting.pg_format.with({
+      command = "pg_format",
+      args = {
+        "--spaces",
+        "2",
+      },
+    }),
     -- null_ls.builtins.diagnostics.luacheck,
     -- null_ls.builtins.diagnostics.mdl,
   },
