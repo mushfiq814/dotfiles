@@ -44,7 +44,19 @@ if not navic_success then return end
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
-  end
+  end,
+  init_options = {
+    preferences = {
+      includeInlayParameterNameHints = 'all',
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayVariableTypeHints = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayEnumMemberValueHints = true,
+      importModuleSpecifierPreference = 'non-relative',
+    },
+  },
 }
 lspconfig.lua_ls.setup {
   settings = {
