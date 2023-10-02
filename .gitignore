@@ -26,3 +26,6 @@ neovim/.config/nvim/plugged/
 # password files
 mutt/.config/mutt/winehq.key
 mutt/.config/mutt/password.gpg
+
+# iterm generated dynamic profile
+iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile.json
