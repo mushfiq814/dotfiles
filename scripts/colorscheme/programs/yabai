@@ -42,4 +42,5 @@ EOF
 
 # reload yabai
 echo "COLORSCHEME: reloading yabai"
-brew services restart yabai
+yabai --stop-service
+yabai --start-service
