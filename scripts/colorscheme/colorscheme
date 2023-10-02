@@ -70,9 +70,9 @@ fi
 
 # background opacity
 if [ $MODE = "light" ]; then
-  OPACITY="0.9"
+  OPACITY="0.95"
 else
-  OPACITY="0.4"
+  OPACITY="0.90"
 fi
 
 $HOME/dotfiles/scripts/colorscheme/programs/dunst $THEME_FILE $ACCENT $OPACITY $BLACK_TR
