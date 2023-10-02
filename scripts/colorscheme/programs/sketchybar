@@ -48,4 +48,4 @@ EOF
 
 # reload sketchybar
 echo "COLORSCHEME: reloading sketchybar"
-brew services restart sketchybar
+pkill sketchybar && sketchybar --reload
