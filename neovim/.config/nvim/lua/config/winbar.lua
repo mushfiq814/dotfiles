@@ -1,14 +1,13 @@
 local colors_loaded, colors = pcall(require, 'config/colors')
 if not colors_loaded then return end
-local lightMode = colors.mode == "light"
 
 local function filename()
-  local filename = vim.fn.expand("%:t")
-  if filename == '' then return '' end
+  local filename_base = vim.fn.expand("%:t")
+  if filename_base == '' then filename_base = '[scratch buffer]' end
   if vim.bo.modified then
-    filename = filename .. " %#winbarFileNameModified# ● %#Normal#"
+    filename_base = filename_base .. " %#winbarFileNameModified# ● %#Normal#"
   end
-  return "%#winbarFileName# " .. filename .. " %#Normal#"
+  return "%#winbarFileName# " .. filename_base .. " %#Normal#"
 end
 
 local function navicTags()
