@@ -192,7 +192,6 @@ end
 function MyStatusLine()
   local statusline = ''
   if WINCOLS and WINCOLS < 100 then
-    -- vim.notify('small')
     statusline = table.concat({
       mode(),
       tabpages(),
@@ -221,7 +220,7 @@ end
 vim.o.statusline = "%{%v:lua.MyStatusLine()%}"
 
 -- remove native tabline
-vim.o.showtabline = false
+vim.o.showtabline = 0
 
 -- global statusline
 vim.o.laststatus = 3
