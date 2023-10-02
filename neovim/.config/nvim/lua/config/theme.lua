@@ -314,6 +314,7 @@ hi.CmpItemKindSnippet       = { guifg = colors.grey3, guibg = nil, gui = nil, gu
 hi['@text.title'] = { guifg = colors.bright_aqua, guibg = nil, gui = 'bold', guisp = nil }
 hi['@text.reference'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.literal'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
+hi['@text.literal.block'] = { guibg = colors.grey0, gui = nil, guisp = nil }
 hi['@text.uri'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 
 hi['@markdown_check'] = { guifg = colors.faded_red, guibg = nil, gui = nil, guisp = nil }
@@ -325,6 +326,10 @@ hi['@text.strong'] = { guifg = colors.bright_orange, guibg = nil, gui = 'bold', 
 hi['@none'] = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.delimiter'] = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.special'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+
+-- diff
+hi['@text.diff.delete'] = { guifg = colors.neutral_red, guibg = colors.black, gui = 'bold', guisp = nil }
+hi['@text.diff.add'] = { guifg = colors.neutral_green, guibg = colors.black, gui = 'bold', guisp = nil }
 
 -- highlight groups
 vim.cmd('set background=' .. colors.mode)
