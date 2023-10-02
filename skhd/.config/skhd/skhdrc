@@ -60,9 +60,9 @@ shift + alt - w : /usr/local/bin/macos-wallpaper
 alt - return : /usr/bin/osascript -e "tell application \"iTerm\" to create window with default profile"
 
 # reload window manager
-shift + alt - r : brew services restart yabai
+shift + alt - r : yabai --stop-service; yabai --start-service
 # stop window manager
-lctrl + alt - r : brew services stop yabai
+lctrl + alt - r : yabai --stop-service
 
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
