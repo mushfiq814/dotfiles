@@ -7,6 +7,7 @@ colorizer.setup{
     "shell",
     "sh",
     "json",
+    "jsonc",
     "javascript",
     "typescript",
     "javascriptreact",
