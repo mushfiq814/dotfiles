@@ -30,7 +30,7 @@ require('lazy').setup({
   -- language server
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim', config = function() require('config/plugin-settings/mason') end },
-  { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end },
+  { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end, event = { "BufReadPre", "BufNewFile" } },
   { 'jose-elias-alvarez/null-ls.nvim', config = function() require('config/plugin-settings/null-ls') end },
   { 'mfussenegger/nvim-dap', lazy = true },
   { 'mfussenegger/nvim-jdtls', lazy = true },
