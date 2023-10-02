@@ -8,26 +8,63 @@ BLACK_TR="$4"
 source $THEME_FILE
 source $HOME/dotfiles/.env
 
-ITERM_CONFIG_BASE_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
+ITERM_CONFIG_BASE_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
 ITERM_CONFIG_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
 UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 
-# TODO: make this faster! cache?
+# TODO: check whether it2api is available
+IT2API="$HOME/.iterm2/it2api"
+SESSION_ID=$($IT2API list-sessions | grep --only-matching -e '[0-9A-Fa-f]\+\(-[0-9A-Fa-f]\+\)\+')
+PROFILE_NAME=$($IT2API get-profile-property "$SESSION_ID" "name" | sed 's/name: //')
+
+echo "COLORSCHEME: setting iterm2 fonts"
+$IT2API set-profile-property "$SESSION_ID" "normal_font" "$ITERM_FONT"
+
+echo "COLORSCHEME: setting iterm2 transparency"
+TRANSPARENCY=$(echo "1.00 - $OPACITY" | bc | sed 's/^/0/')
+echo "setting transparency to $TRANSPARENCY"
+$IT2API set-profile-property "$SESSION_ID" "transparency" "$TRANSPARENCY"
+
 echo "COLORSCHEME: setting iterm2 colors"
+
+if [[ $($IT2API list-color-presets | grep "$NAME") ]]; then
+  echo "profile: $PROFILE_NAME, preset: $NAME"
+  $IT2API set-color-preset "$PROFILE_NAME" "$NAME"
+  exit 0
+fi
+
+echo "[error]: color preset with name $NAME not found!"
+COLOR_PRESET_FILE="$HOME/Downloads/$NAME.itermcolors"
+echo "[error]: generating preset file at $COLOR_PRESET_FILE..."
+echo "[error]: please import it manually inside iTerm"
+
 source "$UTILS_FILE"
 
-JQQUERY=""
 iterm2colorconversion () {
   RGB=$(hex2rgb $2)
   R=$(echo $RGB | cut -d : -f 1)
   G=$(echo $RGB | cut -d : -f 2)
   B=$(echo $RGB | cut -d : -f 3)
-  if [ -z "$JQQUERY" ]; then
-    JQQUERY=".Profiles[0][\"$1\"] = { \"Red Component\": $R , \"Green Component\": $G, \"Blue Component\": $B, \"Color Space\": \"sRGB\" }"
-  else
-    JQQUERY="$JQQUERY | .Profiles[0][\"$1\"] = { \"Red Component\": $R , \"Green Component\": $G, \"Blue Component\": $B, \"Color Space\": \"sRGB\" }"
-  fi
+  XML="$XML"
+	XML="$XML\n  <key>$1</key>"
+	XML="$XML\n  <dict>"
+	XML="$XML\n    <key>Red Component</key>"
+	XML="$XML\n    <real>$R</real>"
+	XML="$XML\n    <key>Green Component</key>"
+	XML="$XML\n    <real>$G</real>"
+	XML="$XML\n    <key>Blue Component</key>"
+	XML="$XML\n    <real>$B</real>"
+	XML="$XML\n    <key>Alpha Component</key>"
+	XML="$XML\n    <real>1</real>"
+	XML="$XML\n    <key>Color Space</key>"
+	XML="$XML\n    <string>sRGB</string>"
+	XML="$XML\n  </dict>"
 }
+
+XML="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+XML="$XML\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"
+XML="$XML\n<plist version=\"1.0\">"
+XML="$XML\n<dict>"
 
 iterm2colorconversion "Ansi 0 Color" $BLACK
 iterm2colorconversion "Ansi 1 Color" $BRIGHT_RED
@@ -52,13 +89,8 @@ iterm2colorconversion "Selected Text Color" $BLACK
 iterm2colorconversion "Cursor Color" $WHITE
 iterm2colorconversion "Cursor Text Color" $BLACK
 
-echo "COLORSCHEME: setting iterm2 fonts"
-JQQUERY="$JQQUERY | .Profiles[0][\"Normal Font\"] = \"$ITERM_FONT\""
-JQQUERY="$JQQUERY | .Profiles[0][\"normal font\"] = \"$ITERM_FONT\""
+XML="$XML\n</dict>"
+XML="$XML\n</plist>"
 
-TMPFILE=$(mktemp)
-cp "$ITERM_CONFIG_BASE_FILE" "$TMPFILE" &&
-jq "$JQQUERY" "$TMPFILE" > "$ITERM_CONFIG_FILE" &&
-rm -f -- "$TMPFILE"
-
-# TODO: find out how to reload iTerm properly
+echo "$XML" > "$COLOR_PRESET_FILE"
+echo "color preset file saved at $COLOR_PRESET_FILE"
