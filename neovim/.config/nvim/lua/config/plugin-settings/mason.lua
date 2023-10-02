@@ -11,7 +11,6 @@ mason.setup()
 mason_lsp_config.setup({
   ensure_installed = {
     "tsserver",
-    "pylsp",
     "jsonls",
     "marksman",
     "lua_ls",
@@ -35,11 +34,6 @@ lspconfig.tsserver.setup {
       importModuleSpecifierPreference = 'non-relative',
     },
   },
-}
-lspconfig.pylsp.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
 }
 lspconfig.jsonls.setup {
   on_attach = function(client, bufnr)
