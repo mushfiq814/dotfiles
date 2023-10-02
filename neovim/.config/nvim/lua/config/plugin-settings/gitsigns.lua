@@ -1,13 +1,5 @@
 local success, gitsigns = pcall(require, 'gitsigns')
 if not success then return end
-local colorsLoaded, colors = pcall(require, 'config/colors')
-if not colorsLoaded then return end
-
--- color highlights
-vim.cmd('hi! GitSignsAdd guifg='          .. colors.bright_green .. ' guibg=#')
-vim.cmd('hi! GitSignsChange guifg='       .. colors.bright_aqua  .. ' guibg=#')
-vim.cmd('hi! GitSignsDelete guifg='       .. colors.bright_red   .. ' guibg=#')
-vim.cmd('hi! GitSignsChangeDelete guifg=' .. colors.bright_aqua  .. ' guibg=' .. colors.bright_red)
 
 gitsigns.setup {
   signs = {

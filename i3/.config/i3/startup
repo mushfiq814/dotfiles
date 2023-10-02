@@ -14,10 +14,6 @@ exec --no-startup-id kitty
 # bluetooth service
 exec --no-startup-id systemctl start bluetooth.service
 
-# screensaver
-# exec --no-startup-id xset dpms 60
-# exec --no-startup-id xautolock -time 1 -locker i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c '#000000'
-
 # auto detect secondary display
 exec --no-startup-id monitorset autodetect-secondary
 

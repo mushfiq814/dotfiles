@@ -9,7 +9,7 @@ c.content.notifications.enabled = False
 c.downloads.location.directory = '~/downloads'
 c.editor.command = ['kitty', '--class', 'floating', '-e', 'nvim', '{file}', '-c','normal {line}G{column0}1']
 c.statusbar.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
-c.statusbar.widgets = ["url", "progress"]
+c.statusbar.widgets = ["url", "search_match", "scroll", "progress"]
 c.tabs.favicons.scale = 1.2
 c.tabs.indicator.width = 0
 c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
@@ -85,6 +85,13 @@ c.colors.tabs.selected.odd.bg = BLACK
 c.colors.tabs.selected.odd.fg = WHITE
 c.colors.webpage.bg = BLACK
 c.colors.webpage.darkmode.enabled = MODE == "dark"
+c.colors.webpage.darkmode.algorithm = "lightness-cielab"
+c.colors.webpage.darkmode.contrast = 1
+c.colors.webpage.darkmode.policy.images = "smart"
+c.colors.webpage.darkmode.policy.page = "smart"
+c.colors.webpage.darkmode.threshold.background = 205
+c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.preferred_color_scheme = MODE
 
 # site permissions
 with config.pattern('https://mail.google.com') as p:
@@ -94,9 +101,9 @@ with config.pattern('https://calendar.google.com') as p:
 
 # clipboard access
 with config.pattern('https://github.com') as p:
-    p.content.javascript.can_access_clipboard = True
+    p.content.javascript.clipboard = "access-paste"
 with config.pattern('https://bitwarden.com') as p:
-    p.content.javascript.can_access_clipboard = True
+    p.content.javascript.clipboard = "access-paste"
 
 c.fonts.default_family = MONO_FONT
 c.fonts.default_size = str(FONT_SIZE) + 'pt'
@@ -120,6 +127,9 @@ tabwidget.TabWidget.AUDIBLE_STRING = "🔊"
 
 # bindings for normal mode
 config.bind('M', 'hint links spawn mpv {hint-url}')
+config.bind('Y', 'spawn mpv {url}')
+config.bind('C', 'hint links spawn kitty -e yt-dlp --paths $HOME/music/downloaded --extract-audio --audio-format mp3 {hint-url}')
+config.bind('X', 'spawn kitty -e yt-dlp --paths $HOME/music/downloaded --extract-audio --audio-format mp3 {url}')
 config.bind('Z', 'hint links spawn st -e youtube-dl {hint-url}')
 config.bind('t', 'set-cmd-text -s :open -t')
 config.bind('xb', 'config-cycle statusbar.show always never')

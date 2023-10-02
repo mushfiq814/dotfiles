@@ -9,7 +9,7 @@ find_current_display() {
 }
 
 brightness_up() {
-  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "$PRIMARY_XRANDR" ]]; then
+  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY" ]]; then
     value=$(basename $(brightnessctl s 1%+ | grep -Eo "[0-9]+%") %)
   else
     value=$(
@@ -22,7 +22,7 @@ brightness_up() {
 }
 
 brightness_down() {
-  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "$PRIMARY_XRANDR" ]]; then
+  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY" ]]; then
     value=$(basename $(brightnessctl s 1%- | grep -Eo "[0-9]+%") %)
   else
     value=$(

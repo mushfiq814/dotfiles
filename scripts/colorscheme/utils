@@ -1,5 +1,7 @@
 #!/bin/sh
 
+APPNAME="colorscheme script"
+
 hex2decimal () {
   # convert to uppercase for bc
   TEMP=$(echo $1 | tr '[:lower:]' '[:upper:]')
@@ -26,4 +28,42 @@ rgb2hex () {
   B=$(printf '%02x' $3)
 
   echo "#$R$G$B"
+}
+
+notify () {
+  if command -v "osascript" &> /dev/null
+  then
+    # macos notifications
+    osascript -e "display notification \"$2\" with title \"$1\""
+  elif command -v "notify-send" &> /dev/null
+  then
+    # linux notifications
+    notify-send -a "$1" "$2"
+  else
+    # fallback to stdout
+    echo -e "$1: $2"
+  fi
+}
+
+quit_on_error () {
+  # if there was an error in the last command, quit
+  if [ $? != 0 ]; then
+    # if argument with message was passed in, send notification
+    if [ $# != 0 ]; then
+      notify "$APPNAME" "$1"
+    fi
+    exit 1
+  fi
+}
+
+quit_on_file_dne () {
+  # if no argument with filepath was passed in, quit
+  if [ $# = 0 ]; then
+    notify "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
+    exit 1
+  fi
+  if [ ! -e "$1" ]; then
+    notify "$APPNAME" "$1 was not found. Exiting..."
+    exit 1
+  fi
 }

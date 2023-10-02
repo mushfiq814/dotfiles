@@ -33,7 +33,7 @@ local hi = color_utils.highlight
 
 hi.winbarFileName = {
   guifg = colors.black,
-  guibg = colors.neutral_purple,
+  guibg = colors.accent,
   gui = 'bold',
 }
 hi.winbarFileNameModified = {

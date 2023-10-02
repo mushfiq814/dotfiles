@@ -1,22 +1,23 @@
-#!/bin/sh
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
 
 THEME_FILE="$1" # theme file containing colors
 ACCENT="$2" # accent color from theme file
-OPACITY="$3"
-BLACK_TR="$4"
 
-source $THEME_FILE
-source $HOME/dotfiles/.env
+# shellcheck source=colors/debug
+source "$THEME_FILE"
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env" # for $DUNST_FONT
 
 DUNST_COLORS_FILE="$HOME/.config/dunst/dunstrc.d/colors.conf"
 DUNST_FONT_FILE="$HOME/.config/dunst/dunstrc.d/font.conf"
 
 # dunst: set colors
-DUNST_CONFIG_DIR=$(dirname $DUNST_COLORS_FILE)
-if [[ ! -d $DUNST_CONFIG_DIR ]]; then mkdir -p $DUNST_CONFIG_DIR; fi
+DUNST_CONFIG_DIR=$(dirname "$DUNST_COLORS_FILE")
+if [[ ! -d $DUNST_CONFIG_DIR ]]; then mkdir -p "$DUNST_CONFIG_DIR"; fi
 
 echo "COLORSCHEME: setting dunst colors"
-cat << EOF > $DUNST_COLORS_FILE
+cat << EOF > "$DUNST_COLORS_FILE"
 [global]
     highlight = "$ACCENT"
     frame_color = "$ACCENT"
@@ -35,7 +36,7 @@ cat << EOF > $DUNST_COLORS_FILE
 EOF
 
 echo "COLORSCHEME: setting dunst font"
-cat << EOF > $DUNST_FONT_FILE
+cat << EOF > "$DUNST_FONT_FILE"
 [global]
     font = $DUNST_FONT
 EOF

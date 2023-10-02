@@ -1,6 +1,9 @@
 local success, telescope = pcall(require, 'telescope')
 if not success then return end
 
+local border_loaded, borders = pcall(require, 'config/utils/border')
+if not border_loaded then return end
+
 telescope.setup({
   defaults = {
     layout_config = {
@@ -8,8 +11,16 @@ telescope.setup({
       horizontal = { width = 0.9 },
       -- other layout configuration here
     },
-    -- borderchars = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" }
-    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }
+    borderchars = {
+      borders[2],
+      borders[6],
+      borders[8],
+      borders[4],
+      borders[1],
+      borders[3],
+      borders[9],
+      borders[7],
+    },
     -- other defaults configuration here
   },
   -- other configuration values here

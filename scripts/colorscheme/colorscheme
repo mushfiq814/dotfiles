@@ -1,90 +1,68 @@
-#!/bin/sh
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
 
 # TODO: add check for all color values to exist
 # TODO: add error handling for all dependencies
 
 # paths for config files
-APPNAME="colorscheme script"
 COLORS_DIR="$HOME/dotfiles/scripts/colorscheme/colors"
-COLORS_FILES="$COLORS_DIR/*"
-UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 
-# source env file
-source $HOME/dotfiles/.env
+# source env file (for environment variables)
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env"
 
-notify () {
-  UNAME=$(uname -s)
-  if [ $UNAME = "Darwin" ]; then
-    osascript -e "display notification \"$2\" with title \"$1\""
-  else
-    notify-send -a "$1" "$2"
-  fi
-}
+# source utils file (for helper functions)
+# shellcheck source=utils
+source "$HOME/dotfiles/scripts/colorscheme/utils"
 
-quit_on_error () {
-  # if there was an error in the last command, quit
-  if [ $? != 0 ]; then
-    # if argument with message was passed in, send notification
-    if [ $# != 0 ]; then
-      notify "$APPNAME" "$1"
-    fi
-    exit 1
-  fi
-}
+LAUNCHER_CMD="rofi -dmenu"
+if ! command -v $LAUNCHER_CMD &> /dev/null
+then
+  LAUNCHER_CMD="fzf"
+fi
 
-quit_on_file_dne () {
-  # if no argument with filepath was passed in, quit
-  if [ $# = 0 ]; then
-    notify "$APPNAME" "\`quit_on_file_dne\` called without argument! Exiting..."
-    exit 1
-  fi
-  if [ ! -e "$1" ]; then
-    notify "$APPNAME" "$1 was not found. Exiting..."
-    exit 1
-  fi
-}
-
-# show list of available colorschemes and accents
-quit_on_file_dne $COLORS_FILES
-THEME=$(for file in $COLORS_FILES; do
-  basename $file .json;
-done | rofi -dmenu)
+# show list of available colorschemes
+quit_on_file_dne "$COLORS_DIR"
+THEME=$(for file in $COLORS_DIR/*; do
+  basename "$file" .json;
+done | $LAUNCHER_CMD)
 quit_on_error "Error with selecting colorscheme. Aborting..."
-# ACCENT_KEY="neutral_$(echo "red\ngreen\nyellow\nblue\npurple\naqua\norange" | rofi -dmenu)"
+
+# show list of available accents
+ACCENT_KEY="NEUTRAL_$(echo -e "RED\nGREEN\nYELLOW\nBLUE\nPURPLE\nAQUA\nORANGE" | $LAUNCHER_CMD)"
 quit_on_error "Error with selecting accent color. Aborting..."
 
 # get colors from desired colorscheme
 THEME_FILE="$COLORS_DIR/$THEME"
-source $THEME_FILE
+# shellcheck source=colors/debug
+source "$THEME_FILE"
 quit_on_error "colors file for $THEME not found! Aborting..."
-ACCENT="$NEUTRAL_ORANGE"
 
-# get transparent black color in AARRGGBB format
+# get accent from colors file and selected accent key
+ACCENT=$(eval echo \$"$ACCENT_KEY")
+
 BLACK_TR="${BLACK:1}"
-if [ $MODE = "light" ]; then
-  # less transparent for light theme
+if [ "$MODE" = "light" ]; then
+  # get transparent black color in AARRGGBB format
   BLACK_TR="#DD$BLACK_TR"
-else
-  BLACK_TR="#99$BLACK_TR"
-fi
-
-# background opacity
-if [ $MODE = "light" ]; then
+  # background opacity
   OPACITY="0.95"
 else
+  # less transparent for light theme
+  BLACK_TR="#99$BLACK_TR"
   OPACITY="0.90"
 fi
 
-$HOME/dotfiles/scripts/colorscheme/programs/dunst $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/i3 $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/iterm $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/kitty $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/macostheme $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/nvim $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/polybar $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/qutebrowser $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/razerkbd $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/rofi $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/sketchybar $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-$HOME/dotfiles/scripts/colorscheme/programs/xborders $THEME_FILE $ACCENT $OPACITY $BLACK_TR
-# $HOME/dotfiles/scripts/colorscheme/programs/yabai $THEME_FILE $ACCENT $OPACITY $BLACK_TR
+if [[ $ENABLE_DUNST -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/dunst" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_I3 -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/i3" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_ITERM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/iterm" "$THEME_FILE"; fi
+if [[ $ENABLE_KITTY -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/kitty" "$THEME_FILE" "$ACCENT" "$OPACITY"; fi
+if [[ $ENABLE_MACOSTHEME -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/macostheme" "$MODE"; fi
+if [[ $ENABLE_NVIM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/nvim" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_POLYBAR -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/polybar" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
+if [[ $ENABLE_QUTEBROWSER -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/qutebrowser" "$THEME_FILE"; fi
+if [[ $ENABLE_RAZERKBD -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/razerkbd" "$THEME_FILE"; fi
+if [[ $ENABLE_ROFI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/rofi" "$THEME_FILE" "$ACCENT"; fi
+if [[ $ENABLE_SKETCHYBAR -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/sketchybar" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
+if [[ $ENABLE_XBORDERS -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/xborders" "$ACCENT"; fi
+if [[ $ENABLE_YABAI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/yabai" "$THEME_FILE $ACCENT" "$BLACK_TR"; fi

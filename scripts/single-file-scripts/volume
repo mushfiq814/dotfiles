@@ -1,15 +1,70 @@
 #!/bin/sh
 
+update_polybar_hook() {
+  PARENT_BAR="mushfiq"
+  PARENT_BAR_PID=$(
+    pgrep -a "polybar" \
+    | grep "$PARENT_BAR" \
+    | cut -d " " -f1
+  )
+  HOOK="volume"
+  HOOK_NUMBER="1"
+
+  while IFS= read -r id
+  do
+    polybar-msg -p "$id" hook $HOOK $HOOK_NUMBER 1>/dev/null 2>&1
+  done < <(echo "$PARENT_BAR_PID")
+}
+
+set_active_sink_volume() {
+  ACTIVE_SINK=$(pactl list sinks short | grep RUNNING | awk '{print $1; exit}')
+  pactl set-sink-volume $ACTIVE_SINK "$1"
+}
+
+get_sink_inputs() {
+  pactl list sink-inputs \
+  | grep -i "^Sink Input #[0-9]\+" \
+  | sed 's/^Sink Input #\([0-9]\+\)/\1/'
+}
+
+set_sink_input_volume() {
+  for id in $(get_sink_inputs); do
+    pactl set-sink-input-volume $id $1
+  done
+}
+
+balance_sink_input_volumes() {
+  VOLUME=$(get_volume)
+  for id in $(get_sink_inputs); do
+    pactl set-sink-input-volume $id $VOLUME
+  done
+}
+
 volume_up() {
-  ponymix increase 1
+  VOLUME=$(get_volume)
+  NEXT_VOLUME=$(echo "$VOLUME+1" | bc)
+  NEXT_VOLUME_PERCENT="$NEXT_VOLUME%"
+  set_active_sink_volume $NEXT_VOLUME_PERCENT
+  set_sink_input_volume $NEXT_VOLUME_PERCENT
+  update_polybar_hook
 }
 
 volume_down() {
-  ponymix decrease 1
+  VOLUME=$(get_volume)
+  NEXT_VOLUME=$(echo "$VOLUME-1" | bc)
+  NEXT_VOLUME_PERCENT="$NEXT_VOLUME%"
+  set_active_sink_volume $NEXT_VOLUME_PERCENT
+  set_sink_input_volume $NEXT_VOLUME_PERCENT
+  update_polybar_hook
 }
 
 get_volume() {
-  ponymix get-volume
+  pactl list sinks \
+  | grep -i -A15 'RUNNING' \
+  | grep -i '^[[:space:]]Volume:' \
+  | head -n $(( $SINK + 1 )) \
+  | tail -n 1 \
+  | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
 }
 
 show_notification() {
@@ -22,6 +77,9 @@ if [[ $1 == "+" || $1 == "up" || $1 == "inc" ]]; then
 elif [[ $1 == "-" || $1 == "down" || $1 == "dec" ]]; then
   VAL=$(volume_down)
   show_notification $(get_volume)
+elif [[ $1 == "info-percent" || $1 == "percent" ]]; then
+  VOLUME=$(get_volume)
+  echo "$VOLUME%"
 else
-  echo "invalid argument"
+  get_volume
 fi

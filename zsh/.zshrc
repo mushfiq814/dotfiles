@@ -51,7 +51,8 @@ alias gpod='git pull origin dev'
 alias make='make -s'
 
 # youtube download mp3
-alias yt='youtube-dl -x --audio-format mp3'
+alias youtube-dl='yt-dlp'
+alias yt='yt-dlp -x --audio-format mp3'
 
 # config files aliases
 alias v='nvim --listen /tmp/nvim-server.pipe'
@@ -63,9 +64,9 @@ alias trc='v ~/.tmux.conf'
 
 # filesystem aliases
 
-alias main-dm='ssh -t root@104.236.227.167 "cd ../var/www/html/wp-content/themes/disciplined-minds; bash"'
 alias DW='cd ~/downloads'
-alias PR=showProjects
+alias PR="showFuzzyDirContents $HOME/projects"
+alias FLASH="showFuzzyDirContents /run/media/mushfiq"
 
 # package manager
 alias sai='sudo apt install'
@@ -89,7 +90,7 @@ alias vw='v ~/vimwiki/index.md'
 alias ytfzf='ytfzf -t'
 
 # neofetch
-alias fetch='neofetch --backend kitty --source ~/pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
+alias fetch='neofetch --backend chafa --source ~/pictures/wallpapers/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
 
 alias wifictl='nmtui'
 
@@ -106,9 +107,15 @@ alias lock='i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c "#000000"'
 
 # Functions {{{
 
-# showProjects {{{
-function showProjects() {
-  cd ~/projects/$('ls' ~/projects | fzf)
+# showFuzzyDirContents {{{
+function showFuzzyDirContents() {
+  DIR="$1"
+  SELECTION=$('ls' "$DIR" | fzf)
+  if [[ $SELECTION && $? -eq 0 ]]; then
+    cd "$DIR"/"$SELECTION"
+  else
+    notify-send --urgency "critical" -a "zshrc" "ERROR: no directory selected. aborting..."
+  fi
 }
 # }}}
 

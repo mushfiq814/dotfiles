@@ -1,27 +1,17 @@
-local success, lspconfig = pcall(require, 'lspconfig')
-if not success then return end
+local border_loaded, borders = pcall(require, 'config/utils/border')
+if not border_loaded then return end
 
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-
--- options are 'none', 'single', 'double', 'rounded', 'solid', 'shadow'
--- see :help `nvim_open_win()`
-local border = 'rounded'
--- can also be an array as follows
-local borders = {
-  "⎾", "▔", "🭾",
-  "▏", " ", "▕",
-  "⌞", "▁", "🭿",
+local border = {
+  { borders[1], "FloatBorder" },
+  { borders[2], "FloatBorder" },
+  { borders[3], "FloatBorder" },
+  { borders[6], "FloatBorder" },
+  { borders[9], "FloatBorder" },
+  { borders[8], "FloatBorder" },
+  { borders[7], "FloatBorder" },
+  { borders[4], "FloatBorder" },
 }
--- local border = {
---   {borders[1], "FloatBorder"},
---   {borders[2], "FloatBorder"},
---   {borders[3], "FloatBorder"},
---   {borders[6], "FloatBorder"},
---   {borders[9], "FloatBorder"},
---   {borders[8], "FloatBorder"},
---   {borders[7], "FloatBorder"},
---   {borders[4], "FloatBorder"},
--- }
+
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
@@ -37,41 +27,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
-
-local navic_success, navic = pcall(require, 'nvim-navic')
-if not navic_success then return end
-
-lspconfig.tsserver.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end,
-  init_options = {
-    preferences = {
-      includeInlayParameterNameHints = 'all',
-      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-      includeInlayFunctionParameterTypeHints = true,
-      includeInlayVariableTypeHints = true,
-      includeInlayPropertyDeclarationTypeHints = true,
-      includeInlayFunctionLikeReturnTypeHints = true,
-      includeInlayEnumMemberValueHints = true,
-      importModuleSpecifierPreference = 'non-relative',
-    },
-  },
-}
-lspconfig.lua_ls.setup {
-  settings = {
-    Lua = { diagnostics = { globals = { 'vim', 'use' } } },
-  },
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
-lspconfig.jsonls.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
-lspconfig.marksman.setup {}
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap

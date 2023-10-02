@@ -28,8 +28,8 @@ font-1 = ${font.font_1}
 font-2 = ${font.font_2}
 
 modules-left = i3 xwindow
-modules-center = mpv pulseaudio pacmd
-modules-right = mpv-prev mpv-play-pause mpv-next colorscheme btconnect paselectsink paselectsource memory cpu wlan battery date time
+modules-center = mpv volume pacmd
+modules-right = mpv-prev mpv-play-pause mpv-next colorscheme btconnect paselectsource memory cpu wlan battery date time
 
 ; tray-position options: left, center, right, none
 tray-position = none
@@ -137,6 +137,19 @@ ramp-volume-foreground = ${colors.accent}
 
 ; }}}
 
+; volume {{{
+[module/volume]
+type = custom/ipc
+hook-0 = /usr/local/bin/volume percent
+tail = true
+format-prefix = "墳 "
+format-prefix-foreground = ${colors.accent}
+initial = 1
+click-left = pavucontrol
+scroll-up = /usr/local/bin/volume up
+scroll-down = /usr/local/bin/volume down
+; }}}
+
 ; output-device {{{
 [module/pacmd]
 type = custom/script
@@ -146,6 +159,7 @@ format-prefix = "蓼 "
 format-prefix-foreground = ${colors.accent}
 format = <label>
 exec = /usr/local/bin/get-audio-device
+click-left = /usr/local/bin/paselect sink
 ; }}}
 
 ; mpv {{{
