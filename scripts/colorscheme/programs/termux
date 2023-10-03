@@ -1,0 +1,48 @@
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
+
+THEME_FILE="$1" # theme file containing colors
+
+# shellcheck source=colors/debug
+source "$THEME_FILE"
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env" # for $TERMUX_FONT and $TERMUX_FONT_ITALIC
+
+TERMUX_COLORS_FILE="$HOME/.termux/colors.properties"
+TERMUX_FONT_FILE="$HOME/.termux/font.ttf"
+TERMUX_FONT_FILE_ITALIC="$HOME/.termux/font-italic.ttf"
+
+# termux: set colors file
+echo "COLORSCHEME: setting termux colors"
+cat << EOF > "$TERMUX_COLORS_FILE"
+cursor=$WHITE
+foreground=$WHITE
+background=$BLACK
+color0=$BLACK
+color8=$GREY1
+color1=$BRIGHT_RED
+color9=$NEUTRAL_RED
+color2=$BRIGHT_GREEN
+color10=$NEUTRAL_GREEN
+color3=$BRIGHT_YELLOW
+color11=$NEUTRAL_YELLOW
+color4=$BRIGHT_BLUE
+color12=$NEUTRAL_BLUE
+color5=$BRIGHT_PURPLE
+color13=$NEUTRAL_PURPLE
+color6=$BRIGHT_AQUA
+color14=$NEUTRAL_AQUA
+color7=$GREY3
+color15=$WHITE
+EOF
+
+# echo "COLORSCHEME: setting termux fonts"
+# TODO: fix condition
+# if [[ $TERMUX_FONT & $TERMUX_FONT_ITALIC ]]; then
+#   cp "$TERMUX_FONT" "$TERMUX_FONT_FILE";
+#   cp "$TERMUX_FONT_ITALIC" "$TERMUX_FONT_FILE_ITALIC";
+# fi
+
+# reload termux
+echo "COLORSCHEME: reloading termux"
+termux-reload-settings
