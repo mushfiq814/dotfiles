@@ -41,6 +41,10 @@ local function mode()
   local modeStr = string.format(" %s ", modes[current_mode].name):upper()
   return statusString({
     { modeStr, modes[current_mode].highlight },
+    { "  ", "flagBlue" },
+    { "  ", "flagYellow" },
+    { "  ", "flagOrange" },
+    { "  ", "flagRed" },
   })
 end
 
@@ -282,3 +286,7 @@ hi.statusLineLspClient = { guibg = background, guifg = colors.bright_orange, }
 hi.statusLineFileType = { guifg = foreground, guibg = background, }
 hi.statusLineProgress = { guibg = colors.bright_yellow, guifg = colors.grey3, }
 hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = background, gui = "bold", }
+hi.flagBlue   = { guifg = colors.grey0, guibg = colors.neutral_blue, gui = "bold", }
+hi.flagYellow = { guifg = colors.grey0, guibg = colors.neutral_yellow, gui = "bold", }
+hi.flagOrange = { guifg = colors.grey0, guibg = colors.neutral_orange, gui = "bold", }
+hi.flagRed    = { guifg = colors.grey0, guibg = colors.neutral_red, gui = "bold", }
