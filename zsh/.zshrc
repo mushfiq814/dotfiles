@@ -24,12 +24,15 @@ alias egrep='egrep --color=auto'
 alias ga='git add'
 alias gs='git status'
 alias gl=prettyGitLog
-alias gco='git checkout'
 alias gc='git commit'
 alias gb='git branch'
+alias gd=fuzzyGitDiff
+alias gsl=fuzzyGitStash
+
+alias gco=fuzzyGitCheckout
 alias gfo='git fetch origin'
-alias gcod='git checkout dev'
-alias gpod='git pull origin dev'
+alias gpo='git pull origin'
+alias gpush='git push origin'
 
 # silent mode for make (suppress output)
 alias make='make -s'
@@ -61,7 +64,6 @@ alias nrd='npm run dev'
 alias nrs='npm run start'
 
 # open in default program
-# alias open='powershell.exe Invoke-Item'
 alias open='xdg-open'
 
 # python3 and pip3; WARNING: replaces pip version2 command name
