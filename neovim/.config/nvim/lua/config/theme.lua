@@ -226,7 +226,7 @@ hi.TSCurrentScope                     = { guifg = nil, guibg = nil, gui = 'bold'
 
 hi.NvimInternalError                  = { guifg = colors.black, guibg = colors.bright_red, gui = 'none', guisp = nil }
 
-hi.NormalFloat                        = { guifg = colors.grey4, guibg = colors.grey0, gui = nil, guisp = nil }
+hi.NormalFloat                        = { guifg = colors.grey4, guibg = darkerbg, gui = nil, guisp = nil }
 hi.FloatBorder                        = { guifg = colors.grey2, guibg = darkerbg, gui = nil, guisp = nil }
 hi.NormalNC                           = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi.TermCursor                         = { guifg = colors.black, guibg = colors.grey4, gui = 'none', guisp = nil }
@@ -330,7 +330,6 @@ hi.CmpItemKindSnippet                 = { guifg = colors.grey3, guibg = nil, gui
 hi['@text.title'] = { guifg = colors.bright_aqua, guibg = nil, gui = 'bold', guisp = nil }
 hi['@text.reference'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.literal'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.literal.block'] = { guibg = colors.grey0, gui = nil, guisp = nil }
 hi['@text.uri'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 
 local function getMdTitleHighlight(level)

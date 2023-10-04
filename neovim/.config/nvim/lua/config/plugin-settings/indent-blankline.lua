@@ -7,6 +7,6 @@ vim.opt.termguicolors = true
 indent_blankline.setup({
   debounce = 100,
   -- Special Characters: '│' '█' '▏'
-  indent = { char = "▏" },
+  indent = { char = "▏", highlight = { "Whitespace", "NonText" }, },
   whitespace = { highlight = { "Whitespace", "NonText" } },
 })

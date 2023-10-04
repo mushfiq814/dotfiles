@@ -18,7 +18,7 @@ local modulesDir = '/home/mushfiq/.config/nvim/lua/config/'
 -- load package manager
 require('lazy').setup({
   -- local
-  { dir = modulesDir .. 'theme.lua', name = 'theme', config = function() require('config/theme') end },
+  { dir = modulesDir .. 'theme.lua', name = 'theme', config = function() require('config/theme') end, priority = 1000 },
   { dir = modulesDir .. 'winbar.lua', name = 'winbar', config = function() require('config/winbar') end },
   { dir = modulesDir .. 'statusline.lua', name = 'statusline', config = function() require('config/statusline') end },
   { dir = modulesDir .. 'settings.lua', name = 'settings', config = function() require('config/settings') end },
