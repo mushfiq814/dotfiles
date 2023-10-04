@@ -13,6 +13,7 @@ source "$HOME/dotfiles/scripts/colorscheme/utils"
 
 ITERM_CONFIG_BASE_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
 ITERM_CONFIG_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
+UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
 
 # TODO: check whether it2api is available
 IT2API="$HOME/.iterm2/it2api"
