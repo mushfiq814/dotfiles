@@ -59,17 +59,21 @@ keymap('n', '<leader>ww', ':edit ' .. vimwikiDir .. '/index.md<CR>', opts)
 keymap('n', '<leader>w<leader>w', ':edit ' .. vimwikiDir .. '/diary/diary.md<CR>', opts)
 
 -- compile markdown to html
-keymap('n', '<leader>pp', ':cd %:h | !pandoc %:p'
-				 .. ' --css $HOME/dotfiles/pandoc/mvp.css'
-				 .. ' --template $HOME/dotfiles/pandoc/template.html'
-				 .. ' --output ~/downloads/pandoc-markdown-preview.html'
-				 .. ' --to html'
-				 .. ' --standalone'
-				 .. ' --self-contained'
-				 .. ' --mathjax'
-				 .. ' --highlight-style haddock'
-				 .. ' && xdg-open ~/downloads/pandoc-markdown-preview.html &<CR>'
-  , opts)
+keymap(
+  'n',
+  '<leader>pp',
+  ':cd %:h | !pandoc %:p'
+  .. ' --css $HOME/dotfiles/pandoc/mvp.css'
+  .. ' --template $HOME/dotfiles/pandoc/template.html'
+  .. ' --output ~/Downloads/pandoc-markdown-preview.html'
+  .. ' --to html'
+  .. ' --standalone'
+  .. ' --self-contained'
+  .. ' --mathjax'
+  .. ' --highlight-style haddock'
+  .. ' && xdg-open ~/Downloads/pandoc-markdown-preview.html &<CR>',
+  opts
+)
 
 -- Prettier
 keymap('n', '<leader>fp', ':!prettier --write %<CR><CR>', opts)
@@ -81,7 +85,7 @@ keymap('n', '<leader>cd', ':lcd %:h<CR>', opts)
 -- source current lua file
 keymap('n', '<leader>so', ':source % <bar> lua vim.notify("NeoVim config reloaded")<CR>', opts)
 
-local telescope_available, telescope = pcall(require, 'telescope')
+local telescope_available, _ = pcall(require, 'telescope')
 if telescope_available then
   keymap('n', '<C-p>', ':Telescope find_files find_command=rg,--files prompt_prefix=\\ 🔍\\ <CR>', opts)
   keymap('n', '<leader>b',  ':Telescope buffers prompt_prefix=\\ 🔍\\ <CR>', opts)

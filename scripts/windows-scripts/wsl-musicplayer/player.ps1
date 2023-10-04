@@ -8,21 +8,21 @@ $duration = $args[1]
 
 # Check if filepath and duration exists, otherwise terminate
 If ($mp3file -and $duration) {
-	# Create Assembly and MusicPlayer Object
-	Add-Type -AssemblyName PresentationCore
-	$MediaPlayer = New-Object System.Windows.Media.Mediaplayer
+  # Create Assembly and MusicPlayer Object
+  Add-Type -AssemblyName PresentationCore
+  $MediaPlayer = New-Object System.Windows.Media.Mediaplayer
 
-	# Open Music File
-	$MediaPlayer.Open($mp3file)
+  # Open Music File
+  $MediaPlayer.Open($mp3file)
 
-	# Play Music
-	$MediaPlayer.Play()
+  # Play Music
+  $MediaPlayer.Play()
 
-	sleep $duration
+  sleep $duration
 }
 Else {
-	Write-Host "Either filename or duration was not provided. Exiting..."
-	exit
+  Write-Host "Either filename or duration was not provided. Exiting..."
+  exit
 }
 
 # Stop Music

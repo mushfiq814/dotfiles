@@ -16,158 +16,158 @@ playlistFile=$HOME/dotfiles/scripts/wsl-musicplayer/playlist.txt
 session_name="music"
 
 stop_server () {
-	# Kill any previous powershell.exe sessions
-	pkill powershell.exe
+  # Kill any previous powershell.exe sessions
+  pkill powershell.exe
 }
 
 start_server () {
-	# stop any running servers first
-	stop_server
+  # stop any running servers first
+  stop_server
 
-	# start pulseaudio server
-	powershell.exe $psscript > /dev/null 2>&1 & echo $! > run.pid
+  # start pulseaudio server
+  powershell.exe $psscript > /dev/null 2>&1 & echo $! > run.pid
 
-	echo "PulseAudio Server Started..."
+  echo "PulseAudio Server Started..."
 }
 
 play_song () {
-	# Stop any existing music player sessions
-	stop_server
+  # Stop any existing music player sessions
+  stop_server
 
-	# Write song info to file
-	artist=$(mid3v2 $1 | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
-	title=$(mid3v2 $1 | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
-	echo "$artist - $title" > $nowplaying
+  # Write song info to file
+  artist=$(mid3v2 $1 | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
+  title=$(mid3v2 $1 | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
+  echo "$artist - $title" > $nowplaying
 
-	echo "Now Playing...$title by $artist"
+  echo "Now Playing...$title by $artist"
 
-	# start mpv player
-	mpplayer $1
+  # start mpv player
+  mpplayer $1
 }
 
 tmux_get_session () {
-	# Check if session named $session_name exists.
-	# If it exists, nothing will be output.
-	# Otherwise, redirect error to /dev/null
-	tmux has-session -t $session_name 2>/dev/null
+  # Check if session named $session_name exists.
+  # If it exists, nothing will be output.
+  # Otherwise, redirect error to /dev/null
+  tmux has-session -t $session_name 2>/dev/null
 
-	if [ $? != 0 ]; then
-		# If session doesn't exist return 1
-		echo 1
-	else
-		# If session exists, return session name
-		echo 0
-	fi
+  if [ $? != 0 ]; then
+    # If session doesn't exist return 1
+    echo 1
+  else
+    # If session exists, return session name
+    echo 0
+  fi
 }
 
 tmux_start_music () {
-	# check if session exists
-	exists=$(tmux_get_session)
+  # check if session exists
+  exists=$(tmux_get_session)
 
-	if [ $exists -eq 1 ]; then
-		# If session doesn't exist, create it
-		echo "creating new session: $session_name"
-		tmux new-session -s $session_name -d
-	else
-		echo "session: $session_name already exists...attaching"
-	fi
+  if [ $exists -eq 1 ]; then
+    # If session doesn't exist, create it
+    echo "creating new session: $session_name"
+    tmux new-session -s $session_name -d
+  else
+    echo "session: $session_name already exists...attaching"
+  fi
 
-	# Attach to music session
-	tmux attach-session -t $session_name
-	echo "attached to tmux session $session_name"
+  # Attach to music session
+  tmux attach-session -t $session_name
+  echo "attached to tmux session $session_name"
 
-	# Restart pulseaudio server using start_server function defined above
-	tmux send-keys -t $session_name "$0 start" Enter
+  # Restart pulseaudio server using start_server function defined above
+  tmux send-keys -t $session_name "$0 start" Enter
 
-	# Start mplayer
-	tmux send-keys -t $session_name "mplayer -shuffle -playlist ~/windows/Music/playlist-all.txt" Enter
+  # Start mplayer
+  tmux send-keys -t $session_name "mplayer -shuffle -playlist ~/windows/Music/playlist-all.txt" Enter
 }
 
 pause_resume_song () {
-	# check if session exists
-	exists=$(tmux_get_session)
+  # check if session exists
+  exists=$(tmux_get_session)
 
-	if [ $exists -eq 1 ]; then
-		echo "No session named $session_name found. Cannot pause/resume"
-		exit 1
-	fi
+  if [ $exists -eq 1 ]; then
+    echo "No session named $session_name found. Cannot pause/resume"
+    exit 1
+  fi
 
-	# Attach to music session
-	tmux attach-session -t $session_name
-	echo "attached to tmux session $session_name"
+  # Attach to music session
+  tmux attach-session -t $session_name
+  echo "attached to tmux session $session_name"
 
-	# Pause/Resume mplayer
-	tmux send-keys -t $session_name p
+  # Pause/Resume mplayer
+  tmux send-keys -t $session_name p
 }
 
 switch_song () {
-	# check if session exists
-	exists=$(tmux_get_session)
+  # check if session exists
+  exists=$(tmux_get_session)
 
-	if [ $exists -eq 1 ]; then
-		echo "No session named $session_name found. Cannot switch song"
-		exit 1
-	fi
+  if [ $exists -eq 1 ]; then
+    echo "No session named $session_name found. Cannot switch song"
+    exit 1
+  fi
 
-	# Attach to music session
-	tmux attach-session -t $session_name
-	echo "attached to tmux session $session_name"
+  # Attach to music session
+  tmux attach-session -t $session_name
+  echo "attached to tmux session $session_name"
 
-	if [ $1 = "next" ]; then
-		# Go to next song
-		tmux send-keys -t $session_name \>
-	else
-		# Go to next song
-		tmux send-keys -t $session_name \<
-	fi
+  if [ $1 = "next" ]; then
+    # Go to next song
+    tmux send-keys -t $session_name \>
+  else
+    # Go to next song
+    tmux send-keys -t $session_name \<
+  fi
 
-	# Give time to switch track
-	sleep 1
-	# Show Now Playing
-	get_now_playing
+  # Give time to switch track
+  sleep 1
+  # Show Now Playing
+  get_now_playing
 }
 
 get_now_playing () {
-	# get current mp3 file from mplayer
-	song=$(lsof -c mplayer | fgrep ".mp3" | awk -F " " '{ print $NF; }')
+  # get current mp3 file from mplayer
+  song=$(lsof -c mplayer | fgrep ".mp3" | awk -F " " '{ print $NF; }')
 
-	# Write song info to file
-	artist=$(mid3v2 $song | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
-	title=$(mid3v2 $song | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
+  # Write song info to file
+  artist=$(mid3v2 $song | grep TPE1 | sed 's/TPE1=\(.*\)/\1/g')
+  title=$(mid3v2 $song | grep TIT2 | sed 's/TIT2=\(.*\)/\1/g')
 
-	echo "Now Playing $artist - $title"
+  echo "Now Playing $artist - $title"
 }
 
 shuffle () {
-	echo "Shuffling not supported yet"
+  echo "Shuffling not supported yet"
 }
 
 # Parse flags and arguments
 while test $# -gt 0; do
-	case "$1" in
-		'play')
-			shift
-			arg=$1
-			if [ -d "$arg" ]; then
-				echo "Cannot play from directory yet"
-			elif [ -f "$arg" ]; then
-				play_song $arg
-			else
-				echo "invalid"
-			fi
-			shift
-			continue
-		;;
-		'pause') pause_resume_song "pause"; shift 1; continue ;;
-		'resume') pause_resume_song "resume"; shift 1; continue ;;
-		'stop') stop_server; shift 1; continue ;;
-		'start') start_server; shift 1; continue ;;
-		'next') switch_song "next"; shift 1; continue ;;
-		'prev') switch_song "previous"; shift 1; continue ;;
-		'shuffle') shuffle; shift 1; continue ;;
-		'tmux') tmux_start_music; shift 1; continue ;;
-		'--') shift; break ;;
-		*) echo "$1 not available"; exit 1 ;;
-	esac
+  case "$1" in
+    'play')
+      shift
+      arg=$1
+      if [ -d "$arg" ]; then
+        echo "Cannot play from directory yet"
+      elif [ -f "$arg" ]; then
+        play_song $arg
+      else
+        echo "invalid"
+      fi
+      shift
+      continue
+    ;;
+    'pause') pause_resume_song "pause"; shift 1; continue ;;
+    'resume') pause_resume_song "resume"; shift 1; continue ;;
+    'stop') stop_server; shift 1; continue ;;
+    'start') start_server; shift 1; continue ;;
+    'next') switch_song "next"; shift 1; continue ;;
+    'prev') switch_song "previous"; shift 1; continue ;;
+    'shuffle') shuffle; shift 1; continue ;;
+    'tmux') tmux_start_music; shift 1; continue ;;
+    '--') shift; break ;;
+    *) echo "$1 not available"; exit 1 ;;
+  esac
 done
 

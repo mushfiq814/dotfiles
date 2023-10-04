@@ -17,32 +17,32 @@ sp=""
 # scrape youtube search result html
 yt_html="$(
 curl "$link" -s \
-	-G --data-urlencode "search_query=$query" \
-	-G --data-urlencode "sp=$sp" \
-	-H 'authority: www.youtube.com' \
-	-H "user-agent: $useragent" \
-	-H 'accept-language: en-US,en;q=0.9' \
-	--compressed
+  -G --data-urlencode "search_query=$query" \
+  -G --data-urlencode "sp=$sp" \
+  -H 'authority: www.youtube.com' \
+  -H "user-agent: $useragent" \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --compressed
 )"
 
 # extract json from html
 yt_json=$(echo "$yt_html" |\
-	sed -n '/var *ytInitialData/,$p' |\
-	tr -d '\n' |\
-	sed -E ' s_^.*var ytInitialData ?=__ ; s_;</script>.*__ ;')
+  sed -n '/var *ytInitialData/,$p' |\
+  tr -d '\n' |\
+  sed -E ' s_^.*var ytInitialData ?=__ ; s_;</script>.*__ ;')
 
 # parse json and get metadata
 videos_json=$(printf "%s" "$yt_json" |\
-	jq '[ .contents | .. | .videoRenderer? | select(. != null) |
-	{
-		title: .title.runs[0].text,
-		channel: .longBylineText.runs[0].text,
-		duration:.lengthText.simpleText,
-		views: .shortViewCountText.simpleText,
-		date: .publishedTimeText.simpleText,
-		videoID: .videoId,
-		thumbs: .thumbnail.thumbnails[0].url
-	}
+  jq '[ .contents | .. | .videoRenderer? | select(. != null) |
+  {
+    title: .title.runs[0].text,
+    channel: .longBylineText.runs[0].text,
+    duration:.lengthText.simpleText,
+    views: .shortViewCountText.simpleText,
+    date: .publishedTimeText.simpleText,
+    videoID: .videoId,
+    thumbs: .thumbnail.thumbnails[0].url
+  }
 ]')
 
 # output

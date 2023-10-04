@@ -1,285 +1,283 @@
 
-[ 
-	{ "title": "The Complete Linux Course: Beginner to Power User!"
-		, "channel": "Joseph Delgadillo"
-		, "duration1": "7:23:53"
-		, "duration2": "7:23:53"
-		, "views": "2.9M views"
-		, "date": "4 years ago"
-		, "videoID": "wBp0Rb-ZJak"
-		, "thumbs": "https://i.ytimg.com/vi/wBp0Rb-ZJak/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAdGKgEuo0cR75tQrsGFB7cvT7bBw" 
-	}
-	, 
-	{ "title": "What is Linux?"
-		, "channel": "Techquickie"
-		, "duration1": "5:42"
-		, "duration2": "5:42"
-		, "views": "2.3M views"
-		, "date": "4 years ago"
-		, "videoID": "zA3vmx0GaO8"
-		, "thumbs": "https://i.ytimg.com/vi/zA3vmx0GaO8/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCSMafLK93wZ053A_vbv7CFnsMO1A" 
-	}
-	, 
-	{ "title": "Are Linux laptops the FUTURE??? - System76 Darter Pro"
-		, "channel": "ShortCircuit"
-		, "duration1": "11:51"
-		, "duration2": "11:51"
-		, "views": "797K views"
-		, "date": "1 month ago"
-		, "videoID": "bExHfIQGisM"
-		, "thumbs": "https://i.ytimg.com/vi/bExHfIQGisM/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCmR8wEpNyKZq7YJIkctOtv6CUdWg" 
-	}
-	, 
-	{ "title": "Linux System Administration Full Course"
-		, "channel": "Geek's Lesson"
-		, "duration1": "6:41:06"
-		, "duration2": "6:41:06"
-		, "views": "462K views"
-		, "date": "10 months ago"
-		, "videoID": "wsh64rjnRas"
-		, "thumbs": "https://i.ytimg.com/vi/wsh64rjnRas/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLD3yWCvYFb3vcD5Wq6LVqsDzcEOxw" 
-	}
-	, 
-	{ "title": "Easy Beginner's Guide To Linux | A Complete Introduction"
-		, "channel": "Linux TV"
-		, "duration1": "4:39"
-		, "duration2": "4:39"
-		, "views": "1.3M views"
-		, "date": "8 years ago"
-		, "videoID": "I8ik8pDTgJE"
-		, "thumbs": "https://i.ytimg.com/vi/I8ik8pDTgJE/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAJXVzKlHzoku3ymfKJ0nEV3yLFiA" 
-	}
-	, 
-	{ "title": "Linux for Hackers // EP 1 (FREE Linux course for beginners)"
-		, "channel": "NetworkChuck"
-		, "duration1": "11:33"
-		, "duration2": "11:33"
-		, "views": "113K views"
-		, "date": "1 week ago"
-		, "videoID": "VbEx7B_PTOE"
-		, "thumbs": "https://i.ytimg.com/vi/VbEx7B_PTOE/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLC2Fhbr5NIto595SgPkWS9mtWrRvg" 
-	}
-	, 
-	{ "title": "10 ways Linux is just better!"
-		, "channel": "Linus Tech Tips"
-		, "duration1": "12:29"
-		, "duration2": "12:29"
-		, "views": "2.6M views"
-		, "date": "1 year ago"
-		, "videoID": "mAFMJ1LnQu8"
-		, "thumbs": "https://i.ytimg.com/vi/mAFMJ1LnQu8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLA5XkPtu_w6q0s0fe8_ydae35G5eA" 
-	}
-	, 
-	{ "title": "Linux for the Absolute Beginner!"
-		, "channel": "Low Dough Tech"
-		, "duration1": "15:07"
-		, "duration2": "15:07"
-		, "views": "99K views"
-		, "date": "10 months ago"
-		, "videoID": "EN7mbRccT-8"
-		, "thumbs": "https://i.ytimg.com/vi/EN7mbRccT-8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLA4rFnN3KxsrkeDJZkBQ5x-yy9woA" 
-	}
-	, 
-	{ "title": "Introduction to Linux and Basic Linux Commands for Beginners"
-		, "channel": "sakitech"
-		, "duration1": "18:46"
-		, "duration2": "18:46"
-		, "views": "2.9M views"
-		, "date": "7 years ago"
-		, "videoID": "IVquJh3DXUA"
-		, "thumbs": "https://i.ytimg.com/vi/IVquJh3DXUA/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCO4LgJXJI68ajnvvx6Yz3T3S_Uqw" 
-	}
-	, 
-	{ "title": "15 Useful Linux Commands Every Linux User Needs | Learning Terminal Part 1"
-		, "channel": "Chris Titus Tech"
-		, "duration1": "18:53"
-		, "duration2": "18:53"
-		, "views": "144K views"
-		, "date": "2 years ago"
-		, "videoID": "XK81cfvrElg"
-		, "thumbs": "https://i.ytimg.com/vi/XK81cfvrElg/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBwFmAd9GPX3WJBxpg0qUWu8HWYZw" 
-	}
-	, 
-	{ "title": "Tech Support Scammer Reacts To Linux & GETS ANGRY!"
-		, "channel": "Deeveeaar"
-		, "duration1": "16:22"
-		, "duration2": "16:22"
-		, "views": "5.2K views"
-		, "date": "2 days ago"
-		, "videoID": "lYteqW2pS6c"
-		, "thumbs": "https://i.ytimg.com/vi/lYteqW2pS6c/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLArQ6SZ6HdRAJAoUBlnGxRk44VuFA" 
-	}
-	, 
-	{ "title": "A $200 phone that can do ANYTHING!!! - Pine64 Pinephone"
-		, "channel": "ShortCircuit"
-		, "duration1": "14:38"
-		, "duration2": "14:38"
-		, "views": "624K views"
-		, "date": "1 week ago"
-		, "videoID": "fCKMxzz9cjs"
-		, "thumbs": "https://i.ytimg.com/vi/fCKMxzz9cjs/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDwYiUw8tDi30EG4Y4fSLJ_oQDK_w" 
-	}
-	, 
-	{ "title": "5 Reasons To Use FreeBSD Instead Of Linux!"
-		, "channel": "FastGadgets"
-		, "duration1": "13:43"
-		, "duration2": "13:43"
-		, "views": "7.4K views"
-		, "date": "1 month ago"
-		, "videoID": "D87GAUU5zzw"
-		, "thumbs": "https://i.ytimg.com/vi/D87GAUU5zzw/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAtoIUfoWGrxqPXUbyDdk7GIDrO_g" 
-	}
-	, 
-	{ "title": "I tried switching to PopOS for a week..."
-		, "channel": "HowToIT"
-		, "duration1": "7:36"
-		, "duration2": "7:36"
-		, "views": "10K views"
-		, "date": "2 months ago"
-		, "videoID": "sYApx7GHML0"
-		, "thumbs": "https://i.ytimg.com/vi/sYApx7GHML0/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBIMg-fjeudZqQAcGyVpHILQIOpgA" 
-	}
-	, 
-	{ "title": "Windows 10 vs Debian vs Arch Linux (EndeavourOS) - Speed Test!"
-		, "channel": "TechHut"
-		, "duration1": "12:02"
-		, "duration2": "12:02"
-		, "views": "111K views"
-		, "date": "2 months ago"
-		, "videoID": "cQWwb8VRrhU"
-		, "thumbs": "https://i.ytimg.com/vi/cQWwb8VRrhU/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBmos31xQB75Z46uqIqSo0U-EiB1Q" 
-	}
-	, 
-	{ "title": "Is Linux Finally Beating Windows? (Microsoft Windows vs Linux OS Battle)"
-		, "channel": "The Infographics Show"
-		, "duration1": "9:29"
-		, "duration2": "9:29"
-		, "views": "729K views"
-		, "date": "1 year ago"
-		, "videoID": "EB5hPlqrGU8"
-		, "thumbs": "https://i.ytimg.com/vi/EB5hPlqrGU8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLD7g2HprBI97u4ncReKd_47-Sl_vw" 
-	}
-	, 
-	{ "title": "Best Thing I've Discovered Using Linux! (After One Month)"
-		, "channel": "Kalle Hallden"
-		, "duration1": "9:10"
-		, "duration2": "9:10"
-		, "views": "278K views"
-		, "date": "6 months ago"
-		, "videoID": "TCWwqJYvWlI"
-		, "thumbs": "https://i.ytimg.com/vi/TCWwqJYvWlI/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCEMgh3W5najXiVaq9FPoKiyVEpDA" 
-	}
-	, 
-	{ "title": "GNOME 40 - First Thoughts"
-		, "channel": "LearnLinuxTV"
-		, "duration1": "20:02"
-		, "duration2": "20:02"
-		, "views": "11K views"
-		, "date": "2 days ago"
-		, "videoID": "UnntauRI-ck"
-		, "thumbs": "https://i.ytimg.com/vi/UnntauRI-ck/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBobM-qHLx_DqwnZCcENgvlwqLoOw" 
-	}
-	, 
-	{ "title": "7 AWESOME Linux Terminal Applications and Utilities"
-		, "channel": "TechHut"
-		, "duration1": "13:25"
-		, "duration2": "13:25"
-		, "views": "98K views"
-		, "date": "3 months ago"
-		, "videoID": "ZNNqkeeOdrk"
-		, "thumbs": "https://i.ytimg.com/vi/ZNNqkeeOdrk/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCvAXR0gR_Z2XcapRunZ9MTrjZA2w" 
-	}
-	, 
-	{ "title": "LGR - Installing MS-DOS on a Ryzen Gaming PC!"
-		, "channel": "LGR"
-		, "duration1": "12:28"
-		, "duration2": "12:28"
-		, "views": "1.4M views"
-		, "date": "3 years ago"
-		, "videoID": "bS9hiSwL1KY"
-		, "thumbs": "https://i.ytimg.com/vi/bS9hiSwL1KY/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCt2o8f7A0OftVcJnw0HeoHmngr5Q" 
-	}
-	, 
-	{ "title": "Which Linux Distribution? | Understanding Linux Distros"
-		, "channel": "Chris Titus Tech"
-		, "duration1": "24:01"
-		, "duration2": "24:01"
-		, "views": "238K views"
-		, "date": "2 years ago"
-		, "videoID": "DKFnqAtEOvc"
-		, "thumbs": "https://i.ytimg.com/vi/DKFnqAtEOvc/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDQiUTH3rrBCd8g6xZMJXHrDjkKHQ" 
-	}
-	, 
-	{ "title": "10 things you can do with Linux that you can't do with Windows"
-		, "channel": "Engineer Man"
-		, "duration1": "9:05"
-		, "duration2": "9:05"
-		, "views": "531K views"
-		, "date": "2 years ago"
-		, "videoID": "JOOkfGv58u0"
-		, "thumbs": "https://i.ytimg.com/vi/JOOkfGv58u0/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAnMUqmqDfZbnw1RrF-DKjKN-SLwg" 
-	}
-	, 
-	{ "title": "you need to learn Virtual Machines RIGHT NOW!! (Kali Linux VM
-		, Ubuntu
-		, Windows)"
-		, "channel": "NetworkChuck"
-		, "duration1": "27:41"
-		, "duration2": "27:41"
-		, "views": "976K views"
-		, "date": "2 months ago"
-		, "videoID": "wX75Z-4MEoM"
-		, "thumbs": "https://i.ytimg.com/vi/wX75Z-4MEoM/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBXYkUUtL1OFE1bmHTkdZ8NMKgcYQ" 
-	}
-	, 
-	{ "title": "Best Ways To Learn Linux"
-		, "channel": "HackerSploit"
-		, "duration1": "13:07"
-		, "duration2": "13:07"
-		, "views": "68K views"
-		, "date": "4 months ago"
-		, "videoID": "x-3TBVtM0-Y"
-		, "thumbs": "https://i.ytimg.com/vi/x-3TBVtM0-Y/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCPnFE-9KYdimviHXeLFScHWuPi6Q" 
-	}
-	, 
-	{ "title": "Switch to these open-source apps...on Windows
-		, macOS or Linux!"
-		, "channel": "InfinitelyGalactic"
-		, "duration1": "23:17"
-		, "duration2": "23:17"
-		, "views": "49K views"
-		, "date": "2 weeks ago"
-		, "videoID": "j3koOJRUWCc"
-		, "thumbs": "https://i.ytimg.com/vi/j3koOJRUWCc/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDFRAR6qXwuC8eYI086MQk74RD-5g" 
-	}
-	, 
-	{ "title": "Windows Gamers vs Linux Gamers"
-		, "channel": "Alienizer"
-		, "duration1": "6:47"
-		, "duration2": "6:47"
-		, "views": "846K views"
-		, "date": "8 months ago"
-		, "videoID": "hwnP6WSmGhA"
-		, "thumbs": "https://i.ytimg.com/vi/hwnP6WSmGhA/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLC41RUyqj_RpNt3cuv163J84TFaDA" 
-	}
-	, 
-	{ "title": "Linux Is?"
-		, "channel": "Joe Collins"
-		, "duration1": "17:27"
-		, "duration2": "17:27"
-		, "views": "4.2K views"
-		, "date": "2 days ago"
-		, "videoID": "iobtELCarvs"
-		, "thumbs": "https://i.ytimg.com/vi/iobtELCarvs/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLB6yg7mSWyo8r3_8fQM9igK3nkirw" 
-	}
-	, 
-	{ "title": "Linux for Ethical Hackers (Kali Linux Tutorial)"
-		, "channel": "freeCodeCamp.org"
-		, "duration1": "2:01:00"
-		, "duration2": "2:01:00"
-		, "views": "1.6M views"
-		, "date": "1 year ago"
-		, "videoID": "lZAoFs75_cs"
-		, "thumbs": "https://i.ytimg.com/vi/lZAoFs75_cs/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDemUf9HCMJfiG1__h0sipS9MTWzQ" 
-	} 
+[
+  {
+    "title": "The Complete Linux Course: Beginner to Power User!",
+    "channel": "Joseph Delgadillo",
+    "duration1": "7:23:53",
+    "duration2": "7:23:53",
+    "views": "2.9M views",
+    "date": "4 years ago",
+    "videoID": "wBp0Rb-ZJak",
+    "thumbs": "https://i.ytimg.com/vi/wBp0Rb-ZJak/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAdGKgEuo0cR75tQrsGFB7cvT7bBw"
+  },
+  {
+    "title": "What is Linux?",
+    "channel": "Techquickie",
+    "duration1": "5:42",
+    "duration2": "5:42",
+    "views": "2.3M views",
+    "date": "4 years ago",
+    "videoID": "zA3vmx0GaO8",
+    "thumbs": "https://i.ytimg.com/vi/zA3vmx0GaO8/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCSMafLK93wZ053A_vbv7CFnsMO1A"
+  },
+  {
+    "title": "Are Linux laptops the FUTURE??? - System76 Darter Pro",
+    "channel": "ShortCircuit",
+    "duration1": "11:51",
+    "duration2": "11:51",
+    "views": "797K views",
+    "date": "1 month ago",
+    "videoID": "bExHfIQGisM",
+    "thumbs": "https://i.ytimg.com/vi/bExHfIQGisM/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCmR8wEpNyKZq7YJIkctOtv6CUdWg"
+  },
+  {
+    "title": "Linux System Administration Full Course",
+    "channel": "Geek's Lesson",
+    "duration1": "6:41:06",
+    "duration2": "6:41:06",
+    "views": "462K views",
+    "date": "10 months ago",
+    "videoID": "wsh64rjnRas",
+    "thumbs": "https://i.ytimg.com/vi/wsh64rjnRas/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLD3yWCvYFb3vcD5Wq6LVqsDzcEOxw"
+  },
+  {
+    "title": "Easy Beginner's Guide To Linux | A Complete Introduction",
+    "channel": "Linux TV",
+    "duration1": "4:39",
+    "duration2": "4:39",
+    "views": "1.3M views",
+    "date": "8 years ago",
+    "videoID": "I8ik8pDTgJE",
+    "thumbs": "https://i.ytimg.com/vi/I8ik8pDTgJE/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAJXVzKlHzoku3ymfKJ0nEV3yLFiA"
+  },
+  {
+    "title": "Linux for Hackers // EP 1 (FREE Linux course for beginners)",
+    "channel": "NetworkChuck",
+    "duration1": "11:33",
+    "duration2": "11:33",
+    "views": "113K views",
+    "date": "1 week ago",
+    "videoID": "VbEx7B_PTOE",
+    "thumbs": "https://i.ytimg.com/vi/VbEx7B_PTOE/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLC2Fhbr5NIto595SgPkWS9mtWrRvg"
+  },
+  {
+    "title": "10 ways Linux is just better!",
+    "channel": "Linus Tech Tips",
+    "duration1": "12:29",
+    "duration2": "12:29",
+    "views": "2.6M views",
+    "date": "1 year ago",
+    "videoID": "mAFMJ1LnQu8",
+    "thumbs": "https://i.ytimg.com/vi/mAFMJ1LnQu8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLA5XkPtu_w6q0s0fe8_ydae35G5eA"
+  },
+  {
+    "title": "Linux for the Absolute Beginner!",
+    "channel": "Low Dough Tech",
+    "duration1": "15:07",
+    "duration2": "15:07",
+    "views": "99K views",
+    "date": "10 months ago",
+    "videoID": "EN7mbRccT-8",
+    "thumbs": "https://i.ytimg.com/vi/EN7mbRccT-8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLA4rFnN3KxsrkeDJZkBQ5x-yy9woA"
+  },
+  {
+    "title": "Introduction to Linux and Basic Linux Commands for Beginners",
+    "channel": "sakitech",
+    "duration1": "18:46",
+    "duration2": "18:46",
+    "views": "2.9M views",
+    "date": "7 years ago",
+    "videoID": "IVquJh3DXUA",
+    "thumbs": "https://i.ytimg.com/vi/IVquJh3DXUA/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCO4LgJXJI68ajnvvx6Yz3T3S_Uqw"
+  },
+  {
+    "title": "15 Useful Linux Commands Every Linux User Needs | Learning Terminal Part 1",
+    "channel": "Chris Titus Tech",
+    "duration1": "18:53",
+    "duration2": "18:53",
+    "views": "144K views",
+    "date": "2 years ago",
+    "videoID": "XK81cfvrElg",
+    "thumbs": "https://i.ytimg.com/vi/XK81cfvrElg/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBwFmAd9GPX3WJBxpg0qUWu8HWYZw"
+  },
+  {
+    "title": "Tech Support Scammer Reacts To Linux & GETS ANGRY!",
+    "channel": "Deeveeaar",
+    "duration1": "16:22",
+    "duration2": "16:22",
+    "views": "5.2K views",
+    "date": "2 days ago",
+    "videoID": "lYteqW2pS6c",
+    "thumbs": "https://i.ytimg.com/vi/lYteqW2pS6c/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLArQ6SZ6HdRAJAoUBlnGxRk44VuFA"
+  },
+  {
+    "title": "A $200 phone that can do ANYTHING!!! - Pine64 Pinephone",
+    "channel": "ShortCircuit",
+    "duration1": "14:38",
+    "duration2": "14:38",
+    "views": "624K views",
+    "date": "1 week ago",
+    "videoID": "fCKMxzz9cjs",
+    "thumbs": "https://i.ytimg.com/vi/fCKMxzz9cjs/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDwYiUw8tDi30EG4Y4fSLJ_oQDK_w"
+  },
+  {
+    "title": "5 Reasons To Use FreeBSD Instead Of Linux!",
+    "channel": "FastGadgets",
+    "duration1": "13:43",
+    "duration2": "13:43",
+    "views": "7.4K views",
+    "date": "1 month ago",
+    "videoID": "D87GAUU5zzw",
+    "thumbs": "https://i.ytimg.com/vi/D87GAUU5zzw/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAtoIUfoWGrxqPXUbyDdk7GIDrO_g"
+  },
+  {
+    "title": "I tried switching to PopOS for a week...",
+    "channel": "HowToIT",
+    "duration1": "7:36",
+    "duration2": "7:36",
+    "views": "10K views",
+    "date": "2 months ago",
+    "videoID": "sYApx7GHML0",
+    "thumbs": "https://i.ytimg.com/vi/sYApx7GHML0/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBIMg-fjeudZqQAcGyVpHILQIOpgA"
+  },
+  {
+    "title": "Windows 10 vs Debian vs Arch Linux (EndeavourOS) - Speed Test!",
+    "channel": "TechHut",
+    "duration1": "12:02",
+    "duration2": "12:02",
+    "views": "111K views",
+    "date": "2 months ago",
+    "videoID": "cQWwb8VRrhU",
+    "thumbs": "https://i.ytimg.com/vi/cQWwb8VRrhU/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBmos31xQB75Z46uqIqSo0U-EiB1Q"
+  },
+  {
+    "title": "Is Linux Finally Beating Windows? (Microsoft Windows vs Linux OS Battle)",
+    "channel": "The Infographics Show",
+    "duration1": "9:29",
+    "duration2": "9:29",
+    "views": "729K views",
+    "date": "1 year ago",
+    "videoID": "EB5hPlqrGU8",
+    "thumbs": "https://i.ytimg.com/vi/EB5hPlqrGU8/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLD7g2HprBI97u4ncReKd_47-Sl_vw"
+  },
+  {
+    "title": "Best Thing I've Discovered Using Linux! (After One Month)",
+    "channel": "Kalle Hallden",
+    "duration1": "9:10",
+    "duration2": "9:10",
+    "views": "278K views",
+    "date": "6 months ago",
+    "videoID": "TCWwqJYvWlI",
+    "thumbs": "https://i.ytimg.com/vi/TCWwqJYvWlI/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCEMgh3W5najXiVaq9FPoKiyVEpDA"
+  },
+  {
+    "title": "GNOME 40 - First Thoughts",
+    "channel": "LearnLinuxTV",
+    "duration1": "20:02",
+    "duration2": "20:02",
+    "views": "11K views",
+    "date": "2 days ago",
+    "videoID": "UnntauRI-ck",
+    "thumbs": "https://i.ytimg.com/vi/UnntauRI-ck/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBobM-qHLx_DqwnZCcENgvlwqLoOw"
+  },
+  {
+    "title": "7 AWESOME Linux Terminal Applications and Utilities",
+    "channel": "TechHut",
+    "duration1": "13:25",
+    "duration2": "13:25",
+    "views": "98K views",
+    "date": "3 months ago",
+    "videoID": "ZNNqkeeOdrk",
+    "thumbs": "https://i.ytimg.com/vi/ZNNqkeeOdrk/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCvAXR0gR_Z2XcapRunZ9MTrjZA2w"
+  },
+  {
+    "title": "LGR - Installing MS-DOS on a Ryzen Gaming PC!",
+    "channel": "LGR",
+    "duration1": "12:28",
+    "duration2": "12:28",
+    "views": "1.4M views",
+    "date": "3 years ago",
+    "videoID": "bS9hiSwL1KY",
+    "thumbs": "https://i.ytimg.com/vi/bS9hiSwL1KY/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCt2o8f7A0OftVcJnw0HeoHmngr5Q"
+  },
+  {
+    "title": "Which Linux Distribution? | Understanding Linux Distros",
+    "channel": "Chris Titus Tech",
+    "duration1": "24:01",
+    "duration2": "24:01",
+    "views": "238K views",
+    "date": "2 years ago",
+    "videoID": "DKFnqAtEOvc",
+    "thumbs": "https://i.ytimg.com/vi/DKFnqAtEOvc/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDQiUTH3rrBCd8g6xZMJXHrDjkKHQ"
+  },
+  {
+    "title": "10 things you can do with Linux that you can't do with Windows",
+    "channel": "Engineer Man",
+    "duration1": "9:05",
+    "duration2": "9:05",
+    "views": "531K views",
+    "date": "2 years ago",
+    "videoID": "JOOkfGv58u0",
+    "thumbs": "https://i.ytimg.com/vi/JOOkfGv58u0/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAnMUqmqDfZbnw1RrF-DKjKN-SLwg"
+  },
+  {
+    "title": "you need to learn Virtual Machines RIGHT NOW!! (Kali Linux VM, Ubuntu, Windows)",
+    "channel": "NetworkChuck",
+    "duration1": "27:41",
+    "duration2": "27:41",
+    "views": "976K views",
+    "date": "2 months ago",
+    "videoID": "wX75Z-4MEoM",
+    "thumbs": "https://i.ytimg.com/vi/wX75Z-4MEoM/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBXYkUUtL1OFE1bmHTkdZ8NMKgcYQ"
+  },
+  {
+    "title": "Best Ways To Learn Linux",
+    "channel": "HackerSploit",
+    "duration1": "13:07",
+    "duration2": "13:07",
+    "views": "68K views",
+    "date": "4 months ago",
+    "videoID": "x-3TBVtM0-Y",
+    "thumbs": "https://i.ytimg.com/vi/x-3TBVtM0-Y/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCPnFE-9KYdimviHXeLFScHWuPi6Q"
+  },
+  {
+    "title": "Switch to these open-source apps...on Windows, macOS or Linux!",
+    "channel": "InfinitelyGalactic",
+    "duration1": "23:17",
+    "duration2": "23:17",
+    "views": "49K views",
+    "date": "2 weeks ago",
+    "videoID": "j3koOJRUWCc",
+    "thumbs": "https://i.ytimg.com/vi/j3koOJRUWCc/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDFRAR6qXwuC8eYI086MQk74RD-5g"
+  },
+  {
+    "title": "Windows Gamers vs Linux Gamers",
+    "channel": "Alienizer",
+    "duration1": "6:47",
+    "duration2": "6:47",
+    "views": "846K views",
+    "date": "8 months ago",
+    "videoID": "hwnP6WSmGhA",
+    "thumbs": "https://i.ytimg.com/vi/hwnP6WSmGhA/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLC41RUyqj_RpNt3cuv163J84TFaDA"
+  },
+  {
+    "title": "Linux Is?",
+    "channel": "Joe Collins",
+    "duration1": "17:27",
+    "duration2": "17:27",
+    "views": "4.2K views",
+    "date": "2 days ago",
+    "videoID": "iobtELCarvs",
+    "thumbs": "https://i.ytimg.com/vi/iobtELCarvs/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLB6yg7mSWyo8r3_8fQM9igK3nkirw"
+  },
+  {
+    "title": "Linux for Ethical Hackers (Kali Linux Tutorial)",
+    "channel": "freeCodeCamp.org",
+    "duration1": "2:01:00",
+    "duration2": "2:01:00",
+    "views": "1.6M views",
+    "date": "1 year ago",
+    "videoID": "lZAoFs75_cs",
+    "thumbs": "https://i.ytimg.com/vi/lZAoFs75_cs/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDemUf9HCMJfiG1__h0sipS9MTWzQ"
+  }
 ]

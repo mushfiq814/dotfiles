@@ -46,7 +46,7 @@ Some markdown features exhibited:
 const x: number;
 
 const myFunc(x: number): void => {
-	console.log(x);
+  console.log(x);
 }
 ```
 
@@ -56,7 +56,7 @@ This is a list
 * item 1
 * item 2
 * item 3
-	* subitem 1
+  * subitem 1
 
 This is another list:
 
