@@ -113,27 +113,27 @@ function showProjects() {
 
 # prettyGitLog {{{
 function prettyGitLog() {
-	# format strings; check man git log for more `placeholders`
-	local authorDate='%aI'            # author date
-	local authorDateRelative='%ar'    # author date relative
-	# local commitDate='%cI'            # commit date relative
-	# local commitDateRelative='%cr'    # commit date relative
-	local authorName='%an'            # author name
-	local shortCommitHash='%h'        # abbreviated commit hash
-	# local longCommitHash='%H'         # commit hash
-	local subject='%s'                # subject
-	# local REFP='%d'   # reference pointer(branch, tag) names
-	
-	local format=""
-	format+="%C(Magenta)$shortCommitHash  %C(reset)"
-	format+="%C(Yellow)$authorDate %C(reset)"
-	format+="(%C(Green)$authorDateRelative%C(reset))"
-	format+="    %x09" # tab character
-	format+="%C(Cyan)$authorName: %C(reset)"
-	format+="$subject"
+  # format strings; check man git log for more `placeholders`
+  local authorDate='%aI'            # author date
+  local authorDateRelative='%ar'    # author date relative
+  # local commitDate='%cI'            # commit date relative
+  # local commitDateRelative='%cr'    # commit date relative
+  local authorName='%an'            # author name
+  local shortCommitHash='%h'        # abbreviated commit hash
+  # local longCommitHash='%H'         # commit hash
+  local subject='%s'                # subject
+  # local REFP='%d'   # reference pointer(branch, tag) names
 
-	# call git log with custom format and append any flags passed in
-	git log --pretty=$format $@
+  local format=""
+  format+="%C(Magenta)$shortCommitHash  %C(reset)"
+  format+="%C(Yellow)$authorDate %C(reset)"
+  format+="(%C(Green)$authorDateRelative%C(reset))"
+  format+="    %x09" # tab character
+  format+="%C(Cyan)$authorName: %C(reset)"
+  format+="$subject"
+
+  # call git log with custom format and append any flags passed in
+  git log --pretty=$format $@
 }
 # }}}
 
@@ -218,40 +218,40 @@ function convertWinPath() {
 
 # vlcplay {{{
 function vlcplay() {
-	vlc="C:\Program Files (x86)\VideoLan\VLC\\\vlc.exe"
-	pth="$(echo $1 | sed 's/\/home\/mushfiq\/windows/C:/g; s/\//\\/g')"
-	powershell.exe $vlc $pth
+  vlc="C:\Program Files (x86)\VideoLan\VLC\\\vlc.exe"
+  pth="$(echo $1 | sed 's/\/home\/mushfiq\/windows/C:/g; s/\//\\/g')"
+  powershell.exe $vlc $pth
 }
 # }}}
 
 # md2html: Convert from markdown to html {{{
 function md2html() {
-	css="~/dotfiles/pandoc/mvp.css"
-	html="$HOME/dotfiles/pandoc/template.html"
-	out="$(basename $1 .md).html"
+  css="~/dotfiles/pandoc/mvp.css"
+  html="$HOME/dotfiles/pandoc/template.html"
+  out="$(basename $1 .md).html"
 
-	pandoc $1                       \
-	       --to html                \
-	       --standalone             \
-	       --css $css               \
-	       --template $html         \
-	       --output $out            \
-	       --mathjax                \
-	       --highlight-style tango
+  pandoc $1                       \
+         --to html                \
+         --standalone             \
+         --css $css               \
+         --template $html         \
+         --output $out            \
+         --mathjax                \
+         --highlight-style tango
 
-	# open in browser
-	# powershell.exe Invoke-Item $out
+  # open in browser
+  # powershell.exe Invoke-Item $out
 }
 # }}}
 
 # changeBG {{{
 function changeBG() {
-	pre="C:\/Users\/mushf\/Downloads\/screenshots"
-	img="$pre\/$1.png"
-	term1="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
-	term2="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-	sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term1
-	sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term2
+  pre="C:\/Users\/mushf\/Downloads\/screenshots"
+  img="$pre\/$1.png"
+  term1="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
+  term2="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+  sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term1
+  sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term2
 }
 # }}}
 
@@ -324,18 +324,18 @@ SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLV
 
 # function to set prompt
 set_prompt () {
-	PROMPT="%B"
+  PROMPT="%B"
   # PROMPT+="💻 "
-	PROMPT+="%F{$YE1}%n%f"
-	PROMPT+="%F{$MA1}:%f"
+  PROMPT+="%F{$YE1}%n%f"
+  PROMPT+="%F{$MA1}:%f"
   PROMPT+="%F{$GR1}%m %f"
-	PROMPT+="["
-	PROMPT+="%F{$CY1}%1d%f"
-	PROMPT+="]"
-	PROMPT+="%F{$MA1}${vcs_info_msg_0_}%f"
-	PROMPT+="%(1j. .)"
+  PROMPT+="["
+  PROMPT+="%F{$CY1}%1d%f"
+  PROMPT+="]"
+  PROMPT+="%F{$MA1}${vcs_info_msg_0_}%f"
+  PROMPT+="%(1j. .)"
   # PROMPT+="%(1j. 💬.)"
-	PROMPT+=" %B${SUFFIX}%b "
+  PROMPT+=" %B${SUFFIX}%b "
   # PROMPT+="$COL_BAR"
 }
 
@@ -427,13 +427,13 @@ export PATH="/home/mushfiq/.local/share/npm/bin:$PATH"
 # NVM slows down zsh initialization by a lot.
 # This enables lazy loading nvm
 lazynvm() {
-	# echo 'lazy loading nvm...'
-	unset -f nvm node npm npx
-	export NVM_DIR=~/.nvm
-	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-	if [ -f "$NVM_DIR/bash_completion" ]; then
-		[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-	fi
+  # echo 'lazy loading nvm...'
+  unset -f nvm node npm npx
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+  if [ -f "$NVM_DIR/bash_completion" ]; then
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+  fi
 }
 
 # lazy load nvm when the following commands are entered
