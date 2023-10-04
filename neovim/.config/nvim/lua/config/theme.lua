@@ -247,8 +247,8 @@ hi.TreesitterContext                  = { guifg = nil, guibg = colors.grey0, gui
 -- telescope
 hi.TelescopeBorder                    = 'FloatBorder'
 hi.TelescopePromptBorder              = 'FloatBorder'
-hi.TelescopePromptNormal              = { guifg = colors.grey4, guibg = darkerstatusline, gui = nil, guisp = nil }
-hi.TelescopePromptPrefix              = { guifg = colors.bright_red, guibg = darkerstatusline, gui = nil, guisp = nil }
+hi.TelescopePromptNormal              = { guifg = colors.grey4, guibg = darkerbg, gui = nil, guisp = nil }
+hi.TelescopePromptPrefix              = { guifg = colors.bright_red, guibg = darkerbg, gui = nil, guisp = nil }
 hi.TelescopeNormal                    = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
 hi.TelescopePreviewTitle              = {
   guifg = darkercursorline,
