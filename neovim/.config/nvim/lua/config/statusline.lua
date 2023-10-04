@@ -1,7 +1,16 @@
-local colors_loaded, colors = pcall(require, 'config/colors')
+local colors_loaded, colors = pcall(require, "config/colors")
 if not colors_loaded then return end
 local background = colors.grey0
 local foreground = colors.white
+
+local function statusString(list)
+  local str = ""
+  for _, v in pairs(list) do
+    str = str .. "%#" .. v[2] .. "#" .. v[1]
+  end
+  str = str .. "%#Normal#"
+  return str
+end
 
 -- from https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
 local modes = {
@@ -29,35 +38,41 @@ local modes = {
 }
 local function mode()
   local current_mode = vim.api.nvim_get_mode().mode
-  local mode = string.format(" %s ", modes[current_mode].name):upper()
-  return "%#" .. modes[current_mode].highlight .. "#" .. mode .. "%#Normal#"
+  local modeStr = string.format(" %s ", modes[current_mode].name):upper()
+  return statusString({
+    { modeStr, modes[current_mode].highlight },
+  })
 end
 
 BRANCHES = {}
 local function cacheGitBranch()
-  local handle = io.popen('git rev-parse --abbrev-ref HEAD 2> /dev/null')
-  if handle == nil then return '' end
-  local branch_name = handle:read('*a')
-  branch_name = string.gsub(branch_name, '[^%w-/\\.]', '')
+  local handle = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
+  if handle == nil then return "" end
+  local branch_name = handle:read("*a")
+  branch_name = string.gsub(branch_name, "[^%w-/\\.]", "")
   handle:close()
 
-  if branch_name == nil or branch_name == '' then
-    return ''
+  if branch_name == nil or branch_name == "" then
+    return ""
   else
     BRANCHES[vim.api.nvim_get_current_buf()] = branch_name
-    return '%#statusLineBranch#  ' .. branch_name .. ' %#Normal#'
+    return statusString({
+      { "  " .. branch_name .. " ", "statusLineBranch" },
+    })
   end
 end
 
-local augroupGitBranch = vim.api.nvim_create_augroup('statusLineGitBranchGroup', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+local augroupGitBranch = vim.api.nvim_create_augroup("statusLineGitBranchGroup", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = augroupGitBranch,
   callback = function() cacheGitBranch() end
 })
 local function retrieveBranchFromCache()
   local branch_name = BRANCHES[vim.api.nvim_get_current_buf()] or nil
-  if branch_name == nil or #(branch_name) < 1 then return '' end
-  return '%#statusLineBranch#  ' .. branch_name .. ' %#Normal#'
+  if branch_name == nil or #(branch_name) < 1 then return "" end
+  return statusString({
+    { "  " .. branch_name .. " ", "statusLineBranch" },
+  })
 end
 
 local function lspDiagnosticCounts()
@@ -65,7 +80,7 @@ local function lspDiagnosticCounts()
   local diagnostics = vim.diagnostic.get(0)
   local count = { 0, 0, 0, 0 }
   for _, diagnostic in ipairs(diagnostics) do
-    if vim.startswith(vim.diagnostic.get_namespace(diagnostic.namespace).name, 'vim.lsp') then
+    if vim.startswith(vim.diagnostic.get_namespace(diagnostic.namespace).name, "vim.lsp") then
       count[diagnostic.severity] = count[diagnostic.severity] + 1
     end
   end
@@ -74,31 +89,39 @@ local function lspDiagnosticCounts()
   local info_count = count[vim.diagnostic.severity.INFO]
   local hint_count = count[vim.diagnostic.severity.HINT]
   return table.concat({
-    '%#statusLineDiagnosticsError#  ' .. error_count .. ' ',
-    '%#statusLineDiagnosticsWarning# ' .. warning_count .. ' ',
-    '%#statusLineDiagnosticsInfo# ' .. info_count + hint_count .. ' ',
-    '%#Normal#'
+    statusString({
+      { "  " .. error_count .. " ", "statusLineDiagnosticsError" },
+      { " " .. warning_count .. " ", "statusLineDiagnosticsWarning" },
+      { " " .. info_count + hint_count .. " ", "statusLineDiagnosticsInfo" },
+    })
   })
 end
 
 local function filename()
   local file = vim.fn.expand("%:~:.")
-  if vim.bo.modified then file = file .. "%#statusLineFileNameModified# ● %#Normal#" end
-  return "%#statusLineFileName#" .. file .. "%#Normal#"
+  if vim.bo.modified then
+    file = file .. statusString({
+      { " ● ", "statusLineFileNameModified" },
+    })
+  end
+  return statusString({
+    { file, "statusLineFileName" },
+  })
 end
 
 local function filetype()
-  local filename = vim.fn.expand("%:t")
-  local filetype = vim.bo.filetype
-  local filetypeStr = "%#statusLineFileType# " .. filetype .. " %#Normal#"
+  local currentFiletype = vim.bo.filetype
+  local filetypeStr = statusString({
+    { " " .. currentFiletype .. " ", "statusLineFileType" },
+  })
 
   -- icon
   local filetypeIconStr = ""
-  local devicons_loaded, devicons = pcall(require, 'nvim-web-devicons')
+  local devicons_loaded, devicons = pcall(require, "nvim-web-devicons")
   if devicons_loaded then
-    local icon, color = devicons.get_icon_color_by_filetype(filetype)
+    local icon, color = devicons.get_icon_color_by_filetype(currentFiletype)
     if not (icon and color) then
-      icon, color = devicons.get_icon_color(filename, filetype)
+      icon, color = devicons.get_icon_color(vim.fn.expand("%:t"), currentFiletype)
     end
     if icon and color then
       vim.cmd(
@@ -107,7 +130,9 @@ local function filetype()
         .. " guibg="
         .. background
       )
-      filetypeIconStr = '%#statusLineFileTypeIcon# ' .. icon .. ' %#Normal#'
+      filetypeIconStr = statusString({
+        { " " .. icon .. " ", "statusLineFileTypeIcon" },
+      })
     else
     end
   end
@@ -116,8 +141,8 @@ end
 
 local function lineinfo()
   local lines = vim.api.nvim_buf_line_count(0)
-  local currentLine = vim.fn.line('.')
-  local currentColumn = vim.fn.col('.')
+  local currentLine = vim.fn.line(".")
+  local currentColumn = vim.fn.col(".")
   local progress = math.ceil(100 * currentLine / lines)
 
   local progressStr = ""
@@ -142,33 +167,40 @@ local function lineinfo()
   local currentLineStr = string.format("%3d", currentLine)
   local currentColumnStr = string.format("%-3d", currentColumn)
 
-  return
-    '%#statusLineProgress#' .. progressStr
-    .. '%#statusLineRowCol# ' .. currentLineStr .. ':' .. currentColumnStr .. ' %#Normal#'
+  return statusString({
+    { progressStr, "statusLineProgress" },
+    { " " .. currentLineStr .. ":" .. currentColumnStr .. " ", "statusLineRowCol" },
+  })
 end
 
 local function cwd()
-  return '%#statusLineCwd#  ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t') .. ' %#Normal#'
+  return statusString({
+    { "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " ", "statusLineCwd" },
+  })
 end
 
 local function activeLlspClient()
   local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-  if #(clients) == 0 then return '' end
-  return '%#statusLineLspClient# ' .. clients[1].name .. ' %#Normal#'
+  if #(clients) == 0 then return "" end
+  return statusString({
+    { " " .. clients[1].name .. " ", "statusLineLspClient" },
+  })
 end
 
 local function tabpages()
-  local tabpages = vim.api.nvim_list_tabpages()
-  local currentTabpage = vim.api.nvim_win_get_tabpage(0)
+  local tabStr = statusString({
+    { " 缾", "statusLineTabNormal" },
+  })
 
-  local tabStr = "%#statusLineTabNormal# 缾"
-  for _, id in ipairs(tabpages) do
-    if currentTabpage == id then
-      -- tabStr = tabStr .. "%#statuslineTabActive#  " .. id .. " "
-      tabStr = tabStr .. "%#statuslineTabActive# " .. id .. " "
+  for _, id in ipairs(vim.api.nvim_list_tabpages()) do
+    if vim.api.nvim_win_get_tabpage(0) == id then
+      tabStr = tabStr .. statusString({
+        { " " .. id .. " ", "statuslineTabActive" },
+      })
     else
-      -- tabStr = tabStr .. "%#statuslineTabInactive#  " .. id .. " "
-      tabStr = tabStr .. "%#statuslineTabInactive# " .. id .. " "
+      tabStr = tabStr .. statusString({
+        { " " .. id .. " ", "statuslineTabInactive" },
+      })
     end
   end
 
@@ -177,8 +209,8 @@ end
 
 -- make statusline smaller depending on screen size
 WINCOLS = nil
-local augroupResize = vim.api.nvim_create_augroup('statusLineResizeGroup', { clear = true })
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
+local augroupResize = vim.api.nvim_create_augroup("statusLineResizeGroup", { clear = true })
+vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = augroupResize,
   callback = function()
     WINCOLS = vim.o.columns
@@ -186,11 +218,13 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
 })
 
 local function spacer()
-  return '%#statusLineCwd#%=%#Normal#'
+  return statusString({
+    { "%=", "statusLineSpacer" },
+  })
 end
 
 function MyStatusLine()
-  local statusline = ''
+  local statusline = ""
   if WINCOLS and WINCOLS < 100 then
     statusline = table.concat({
       mode(),
@@ -225,18 +259,18 @@ vim.o.showtabline = 0
 -- global statusline
 vim.o.laststatus = 3
 
-local color_utils = require('config/utils/color-utils')
+local color_utils = require("config/utils/color-utils")
 local hi = color_utils.highlight
 
-hi.statusLineModeNormal = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = 'bold', }
-hi.statusLineModeInsert = { guifg = colors.grey0, guibg = colors.bright_blue, gui = 'bold', }
-hi.statusLineModeVisual = { guifg = colors.grey0, guibg = colors.bright_orange, gui = 'bold', }
-hi.statusLineModeCommand = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = 'bold', }
-hi.statusLineModeTerminal = { guifg = colors.grey0, guibg = colors.bright_purple, gui = 'bold', }
+hi.statusLineModeNormal = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = "bold", }
+hi.statusLineModeInsert = { guifg = colors.grey0, guibg = colors.bright_blue, gui = "bold", }
+hi.statusLineModeVisual = { guifg = colors.grey0, guibg = colors.bright_orange, gui = "bold", }
+hi.statusLineModeCommand = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = "bold", }
+hi.statusLineModeTerminal = { guifg = colors.grey0, guibg = colors.bright_purple, gui = "bold", }
 hi.statusLineTabNormal = { guifg = foreground, guibg = background, }
 hi.statuslineTabActive = { guifg = background, guibg = colors.accent, }
 hi.statuslineTabInactive = { guifg = colors.white, guibg = colors.grey2, }
-hi.statusLineBranch = { guifg = foreground, guibg = background, gui = 'bold', }
+hi.statusLineBranch = { guifg = foreground, guibg = background, gui = "bold", }
 hi.statusLineCwd = { guifg = colors.bright_blue, guibg = background, }
 hi.statusLineFileName = { guifg = colors.bright_aqua, guibg = background, }
 hi.statusLineFileNameModified = { guifg = colors.bright_red, guibg = background, }
@@ -247,4 +281,4 @@ hi.statusLineDiagnosticsInfo = { guibg = background, guifg = colors.bright_aqua,
 hi.statusLineLspClient = { guibg = background, guifg = colors.bright_orange, }
 hi.statusLineFileType = { guifg = foreground, guibg = background, }
 hi.statusLineProgress = { guibg = colors.bright_yellow, guifg = colors.grey3, }
-hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = background, gui = 'bold', }
+hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = background, gui = "bold", }
