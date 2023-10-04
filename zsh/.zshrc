@@ -103,6 +103,12 @@ function showFuzzyDirContents() {
 }
 # }}}
 
+# showProjects {{{
+function showProjects() {
+  cd ~/repos/$('ls' ~/repos | fzf)
+}
+# }}}
+
 # prettyGitLog {{{
 function prettyGitLog() {
 	# format strings; check man git log for more `placeholders`
@@ -126,6 +132,71 @@ function prettyGitLog() {
 
 	# call git log with custom format and append any flags passed in
 	git log --pretty=$format $@
+}
+# }}}
+
+# fzf git checkout {{{
+# RESOURCE: https://koenwoortman.com/git-faster-branch-checkouts-with-fzf/
+# RESOURCE: http://ses4j.github.io/2020/04/01/git-alias-recent-branches/
+function fuzzyGitCheckout() {
+  if [ $# -eq 0 ]; then
+    # local BRANCH_LIST=$(git for-each-ref refs/heads/ --format='%(refname:short)')
+    local BRANCH_LIST=$(
+      git reflog show --pretty=format:'%gs ~ %gd' --date=relative \
+      | grep 'checkout:' \
+      | grep -oE '[^ ]+ ~ .*' \
+      | awk -F~ '!seen[$1]++' \
+      | awk -F' ~ HEAD@{' '{print($1)}'
+    )
+    local BRANCH=$(echo $BRANCH_LIST | fzf --height=~50)
+    if [[ $? -eq 0 && "$BRANCH" != "" ]]; then
+      echo "checking out $BRANCH..."
+      git checkout "$BRANCH"
+    fi
+  else
+    if [ $1 = "-b" ]; then
+      echo "creating new branch...$2"
+      git checkout -b $2
+    else
+      echo "searching locally for branch"
+
+      BRANCH=$(git for-each-ref refs/heads/ --format='%(refname:short)' | grep "$1")
+      if [ $? = 0 ]; then
+        echo "$BRANCH found locally. switching..."
+        git checkout "$BRANCH"
+      else
+        echo "branch not found. fetching $1 from remote..."
+        # TODO: make remote name (here as `origin`) dynamic
+        git fetch origin "$1"
+        if [ $? -eq 0 ]; then
+          git checkout "$1"
+        fi
+      fi
+    fi
+  fi
+}
+# }}}
+
+# fzf git diff {{{
+fuzzyGitDiff () {
+  preview="git diff $@ --color=always -- {-1}"
+  git diff $(git diff $@ --name-only | fzf --height=50 -m --ansi --preview $preview)
+}
+# }}}
+
+# fzf git stash {{{
+fuzzyGitStash () {
+  preview="git stash $@ show -p --color \$(echo {1} | cut -d: -f1)"
+  stashItem=$(
+    git stash list | fzf \
+      -m --ansi \
+      --preview $preview --preview-window 'right,<80(down,wrap)' \
+      --margin 1,5% \
+      --border top --border-label " git stash " \
+      --color 'marker:yellow,pointer:yellow,border:cyan,gutter:-1'
+  )
+  echo $stashItem
+  # git stash apply "$(echo $stashItem | cut -d: -f1)"
 }
 # }}}
 
