@@ -11,15 +11,6 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "  Quit", ":qa<CR>"),
 }
 
--- get fortune footer
-local handle = io.popen('fortune') or nil
-if handle ~= nil then
-  local fortune = handle:read("*a")
-  dashboard.section.footer.val = fortune
-  handle:close()
-end
-
-
 local function padding(value)
   return {
     type = "padding",
