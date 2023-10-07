@@ -34,6 +34,7 @@ require('lazy').setup({
   { 'jose-elias-alvarez/null-ls.nvim', config = function() require('config/plugin-settings/null-ls') end },
   { 'mfussenegger/nvim-dap', lazy = true },
   { 'mfussenegger/nvim-jdtls', lazy = true },
+  { 'SmiteshP/nvim-navic', config = function() require('config/plugin-settings/nvim-navic') end },
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require('config/plugin-settings/treesitter') end },
@@ -41,18 +42,16 @@ require('lazy').setup({
   { 'simrat39/symbols-outline.nvim', config = function() require('config/plugin-settings/symbols-outline') end, cmd = "SymbolsOutline" },
 
   -- cmp plugins
-  { 'hrsh7th/nvim-cmp', config = function() require('config/plugin-settings/nvim-cmp') end },
-  { 'hrsh7th/cmp-buffer' }, -- buffer completions
-  { 'hrsh7th/cmp-path' }, -- path completions
-  { 'hrsh7th/cmp-cmdline' }, -- cmdline completions
-  { 'saadparwaiz1/cmp_luasnip' }, -- snippet completions
   { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-path' },
+  { 'hrsh7th/cmp-cmdline' },
+  { 'hrsh7th/nvim-cmp', config = function() require('config/plugin-settings/nvim-cmp') end },
   { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-  { 'SmiteshP/nvim-navic', config = function() require('config/plugin-settings/nvim-navic') end },
 
   -- snippets
-  { "L3MON4D3/LuaSnip" },
-  { "rafamadriz/friendly-snippets" },
+  { 'L3MON4D3/LuaSnip' },
+  { 'saadparwaiz1/cmp_luasnip' },
 
   -- required libraries
   { 'nvim-lua/popup.nvim', lazy = true },
