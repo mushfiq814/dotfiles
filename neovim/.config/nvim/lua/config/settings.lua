@@ -5,9 +5,9 @@ local b = vim.bo
 local w = vim.wo
 
 -- spacing and tabs
-o.shiftwidth = 2 -- of spaces to use for each step of (auto)indent (>>, <<)
-o.tabstop = 2 -- of spaces that a <Tab> counts for
-o.softtabstop = 2 -- of spaces that a <Tab> counts while editing
+o.shiftwidth = 2   -- of spaces to use for each step of (auto)indent (>>, <<)
+o.tabstop = 2      -- of spaces that a <Tab> counts for
+o.softtabstop = 2  -- of spaces that a <Tab> counts while editing
 o.expandtab = true -- insert mode: Disable inserting spaces for tabs
 
 -- ui
@@ -57,10 +57,19 @@ o.splitbelow = true
 
 -- GUI
 if vim.g.neovide then
+  -- Helper function for transparency formatting
+  local alpha = function()
+    return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+  end
   -- Put anything you want to happen only in Neovide here
-  vim.o.guifont = "LigaSauceCodePro Nerd Font,Noto Color Emoji:h11"
+  vim.o.guifont = "LigaSaucyCodePro Nerd Font,Noto Color Emoji:h11"
   vim.g.neovide_cursor_vfx_mode = "sonicboom"
-  vim.g.neovide_transparency = 0.7
+  vim.g.neovide_transparency = 0.0
+  vim.g.transparency = 0.8
+  vim.g.neovide_background_color = "#0f1117" .. alpha()
+  vim.g.neovide_scale_factor = 1.2
+  vim.g.neovide_floating_blur_amount_x = 2.0
+  vim.g.neovide_floating_blur_amount_y = 2.0
 end
 
 -- searching
