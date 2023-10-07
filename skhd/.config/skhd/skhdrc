@@ -53,11 +53,19 @@ cmd - f [
   "Terminal": echo "hello terminal"
 ]
 
+# cmd [
+#   "kitty"       : echo "hello cmd. you should be ctrl"
+# ]
+#
+# ctrl [
+#   "kitty"       : echo "hello ctrl. you should be cmd"
+# ]
+
 # change wallpaper
 shift + alt - w : /usr/local/bin/macos-wallpaper
 
 # open terminal
-alt - return : /usr/bin/osascript -e "tell application \"iTerm\" to create window with default profile"
+alt - return : /usr/local/bin/kitty
 
 # reload window manager
 shift + alt - r : yabai --stop-service; yabai --start-service
