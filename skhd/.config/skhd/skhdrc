@@ -68,3 +68,41 @@ alt - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
 alt - down : /usr/local/bin/mpvctl toggle
 alt - left : /usr/local/bin/mpvctl prev
 alt - right : /usr/local/bin/mpvctl next
+
+# general keybinds for non-terminal applications to switch macos cmd <-> ctrl
+
+# copy
+lctrl - c [
+  *       : skhd -k "cmd - c"
+  "kitty" ~
+]
+
+# paste
+lctrl - v [
+  *       : skhd -k "cmd - v"
+  "kitty" ~
+]
+
+# select all
+lctrl - a [
+  *       : skhd -k "cmd - a"
+  "kitty" ~
+]
+
+# search
+lctrl - f [
+  *       : skhd -k "cmd - f"
+  "kitty" ~
+]
+
+# new tab in browser
+lctrl - t [
+  *       : skhd -k "cmd - t"
+  "kitty" ~
+]
+
+# open recently closed tab in browser
+shift + lctrl - t [
+  *       : skhd -k "shift - cmd - t"
+  "kitty" ~
+]
