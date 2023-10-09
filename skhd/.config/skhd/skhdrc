@@ -46,19 +46,6 @@ lctrl + alt - l : yabai -m window --resize right:50:0; \
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
-cmd - f [
-  "kitty": osascript -e 'display notification "hello kitty" with title "kitty"'
-  "Terminal": echo "hello terminal"
-]
-
-# cmd [
-#   "kitty"       : echo "hello cmd. you should be ctrl"
-# ]
-#
-# ctrl [
-#   "kitty"       : echo "hello ctrl. you should be cmd"
-# ]
-
 # change wallpaper
 shift + alt - w : /usr/local/bin/macos-wallpaper
 
@@ -67,6 +54,7 @@ alt - return : /usr/local/bin/kitty
 
 # reload window manager
 shift + alt - r : yabai --stop-service; yabai --start-service
+
 # stop window manager
 lctrl + alt - r : yabai --stop-service
 
