@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DATE=$(date +'%d-%m-%Y')
+CITY="Tampa"
+COUNTRY="US"
+
+echo "today's prayer times in $CITY, $COUNTRY are..."
+
+curl --silent "http://api.aladhan.com/v1/timingsByCity/$DATE?city=$CITY&country=$COUNTRY" \
+| jq -r ".data.timings | \"fajr: \"+.Fajr+\"\ndhuhr: \"+.Dhuhr+\"\nasr: \"+.Asr+\"\nmaghrib: \"+.Maghrib+\"\nisha: \"+.Isha"
+
