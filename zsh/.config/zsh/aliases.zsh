@@ -11,7 +11,7 @@ alias la='exa --long --all --icons'
 alias lg='exa --long --all --icons --git'
 
 # bat (a cat alternative)
-alias cat='bat'
+alias cat='bat --theme base16-256'
 
 # grep aliases
 alias grep='grep --color=auto'
