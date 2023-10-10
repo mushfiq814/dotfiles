@@ -65,7 +65,7 @@ keymap(
   ':cd %:h | !pandoc %:p'
   .. ' --css $HOME/dotfiles/pandoc/mvp.css'
   .. ' --template $HOME/dotfiles/pandoc/template.html'
-  .. ' --output ~/Downloads/pandoc-markdown-preview.html'
+  .. ' --output ~/downloads/pandoc-markdown-preview.html'
   .. ' --to html'
   .. ' --standalone'
   .. ' --self-contained'
