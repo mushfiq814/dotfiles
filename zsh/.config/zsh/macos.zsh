@@ -1,3 +1,6 @@
+# hostname
+HOST="macbook"
+
 # aliases
 alias EX='/Volumes'
 alias fd='fdfind'
