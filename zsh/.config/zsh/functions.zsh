@@ -32,7 +32,7 @@ function prettyGitLog() {
   format+="$subject"
 
   # call git log with custom format and append any flags passed in
-  git log --pretty=$format $@
+  git log --pretty="$format" $@
 }
 # }}}
 
