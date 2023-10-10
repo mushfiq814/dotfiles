@@ -71,7 +71,7 @@ keymap(
   .. ' --self-contained'
   .. ' --mathjax'
   .. ' --highlight-style haddock'
-  .. ' && xdg-open ~/Downloads/pandoc-markdown-preview.html &<CR>',
+  .. ' && open ~/downloads/pandoc-markdown-preview.html &<CR>',
   opts
 )
 
