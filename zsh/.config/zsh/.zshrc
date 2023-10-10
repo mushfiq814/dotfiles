@@ -1,3 +1,8 @@
+if [[ ${OSTYPE:0:6} = "darwin" ]]; then
+  source "$HOME/.config/zsh/macos.zsh"
+else
+  source "$HOME/.config/zsh/linux.zsh"
+fi
 source "$HOME/.config/zsh/aliases.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 source "$HOME/.config/zsh/misc.zsh"
