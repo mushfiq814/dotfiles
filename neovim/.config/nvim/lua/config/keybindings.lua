@@ -87,7 +87,7 @@ keymap('n', '<leader>so', ':source % <bar> lua vim.notify("NeoVim config reloade
 
 local telescope_available, _ = pcall(require, 'telescope')
 if telescope_available then
-  keymap('n', '<C-p>', ':Telescope find_files find_command=rg,--files prompt_prefix=\\ 🔍\\ <CR>', opts)
+  keymap('n', '<C-p>', ':Telescope find_files prompt_prefix=\\ 🔍\\ <CR>', opts)
   keymap('n', '<leader>b',  ':Telescope buffers prompt_prefix=\\ 🔍\\ <CR>', opts)
   keymap('n', '<leader>br', ':Telescope git_branches prompt_prefix=\\ \\ <CR>', opts)
   keymap('n', '<leader>fg', ':Telescope live_grep prompt_prefix=\\ 🔍\\ <CR>', opts)

@@ -9,7 +9,6 @@ telescope.setup({
     layout_config = {
       vertical = { width = 0.9 },
       horizontal = { width = 0.9 },
-      -- other layout configuration here
     },
     borderchars = {
       borders[2],
@@ -21,7 +20,16 @@ telescope.setup({
       borders[9],
       borders[7],
     },
-    -- other defaults configuration here
   },
-  -- other configuration values here
+  pickers = {
+    find_files = {
+      find_command = {
+        "rg",
+        "--hidden",
+        "--glob",
+        "!.git/",
+        "--files",
+      },
+    },
+  },
 })
