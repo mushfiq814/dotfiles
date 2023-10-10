@@ -39,7 +39,7 @@ keymap('n', '<leader>z', ':set wrap!<CR>', opts)
 
 -- open config files
 keymap('n', '<leader>ve', ':edit ~/.config/nvim/lua/config/plugins.lua<CR>', opts)
-keymap('n', '<leader>ze', ':edit ~/.zshrc<CR>', opts)
+keymap('n', '<leader>ze', ':edit ~/.config/zsh/.zshrc<CR>', opts)
 keymap('n', '<leader>te', ':edit ~/.tmux.conf<CR>', opts)
 
 -- Folding/Unfolding

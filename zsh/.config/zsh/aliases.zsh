@@ -1,5 +1,5 @@
 # source this file
-alias soz='source ~/.zshrc'
+alias soz='source ~/.config/zsh/.zshrc'
 
 # package install
 alias pac='sudo pacman -Syu'
@@ -42,7 +42,7 @@ alias yt='yt-dlp -x --audio-format mp3'
 # config files aliases
 alias v='nvim --listen /tmp/nvim-server.pipe'
 alias brc='v ~/.bashrc'
-alias zrc='v ~/.zshrc'
+alias zrc='v ~/.config/zsh/.zshrc'
 alias vrc='v /etc/vim/vimrc'
 alias nvrc='v ~/.config/nvim/init.vim'
 alias trc='v ~/.tmux.conf'
