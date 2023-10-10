@@ -8,6 +8,8 @@ setopt AUTO_CD
 setopt INTERACTIVE_COMMENTS
 # for tmux to display colors properly
 export TERM="xterm-256color"
+# enable wildcard expansion
+setopt globsubst
 
 # }}}
 
