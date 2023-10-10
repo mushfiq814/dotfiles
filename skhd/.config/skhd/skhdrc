@@ -106,3 +106,15 @@ shift + lctrl - t [
   *       : skhd -k "shift - cmd - t"
   "kitty" ~
 ]
+
+# delete word
+lctrl - backspace [
+  *       : skhd -k "alt - backspace"
+  "kitty" ~
+]
+
+# submit form in browsers
+lctrl - return [
+  *       : skhd -k "cmd - return"
+  "kitty" ~
+]
