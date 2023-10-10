@@ -79,7 +79,7 @@ hi.TabLineSel                         = { guifg = colors.bright_green, guibg = c
 -- Standard syntax highlighting
 hi.Boolean                            = { guifg = colors.bright_orange, guibg = nil, gui = nil, guisp = nil }
 hi.Character                          = { guifg = colors.bright_red, guibg = nil, gui = nil, guisp = nil }
-hi.Comment                            = { guifg = colors.grey2, guibg = nil, gui = 'standout', guisp = nil }
+hi.Comment                            = { guifg = colors.grey2, guibg = nil, gui = 'italic', guisp = nil }
 hi.Conditional                        = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi.Constant                           = { guifg = colors.bright_orange, guibg = nil, gui = nil, guisp = nil }
 hi.Define                             = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
