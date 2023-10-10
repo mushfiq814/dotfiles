@@ -10,12 +10,6 @@ function showFuzzyDirContents() {
 }
 # }}}
 
-# showProjects {{{
-function showProjects() {
-  cd ~/repos/$('ls' ~/repos | fzf)
-}
-# }}}
-
 # prettyGitLog {{{
 function prettyGitLog() {
   # format strings; check man git log for more `placeholders`
