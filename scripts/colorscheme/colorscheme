@@ -16,14 +16,14 @@ source "$HOME/dotfiles/.env"
 source "$HOME/dotfiles/scripts/colorscheme/utils"
 
 LAUNCHER_CMD="rofi -dmenu"
-if ! command -v $LAUNCHER_CMD &> /dev/null
+if ! command -v "$LAUNCHER_CMD" &> /dev/null
 then
   LAUNCHER_CMD="fzf"
 fi
 
 # show list of available colorschemes
 quit_on_file_dne "$COLORS_DIR"
-THEME=$(for file in $COLORS_DIR/*; do
+THEME=$(for file in "$COLORS_DIR"/*; do
   basename "$file" .json;
 done | $LAUNCHER_CMD)
 quit_on_error "Error with selecting colorscheme. Aborting..."
