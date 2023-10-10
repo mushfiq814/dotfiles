@@ -61,9 +61,6 @@ alias nr='npm run'
 alias nrd='npm run dev'
 alias nrs='npm run start'
 
-# open in default program
-alias open='xdg-open'
-
 # python3 and pip3; WARNING: replaces pip version2 command name
 alias pip='python3 -m pip'
 
