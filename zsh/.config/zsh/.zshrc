@@ -1,5 +1,7 @@
 if [[ ${OSTYPE:0:6} = "darwin" ]]; then
   source "$HOME/.config/zsh/macos.zsh"
+elif [[ ${OSTYPE:0:13} = "linux-android" ]]; then
+  source "$HOME/.config/zsh/termux.zsh"
 else
   source "$HOME/.config/zsh/linux.zsh"
 fi

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+FILE="$1"
+
+if [ "$#" = "0" ] || [ ! -e "$FILE" ]; then
+  echo "no input file given! quitting..."
+  exit 1
+fi
+
+# this prefix was obtained by opening an html file directly from within the
+# google files manager application
+PREFIX="content://com.google.android.apps.nbu.files.provider/1/file%3A%2F%2F"
+
+# get the full path of the input file and parse any `/`s to `%2F`
+PATH=$(realpath "$FILE" | sed 's/\//%2F/g')
+
+echo "$PREFIX$PATH"
