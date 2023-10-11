@@ -3,7 +3,6 @@ HOST="macbook"
 
 # aliases
 alias EX='/Volumes'
-alias fd='fdfind'
 alias FE='cd ~/projects/ffam-fplus-web'
 alias BE='cd ~/projects/fplus-loan-app'
 
