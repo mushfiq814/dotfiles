@@ -19,5 +19,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
 # exit functions
 set_prompt
-fetch
+source "$HOME/dotfiles/.env"
+if [[ $SHOW_SYS_FETCH -eq 1 ]]; then fetch; fi
 
