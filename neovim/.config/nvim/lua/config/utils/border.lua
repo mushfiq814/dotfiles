@@ -4,7 +4,7 @@ if not success then return end
 local borders = {}
 local term_emulator = nil
 
-local lines = files.lines_from("/Users/mumahmud/dotfiles/.env")
+local lines = files.lines_from(os.getenv("HOME") .. "/dotfiles/.env")
 for _, v in ipairs(lines) do
   term_emulator = v:match("^TERM_EMULATOR=\"(.+)\"")
   if term_emulator then break end
