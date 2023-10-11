@@ -23,10 +23,10 @@ npm() { lazynvm; npm $@ }
 npx() { lazynvm; npx $@ }
 
 # Fuzzy Finder
-FZF_FILES_DIR="$TERMUX_APP__FILES_DIR/usr/share/fzf"
-if [ -d "$FZF_FILES_DIR" ]; then
-  source $FZF_FILES_DIR/completion.zsh;
-  source $FZF_FILES_DIR/key-bindings.zsh;
+source "$HOME/dotfiles/.env"
+if [ -d $FZF_FILES_DIR ]; then
+  source $FZF_FILES_DIR/"completion.zsh";
+  source $FZF_FILES_DIR/"key-bindings.zsh";
 fi
 
 # Yarn
