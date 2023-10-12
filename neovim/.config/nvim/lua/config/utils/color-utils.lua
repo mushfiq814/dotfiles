@@ -31,9 +31,9 @@ M.HEX_DIGITS = {
 
 local function hex_to_rgb(hex)
   return
-    M.HEX_DIGITS[string.sub(hex, 1, 1)] * 16 + M.HEX_DIGITS[string.sub(hex, 2, 2)],
-    M.HEX_DIGITS[string.sub(hex, 3, 3)] * 16 + M.HEX_DIGITS[string.sub(hex, 4, 4)],
-    M.HEX_DIGITS[string.sub(hex, 5, 5)] * 16 + M.HEX_DIGITS[string.sub(hex, 6, 6)]
+      M.HEX_DIGITS[string.sub(hex, 1, 1)] * 16 + M.HEX_DIGITS[string.sub(hex, 2, 2)],
+      M.HEX_DIGITS[string.sub(hex, 3, 3)] * 16 + M.HEX_DIGITS[string.sub(hex, 4, 4)],
+      M.HEX_DIGITS[string.sub(hex, 5, 5)] * 16 + M.HEX_DIGITS[string.sub(hex, 6, 6)]
 end
 
 local function rgb_to_hex(r, g, b)
@@ -42,9 +42,9 @@ end
 
 function M.lighten(hex, pct)
   local r, g, b = hex_to_rgb(string.sub(hex, 2))
-  r = math.max(math.floor(r * pct), 255)
-  g = math.max(math.floor(g * pct), 255)
-  b = math.max(math.floor(b * pct), 255)
+  r = math.min(math.floor(r * (1 + pct)), 255)
+  g = math.min(math.floor(g * (1 + pct)), 255)
+  b = math.min(math.floor(b * (1 + pct)), 255)
   return string.format("#%s", rgb_to_hex(r, g, b))
 end
 
