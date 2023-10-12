@@ -95,6 +95,12 @@ lctrl - f [
   "kitty" ~
 ]
 
+# undo
+lctrl - z [
+  *       : skhd -k "cmd - z"
+  "kitty" ~
+]
+
 # new tab in browser
 lctrl - t [
   *       : skhd -k "cmd - t"
@@ -103,13 +109,25 @@ lctrl - t [
 
 # open recently closed tab in browser
 shift + lctrl - t [
-  *       : skhd -k "shift - cmd - t"
+  *       : skhd -k "shift + cmd - t"
   "kitty" ~
 ]
 
 # delete word
 lctrl - backspace [
   *       : skhd -k "alt - backspace"
+  "kitty" ~
+]
+
+# move backward by word
+lctrl - left [
+  *       : skhd -k "cmd - left"
+  "kitty" ~
+]
+
+# move forward by word
+lctrl - right [
+  *       : skhd -k "cmd - right"
   "kitty" ~
 ]
 
