@@ -30,8 +30,7 @@ My configuration files for different programs that I use. This repo uses [GNU St
 
 ### Android + Termux + Samsung Dex
 
-![Samsung Dex with Termux and a browser](https://github.com/mushfiq814/dotfiles/assets/32845348/6c1d70ec-6dd9-46ff-873a-f23f6326fd06)
-
+![Samsung Dex with Termux and a browser](https://github.com/mushfiq814/dotfiles/assets/32845348/72f4e410-a5c8-4f50-bba5-e7356452f136)
 
 ## Setup!
 
