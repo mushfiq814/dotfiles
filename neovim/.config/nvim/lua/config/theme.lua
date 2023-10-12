@@ -369,7 +369,8 @@ hi['@text.reference']           = { guifg = colors.bright_purple, guibg = nil, g
 hi['@text.literal']             = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.uri']                 = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 
-hi['@markdown_check']           = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@markdown_check_undone']    = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
+hi['@markdown_check_done']      = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
 hi['@markdown_list_marker']     = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@none']                     = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.bracket']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }

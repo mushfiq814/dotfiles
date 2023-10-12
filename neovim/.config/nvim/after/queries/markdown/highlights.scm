@@ -6,8 +6,8 @@
     (list_marker_plus)
     (list_marker_minus)
   ]) @markdown_list_marker
-  ; (#set! conceal "・"))
-  (#set! conceal "樂")
+  (#set! conceal "・")
+  ; (#set! conceal "樂")
   ; (#set! conceal "雷")
   ; (#set! conceal "栗")
   ; (#set! conceal "六")
@@ -23,5 +23,5 @@
   ; (#set! conceal "絛")
 )
 
-((task_list_marker_unchecked) @markdown_check (#set! conceal ""))
-((task_list_marker_checked) @markdown_check (#set! conceal ""))
+((task_list_marker_unchecked) @markdown_check_undone (#set! conceal ""))
+((task_list_marker_checked) @markdown_check_done (#set! conceal ""))
