@@ -8,9 +8,12 @@ local M = {}
 function M.generate()
   -- local colorschemeFile = files.lines_from(os.getenv("HOME") .. "/dotfiles/scripts/colorscheme/colors/one-dark")
   local colorschemeFile = vim.fn.expand('%:p')
+  local colorschemeName = vim.fn.expand('%:t')
   local lines = files.lines_from(colorschemeFile)
 
   local colorscheme = {
+    name = colorschemeName,
+    mode = "dark",
     black = nil,
     white = nil,
     colors = {
@@ -28,6 +31,8 @@ function M.generate()
 
   -- read colorscheme file
   for _, v in ipairs(lines) do
+    local x0 = v:match("^MODE=\"(.+)\"")
+    if x0 ~= nil then colorscheme.mode = x0 end
     local x1 = v:match("^BLACK=\"(.+)\"")
     if x1 ~= nil then colorscheme.black = x1 end
     local x2 = v:match("^WHITE=\"(.+)\"")
@@ -48,6 +53,8 @@ function M.generate()
     if x9 ~= nil then colorscheme.colors.purple = x9 end
   end
 
+  table.insert(gen, "NAME=\"" .. colorscheme.name .. "\"")
+  table.insert(gen, "MODE=\"" .. colorscheme.mode .. "\"")
   table.insert(gen, "BLACK=\"" .. colorscheme.black .. "\"")
 
   -- generate greys
@@ -62,9 +69,19 @@ function M.generate()
 
   -- for each other color, get light and dark shade
   for color, val in pairs(colorscheme.colors) do
-    table.insert(gen, "BRIGHT_" .. color:upper() .. "=\"" .. colorUtils.lighten(val, 0.20) .. "\"")
-    table.insert(gen, "NEUTRAL_" .. color:upper() .. "=\"" .. val .. "\"")
-    table.insert(gen, "FADED_" .. color:upper() .. "=\"" .. colorUtils.darken(val, 0.20) .. "\"")
+    local lighter = colorUtils.lighten(val, 0.20)
+    local darker = colorUtils.darken(val, 0.20)
+
+    -- switch brighter and faded colors depending on mode
+    if colorscheme.mode == "dark" then
+      table.insert(gen, "BRIGHT_" .. color:upper() .. "=\"" .. lighter .. "\"")
+      table.insert(gen, "NEUTRAL_" .. color:upper() .. "=\"" .. val .. "\"")
+      table.insert(gen, "FADED_" .. color:upper() .. "=\"" .. darker .. "\"")
+    else
+      table.insert(gen, "BRIGHT_" .. color:upper() .. "=\"" .. darker .. "\"")
+      table.insert(gen, "NEUTRAL_" .. color:upper() .. "=\"" .. val .. "\"")
+      table.insert(gen, "FADED_" .. color:upper() .. "=\"" .. lighter .. "\"")
+    end
   end
 
   -- handle missing orange
