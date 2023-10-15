@@ -6,7 +6,41 @@ if not cmp_status_ok then return end
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then return end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+local partial = require("luasnip/extras").partial
+local fmt = require("luasnip/extras/fmt").fmt
+luasnip.add_snippets("all", {
+  luasnip.snippet(
+    {
+      trig = "time",
+      dscr = "Insert the current time",
+    },
+    partial(os.date, "%r")
+  ),
+  luasnip.snippet(
+    {
+      trig = "date",
+      dscr = "Insert the current date",
+    },
+    partial(os.date, "%Y-%m-%d")
+  ),
+})
+
+luasnip.add_snippets("markdown", {
+  luasnip.snippet(
+    {
+      trig = "dd",
+      name = "diary link",
+      dscr = "Create diary link [txt](date).",
+    },
+    fmt("[{}]({})\n{}", {
+      luasnip.i(1),
+      luasnip.f(function(_, snip)
+        return os.date("%Y-%m-%d")
+      end, {}),
+      luasnip.i(0),
+    })
+  ),
+})
 
 local kind_icons = {
   Text          = "",
