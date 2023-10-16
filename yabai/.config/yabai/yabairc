@@ -61,7 +61,7 @@ yabai -m config                               \
   right_padding                20             \
   window_gap                   20             \
   layout                       bsp            \
-  mouse_modifier               cmd            \
+  mouse_modifier               ctrl           \
   mouse_action1                move           \
   mouse_action2                resize         \
   mouse_drop_action            swap
