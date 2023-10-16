@@ -1,7 +1,7 @@
 # showFuzzyDirContents {{{
 function showFuzzyDirContents() {
   DIR="$1"
-  SELECTION=$('ls' "$DIR" | fzf)
+  SELECTION=$('ls' "$DIR" | fzf --height=20)
   if [[ $SELECTION && $? -eq 0 ]]; then
     cd "$DIR"/"$SELECTION"
   else
