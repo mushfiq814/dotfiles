@@ -7,6 +7,8 @@ if not lspconfig_loaded then return end
 local navic_loaded, navic = pcall(require, 'nvim-navic')
 if not navic_loaded then return end
 
+mason.setup()
+
 local servers = {
     "tsserver",
     "jsonls",
