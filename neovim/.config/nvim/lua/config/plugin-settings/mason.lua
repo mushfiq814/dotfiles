@@ -10,10 +10,10 @@ if not navic_loaded then return end
 mason.setup()
 
 local servers = {
-    "tsserver",
-    "jsonls",
-    "marksman",
-    "lua_ls",
+  "tsserver",
+  "jsonls",
+  "marksman",
+  "lua_ls",
 }
 
 mason_lsp_config.setup({
