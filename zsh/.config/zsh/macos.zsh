@@ -19,17 +19,9 @@ if [ -d "/opt/homebrew/bin" ]; then
   PATH="/opt/homebrew/bin:$PATH";
 fi
 
-# Gcloud
-if [ -f '/Users/mumahmud/Downloads/programs/google-cloud-sdk/path.zsh.inc' ]; then
-  source '/Users/mumahmud/Downloads/programs/google-cloud-sdk/path.zsh.inc';
-fi
-
-# shell completions for gcloud.
-if [ -f '/Users/mumahmud/Downloads/programs/google-cloud-sdk/completion.zsh.inc' ]; then
-  source '/Users/mumahmud/Downloads/programs/google-cloud-sdk/completion.zsh.inc';
-fi
-
 # iterm2
-if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
+source "$HOME/dotfiles/.env"
+term=$(echo $TERM_EMULATOR | tr "[:upper:]" "[:lower:]")
+if [ $term = "iterm" ] && [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
   source "${HOME}/.iterm2_shell_integration.zsh";
 fi
