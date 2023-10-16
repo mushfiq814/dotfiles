@@ -61,7 +61,7 @@ function fuzzyGitCheckout() {
     else
       echo "searching locally for branch"
 
-      BRANCH=$(git for-each-ref refs/heads/ --format='%(refname:short)' | grep "$1")
+      BRANCH=$(git for-each-ref refs/heads/ --format='%(refname:short)' | grep "^$1$")
       if [ $? = 0 ]; then
         echo "$BRANCH found locally. switching..."
         git checkout "$BRANCH"
