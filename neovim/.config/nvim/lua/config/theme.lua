@@ -376,10 +376,10 @@ hi['@none']                     = { guifg = colors.bright_yellow, guibg = nil, g
 hi['@punctuation.bracket']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.delimiter']    = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.special']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough,standout', guisp = nil }
+hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.emphasis']            = { guifg = darkeraccent, guibg = nil, gui = 'standout', guisp = nil }
 hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, gui = 'standout', guisp = nil }
-hi['@text.strike']              = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough,standout', guisp = nil }
+hi['@text.strike']              = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.strong']              = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
 
 -- gitsigns
