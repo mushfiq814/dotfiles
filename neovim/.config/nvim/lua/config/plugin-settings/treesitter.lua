@@ -11,6 +11,8 @@ nvim_treesitter.setup {
     'jsonc',
     'markdown',
     'markdown_inline',
+    'bash',
+    'yaml',
   },
   highlight = { enable = true },
   incremental_selection = { enable = true },
