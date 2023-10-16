@@ -32,7 +32,7 @@ luasnip.add_snippets("markdown", {
       name = "diary link",
       dscr = "Create diary link [txt](date).",
     },
-    fmt("[{}]({})\n{}", {
+    fmt("* [{}]({}){}", {
       luasnip.i(1),
       luasnip.f(function(_, snip)
         return os.date("%Y-%m-%d")
