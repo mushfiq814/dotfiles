@@ -10,6 +10,24 @@ function showFuzzyDirContents() {
 }
 # }}}
 
+
+# launcher {{{
+function launcher() {
+  case $(print "dotfiles\nprojects\nconfig\ndownloads" | fzf) in
+    "dotfiles")
+      cd "$HOME/dotfiles" ;;
+    "projects")
+      showFuzzyDirContents "$HOME/projects" ;;
+    "config")
+      showFuzzyDirContents "$HOME/.config" ;;
+    "downloads")
+      cd "$HOME/downloads" ;;
+    *)
+      cd "$HOME" ;;
+  esac
+}
+# }}}
+
 # prettyGitLog {{{
 function prettyGitLog() {
   # format strings; check man git log for more `placeholders`
