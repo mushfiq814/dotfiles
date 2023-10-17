@@ -59,7 +59,7 @@ gitsigns.setup {
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-keymap('n', '<leader>gb', ':Gitsigns blame_line { full = true }<CR>', opts)
+keymap('n', '<leader>gb', ':lua require("gitsigns").blame_line({ full = true })<CR>', opts)
 keymap('n', '<leader>gh', ':Gitsigns preview_hunk<CR>', opts)
 keymap('n', '[c', ':Gitsigns prev_hunk<CR>', opts)
 keymap('n', ']c', ':Gitsigns next_hunk<CR>', opts)
