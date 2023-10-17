@@ -1,5 +1,7 @@
 local success, gitsigns = pcall(require, 'gitsigns')
 if not success then return end
+local border_loaded, borders = pcall(require, 'config/utils/border')
+if not border_loaded then borders = "single" end
 
 gitsigns.setup {
   signs = {
@@ -33,7 +35,16 @@ gitsigns.setup {
   max_file_length = 40000,
   preview_config = {
     -- Options passed to nvim_open_win
-    border = 'single',
+    border = {
+      { borders[1], "FloatBorder" },
+      { borders[2], "FloatBorder" },
+      { borders[3], "FloatBorder" },
+      { borders[6], "FloatBorder" },
+      { borders[9], "FloatBorder" },
+      { borders[8], "FloatBorder" },
+      { borders[7], "FloatBorder" },
+      { borders[4], "FloatBorder" },
+    },
     style = 'minimal',
     relative = 'cursor',
     row = 0,
