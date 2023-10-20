@@ -66,5 +66,33 @@ yabai -m config                               \
   mouse_action2                resize         \
   mouse_drop_action            swap
 
+# add event to check whether current space has any fullscreen windows
+
+# event 1: space_changed -> checks when (work)spaces are changed
+EVT_LABEL_1="show_fullscreen_spaces_1"
+# clear existing event
+yabai \
+  -m signal \
+  --remove "$EVT_LABEL_1"
+# add new event
+yabai \
+  -m signal \
+  --add event=space_changed \
+  action="if (yabai -m query --windows --space | jq -e '[.[][\"has-fullscreen-zoom\"]] | any' > /dev/null); then osascript -e 'display notification \"this space has fullscreen windows\" with title \"yabai\"'; fi;" \
+  label="$EVT_LABEL_1"
+
+# event 2: window_resized -> should trigger right after zooming the window
+EVT_LABEL_1="show_fullscreen_spaces_2"
+# clear existing event
+yabai \
+  -m signal \
+  --remove "$EVT_LABEL_1"
+# add new event
+yabai \
+  -m signal \
+  --add event=window_resized \
+  action="if (yabai -m query --windows --space | jq -e '[.[][\"has-fullscreen-zoom\"]] | any' > /dev/null); then osascript -e 'display notification \"this space has fullscreen windows\" with title \"yabai\"'; fi;" \
+  label="$EVT_LABEL_1"
+
 echo "yabai configuration loaded.."
 
