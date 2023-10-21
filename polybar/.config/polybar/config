@@ -432,4 +432,11 @@ margin-top = 5
 margin-bottom = 5
 ; }}}
 
+; weather {{{
+[module/weather]
+type = custom/script
+exec = curl --silent wttr.in/tampa\?format="%c%t"
+interval = 60
+; }}}
+
 ; vim:ft=dosini:foldmethod=marker:foldlevel=0
