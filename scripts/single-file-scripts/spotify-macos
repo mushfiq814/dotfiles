@@ -1,0 +1,52 @@
+#!/bin/sh
+
+TITLE="name of current track"
+ARTIST="artist of current track"
+ALBUM="album of current track"
+
+spotify_tell() {
+  osascript -e "tell application \"Spotify\" to $@"
+}
+
+get_play_status() {
+  STATE=$(spotify_tell "player state")
+
+  if [[ $STATE == "playing" ]]; then
+    STATUS="PLAYING"
+  elif [[ $STATE == "stopped" ]]; then 
+    STATUS="STOPPED"
+  else
+    STATUS="PAUSED"
+  fi
+  echo $STATUS
+}
+
+toggle_playback() {
+  spotify_tell "playpause"
+}
+
+next_track() {
+  spotify_tell "next track"
+}
+
+prev_track() {
+  spotify_tell "previous track"
+}
+
+get_metadata() {
+  spotify_tell "$ARTIST & \" - \" & $TITLE"
+}
+
+if [[ $1 == "toggle" ]]; then
+  toggle_playback
+elif [[ $1 == "next" ]]; then
+  next_track
+elif [[ $1 == "prev" ]]; then
+  prev_track
+elif [[ $1 == "meta" ]]; then
+  get_metadata
+elif [[ $1 == "status" ]]; then
+  get_play_status
+else
+  echo "invalid argument"
+fi
