@@ -52,8 +52,8 @@ shift + alt - w : /usr/local/bin/macos-wallpaper
 # open terminal
 alt - return : /usr/local/bin/kitty
 
-# reload window manager
-shift + alt - r : yabai --stop-service; yabai --start-service
+# reload window manager/keybindings/bar
+shift + alt - r : yabai --restart-service; skhd --restart-service; sketchybar --reload
 
 # stop window manager
 lctrl + alt - r : yabai --stop-service
