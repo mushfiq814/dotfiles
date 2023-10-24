@@ -10,4 +10,10 @@ MUSIC=$(
   | awk -v d=" - " '{s=(NR==1?s:s d)$0}END{print s}'
 )
 
+CHAR_LIMIT=30
+CHARS=$(echo "$(echo $MUSIC | wc -m)-1" | bc)
+if [ $CHARS -gt $CHAR_LIMIT ]; then
+  MUSIC="$(echo $MUSIC | head -c $CHAR_LIMIT)..."
+fi
+
 sketchybar -m --set mpv label="$MUSIC"

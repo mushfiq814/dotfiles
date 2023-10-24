@@ -1,0 +1,25 @@
+#!/bin/bash
+
+COLORS="$HOME/.config/sketchybar/colors"
+source "$COLORS"
+
+MPVCTL="/usr/local/bin/mpvctl"
+
+sketchybar -m                                   \
+  --set mpv-controls-prev                       \
+    icon="玲"                                   \
+    icon.color="0xFF${ACCENT:1}"                \
+    icon.highlight_color="0xFF${WHITE:1}"       \
+    click_script="$MPVCTL prev"
+sketchybar -m                                   \
+  --set mpv-controls-toggle                     \
+    icon=""                                    \
+    icon.color="0xFF${ACCENT:1}"                \
+    icon.highlight_color="0xFF${WHITE:1}"       \
+    click_script="$MPVCTL toggle"
+sketchybar -m                                   \
+  --set mpv-controls-next                       \
+    icon="怜"                                   \
+    icon.color="0xFF${ACCENT:1}"                \
+    icon.highlight_color="0xFF${WHITE:1}"       \
+    click_script="$MPVCTL next"
