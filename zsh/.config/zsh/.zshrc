@@ -1,3 +1,6 @@
+# get env specific values
+source "$HOME/dotfiles/.env"
+
 if [[ ${OSTYPE:0:6} = "darwin" ]]; then
   source "$HOME/.config/zsh/macos.zsh"
 elif [[ ${OSTYPE:0:13} = "linux-android" ]]; then
@@ -19,5 +22,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
 # exit functions
 set_prompt
-source "$HOME/dotfiles/.env" && if [[ $SHOW_SYS_FETCH -eq 1 ]]; then fetch; fi
+if [[ $SHOW_SYS_FETCH -eq 1 ]]; then fetch; fi
 launcher
