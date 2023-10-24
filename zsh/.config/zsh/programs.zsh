@@ -1,7 +1,9 @@
 # Fuzzy Finder
 source "$HOME/dotfiles/.env"
-if [ -d $FZF_FILES_DIR ]; then
+if [[ -e $FZF_FILES_DIR/"completion.zsh" && $ENABLE_ZSH_COMP -eq 1 ]]; then
   source $FZF_FILES_DIR/"completion.zsh";
+fi
+if [ -e $FZF_FILES_DIR/"key-bindings.zsh" ]; then
   source $FZF_FILES_DIR/"key-bindings.zsh";
 fi
 
