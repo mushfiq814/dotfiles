@@ -10,7 +10,7 @@ SCRIPTS="$HOME/.config/sketchybar/scripts"
 SCREEN_WIDTH=$(system_profiler SPDisplaysDataType | awk '/Resolution/{print $2}')
 SCREEN_WIDTH_THRESHOLD=1000
 IS_SHORT=$(test $SCREEN_WIDTH -gt $SCREEN_WIDTH_THRESHOLD; echo $?)
-IS_SHORT=1
+IS_SHORT=0
 
 # Bar Appearance
 sketchybar --bar height=22            \
@@ -137,13 +137,13 @@ sketchybar -m                         \
     script="$SCRIPTS/mpv-controls"
 
 sketchybar -m                         \
-  --add item mpv center               \
-  --set mpv                           \
+  --add item spotify center           \
+  --set spotify                       \
     update_freq=1                     \
     icon="ﱘ"                          \
     icon.color="0xFF${ACCENT:1}"      \
     label.color="0xFF${WHITE:1}"      \
-    script="$SCRIPTS/mpv"
+    script="$SCRIPTS/spotify"
 
 # Finalizing Setup
 # The below command is only needed at the end of the initial configuration and
