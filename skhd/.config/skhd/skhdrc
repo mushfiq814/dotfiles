@@ -65,9 +65,9 @@ alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 alt - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
 
 # music controls
-alt - down : /usr/local/bin/mpvctl toggle
-alt - left : /usr/local/bin/mpvctl prev
-alt - right : /usr/local/bin/mpvctl next
+alt - down : /usr/local/bin/spotify-macos toggle
+alt - left : /usr/local/bin/spotify-macos prev
+alt - right : /usr/local/bin/spotify-macos next
 
 # general keybinds for non-terminal applications to switch macos cmd <-> ctrl
 
