@@ -4,8 +4,6 @@ function showFuzzyDirContents() {
   SELECTION=$('ls' "$DIR" | fzf --height=20)
   if [[ $SELECTION && $? -eq 0 ]]; then
     cd "$DIR"/"$SELECTION"
-  else
-    notify-send --urgency "critical" -a "zshrc" "ERROR: no directory selected. aborting..."
   fi
 }
 # }}}
