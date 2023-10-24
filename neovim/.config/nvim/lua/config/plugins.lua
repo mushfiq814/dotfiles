@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
+local afterFileOpen = { "BufReadPre", "BufNewFile" }
+
 local modulesDir = '/home/mushfiq/.config/nvim/lua/config/'
 -- load package manager
 require('lazy').setup({
@@ -27,28 +29,28 @@ require('lazy').setup({
   -- language server
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim', config = function() require('config/plugin-settings/mason') end },
-  { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end, event = { "BufReadPre", "BufNewFile" } },
+  { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end, event = afterFileOpen },
   { 'jose-elias-alvarez/null-ls.nvim', config = function() require('config/plugin-settings/null-ls') end, lazy = true },
   { 'mfussenegger/nvim-dap', lazy = true },
   { 'mfussenegger/nvim-jdtls', lazy = true },
   { 'SmiteshP/nvim-navic', config = function() require('config/plugin-settings/nvim-navic') end, lazy = true },
 
   -- treesitter
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require('config/plugin-settings/treesitter') end, event = { "BufReadPre", "BufNewFile" } },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require('config/plugin-settings/treesitter') end, event = afterFileOpen },
   { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' } },
   { 'simrat39/symbols-outline.nvim', config = function() require('config/plugin-settings/symbols-outline') end, cmd = "SymbolsOutline" },
 
   -- cmp plugins
-  { 'hrsh7th/cmp-nvim-lsp', event = { "BufReadPre", "BufNewFile" } },
-  { 'hrsh7th/cmp-buffer', event = { "BufReadPre", "BufNewFile" } },
-  { 'hrsh7th/cmp-path', event = { "BufReadPre", "BufNewFile" } },
-  { 'hrsh7th/cmp-cmdline', event = { "BufReadPre", "BufNewFile" } },
-  { 'hrsh7th/nvim-cmp', config = function() require('config/plugin-settings/nvim-cmp') end, event = { "BufReadPre", "BufNewFile" } },
-  { 'hrsh7th/cmp-nvim-lsp-signature-help', event = { "BufReadPre", "BufNewFile" } },
+  { 'hrsh7th/cmp-nvim-lsp', event = afterFileOpen },
+  { 'hrsh7th/cmp-buffer', event = afterFileOpen },
+  { 'hrsh7th/cmp-path', event = afterFileOpen },
+  { 'hrsh7th/cmp-cmdline', event = afterFileOpen },
+  { 'hrsh7th/nvim-cmp', config = function() require('config/plugin-settings/nvim-cmp') end, event = afterFileOpen },
+  { 'hrsh7th/cmp-nvim-lsp-signature-help', event = afterFileOpen },
 
   -- snippets
-  { 'L3MON4D3/LuaSnip', event = { "BufReadPre", "BufNewFile" } },
-  { 'saadparwaiz1/cmp_luasnip', event = { "BufReadPre", "BufNewFile" } },
+  { 'L3MON4D3/LuaSnip', event = afterFileOpen },
+  { 'saadparwaiz1/cmp_luasnip', event = afterFileOpen },
 
   -- required libraries
   { 'nvim-lua/popup.nvim', lazy = true },
@@ -62,18 +64,18 @@ require('lazy').setup({
   -- UI
   { 'kyazdani42/nvim-tree.lua', config = function() require('config/plugin-settings/nvim-tree') end, cmd = { 'NvimTreeOpen', 'NvimTreeToggle' }, keys = '<C-n>' },
   { 'rcarriga/nvim-notify', config = function() require('config/plugin-settings/nvim-notify') end },
-  { 'lukas-reineke/indent-blankline.nvim', main = "ibl", config = function() require('config/plugin-settings/indent-blankline') end, event = { "BufReadPre", "BufNewFile" } },
+  { 'lukas-reineke/indent-blankline.nvim', main = "ibl", config = function() require('config/plugin-settings/indent-blankline') end, event = afterFileOpen },
   { 'folke/zen-mode.nvim', config = function() require('config/plugin-settings/zen-mode') end, keys = '<leader>x' },
-  { 'NvChad/nvim-colorizer.lua', config = function() require('config/plugin-settings/nvim-colorizer') end, event = { "BufReadPre", "BufNewFile" } },
+  { 'NvChad/nvim-colorizer.lua', config = function() require('config/plugin-settings/nvim-colorizer') end, event = afterFileOpen },
   { 'm00qek/baleia.nvim', lazy = true },
-  { 'samodostal/image.nvim', config = function() require('config/plugin-settings/image') end, event = { "BufReadPre", "BufNewFile" } },
+  { 'samodostal/image.nvim', config = function() require('config/plugin-settings/image') end, event = afterFileOpen },
 
   -- Development Tools
   { 'TimUntersberger/neogit', config = function() require('config/plugin-settings/neogit') end, lazy = true },
   { 'sindrets/diffview.nvim', lazy = true },
   { 'tpope/vim-fugitive', cmd = { 'G', 'Gvdiffsplit' } },
   { 'numToStr/Comment.nvim', config = function() require('config/plugin-settings/comment') end, keys = { { 'gc', mode = { "n", "v" } }, 'gcc' } },
-  { 'lewis6991/gitsigns.nvim', config = function() require('config/plugin-settings.gitsigns') end, event = { "BufReadPre", "BufNewFile" } },
+  { 'lewis6991/gitsigns.nvim', config = function() require('config/plugin-settings.gitsigns') end, event = afterFileOpen },
 
   -- replace eventually
   { 'jkramer/vim-checkbox', keys = '<leader>tt' },
