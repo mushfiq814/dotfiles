@@ -9,6 +9,12 @@ alias BE='cd ~/projects/fplus-loan-app'
 # kubectl/gcp
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+# fnm (node version manager - alternative to nvm)
+if [ -d "$HOME/Library/Application Support/fnm" ]; then
+  export PATH="$HOME/Library/Application Support/fnm:$PATH";
+  eval "`fnm env`";
+fi
+
 # atlassian cli
 if [ -e "$HOME/.secrets/ATLASSIAN_API_TOKEN" ]; then
   export ATLASSIAN_API_TOKEN="$(cat $HOME/.secrets/ATLASSIAN_API_TOKEN)";
