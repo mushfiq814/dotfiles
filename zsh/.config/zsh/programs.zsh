@@ -1,27 +1,3 @@
-# Node Version Manager (nvm)
-# resolve node path for nvm version
-# export NODE_PATH=/home/mushfiq/.nvm/versions/node/v18.0.0/bin/node
-# export PATH="$(dirname $NODE_PATH):$PATH"
-export PATH="/home/mushfiq/.local/share/npm/bin:$PATH"
-
-# NVM slows down zsh initialization by a lot.
-# This enables lazy loading nvm
-lazynvm() {
-  # echo 'lazy loading nvm...'
-  unset -f nvm node npm npx
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-  if [ -f "$NVM_DIR/bash_completion" ]; then
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-  fi
-}
-
-# lazy load nvm when the following commands are entered
-nvm() { lazynvm; nvm $@ }
-node() { lazynvm; node $@ }
-npm() { lazynvm; npm $@ }
-npx() { lazynvm; npx $@ }
-
 # Fuzzy Finder
 source "$HOME/dotfiles/.env"
 if [ -d $FZF_FILES_DIR ]; then
