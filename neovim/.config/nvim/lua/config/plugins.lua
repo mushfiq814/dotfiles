@@ -27,8 +27,8 @@ require('lazy').setup({
   { dir = modulesDir .. 'keybindings.lua', name = 'keybindings', config = function() require('config/keybindings') end },
 
   -- language server
-  { 'williamboman/mason.nvim' },
-  { 'williamboman/mason-lspconfig.nvim', config = function() require('config/plugin-settings/mason') end },
+  { 'williamboman/mason.nvim', event = afterFileOpen },
+  { 'williamboman/mason-lspconfig.nvim', config = function() require('config/plugin-settings/mason') end, event = afterFileOpen },
   { 'neovim/nvim-lspconfig', config = function() require('config/plugin-settings/nvim-lsp') end, event = afterFileOpen },
   { 'jose-elias-alvarez/null-ls.nvim', config = function() require('config/plugin-settings/null-ls') end, lazy = true },
   { 'mfussenegger/nvim-dap', lazy = true },
@@ -58,12 +58,12 @@ require('lazy').setup({
   { 'kyazdani42/nvim-web-devicons', lazy = true },
 
   -- telescope
-  { 'nvim-telescope/telescope.nvim', config = function() require('config/plugin-settings/telescope') end },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  { 'nvim-telescope/telescope.nvim', config = function() require('config/plugin-settings/telescope') end, lazy = true },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
 
   -- UI
   { 'kyazdani42/nvim-tree.lua', config = function() require('config/plugin-settings/nvim-tree') end, cmd = { 'NvimTreeOpen', 'NvimTreeToggle' }, keys = '<C-n>' },
-  { 'rcarriga/nvim-notify', config = function() require('config/plugin-settings/nvim-notify') end },
+  { 'rcarriga/nvim-notify', config = function() require('config/plugin-settings/nvim-notify') end, event = afterFileOpen },
   { 'lukas-reineke/indent-blankline.nvim', main = "ibl", config = function() require('config/plugin-settings/indent-blankline') end, event = afterFileOpen },
   { 'folke/zen-mode.nvim', config = function() require('config/plugin-settings/zen-mode') end, keys = '<leader>x' },
   { 'NvChad/nvim-colorizer.lua', config = function() require('config/plugin-settings/nvim-colorizer') end, event = afterFileOpen },
