@@ -25,4 +25,4 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # exit functions
 set_prompt
 if [[ $SHOW_SYS_FETCH -eq 1 ]]; then fetch; fi
-launcher
+if [[ $ENABLE_LAUNCHER -eq 1 ]]; then launcher; fi
