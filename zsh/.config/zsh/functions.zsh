@@ -1,17 +1,16 @@
 # showFuzzyDirContents {{{
 function showFuzzyDirContents() {
   DIR="$1"
-  SELECTION=$('ls' "$DIR" | fzf --height=20)
+  SELECTION=$('ls' "$DIR" | fzf --height=10)
   if [[ $SELECTION && $? -eq 0 ]]; then
     cd "$DIR"/"$SELECTION"
   fi
 }
 # }}}
 
-
 # launcher {{{
 function launcher() {
-  case $(print "dotfiles\nprojects\nconfig\ndownloads" | fzf) in
+  case $(print "dotfiles\nprojects\nconfig\ndownloads" | fzf --height=10) in
     "dotfiles")
       cd "$HOME/dotfiles" ;;
     "projects")
