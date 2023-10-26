@@ -30,5 +30,11 @@ telescope.setup({
         "--files",  -- include only files
       },
     },
+    live_grep = {
+      additional_args = {
+        "--hidden", -- include hidden files
+        "--glob", "!.git/", -- don't include .git directory
+      },
+    },
   },
 })
