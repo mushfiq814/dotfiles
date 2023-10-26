@@ -42,6 +42,19 @@ luasnip.add_snippets("markdown", {
   ),
 })
 
+luasnip.add_snippets("javascript", {
+  luasnip.snippet(
+    {
+      trig = "cl",
+      name = "console log",
+      dscr = "Add console.log() statement",
+    },
+    fmt("console.log(\"{}\");", {
+      luasnip.i(1),
+    })
+  ),
+})
+
 local kind_icons = {
   Text          = "",
   Method        = "m",
