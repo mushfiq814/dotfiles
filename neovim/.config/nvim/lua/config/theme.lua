@@ -259,7 +259,7 @@ hi.TelescopePreviewTitle              = {
 hi.TelescopePromptTitle               = { guifg = darkercursorline, guibg = colors.bright_red, gui = 'bold', guisp = nil }
 hi.TelescopeResultsTitle              = { guifg = darkerbg, guibg = darkerbg, gui = 'bold', guisp = nil }
 hi.TelescopeSelection                 = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
-hi.TelescopePreviewLine               = { guifg = nil, guibg = colors.grey2, gui = 'none', guisp = nil }
+hi.TelescopePreviewLine               = { guifg = nil, guibg = colors.grey1, gui = 'none', guisp = nil }
 
 -- nvim-notify
 hi.NotifyDEBUGBody                    = 'Float'
