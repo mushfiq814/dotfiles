@@ -25,10 +25,9 @@ telescope.setup({
     find_files = {
       find_command = {
         "rg",
-        "--hidden",
-        "--glob",
-        "!.git/",
-        "--files",
+        "--hidden", -- include hidden files
+        "--glob", "!.git/", -- don't include .git directory
+        "--files",  -- include only files
       },
     },
   },
