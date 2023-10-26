@@ -109,10 +109,12 @@ hi.Typedef                            = { guifg = colors.bright_yellow, guibg = 
 hi.DiffAdd                            = { guifg = colors.black, guibg = colors.bright_green, gui = nil, guisp = nil }
 hi.DiffChange                         = { guifg = colors.grey2, guibg = colors.bright_blue, gui = nil, guisp = nil }
 hi.DiffDelete                         = { guifg = colors.black, guibg = colors.bright_red, gui = nil, guisp = nil }
-hi.DiffText                           = { guifg = colors.black, guibg = colors.bright_blue, gui = nil, guisp = nil }
+hi.DiffText                           = { guifg = colors.black, guibg = colors.neutral_blue, gui = nil, guisp = nil }
 hi.DiffAdded                          = { guifg = colors.bright_green, guibg = colors.black, gui = nil, guisp = nil }
+hi.DiffChanged                        = { guifg = colors.bright_blue, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffFile                           = { guifg = colors.bright_red, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffNewFile                        = { guifg = colors.bright_green, guibg = colors.black, gui = nil, guisp = nil }
+hi.DiffOldFile                        = { guifg = colors.bright_red, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffLine                           = { guifg = colors.bright_blue, guibg = colors.black, gui = nil, guisp = nil }
 hi.DiffRemoved                        = { guifg = colors.bright_red, guibg = colors.black, gui = nil, guisp = nil }
 
