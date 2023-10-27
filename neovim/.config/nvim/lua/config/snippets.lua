@@ -46,7 +46,17 @@ luasnip.add_snippets("javascript", {
       name = "console log",
       dscr = "Add console.log() statement",
     },
-    fmt("console.log(\"{}\");", {
+    fmt("console.log({});", {
+      luasnip.i(1),
+    })
+  ),
+  s(
+    {
+      trig = "cld",
+      name = "console log for debug",
+      dscr = "Add console.log(\"[DEBUG]: \") statement",
+    },
+    fmt("console.log(\"[DEBUG]:\", {});", {
       luasnip.i(1),
     })
   ),
