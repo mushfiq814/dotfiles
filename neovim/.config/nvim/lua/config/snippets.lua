@@ -51,4 +51,7 @@ luasnip.add_snippets("javascript", {
     })
   ),
 })
-
+-- extend to other filetypes
+luasnip.filetype_extend("javascriptreact", { "javascript" })
+luasnip.filetype_extend("typescript", { "javascript" })
+luasnip.filetype_extend("typescriptreact", { "javascript" })
