@@ -25,6 +25,7 @@ require('lazy').setup({
   { dir = modulesDir .. 'statusline.lua', name = 'statusline', config = function() require('config/statusline') end },
   { dir = modulesDir .. 'settings.lua', name = 'settings', config = function() require('config/settings') end },
   { dir = modulesDir .. 'keybindings.lua', name = 'keybindings', config = function() require('config/keybindings') end },
+  { dir = modulesDir .. 'snippets.lua', name = 'snippets', config = function() require('config/snippets') end },
 
   -- language server
   { 'williamboman/mason.nvim', event = afterFileOpen },
