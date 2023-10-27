@@ -4,6 +4,7 @@ if not luasnip_loaded then return end
 local s = luasnip.snippet
 local partial = require("luasnip/extras").partial
 local fmt = require("luasnip/extras/fmt").fmt
+local fmta = require("luasnip/extras/fmt").fmta
 
 luasnip.add_snippets("all", {
   s(
@@ -19,6 +20,60 @@ luasnip.add_snippets("all", {
       dscr = "Insert the current date",
     },
     partial(os.date, "%Y-%m-%d")
+  ),
+  s(
+    {
+      trig = "(",
+      dscr = "add opening/closing parenthesis",
+    },
+    fmta("(<>)", {
+      luasnip.i(1),
+    })
+  ),
+  s(
+    {
+      trig = "{",
+      dscr = "add opening/closing braces",
+    },
+    fmta("{<>}", {
+      luasnip.i(1),
+    })
+  ),
+  s(
+    {
+      trig = "[",
+      dscr = "add opening/closing brackets",
+    },
+    fmta("[<>]", {
+      luasnip.i(1),
+    })
+  ),
+  s(
+    {
+      trig = "`",
+      dscr = "add opening/closing backticks",
+    },
+    fmta("`<>`", {
+      luasnip.i(1),
+    })
+  ),
+  s(
+    {
+      trig = "'",
+      dscr = "add opening/closing quotes",
+    },
+    fmta("'<>'", {
+      luasnip.i(1),
+    })
+  ),
+  s(
+    {
+      trig = '"',
+      dscr = "add opening/closing double quotes",
+    },
+    fmta('"<>"', {
+      luasnip.i(1),
+    })
   ),
 })
 
