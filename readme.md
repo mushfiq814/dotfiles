@@ -6,13 +6,12 @@ My configuration files for different programs that I use. This repo uses [GNU St
 
 | Part               | Details                                                                                |
 |--------------------|----------------------------------------------------------------------------------------|
-| Device             | Razer Blade Stealth - 3200x1800 13.3" QHD+ - RZ09-02393E32-R3U1                        |
-| CPU                | Intel(R) Core(TM) i7-8550U @ 2.001GHz                                                  |
+| Device             | Razer Blade Stealth/Dell XPS 13/Macbook Pro M1/Samsung S23                             |
 | RAM                | 16.0 GB                                                                                |
-| OS                 | Arch Linux                                                                             |
-| Shell              | zsh 5.9                                                                                |
-| Terminal Emulator  | Kitty                                                                                  |
-| Window Manager     | i3-gaps                                                                                |
+| OS                 | Arch Linux/MacOS/Android                                                               |
+| Shell              | zsh                                                                                    |
+| Terminal Emulator  | Kitty/Termux                                                                           |
+| Window Manager     | i3-gaps/yabai                                                                          |
 | Editor             | NeoVim 0.9.0                                                                           |
 | Browser/PDF Reader | QuteBrowser                                                                            |
 | Font               | [LigaSauceCodePro Nerd Font](https://github.com/Bo-Fone/Liga-Sauce-Code-Pro-Nerd-Font) |
