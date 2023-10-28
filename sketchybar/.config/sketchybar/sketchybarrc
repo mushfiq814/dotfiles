@@ -47,12 +47,14 @@ for i in $(yabai -m query --windows | jq '.[].space' | sort -u); do
 done
 
 # Window Title
-sketchybar -m                         \
-  --add item title left               \
-  --set title                         \
-    label.color="0xFF${WHITE:1}"      \
-    update_freq=1                     \
-    script="$SCRIPTS/title $IS_SHORT"
+if [ "$IS_SHORT" != "1" ]; then
+  sketchybar -m                         \
+    --add item title left               \
+    --set title                         \
+      label.color="0xFF${WHITE:1}"      \
+      update_freq=1                     \
+      script="$SCRIPTS/title $IS_SHORT"
+fi
 
 # Date Time
 TIME='sketchybar -m --set time label="$(date +"%r")"'
@@ -123,18 +125,20 @@ sketchybar -m                         \
     icon=" VPN"                      \
     script="$SCRIPTS/vpncheck"
 
-sketchybar -m                         \
-  --add item mpv-controls-next right  \
-  --set mpv-controls-next             \
-    script="$SCRIPTS/mpv-controls"
-sketchybar -m                         \
-  --add item mpv-controls-toggle right\
-  --set mpv-controls-toggle           \
-    script="$SCRIPTS/mpv-controls"
-sketchybar -m                         \
-  --add item mpv-controls-prev right  \
-  --set mpv-controls-prev             \
-    script="$SCRIPTS/mpv-controls"
+if [ "$IS_SHORT" != "1" ]; then
+  sketchybar -m                         \
+    --add item mpv-controls-next right  \
+    --set mpv-controls-next             \
+      script="$SCRIPTS/mpv-controls"
+  sketchybar -m                         \
+    --add item mpv-controls-toggle right\
+    --set mpv-controls-toggle           \
+      script="$SCRIPTS/mpv-controls"
+  sketchybar -m                         \
+    --add item mpv-controls-prev right  \
+    --set mpv-controls-prev             \
+      script="$SCRIPTS/mpv-controls"
+fi
 
 sketchybar -m                         \
   --add item spotify center           \
