@@ -65,5 +65,6 @@ if [[ $ENABLE_RAZERKBD -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/progra
 if [[ $ENABLE_ROFI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/rofi" "$THEME_FILE" "$ACCENT"; fi
 if [[ $ENABLE_SKETCHYBAR -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/sketchybar" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
 if [[ $ENABLE_TERMUX -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/termux" "$THEME_FILE"; fi
+if [[ $ENABLE_TMUX -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/tmux" "$THEME_FILE"; fi
 if [[ $ENABLE_XBORDERS -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/xborders" "$ACCENT"; fi
 if [[ $ENABLE_YABAI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/yabai" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
