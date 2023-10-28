@@ -13,6 +13,7 @@ nvim_treesitter.setup {
     'markdown_inline',
     'bash',
     'yaml',
+    'comment',
   },
   highlight = { enable = true },
   incremental_selection = { enable = true },

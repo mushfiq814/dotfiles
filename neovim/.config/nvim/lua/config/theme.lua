@@ -384,6 +384,11 @@ hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, 
 hi['@text.strike']              = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.strong']              = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
 
+hi['@text.todo']                = { guifg = colors.black, guibg = colors.bright_yellow, gui = 'bold', guisp = nil }
+hi['@text.note']                = { guifg = colors.black, guibg = colors.bright_aqua, gui = 'bold', guisp = nil }
+hi['@text.danger']              = { guifg = colors.black, guibg = colors.bright_red, gui = 'bold', guisp = nil }
+hi['@text.warning']             = { guifg = colors.black, guibg = colors.bright_orange, gui = 'bold', guisp = nil }
+
 -- gitsigns
 hi.GitSignsAdd                  = { guifg = colors.bright_green, guibg = nil }
 hi.GitSignsChange               = { guifg = colors.bright_aqua, guibg = nil }
