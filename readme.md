@@ -34,7 +34,7 @@ My configuration files for different programs that I use. This repo uses [GNU St
 
 ### MacOS System
 
-![sketchybar & neovim with starfield-light theme](TODO)
+![sketchybar & neovim with starfield-light theme](https://github.com/mushfiq814/dotfiles/assets/32845348/7d408284-b66b-4931-a626-91d5bbbd3e26)
 
 ### Android + Termux + Samsung Dex
 
