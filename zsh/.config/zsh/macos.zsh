@@ -31,3 +31,8 @@ term=$(echo $TERM_EMULATOR | tr "[:upper:]" "[:lower:]")
 if [ $term = "iterm" ] && [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
   source "${HOME}/.iterm2_shell_integration.zsh";
 fi
+
+# jira-cli: https://github.com/ankitpokhrel/jira-cli
+if [ -e "$HOME/.secrets/JIRA_API_TOKEN" ]; then
+  export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)";
+fi
