@@ -7,25 +7,34 @@ My configuration files for different programs that I use. This repo uses [GNU St
 | Part               | Details                                                                                |
 |--------------------|----------------------------------------------------------------------------------------|
 | Device             | Razer Blade Stealth/Dell XPS 13/Macbook Pro M1/Samsung S23                             |
-| RAM                | 16.0 GB                                                                                |
 | OS                 | Arch Linux/MacOS/Android                                                               |
 | Shell              | zsh                                                                                    |
 | Terminal Emulator  | Kitty/Termux                                                                           |
 | Window Manager     | i3-gaps/yabai                                                                          |
-| Editor             | NeoVim 0.9.0                                                                           |
+| Editor             | NeoVim                                                                                 |
 | Browser/PDF Reader | QuteBrowser                                                                            |
 | Font               | [LigaSauceCodePro Nerd Font](https://github.com/Bo-Fone/Liga-Sauce-Code-Pro-Nerd-Font) |
-| Colorscheme        | Various (see `./scripts/colorscheme/colors/*.json`)                                    |
+| Colorscheme        | Various (see `scripts/colorscheme/colors/*.json`)                                    |
 
 ## How it Looks
 
 ### Linux Systems
 
+#### polybar, neovim & qutebrowser with catppuccin theme
+
 ![polybar, neovim & qutebrowser with catppuccin theme](https://user-images.githubusercontent.com/32845348/197903873-c6850947-7d03-4189-bc48-0392af9a53ea.png)
+
+#### polybar, neovim & qutebrowser with ayu-light theme
 
 ![polybar, neovim & qutebrowser with ayu-light theme](https://user-images.githubusercontent.com/32845348/197916219-6fb2fc55-4780-4f59-a350-188dacf30346.png)
 
+#### rofi launcher with ayu-light theme
+
 ![rofi launcher with ayu-light theme](https://user-images.githubusercontent.com/32845348/197916240-ff5a6929-a3d3-49a6-b3ac-9b7267c22997.png)
+
+### MacOS System
+
+![sketchybar & neovim with starfield-light theme](TODO)
 
 ### Android + Termux + Samsung Dex
 
@@ -145,17 +154,3 @@ $ tree -a ~/dotfiles/test/.config/test
 #
 # 0 directories, 1 file
 ```
-
-## More Screenshots
-
-### Tmux Status
-
-![tmux-status](./images/tmux-status-2.png)
-
-### Firefox
-
-![firefox](./images/firefox.png)
-
-### Visual Studio Code
-
-![vscode](./images/vscode.png)
