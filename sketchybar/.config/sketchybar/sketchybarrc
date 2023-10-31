@@ -46,6 +46,14 @@ for i in $(yabai -m query --windows | jq '.[].space' | sort -u); do
       click_script="osascript -e 'tell application \"System Events\" to key code $KEYCODE using option down'"
 done
 
+# Jira
+sketchybar -m                         \
+  --add item jira left                \
+  --set jira                          \
+    label.color="0xFF${ACCENT:1}"      \
+    update_freq=3600                  \
+    script="$SCRIPTS/jira"
+
 # Window Title
 if [ "$IS_SHORT" != "1" ]; then
   sketchybar -m                         \
