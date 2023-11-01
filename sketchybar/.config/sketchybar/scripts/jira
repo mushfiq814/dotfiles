@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)"
+
 RESULT=$(
   jira sprint list \
     --state active \
@@ -12,17 +14,19 @@ RESULT=$(
 SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
 END=$(echo "$RESULT" | cut -d "	" -f 2)
 
-if [[ "$SPRINT" == "" ]] || [[ "$END" == "" ]]; then
-  sketchybar -m --set jira label="$RESULT"
-  exit 1
+NOTIFY=""
+if [[ "$RESULT" == "" ]]; then
+  NOTIFY="No active sprints"
+elif [[ "$SPRINT" == "" ]] || [[ "$END" == "" ]]; then
+  NOTIFY="ERROR"
+else
+  # get sprint end and current timestamps
+  CURR_TS=$(date +%s)
+  END_TS=$(date -j -f '%Y-%m-%d %H:%M:%S' "$END" +'%s')
+
+  # calculate number of days
+  DIFF=$(( ($END_TS - $CURR_TS) / (24 * 60 * 60) + 1))
+  NOTIFY="$SPRINT ends in $DIFF day(s)"
 fi
-
-# get sprint end and current timestamps
-CURR_TS=$(date +%s)
-END_TS=$(date -j -f '%Y-%m-%d %H:%M:%S' "$END" +'%s')
-
-# calculate number of days
-DIFF=$(( ($END_TS - $CURR_TS) / (24 * 60 * 60)))
-NOTIFY="$SPRINT ends in $DIFF day(s)"
 
 sketchybar -m --set jira label="$NOTIFY"
