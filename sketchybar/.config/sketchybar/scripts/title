@@ -7,21 +7,15 @@ else
   CUTOFF=80
 fi
 
-WINDOW=$(/opt/homebrew/bin/yabai -m query --windows --window)
-WINDOW_APP=$(echo $WINDOW | jq -r ".app")
-WINDOW_TITLE=$(echo $WINDOW | jq -r ".title")
-
-if [[ $WINDOW_APP = "iTerm2" ]]; then
+if [[ $INFO = "iTerm2" ]]; then
   TITLE="Terminal"
-elif [[ $WINDOW_APP = "kitty" ]]; then
+elif [[ $INFO = "kitty" ]]; then
   TITLE="Terminal"
-elif [[ $WINDOW_TITLE = "" ]]; then
-  TITLE=$WINDOW_APP
 else
-  if [[ ${#WINDOW_TITLE} -gt $CUTOFF ]]; then
-    TITLE="$(echo "$WINDOW_TITLE" | head -c $CUTOFF)…"
+  if [[ ${#INFO} -gt $CUTOFF ]]; then
+    TITLE="$(echo "$INFO" | head -c $CUTOFF)…"
   else
-    TITLE=$WINDOW_TITLE
+    TITLE=$INFO
   fi
 fi
 

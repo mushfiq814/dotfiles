@@ -56,11 +56,11 @@ sketchybar -m                         \
 
 # Window Title
 if [ "$IS_SHORT" != "1" ]; then
-  sketchybar -m                         \
-    --add item title left               \
-    --set title                         \
-      label.color="0xFF${WHITE:1}"      \
-      update_freq=1                     \
+  sketchybar -m                          \
+    --add item title left                \
+    --subscribe title front_app_switched \
+    --set title                          \
+      label.color="0xFF${WHITE:1}"       \
       script="$SCRIPTS/title $IS_SHORT"
 fi
 
@@ -150,11 +150,13 @@ fi
 
 sketchybar -m                         \
   --add item spotify center           \
+  --subscribe spotify media_change    \
   --set spotify                       \
-    update_freq=1                     \
+    updates=on                        \
     icon="ﱘ"                          \
     icon.color="0xFF${ACCENT:1}"      \
     label.color="0xFF${WHITE:1}"      \
+    click_script="open -a 'Spotify'"  \
     script="$SCRIPTS/spotify"
 
 # Finalizing Setup

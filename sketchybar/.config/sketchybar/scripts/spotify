@@ -1,6 +1,10 @@
 #!/bin/sh
 
-SPOTIFY_MACOS_SCRIPT="$HOME/dotfiles/scripts/single-file-scripts/spotify-macos"
-INFO=$($SPOTIFY_MACOS_SCRIPT meta)
+# this script will be called by sketchybar with the media_changed event
+# subscribed providing media info in $INFO
+APP="$(echo "$INFO" | jq -r '.app')"
+META="$(echo "$INFO" | jq -r '.artist + " - " + .title')"
 
-sketchybar -m --set spotify label="$INFO"
+osascript -e "display notification \"$META\" with title \"$APP\""
+
+sketchybar -m --set spotify label="$META"
