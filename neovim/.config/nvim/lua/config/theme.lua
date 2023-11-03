@@ -389,7 +389,10 @@ hi['@text.todo']                = { guifg = colors.black, guibg = colors.bright_
 hi['@text.note']                = { guifg = colors.black, guibg = colors.bright_aqua, gui = 'bold', guisp = nil }
 hi['@text.danger']              = { guifg = colors.black, guibg = colors.bright_red, gui = 'bold', guisp = nil }
 hi['@text.warning']             = { guifg = colors.black, guibg = colors.bright_orange, gui = 'bold', guisp = nil }
-hi['@text.uri']                 = { guifg = colors.black, guibg = colors.bright_orange, gui = 'bold', guisp = nil }
+
+-- unlink todo checkbox highlights
+hi['@text.todo.checked.markdown']   = "NONE"
+hi['@text.todo.unchecked.markdown'] = "NONE"
 
 -- gitsigns
 hi.GitSignsAdd                  = { guifg = colors.bright_green, guibg = nil }
