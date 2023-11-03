@@ -329,11 +329,6 @@ hi.CmpItemKindOperator                = { guifg = colors.grey4, guibg = nil, gui
 hi.CmpItemKindSnippet                 = { guifg = colors.grey3, guibg = nil, gui = nil, guisp = nil }
 
 -- markdown
-hi['@text.title'] = { guifg = colors.bright_aqua, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.reference'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.literal'] = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.uri'] = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
-
 local function getMdTitleHighlight(level)
   local darkenFactor = 0.05
   local titleDarkenFactors = {
