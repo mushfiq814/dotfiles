@@ -7,7 +7,7 @@ setopt AUTO_CD
 # enable comments in interactive mode
 setopt INTERACTIVE_COMMENTS
 # for tmux to display colors properly
-export TERM="xterm-256color"
+export TERM="xterm-kitty"
 # enable wildcard expansion
 setopt globsubst
 
