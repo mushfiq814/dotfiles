@@ -5,6 +5,4 @@
 APP="$(echo "$INFO" | jq -r '.app')"
 META="$(echo "$INFO" | jq -r '.artist + " - " + .title')"
 
-osascript -e "display notification \"$META\" with title \"$APP\""
-
 sketchybar -m --set spotify label="$META"
