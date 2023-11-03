@@ -122,3 +122,17 @@ endfunction!
 function sum_cols()
   vim.cmd([[echo eval(join(split(@", '\_s\+'), '+'))]])
 end
+
+-- execute current file
+function ExecuteCurrFile()
+  local currentFile = vim.fn.expand('%:p')
+
+  local output = {}
+  local commentStr = "// "
+
+  local result = io.popen("node " .. currentFile)
+  for line in result:lines() do
+    table.insert(output, commentStr .. line)
+  end
+  vim.api.nvim_buf_set_lines(0, -1, -1, false, output)
+end
