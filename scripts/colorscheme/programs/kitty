@@ -47,6 +47,9 @@ cursor_text_color $BLACK
 
 background_opacity $OPACITY
 dim_opacity 1.0
+
+tab_title_template "{fmt.bg.default} {fmt.bg._${GREY0:1}}{fmt.fg._${BRIGHT_YELLOW:1}} {activity_symbol}{index} {fmt.bg._${GREY1:1}}{fmt.fg._${GREY5:1}} {tab.active_oldest_wd.split('/')[-1]} "
+active_tab_title_template "{fmt.bg.default} {fmt.bg._${BRIGHT_YELLOW:1}}{fmt.fg._${BLACK:1}} {activity_symbol}{index} {fmt.bg._${NEUTRAL_YELLOW:1}}{fmt.fg._${BLACK:1}} {tab.active_oldest_wd.split('/')[-1]} "
 EOF
 
 echo "COLORSCHEME: setting kitty font"
