@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ $PLAYER_EVENT = "play" ]; then
+  SONG_INFO=$(osascript \
+    -e "tell application \"spotify\"" \
+    -e "  set thename to name of current track" \
+    -e "  set theartist to artist of current track" \
+    -e "  set thealbum to album of the current track" \
+    -e "end tell" \
+    -e "" \
+    -e "set title to theartist & \" - \" & thename" \
+    -e "set notif to thealbum" \
+    -e "" \
+    -e "display notification notif with title title" \
+    -e "" \
+    -e "return title")
+fi
