@@ -439,7 +439,7 @@ exec = curl --silent wttr.in/tampa?format="%c%t"
 tail = false
 interval = 60
 label-fail = "ERROR"
-format =  <label>
+format = <label>
 format-fail = <label-fail>
 format-foreground = ${colors.accent-light}
 label-foreground = ${colors.white}
