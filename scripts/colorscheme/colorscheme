@@ -70,3 +70,4 @@ if [[ $ENABLE_TERMUX -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs
 if [[ $ENABLE_TMUX -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/tmux" "$THEME_FILE"; fi
 if [[ $ENABLE_XBORDERS -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/xborders" "$ACCENT"; fi
 if [[ $ENABLE_YABAI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/yabai" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
+if [[ $ENABLE_ZATHURA -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/zathura" "$THEME_FILE" "$ACCENT"; fi
