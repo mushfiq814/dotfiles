@@ -15,10 +15,12 @@ source "$HOME/dotfiles/.env"
 # shellcheck source=utils
 source "$HOME/dotfiles/scripts/colorscheme/utils"
 
-LAUNCHER_CMD="rofi -dmenu"
+LAUNCHER_CMD="rofi"
 if ! command -v "$LAUNCHER_CMD" &> /dev/null
 then
   LAUNCHER_CMD="fzf"
+else
+  LAUNCHER_CMD="rofi -dmenu"
 fi
 
 # show list of available colorschemes
