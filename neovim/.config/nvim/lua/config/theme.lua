@@ -375,7 +375,8 @@ hi['@punctuation.delimiter']    = { guifg = colors.grey4, guibg = nil, gui = nil
 hi['@punctuation.special']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.emphasis']            = { guifg = darkeraccent, guibg = nil, gui = 'standout', guisp = nil }
-hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, gui = 'standout', guisp = nil }
+hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
+hi['@markdown_quote_marker']    = { guifg = darkeraccent, guibg = colors.grey0, gui = nil, guisp = nil }
 hi['@text.strike']              = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.strong']              = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
 
