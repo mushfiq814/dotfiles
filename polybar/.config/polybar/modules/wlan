@@ -1,0 +1,18 @@
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+; All labels support the following tokens:
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+label-connected =   %essid%
+label-connected-maxlen = 30
+label-connected-minlen = 0
+label-connected-foreground = ${colors.accent}
+label-disconnected = 睊
+label-disconnected-foreground = ${colors.red1}
+
+; vim:ft=dosini

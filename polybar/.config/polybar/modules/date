@@ -1,0 +1,11 @@
+[module/date]
+type = internal/date
+interval = 120
+; use `man date` to find out format options
+date = "%a %Y-%m-%d"
+format =  <label>
+format-foreground = ${colors.accent}
+label = %date%
+label-foreground = ${colors.white}
+
+; vim:ft=dosini

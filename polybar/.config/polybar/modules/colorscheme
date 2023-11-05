@@ -1,0 +1,8 @@
+[module/colorscheme]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/colorscheme
+
+; vim:ft=dosini

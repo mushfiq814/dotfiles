@@ -1,0 +1,62 @@
+#!/bin/bash
+# shellcheck source-path=scripts/colorscheme
+
+THEME_FILE="$1" # theme file containing colors
+ACCENT="$2" # accent color from theme file
+
+# shellcheck source=colors/debug
+source "$THEME_FILE"
+
+source "$HOME/dotfiles/.env" # for $ZATHURA_FONT
+
+ZATHURA_COLORS_FILE="$HOME/.config/zathura/colors"
+
+# yabai set colors file
+echo "COLORSCHEME: setting zathura colors"
+cat << EOF > "$ZATHURA_COLORS_FILE"
+set font "$ZATHURA_FONT"
+
+set notification-error-bg "$NEUTRAL_RED"
+set notification-error-fg "$BLACK"
+set notification-warning-bg "$FADED_YELLOW"
+set notification-warning-fg "$BLACK"
+set notification-bg "$NEUTRAL_PURPLE"
+set notification-fg "$BLACK"
+
+set completion-bg "$BLACK"
+set completion-fg "$NEUTRAL_AQUA"
+set completion-group-bg "$BLACK"
+set completion-group-fg "$NEUTRAL_ORANGE"
+set completion-highlight-bg "$NEUTRAL_YELLOW"
+set completion-highlight-fg "$BLACK"
+
+set index-bg "$BLACK"
+set index-fg "$NEUTRAL_AQUA"
+set index-active-bg "$BLACK"
+set index-active-fg "$NEUTRAL_YELLOW"
+
+set tabbar-bg "$BLACK"
+set tabbar-fg "$ACCENT"
+set tabbar-focus-bg "$GREY0"
+set tabbar-focus-fg "$ACCENT"
+
+set inputbar-bg "$BLACK"
+set inputbar-fg "$WHITE"
+
+set statusbar-bg "$BLACK"
+set statusbar-fg "$NEUTRAL_PURPLE"
+
+set highlight-color "$NEUTRAL_PURPLE"
+set highlight-active-color "$FADED_PURPLE"
+
+set default-bg "$BLACK"
+set default-fg "$NEUTRAL_YELLOW"
+
+set render-loading-bg "$BLACK"
+set render-loading-fg "$NEUTRAL_YELLOW"
+
+# Recolor mode settings
+set recolor-lightcolor "$BLACK"
+set recolor-darkcolor "$GREY5"
+EOF
+

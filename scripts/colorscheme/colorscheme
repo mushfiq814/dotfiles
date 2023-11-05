@@ -15,10 +15,12 @@ source "$HOME/dotfiles/.env"
 # shellcheck source=utils
 source "$HOME/dotfiles/scripts/colorscheme/utils"
 
-LAUNCHER_CMD="rofi -dmenu"
+LAUNCHER_CMD="rofi"
 if ! command -v "$LAUNCHER_CMD" &> /dev/null
 then
   LAUNCHER_CMD="fzf"
+else
+  LAUNCHER_CMD="rofi -dmenu"
 fi
 
 # show list of available colorschemes
@@ -44,13 +46,13 @@ ACCENT=$(eval echo \$"$ACCENT_KEY")
 BLACK_TR="${BLACK:1}"
 if [ "$MODE" = "light" ]; then
   # get transparent black color in AARRGGBB format
+  # less transparent for light theme
   BLACK_TR="#DD$BLACK_TR"
   # background opacity
   OPACITY="0.95"
 else
-  # less transparent for light theme
-  BLACK_TR="#99$BLACK_TR"
-  OPACITY="0.90"
+  BLACK_TR="#90$BLACK_TR"
+  OPACITY="0.80"
 fi
 
 if [[ $ENABLE_DUNST -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/dunst" "$THEME_FILE" "$ACCENT"; fi
@@ -68,3 +70,4 @@ if [[ $ENABLE_TERMUX -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs
 if [[ $ENABLE_TMUX -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/tmux" "$THEME_FILE"; fi
 if [[ $ENABLE_XBORDERS -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/xborders" "$ACCENT"; fi
 if [[ $ENABLE_YABAI -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/yabai" "$THEME_FILE" "$ACCENT" "$BLACK_TR"; fi
+if [[ $ENABLE_ZATHURA -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/zathura" "$THEME_FILE" "$ACCENT"; fi

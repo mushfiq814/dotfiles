@@ -1,7 +1,11 @@
 # window class name specific rules
 for_window [class="^.*"] border pixel 0
 for_window [class="floating"] floating enable, resize set 640 480
-for_window [class="qutebrowser"] i3-msg workspace 2
+
+# assign workspace by window class/name
+assign [class="qutebrowser"] workspace number 2
+assign [class="firefox"] workspace number 2
+assign [class="Spotify"] workspace number 3
 
 # gaps
 gaps inner 50

@@ -1,0 +1,44 @@
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.white}
+
+format-muted = <label-muted>
+label-muted = 婢 muted
+label-muted-foreground = ${colors.red1}
+
+ramp-volume-0 = 奔 VOL
+ramp-volume-1 = 墳 VOL
+ramp-volume-2 =  VOL
+ramp-volume-foreground = ${colors.accent}
+
+; paselect sink (audio output)
+[module/paselectsink]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/paselect sink
+
+; paselect source (audio input)
+[module/paselectsource]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = /usr/local/bin/paselect source
+
+; show audio device
+[module/pacmd]
+type = custom/script
+tail = true
+interval = 1
+format-prefix = "蓼 "
+format-prefix-foreground = ${colors.accent}
+format = <label>
+exec = /usr/local/bin/get-audio-device
+click-left = /usr/local/bin/paselect sink
+
+; vim:ft=dosini

@@ -375,9 +375,25 @@ hi['@punctuation.delimiter']    = { guifg = colors.grey4, guibg = nil, gui = nil
 hi['@punctuation.special']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.emphasis']            = { guifg = darkeraccent, guibg = nil, gui = 'standout', guisp = nil }
-hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, gui = 'standout', guisp = nil }
+hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
+hi['@markdown_quote_marker']    = { guifg = darkeraccent, guibg = colors.grey0, gui = nil, guisp = nil }
 hi['@text.strike']              = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi['@text.strong']              = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
+
+local mdCodeBlockBg = nil
+hi['@markdown_code_block_marker']          = { guifg = colors.bright_yellow, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_javascript'] = { guifg = colors.bright_yellow, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_typescript'] = { guifg = colors.bright_blue, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_lua']        = { guifg = colors.bright_purple, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_bash']       = { guifg = colors.bright_green, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_json']       = { guifg = colors.bright_orange, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_diff']       = { guifg = colors.bright_red, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_vim']        = { guifg = colors.bright_aqua, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_yaml']       = { guifg = colors.bright_orange, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_java']       = { guifg = colors.bright_blue, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_html']       = { guifg = colors.bright_purple, guibg = colors.grey0, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_css']        = { guifg = colors.bright_blue, guibg = colors.grey0, gui = 'bold', guisp = nil }
+hi['@markdown_code_block_lang_sql']        = { guifg = colors.bright_yellow, guibg = colors.grey0, gui = 'bold', guisp = nil }
 
 -- comments
 hi['@text.todo']                = { guifg = colors.black, guibg = colors.bright_yellow, gui = 'bold', guisp = nil }
@@ -396,8 +412,8 @@ hi.GitSignsDelete               = { guifg = colors.bright_red, guibg = nil }
 hi.GitSignsChangeDelete         = { guifg = colors.bright_aqua, guibg = colors.bright_red }
 
 -- diff
-hi['@text.diff.delete'] = { guifg = colors.neutral_red, guibg = colors.black, gui = 'bold', guisp = nil }
-hi['@text.diff.add'] = { guifg = colors.neutral_green, guibg = colors.black, gui = 'bold', guisp = nil }
+hi['@text.diff.delete'] = { guifg = colors.neutral_red, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.diff.add'] = { guifg = colors.neutral_green, guibg = nil, gui = 'bold', guisp = nil }
 
 -- highlight groups
 vim.cmd('set background=' .. colors.mode)

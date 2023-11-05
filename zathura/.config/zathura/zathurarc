@@ -1,46 +1,10 @@
+include colors
+
 set window-title-basename "true"
 set selection-clipboard "clipboard"
-
 set recolor true
+set render-loading true
+
 map <C-i> recolor
 
-# Lighthaus Colors:
-
-set notification-error-bg       "#ff7c6a"
-set notification-error-fg       "#1d2021"
-set notification-warning-bg     "#e78a4e"
-set notification-warning-fg     "#1d2021"
-set notification-bg             "#d3869b"
-set notification-fg             "#1d2021"
-
-set completion-bg               "#1d2021"
-set completion-fg               "#89b482"
-set completion-group-bg         "#1d2021"
-set completion-group-fg         "#dda356"
-set completion-highlight-bg     "#fec366"
-set completion-highlight-fg     "#1d2021"
-
-set index-bg                    "#1d2021"
-set index-fg                    "#89b482"
-set index-active-bg             "#1d2021"
-set index-active-fg             "#fec366"
-
-set inputbar-bg                 "#1d2021"
-set inputbar-fg                 "#FFFADE"
-set statusbar-bg                "#1d2021"
-set statusbar-fg                "#d3869b"
-
-set highlight-color             "#d3869b"
-set highlight-active-color      "#a06575"
-
-set default-bg                  "#1d2021"
-set default-fg                  "#fec366"
-
-set render-loading              true
-set render-loading-fg           "#fec366"
-set render-loading-bg           "#1d2021"
-
-# Recolor mode settings
-
-set recolor-lightcolor          "#1d2021"
-set recolor-darkcolor           "#ddc7a1"
+# vim:ft=conf

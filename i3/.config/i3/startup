@@ -32,4 +32,10 @@ exec --no-startup-id setkbrate
 # Start feh for wallpapers
 exec --no-startup-id rewall
 
+# Start qutebrowser
+exec --no-startup-id qutebrowser
+
+# Start spotify
+exec --no-startup-id spotify
+
 # vim:filetype=i3config

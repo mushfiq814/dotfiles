@@ -1,0 +1,32 @@
+[module/spotify]
+type = custom/script
+tail = true
+interval = 1
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent}
+format = <label>
+exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
+
+[module/spotify-prev]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = playerctl previous -p spotify
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = echo ""
+format-foreground = ${colors.accent-light}
+initial = 1
+click-left = playerctl play-pause -p spotify
+
+[module/spotify-next]
+type = custom/script
+exec = echo ""
+format = <label>
+format-foreground = ${colors.accent-light}
+click-left = playerctl next -p spotify
+
+; vim:ft=dosini

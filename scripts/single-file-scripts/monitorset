@@ -46,7 +46,6 @@ secondary_is_connected() {
 
 autodetect_secondary() {
   secondary_is_connected && secondary_only
-  dunstify -a "monitorset" "Auto switched to secondary display"
 }
 
 case $1 in

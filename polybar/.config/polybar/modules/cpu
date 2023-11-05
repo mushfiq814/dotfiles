@@ -1,0 +1,18 @@
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " CPU "
+format-prefix-foreground = ${colors.accent}
+format = <bar-load>
+
+bar-load-indicator =
+bar-load-width = 5
+bar-load-foreground-0 = ${colors.cyan1}
+bar-load-foreground-1 = ${colors.cyan0}
+bar-load-foreground-2 = ${colors.yellow1}
+bar-load-foreground-3 = ${colors.orange1}
+bar-load-fill = ●
+bar-load-empty = ●
+bar-load-empty-foreground = ${colors.grey2}
+
+; vim:ft=dosini

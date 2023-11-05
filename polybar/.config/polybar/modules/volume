@@ -1,0 +1,12 @@
+[module/volume]
+type = custom/ipc
+hook-0 = /usr/local/bin/volume percent
+tail = true
+format-prefix = "墳 "
+format-prefix-foreground = ${colors.accent}
+initial = 1
+click-left = pavucontrol
+scroll-up = /usr/local/bin/volume up
+scroll-down = /usr/local/bin/volume down
+
+; vim:ft=dosini
