@@ -1,0 +1,10 @@
+[module/time]
+type = internal/date
+interval = 1
+time = %r
+format =  <label>
+format-foreground = ${colors.accent}
+label = %time%
+label-foreground = ${colors.white}
+
+; vim:ft=dosini

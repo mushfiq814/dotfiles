@@ -1,0 +1,18 @@
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+format = <ramp> <label>
+label = %percentage%%
+
+ramp-0 =  BRI
+ramp-1 =  BRI
+ramp-2 =  BRI
+ramp-3 =  BRI
+ramp-4 =  BRI
+ramp-foreground = ${colors.accent}
+
+; vim:ft=dosini

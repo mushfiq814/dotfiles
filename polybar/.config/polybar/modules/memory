@@ -1,0 +1,18 @@
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " MEM "
+format-prefix-foreground = ${colors.accent}
+format = <bar-used>
+
+bar-used-indicator =
+bar-used-width = 5
+bar-used-foreground-0 = ${colors.cyan1}
+bar-used-foreground-1 = ${colors.cyan0}
+bar-used-foreground-2 = ${colors.yellow1}
+bar-used-foreground-3 = ${colors.orange1}
+bar-used-fill = ●
+bar-used-empty = ●
+bar-used-empty-foreground = ${colors.grey2}
+
+; vim:ft=dosini

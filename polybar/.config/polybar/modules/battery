@@ -1,0 +1,35 @@
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 101
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+label-discharging-foreground = ${colors.grey4}
+
+ramp-capacity-0 =  BAT
+ramp-capacity-1 =  BAT
+ramp-capacity-2 =  BAT
+ramp-capacity-3 =  BAT
+ramp-capacity-4 =  BAT
+ramp-capacity-foreground = ${colors.accent}
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%%
+label-charging-foreground = ${colors.green1}
+label-charging-font = 2
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.cyan0}
+animation-charging-framerate = 750
+
+label-full =  Full
+label-full-font = 2
+label-full-foreground = ${colors.cyan0}
+
+; vim:ft=dosini
