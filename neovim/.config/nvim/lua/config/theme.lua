@@ -412,8 +412,8 @@ hi.GitSignsDelete               = { guifg = colors.bright_red, guibg = nil }
 hi.GitSignsChangeDelete         = { guifg = colors.bright_aqua, guibg = colors.bright_red }
 
 -- diff
-hi['@text.diff.delete'] = { guifg = colors.neutral_red, guibg = colors.black, gui = 'bold', guisp = nil }
-hi['@text.diff.add'] = { guifg = colors.neutral_green, guibg = colors.black, gui = 'bold', guisp = nil }
+hi['@text.diff.delete'] = { guifg = colors.neutral_red, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.diff.add'] = { guifg = colors.neutral_green, guibg = nil, gui = 'bold', guisp = nil }
 
 -- highlight groups
 vim.cmd('set background=' .. colors.mode)

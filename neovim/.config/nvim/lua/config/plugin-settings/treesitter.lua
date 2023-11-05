@@ -15,6 +15,7 @@ nvim_treesitter.setup {
     'bash',
     'yaml',
     'comment',
+    'diff',
   },
   highlight = { enable = true },
   incremental_selection = { enable = true },
