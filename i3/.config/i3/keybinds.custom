@@ -34,9 +34,9 @@ bindsym F6 exec brightness -
 bindsym F7 exec brightness +
 
 # music controls
-bindsym $win+Left exec --no-startup-id playerctl previous
-bindsym $win+Down exec --no-startup-id playerctl play-pause
-bindsym $win+Right exec --no-startup-id playerctl next
+bindsym $mod+Left exec --no-startup-id playerctl previous
+bindsym $mod+Down exec --no-startup-id playerctl play-pause
+bindsym $mod+Right exec --no-startup-id playerctl next
 
 # volume control
 bindsym --whole-window Button9 exec --no-startup-id volume +
