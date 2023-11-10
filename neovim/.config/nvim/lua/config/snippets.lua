@@ -3,10 +3,21 @@ if not luasnip_loaded then return end
 
 local s = luasnip.snippet
 local partial = require("luasnip/extras").partial
+local rep = require("luasnip/extras").rep
 local fmt = require("luasnip/extras/fmt").fmt
 local fmta = require("luasnip/extras/fmt").fmta
 
 luasnip.add_snippets("all", {
+  s(
+    {
+      trig = "ffam",
+      dscr = "Link Jira Ticket using Slug",
+    },
+    fmt("[FFAM-{}](https://billsdev.atlassian.net/browse/FFAM-{})", {
+      luasnip.i(1),
+      rep(1),
+    })
+  ),
   s(
     {
       trig = "time",
