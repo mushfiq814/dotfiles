@@ -1,18 +1,32 @@
 #!/bin/bash
 
-export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)"
+CACHE="$HOME/.config/sketchybar/scripts/jira-curr-sprint"
 
-RESULT=$(
-  jira sprint list \
-    --state active \
-    --table --plain --no-headers \
-    --columns name,end \
-    | grep -i "achievers"
-)
+# read cached result if it exists
+RESULT=$(cat "$CACHE" 2> /dev/null)
 
 # split on tabs
 SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
 END=$(echo "$RESULT" | cut -d "	" -f 2)
+
+if [[ "$RESULT" == "" || "$END" == "" ]]; then
+  # fetch from API
+  export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)"
+  RESULT=$(
+    jira sprint list \
+      --state active \
+      --table --plain --no-headers \
+      --columns name,end \
+      | grep -i "achievers"
+  )
+
+  # save result as cache
+  echo "$RESULT" > "$HOME/.config/sketchybar/scripts/jira-curr-sprint"
+
+  # parse values again
+  SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
+  END=$(echo "$RESULT" | cut -d "	" -f 2)
+fi
 
 NOTIFY=""
 if [[ "$RESULT" == "" ]]; then
