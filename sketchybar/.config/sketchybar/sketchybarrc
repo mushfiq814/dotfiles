@@ -31,7 +31,9 @@ sketchybar --default                  \
   background.padding_left=5           \
   background.padding_right=4          \
   label.padding_left=4                \
-  label.padding_right=4
+  label.padding_right=4               \
+  icon.color="0xFF${ACCENT:1}"        \
+  label.color="0xFF${WHITE:1}"
 
 # Spaces
 SPACE_ICONS=("" "" "" "" "" "")
@@ -62,7 +64,6 @@ if [ "$IS_SHORT" != "1" ]; then
     --add item title left                \
     --subscribe title front_app_switched \
     --set title                          \
-      label.color="0xFF${WHITE:1}"       \
       script="$SCRIPTS/title $IS_SHORT"
 fi
 
@@ -73,9 +74,7 @@ sketchybar -m                         \
   --set time                          \
     update_freq=1                     \
     icon=""                          \
-    icon.color="0xFF${ACCENT:1}"      \
-    script="$TIME"                    \
-    label.color="0xFF${WHITE:1}"
+    script="$TIME"
 
 if [ "$IS_SHORT" = "1" ]; then
   DATE='sketchybar -m --set date label="$(date +"%m/%d")"'
@@ -88,26 +87,19 @@ sketchybar -m                         \
     update_freq=60                    \
     label.padding_right=5             \
     icon=""                          \
-    icon.color="0xFF${ACCENT:1}"      \
-    script="$DATE"                    \
-    label.color="0xFF${WHITE:1}"
+    script="$DATE"
 
-#   睊
 sketchybar -m                         \
   --add item wlan right               \
   --subscribe wlan wifi_change        \
   --set wlan                          \
     icon=" "                         \
-    icon.color="0xFF${ACCENT:1}"      \
-    label.color="0xFF${WHITE:1}"      \
     script="$SCRIPTS/wlan $IS_SHORT"
 
 sketchybar -m                         \
   --add item battery right            \
   --set battery                       \
     update_freq=60                    \
-    icon.color="0xFF${ACCENT:1}"      \
-    label.color="0xFF${WHITE:1}"      \
     script="$SCRIPTS/battery"
 
 sketchybar -m                         \
@@ -115,8 +107,6 @@ sketchybar -m                         \
   --set cpu                           \
     update_freq=3                     \
     icon=" CPU"                      \
-    icon.color="0xFF${ACCENT:1}"      \
-    label.color="0xFF${WHITE:1}"      \
     script="$SCRIPTS/cpu"
 
 sketchybar -m                         \
@@ -124,8 +114,6 @@ sketchybar -m                         \
   --set memory                        \
     update_freq=3                     \
     icon=" MEM"                      \
-    icon.color="0xFF${ACCENT:1}"      \
-    label.color="0xFF${WHITE:1}"      \
     script="$SCRIPTS/mem"
 
 sketchybar -m                         \
@@ -147,8 +135,6 @@ sketchybar -m                         \
   --set spotify                       \
     updates=on                        \
     icon="ﱘ"                          \
-    icon.color="0xFF${ACCENT:1}"      \
-    label.color="0xFF${WHITE:1}"      \
     click_script="open -a 'Spotify'"  \
     script="$SCRIPTS/spotify"
 
