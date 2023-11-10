@@ -61,6 +61,11 @@
   (#set! conceal "")
 )
 (
+  [(info_string (language))] @markdown_code_block_lang_bash
+  (#eq? @markdown_code_block_lang_bash "sh")
+  (#set! conceal "")
+)
+(
   [(info_string (language))] @markdown_code_block_lang_lua
   (#eq? @markdown_code_block_lang_lua "lua")
   (#set! conceal "")
