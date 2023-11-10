@@ -34,15 +34,17 @@ sketchybar --default                  \
   label.padding_right=4
 
 # Spaces
-for i in $(yabai -m query --windows | jq '.[].space' | sort -u); do
-  KEYCODE=$(echo "17 + $i" | bc);
-  sketchybar -m                                   \
-    --add space "space$i" left                    \
-    --set "space$i"                               \
-      associated_space=$i                         \
-      icon=$i                                     \
-      icon.color="0xFF${ACCENT:1}"                \
-      icon.highlight_color="0xFF${WHITE:1}"       \
+SPACE_ICONS=("" "" "" "" "" "")
+for i in "${!SPACE_ICONS[@]}"
+do
+  sid=$(($i+1))
+  KEYCODE=$(echo "18 + $i" | bc);
+  sketchybar                                      \
+    --add space space.$sid left                   \
+    --set space.$sid space=$sid                   \
+      icon=${SPACE_ICONS[i]}                      \
+      icon.color="0xFF${WHITE:1}"                 \
+      icon.highlight_color="0xFF${ACCENT:1}"      \
       click_script="osascript -e 'tell application \"System Events\" to key code $KEYCODE using option down'"
 done
 
