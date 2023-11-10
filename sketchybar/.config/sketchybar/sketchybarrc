@@ -13,7 +13,7 @@ IS_SHORT=$(test $SCREEN_WIDTH -gt $SCREEN_WIDTH_THRESHOLD; echo $?)
 IS_SHORT=0
 
 # Bar Appearance
-sketchybar --bar height=22            \
+sketchybar --bar height=30            \
                  blur_radius=50       \
                  position=top         \
                  sticky=off           \

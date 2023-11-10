@@ -27,7 +27,7 @@ yabai -m rule --add app="^choose$"                  sticky=on layer=above manage
 
 yabai -m config auto_padding on
 yabai -m config auto_padding_min_aspect 3.00
-yabai -m config auto_padding_width 80
+yabai -m config auto_padding_width 100
 yabai -m config auto_padding_height 1200
 
 source ~/.config/yabai/colors
@@ -55,11 +55,11 @@ yabai -m config                               \
   split_ratio                  0.50           \
   split_type                   auto           \
   auto_balance                 off            \
-  top_padding                  40             \
-  bottom_padding               20             \
-  left_padding                 20             \
-  right_padding                20             \
-  window_gap                   20             \
+  top_padding                  48             \
+  bottom_padding               30             \
+  left_padding                 30             \
+  right_padding                30             \
+  window_gap                   30             \
   layout                       bsp            \
   mouse_modifier               ctrl           \
   mouse_action1                move           \
