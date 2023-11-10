@@ -1,8 +1,3 @@
-local colors_loaded, colors = pcall(require, "config/colors")
-if not colors_loaded then return end
-local background = colors.grey0
-local foreground = colors.white
-
 local function statusString(list)
   local str = ""
   for _, v in pairs(list) do
@@ -131,8 +126,6 @@ local function filetype()
       vim.cmd(
         "highlight! statusLineFileTypeIcon guifg="
         .. color
-        .. " guibg="
-        .. background
       )
       filetypeIconStr = statusString({
         { " " .. icon .. " ", "statusLineFileTypeIcon" },
@@ -262,31 +255,3 @@ vim.o.showtabline = 0
 
 -- global statusline
 vim.o.laststatus = 3
-
-local color_utils = require("config/utils/color-utils")
-local hi = color_utils.highlight
-
-hi.statusLineModeNormal = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = "bold", }
-hi.statusLineModeInsert = { guifg = colors.grey0, guibg = colors.bright_blue, gui = "bold", }
-hi.statusLineModeVisual = { guifg = colors.grey0, guibg = colors.bright_orange, gui = "bold", }
-hi.statusLineModeCommand = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = "bold", }
-hi.statusLineModeTerminal = { guifg = colors.grey0, guibg = colors.bright_purple, gui = "bold", }
-hi.statusLineTabNormal = { guifg = foreground, guibg = background, }
-hi.statuslineTabActive = { guifg = background, guibg = colors.accent, }
-hi.statuslineTabInactive = { guifg = colors.white, guibg = colors.grey2, }
-hi.statusLineBranch = { guifg = foreground, guibg = background, gui = "bold", }
-hi.statusLineCwd = { guifg = colors.bright_blue, guibg = background, }
-hi.statusLineFileName = { guifg = colors.bright_aqua, guibg = background, }
-hi.statusLineFileNameModified = { guifg = colors.bright_red, guibg = background, }
-hi.statusLineSpacer = { guifg = foreground, guibg = background, }
-hi.statusLineDiagnosticsError = { guifg = colors.bright_red, guibg = background, }
-hi.statusLineDiagnosticsWarning = { guifg = colors.bright_yellow, guibg = background, }
-hi.statusLineDiagnosticsInfo = { guibg = background, guifg = colors.bright_aqua, }
-hi.statusLineLspClient = { guibg = background, guifg = colors.bright_orange, }
-hi.statusLineFileType = { guifg = foreground, guibg = background, }
-hi.statusLineProgress = { guibg = colors.bright_yellow, guifg = colors.grey3, }
-hi.statusLineRowCol = { guifg = colors.bright_aqua, guibg = background, gui = "bold", }
-hi.flagBlue   = { guifg = colors.grey0, guibg = colors.neutral_blue, gui = "bold", }
-hi.flagYellow = { guifg = colors.grey0, guibg = colors.neutral_yellow, gui = "bold", }
-hi.flagOrange = { guifg = colors.grey0, guibg = colors.neutral_orange, gui = "bold", }
-hi.flagRed    = { guifg = colors.grey0, guibg = colors.neutral_red, gui = "bold", }

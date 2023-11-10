@@ -431,3 +431,105 @@ hi.healthSuccess = { guifg = colors.neutral_aqua, guibg = nil, gui = 'bold' }
 hi.healthHelp    = { guifg = colors.faded_blue, guibg = nil, gui = 'bold' }
 hi.healthError   = { guifg = colors.bright_red, guibg = nil, gui = 'bold' }
 hi.healthWarning = { guifg = colors.bright_orange, guibg = nil, gui = 'bold' }
+
+-- winbar
+hi.winbarFileName         = {
+  guifg = colors.black,
+  guibg = colors.accent,
+  gui = 'bold',
+}
+hi.winbarFileNameModified = {
+  guifg = colors.black,
+  guibg = colors.neutral_aqua,
+}
+
+local function winbarTagHighlight(group, guifg)
+  hi[group] = { guibg = colors.grey1, guifg = guifg }
+end
+local function winbarTagHighlightIcon(group)
+  hi[group] = { guibg = colors.grey1, guifg = colors.bright_green }
+end
+
+winbarTagHighlight("winbarTags", colors.white)
+winbarTagHighlight("NavicText", colors.white)
+winbarTagHighlight("NavicSeparator", colors.bright_orange)
+
+winbarTagHighlightIcon("NavicIconsArray")
+winbarTagHighlightIcon("NavicIconsBoolean")
+winbarTagHighlightIcon("NavicIconsClass")
+winbarTagHighlightIcon("NavicIconsConstant")
+winbarTagHighlightIcon("NavicIconsConstructor")
+winbarTagHighlightIcon("NavicIconsEnum")
+winbarTagHighlightIcon("NavicIconsEnumMember")
+winbarTagHighlightIcon("NavicIconsEvent")
+winbarTagHighlightIcon("NavicIconsField")
+winbarTagHighlightIcon("NavicIconsFile")
+winbarTagHighlightIcon("NavicIconsFunction")
+winbarTagHighlightIcon("NavicIconsInterface")
+winbarTagHighlightIcon("NavicIconsKey")
+winbarTagHighlightIcon("NavicIconsMethod")
+winbarTagHighlightIcon("NavicIconsModule")
+winbarTagHighlightIcon("NavicIconsNamespace")
+winbarTagHighlightIcon("NavicIconsNull")
+winbarTagHighlightIcon("NavicIconsNumber")
+winbarTagHighlightIcon("NavicIconsObject")
+winbarTagHighlightIcon("NavicIconsOperator")
+winbarTagHighlightIcon("NavicIconsPackage")
+winbarTagHighlightIcon("NavicIconsProperty")
+winbarTagHighlightIcon("NavicIconsString")
+winbarTagHighlightIcon("NavicIconsStruct")
+winbarTagHighlightIcon("NavicIconsTypeParameter")
+winbarTagHighlightIcon("NavicIconsVariable")
+
+-- statusline
+local background                = colors.grey0
+local foreground                = colors.white
+
+hi.statusLineModeNormal         = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = "bold", }
+hi.statusLineModeInsert         = { guifg = colors.grey0, guibg = colors.bright_blue, gui = "bold", }
+hi.statusLineModeVisual         = { guifg = colors.grey0, guibg = colors.bright_orange, gui = "bold", }
+hi.statusLineModeCommand        = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = "bold", }
+hi.statusLineModeTerminal       = { guifg = colors.grey0, guibg = colors.bright_purple, gui = "bold", }
+hi.statusLineTabNormal          = { guifg = foreground, guibg = background, }
+hi.statuslineTabActive          = { guifg = background, guibg = colors.accent, }
+hi.statuslineTabInactive        = { guifg = colors.white, guibg = colors.grey2, }
+hi.statusLineBranch             = { guifg = foreground, guibg = background, gui = "bold", }
+hi.statusLineCwd                = { guifg = colors.bright_blue, guibg = background, }
+hi.statusLineFileName           = { guifg = colors.bright_aqua, guibg = background, }
+hi.statusLineFileNameModified   = { guifg = colors.bright_red, guibg = background, }
+hi.statusLineSpacer             = { guifg = foreground, guibg = background, }
+hi.statusLineDiagnosticsError   = { guifg = colors.bright_red, guibg = background, }
+hi.statusLineDiagnosticsWarning = { guifg = colors.bright_yellow, guibg = background, }
+hi.statusLineDiagnosticsInfo    = { guibg = background, guifg = colors.bright_aqua, }
+hi.statusLineLspClient          = { guibg = background, guifg = colors.bright_orange, }
+hi.statusLineFileType           = { guifg = foreground, guibg = background, }
+hi.statusLineProgress           = { guibg = colors.bright_yellow, guifg = colors.grey3, }
+hi.statusLineRowCol             = { guifg = colors.bright_aqua, guibg = background, gui = "bold", }
+hi.flagBlue                     = { guifg = colors.grey0, guibg = colors.neutral_blue, gui = "bold", }
+hi.flagYellow                   = { guifg = colors.grey0, guibg = colors.neutral_yellow, gui = "bold", }
+hi.flagOrange                   = { guifg = colors.grey0, guibg = colors.neutral_orange, gui = "bold", }
+hi.flagRed                      = { guifg = colors.grey0, guibg = colors.neutral_red, gui = "bold", }
+hi.statusLineFileTypeIcon       = { guibg = background }
+
+-- add nvimtree highlights
+hi.NvimTreeBookmark             = { guifg = colors.bright_red }
+hi.NvimTreeExecFile             = { guifg = colors.bright_red, gui = "bold" }
+hi.NvimTreeFileIcon             = "NONE"
+hi.NvimTreeFolderIcon           = { guifg = colors.bright_blue }
+hi.NvimTreeGitDeleted           = { guifg = colors.bright_purple }
+hi.NvimTreeGitDirty             = { guifg = colors.bright_purple }
+hi.NvimTreeGitMerge             = { guifg = colors.bright_orange }
+hi.NvimTreeGitNew               = { guifg = colors.bright_yellow }
+hi.NvimTreeGitRenamed           = { guifg = colors.bright_purple }
+hi.NvimTreeGitStaged            = { guifg = colors.bright_red }
+hi.NvimTreeImageFile            = { guifg = colors.bright_purple, gui = "bold" }
+hi.NvimTreeIndentMarker         = { guifg = colors.bright_blue }
+hi.NvimTreeLiveFilterPrefix     = { guifg = colors.bright_purple, gui = "bold" }
+hi.NvimTreeLiveFilterValue      = { gui = "bold" }
+hi.NvimTreeModifiedFile         = { guifg = colors.bright_red }
+hi.NvimTreeOpenedFile           = { guifg = colors.bright_red, gui = "bold" }
+hi.NvimTreeRootFolder           = { guifg = colors.bright_purple }
+hi.NvimTreeSpecialFile          = { guifg = colors.bright_yellow, gui = "bold" }
+hi.NvimTreeSymlink              = { guifg = colors.bright_purple, gui = "bold" }
+hi.NvimTreeSymlinkIcon          = "NONE"
+hi.NvimTreeWindowPicker         = { guifg = colors.white, guibg = colors.neutral_blue, gui = "bold" }

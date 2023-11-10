@@ -1,6 +1,3 @@
-local colors_loaded, colors = pcall(require, 'config/colors')
-if not colors_loaded then return end
-
 local function filename()
   local filename_base = vim.fn.expand("%:t")
   if filename_base == '' then filename_base = '[scratch buffer]' end
@@ -27,54 +24,3 @@ function MyWinbar()
 end
 
 vim.o.winbar = "%{%v:lua.MyWinbar()%}"
-
-local color_utils = require('config/utils/color-utils')
-local hi = color_utils.highlight
-
-hi.winbarFileName = {
-  guifg = colors.black,
-  guibg = colors.accent,
-  gui = 'bold',
-}
-hi.winbarFileNameModified = {
-  guifg = colors.black,
-  guibg = colors.neutral_aqua,
-}
-
-local function winbarTagHighlight (group, guifg)
-  hi[group] = { guibg = colors.grey1, guifg = guifg }
-end
-local function winbarTagHighlightIcon (group)
-  hi[group] = { guibg = colors.grey1, guifg = colors.bright_green }
-end
-
-winbarTagHighlight("winbarTags", colors.white)
-winbarTagHighlight("NavicText", colors.white)
-winbarTagHighlight("NavicSeparator", colors.bright_orange)
-
-winbarTagHighlightIcon("NavicIconsArray")
-winbarTagHighlightIcon("NavicIconsBoolean")
-winbarTagHighlightIcon("NavicIconsClass")
-winbarTagHighlightIcon("NavicIconsConstant")
-winbarTagHighlightIcon("NavicIconsConstructor")
-winbarTagHighlightIcon("NavicIconsEnum")
-winbarTagHighlightIcon("NavicIconsEnumMember")
-winbarTagHighlightIcon("NavicIconsEvent")
-winbarTagHighlightIcon("NavicIconsField")
-winbarTagHighlightIcon("NavicIconsFile")
-winbarTagHighlightIcon("NavicIconsFunction")
-winbarTagHighlightIcon("NavicIconsInterface")
-winbarTagHighlightIcon("NavicIconsKey")
-winbarTagHighlightIcon("NavicIconsMethod")
-winbarTagHighlightIcon("NavicIconsModule")
-winbarTagHighlightIcon("NavicIconsNamespace")
-winbarTagHighlightIcon("NavicIconsNull")
-winbarTagHighlightIcon("NavicIconsNumber")
-winbarTagHighlightIcon("NavicIconsObject")
-winbarTagHighlightIcon("NavicIconsOperator")
-winbarTagHighlightIcon("NavicIconsPackage")
-winbarTagHighlightIcon("NavicIconsProperty")
-winbarTagHighlightIcon("NavicIconsString")
-winbarTagHighlightIcon("NavicIconsStruct")
-winbarTagHighlightIcon("NavicIconsTypeParameter")
-winbarTagHighlightIcon("NavicIconsVariable")

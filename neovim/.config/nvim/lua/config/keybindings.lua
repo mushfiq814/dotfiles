@@ -3,7 +3,7 @@
 -- leader key
 vim.g.mapleader = " "
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Easier Escape from Insert Mode
@@ -124,3 +124,11 @@ if telescope_available then
   keymap('n', '<leader>yy', ':let @+ = expand("%")<CR>', opts)
 end
 
+keymap('n', '<leader>cc',
+  function()
+    -- remove cached colors module
+    package.loaded["config/colors"] = nil
+    vim.cmd("source " .. os.getenv("XDG_CONFIG_HOME") .. "/nvim/lua/config/theme.lua")
+    vim.notify("Reloaded theme")
+  end,
+  opts)
