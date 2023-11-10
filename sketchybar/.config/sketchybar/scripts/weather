@@ -7,4 +7,4 @@ MINMAX=$(curl --silent "wttr.in/$CITY?format=j1" | jq -r '.weather[0] | .maxtemp
 
 WEATHER="$MINMAX $WEATHER_ICON"
 
-sketchybar -m --set weather label="$WEATHER"
+sketchybar -m --set $NAME label="$WEATHER"

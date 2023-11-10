@@ -28,7 +28,7 @@ else
   esac
 fi
 
-sketchybar -m --set battery \
+sketchybar -m --set $NAME \
   label="$BATT_PERCENT%"     \
   icon="$ICON"              \
   icon.color="0xFF${ICON_COLOR}"

@@ -16,4 +16,4 @@ if [ $CHARS -gt $CHAR_LIMIT ]; then
   MUSIC="$(echo $MUSIC | head -c $CHAR_LIMIT)..."
 fi
 
-sketchybar -m --set mpv label="$MUSIC"
+sketchybar -m --set $NAME label="$MUSIC"

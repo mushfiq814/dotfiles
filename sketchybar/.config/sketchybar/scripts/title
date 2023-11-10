@@ -19,4 +19,4 @@ else
   fi
 fi
 
-sketchybar -m --set title label="$TITLE"
+sketchybar -m --set $NAME label="$TITLE"

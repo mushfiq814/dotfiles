@@ -13,4 +13,4 @@ else
   COLOR="0xFF${GREEN0:1}"
 fi
 
-sketchybar -m --set vpn icon.color="$COLOR"
+sketchybar -m --set $NAME icon.color="$COLOR"

@@ -4,4 +4,4 @@ MUSIC=$(
   ncmpcpp --current-song='%a - %t'
 )
 
-sketchybar -m --set ncmpcpp label="$MUSIC"
+sketchybar -m --set $NAME label="$MUSIC"

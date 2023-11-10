@@ -43,4 +43,4 @@ else
   NOTIFY="$SPRINT ends in $DIFF day(s)"
 fi
 
-sketchybar -m --set jira label="$NOTIFY"
+sketchybar -m --set $NAME label="$NOTIFY"

@@ -5,4 +5,4 @@
 APP="$(echo "$INFO" | jq -r '.app')"
 META="$(echo "$INFO" | jq -r '.artist + " - " + .title')"
 
-sketchybar -m --set spotify label="$META"
+sketchybar -m --set $NAME label="$META"
