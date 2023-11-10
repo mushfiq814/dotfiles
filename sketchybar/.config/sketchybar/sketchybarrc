@@ -67,69 +67,54 @@ if [ "$IS_SHORT" != "1" ]; then
       script="$SCRIPTS/title $IS_SHORT"
 fi
 
-# Date Time
-TIME='sketchybar -m --set time label="$(date +"%r")"'
 sketchybar -m                         \
   --add item time right               \
   --set time                          \
     update_freq=1                     \
     icon=""                          \
-    script="$TIME"
-
-if [ "$IS_SHORT" = "1" ]; then
-  DATE='sketchybar -m --set date label="$(date +"%m/%d")"'
-else
-  DATE='sketchybar -m --set date label="$(date +"%a %Y-%m-%d")"'
-fi
-sketchybar -m                         \
+    script="$SCRIPTS/time"            \
+                                      \
   --add item date right               \
   --set date                          \
     update_freq=60                    \
     label.padding_right=5             \
     icon=""                          \
-    script="$DATE"
-
-sketchybar -m                         \
+    script="$SCRIPTS/date $IS_SHORT"  \
+                                      \
   --add item wlan right               \
   --subscribe wlan wifi_change        \
   --set wlan                          \
     icon=" "                         \
-    script="$SCRIPTS/wlan $IS_SHORT"
-
-sketchybar -m                         \
+    script="$SCRIPTS/wlan $IS_SHORT"  \
+                                      \
   --add item battery right            \
   --set battery                       \
     update_freq=60                    \
-    script="$SCRIPTS/battery"
-
-sketchybar -m                         \
+    script="$SCRIPTS/battery"         \
+                                      \
   --add item cpu right                \
   --set cpu                           \
     update_freq=3                     \
     icon=" CPU"                      \
-    script="$SCRIPTS/cpu"
-
-sketchybar -m                         \
+    script="$SCRIPTS/cpu"             \
+                                      \
   --add item memory right             \
   --set memory                        \
     update_freq=3                     \
     icon=" MEM"                      \
-    script="$SCRIPTS/mem"
-
-sketchybar -m                         \
+    script="$SCRIPTS/mem"             \
+                                      \
   --add item vpn right                \
   --set vpn                           \
     update_freq=3                     \
     icon=" VPN"                      \
-    script="$SCRIPTS/vpncheck"
-
-sketchybar -m                         \
+    script="$SCRIPTS/vpncheck"        \
+                                      \
   --add item weather right            \
   --set weather                       \
     update_freq=600                   \
-    script="$SCRIPTS/weather"
-
-sketchybar -m                         \
+    script="$SCRIPTS/weather"         \
+                                      \
   --add item spotify center           \
   --subscribe spotify media_change    \
   --set spotify                       \

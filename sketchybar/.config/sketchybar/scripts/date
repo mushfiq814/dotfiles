@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IS_SHORT=$1
+
+if [ "$IS_SHORT" = "1" ]; then
+  DATE=$(date +"%m/%d")
+else
+  DATE=$(date +"%a %Y-%m-%d")
+fi
+
+sketchybar -m --set $NAME label="$DATE"
