@@ -93,8 +93,8 @@ sketchybar -m                         \
 #   睊
 sketchybar -m                         \
   --add item wlan right               \
+  --subscribe wlan wifi_change        \
   --set wlan                          \
-    update_freq=3                     \
     icon=" "                         \
     icon.color="0xFF${ACCENT:1}"      \
     label.color="0xFF${WHITE:1}"      \
@@ -103,7 +103,7 @@ sketchybar -m                         \
 sketchybar -m                         \
   --add item battery right            \
   --set battery                       \
-    update_freq=3                     \
+    update_freq=60                    \
     icon.color="0xFF${ACCENT:1}"      \
     label.color="0xFF${WHITE:1}"      \
     script="$SCRIPTS/battery"
@@ -132,21 +132,6 @@ sketchybar -m                         \
     update_freq=3                     \
     icon=" VPN"                      \
     script="$SCRIPTS/vpncheck"
-
-if [ "$IS_SHORT" != "1" ]; then
-  sketchybar -m                         \
-    --add item mpv-controls-next right  \
-    --set mpv-controls-next             \
-      script="$SCRIPTS/mpv-controls"
-  sketchybar -m                         \
-    --add item mpv-controls-toggle right\
-    --set mpv-controls-toggle           \
-      script="$SCRIPTS/mpv-controls"
-  sketchybar -m                         \
-    --add item mpv-controls-prev right  \
-    --set mpv-controls-prev             \
-      script="$SCRIPTS/mpv-controls"
-fi
 
 sketchybar -m                         \
   --add item spotify center           \
