@@ -1,0 +1,10 @@
+#!/bin/sh
+
+CITY="tampa"
+
+WEATHER_ICON=$(curl --silent "wttr.in/$CITY?format=%c")
+MINMAX=$(curl --silent "wttr.in/$CITY?format=j1" | jq -r '.weather[0] | .maxtempF+"°F/"+.mintempF+"°F"')
+
+WEATHER="$MINMAX $WEATHER_ICON"
+
+sketchybar -m --set weather label="$WEATHER"

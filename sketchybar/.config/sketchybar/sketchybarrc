@@ -136,6 +136,12 @@ sketchybar -m                         \
     script="$SCRIPTS/vpncheck"
 
 sketchybar -m                         \
+  --add item weather right            \
+  --set weather                       \
+    update_freq=600                   \
+    script="$SCRIPTS/weather"
+
+sketchybar -m                         \
   --add item spotify center           \
   --subscribe spotify media_change    \
   --set spotify                       \
