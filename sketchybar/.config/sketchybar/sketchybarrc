@@ -13,26 +13,27 @@ IS_SHORT=$(test $SCREEN_WIDTH -gt $SCREEN_WIDTH_THRESHOLD; echo $?)
 IS_SHORT=0
 
 # Bar Appearance
-sketchybar --bar height=30            \
-                 blur_radius=50       \
-                 position=top         \
-                 sticky=off           \
-                 padding_left=10      \
-                 padding_right=10     \
-                 color=0x${BLACKTR:1}
+sketchybar --bar       \
+  height=30            \
+  blur_radius=50       \
+  position=top         \
+  sticky=off           \
+  padding_left=10      \
+  padding_right=10     \
+  color=0x${BLACKTR:1}
 
-# Changing Defaults
-sketchybar --default                  \
-  updates=when_shown                  \
-  drawing=on                          \
-  label.font="$FONT"                  \
-  icon.font="$FONT"                   \
-  label.color=0xff${WHITE:1}          \
-  background.padding_left=5           \
-  background.padding_right=4          \
-  label.padding_left=4                \
-  label.padding_right=4               \
-  icon.color="0xFF${ACCENT:1}"        \
+# Defaults
+sketchybar --default           \
+  updates=when_shown           \
+  drawing=on                   \
+  label.font="$FONT"           \
+  icon.font="$FONT"            \
+  label.color=0xff${WHITE:1}   \
+  background.padding_left=5    \
+  background.padding_right=4   \
+  label.padding_left=4         \
+  label.padding_right=4        \
+  icon.color="0xFF${ACCENT:1}" \
   label.color="0xFF${WHITE:1}"
 
 # Spaces
@@ -41,86 +42,81 @@ for i in "${!SPACE_ICONS[@]}"
 do
   sid=$(($i+1))
   KEYCODE=$(echo "18 + $i" | bc);
-  sketchybar                                      \
-    --add space space.$sid left                   \
-    --set space.$sid space=$sid                   \
-      icon=${SPACE_ICONS[i]}                      \
-      icon.color="0xFF${WHITE:1}"                 \
-      icon.highlight_color="0xFF${ACCENT:1}"      \
+  sketchybar                                 \
+    --add space space.$sid left              \
+    --set space.$sid space=$sid              \
+      icon=${SPACE_ICONS[i]}                 \
+      icon.color="0xFF${WHITE:1}"            \
+      icon.highlight_color="0xFF${ACCENT:1}" \
       click_script="osascript -e 'tell application \"System Events\" to key code $KEYCODE using option down'"
 done
 
-# Jira
-sketchybar -m                         \
-  --add item jira left                \
-  --set jira                          \
+# Items
+sketchybar -m                          \
+  --add item jira left                 \
+  --set jira                           \
     label.color="0xFF${ACCENT:1}"      \
-    update_freq=3600                  \
-    script="$SCRIPTS/jira"
-
-# Window Title
-if [ "$IS_SHORT" != "1" ]; then
-  sketchybar -m                          \
-    --add item title left                \
-    --subscribe title front_app_switched \
-    --set title                          \
-      script="$SCRIPTS/title $IS_SHORT"
-fi
-
-sketchybar -m                         \
-  --add item time right               \
-  --set time                          \
-    update_freq=1                     \
-    icon=""                          \
-    script="$SCRIPTS/time"            \
-                                      \
-  --add item date right               \
-  --set date                          \
-    update_freq=60                    \
-    label.padding_right=5             \
-    icon=""                          \
-    script="$SCRIPTS/date $IS_SHORT"  \
-                                      \
-  --add item wlan right               \
-  --subscribe wlan wifi_change        \
-  --set wlan                          \
-    icon=" "                         \
-    script="$SCRIPTS/wlan $IS_SHORT"  \
-                                      \
-  --add item battery right            \
-  --set battery                       \
-    update_freq=60                    \
-    script="$SCRIPTS/battery"         \
-                                      \
-  --add item cpu right                \
-  --set cpu                           \
-    update_freq=3                     \
-    icon=" CPU"                      \
-    script="$SCRIPTS/cpu"             \
-                                      \
-  --add item memory right             \
-  --set memory                        \
-    update_freq=3                     \
-    icon=" MEM"                      \
-    script="$SCRIPTS/mem"             \
-                                      \
-  --add item vpn right                \
-  --set vpn                           \
-    update_freq=3                     \
-    icon=" VPN"                      \
-    script="$SCRIPTS/vpncheck"        \
-                                      \
-  --add item weather right            \
-  --set weather                       \
-    update_freq=600                   \
-    script="$SCRIPTS/weather"         \
-                                      \
-  --add item spotify center           \
-  --subscribe spotify media_change    \
-  --set spotify                       \
-    updates=on                        \
-    icon="ﱘ"                          \
-    click_script="open -a 'Spotify'"  \
+    update_freq=3600                   \
+    script="$SCRIPTS/jira"             \
+                                       \
+  --add item title left                \
+  --subscribe title front_app_switched \
+  --set title                          \
+    script="$SCRIPTS/title $IS_SHORT"  \
+                                       \
+  --add item time right                \
+  --set time                           \
+    update_freq=1                      \
+    icon=""                           \
+    script="$SCRIPTS/time"             \
+                                       \
+  --add item date right                \
+  --set date                           \
+    update_freq=60                     \
+    label.padding_right=5              \
+    icon=""                           \
+    script="$SCRIPTS/date $IS_SHORT"   \
+                                       \
+  --add item wlan right                \
+  --subscribe wlan wifi_change         \
+  --set wlan                           \
+    icon=" "                          \
+    script="$SCRIPTS/wlan $IS_SHORT"   \
+                                       \
+  --add item battery right             \
+  --set battery                        \
+    update_freq=60                     \
+    script="$SCRIPTS/battery"          \
+                                       \
+  --add item cpu right                 \
+  --set cpu                            \
+    update_freq=3                      \
+    icon=" CPU"                       \
+    script="$SCRIPTS/cpu"              \
+                                       \
+  --add item memory right              \
+  --set memory                         \
+    update_freq=3                      \
+    icon=" MEM"                       \
+    script="$SCRIPTS/mem"              \
+                                       \
+  --add item vpn right                 \
+  --set vpn                            \
+    update_freq=3                      \
+    icon=" VPN"                       \
+    script="$SCRIPTS/vpncheck"         \
+                                       \
+  --add item weather right             \
+  --set weather                        \
+    update_freq=600                    \
+    script="$SCRIPTS/weather"          \
+                                       \
+  --add item spotify center            \
+  --subscribe spotify media_change     \
+  --set spotify                        \
+    updates=on                         \
+    icon="ﱘ"                           \
+    click_script="open -a 'Spotify'"   \
     script="$SCRIPTS/spotify"
 
 # Finalizing Setup
