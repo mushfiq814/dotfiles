@@ -6,7 +6,6 @@ if not colorUtilsLoaded then return end
 local M = {}
 
 function M.generate()
-  -- local colorschemeFile = files.lines_from(os.getenv("HOME") .. "/dotfiles/scripts/colorscheme/colors/one-dark")
   local colorschemeFile = vim.fn.expand('%:p')
   local colorschemeName = vim.fn.expand('%:t')
   local lines = files.lines_from(colorschemeFile)
