@@ -9,12 +9,11 @@ if not navic_loaded then return end
 
 mason.setup()
 
-local servers = {
-  "tsserver",
-  "jsonls",
-  "marksman",
-  "lua_ls",
-}
+local servers = {}
+-- LSP_SERVERS is populated from env file via config/utils/read-env
+for s in vim.g.LSP_SERVERS:gmatch("[^,]+") do
+  table.insert(servers, s)
+end
 
 mason_lsp_config.setup({
   ensure_installed = servers,
