@@ -36,3 +36,8 @@ fi
 if [ -e "$HOME/.secrets/JIRA_API_TOKEN" ]; then
   export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)";
 fi
+
+# spicetify
+if [ -d "$HOME/.spicetify" ]; then
+  export PATH="$PATH:$HOME/.spicetify"
+fi
