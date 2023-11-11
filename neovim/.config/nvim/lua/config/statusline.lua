@@ -189,7 +189,7 @@ local function tabpages()
 
   -- some icons look weird if not used in kitty (double width)
   -- so conditionally set the icons
-  if vim.g.TERM_EMULATOR = "kitty" then
+  if vim.g.TERM_EMULATOR == "kitty" then
     tabStr = statusString({
       { " 缾", "statusLineTabNormal" },
     })
