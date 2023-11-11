@@ -85,3 +85,6 @@ o.path:append('**')
 o.wildmenu = true
 o.wildignore:append('**/node_modules/**')
 o.hidden = true
+
+-- shell aliases
+o.shellcmdflag = "-ic"
