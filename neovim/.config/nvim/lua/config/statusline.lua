@@ -228,7 +228,7 @@ end
 
 function MyStatusLine()
   local statusline = ""
-  if WINCOLS and WINCOLS < 100 then
+  if WINCOLS and WINCOLS < 150 then
     statusline = table.concat({
       mode(),
       tabpages(),
