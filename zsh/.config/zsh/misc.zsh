@@ -1,3 +1,6 @@
+# get env specific values
+source "$HOME/dotfiles/.env"
+
 # General Zsh settings {{{
 
 # Enable colors
@@ -6,10 +9,16 @@ autoload -Uz colors && colors
 setopt AUTO_CD
 # enable comments in interactive mode
 setopt INTERACTIVE_COMMENTS
-# for tmux to display colors properly
-export TERM="xterm-kitty"
 # enable wildcard expansion
 setopt globsubst
+
+if [[ $ENABLE_KITTY -eq 1 ]]; then
+  # for kitty to show ranger previews
+  export TERM="xterm-kitty"
+else
+  # for tmux to display colors properly
+  export TERM="xterm-256color"
+fi
 
 # }}}
 
