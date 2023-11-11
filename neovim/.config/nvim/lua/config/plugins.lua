@@ -14,6 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
+local env_loaded, files = pcall(require, 'config/utils/read-env')
+if not env_loaded then vim.notify("could not load env file!") end
+
 local afterFileOpen = { "BufReadPre", "BufNewFile" }
 
 local modulesDir = '/home/mushfiq/.config/nvim/lua/config/'
