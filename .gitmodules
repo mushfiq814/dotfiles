@@ -1,0 +1,3 @@
+[submodule "neovim/.config/nvim/spell"]
+	path = neovim/.config/nvim/spell
+	url = git@github.com:mushfiq814/vim-spellfile.git
