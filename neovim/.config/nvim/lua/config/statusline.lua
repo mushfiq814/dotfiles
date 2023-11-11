@@ -185,9 +185,15 @@ local function activeLlspClient()
 end
 
 local function tabpages()
-  local tabStr = statusString({
-    { " 缾", "statusLineTabNormal" },
-  })
+  local tabStr = ""
+
+  -- some icons look weird if not used in kitty (double width)
+  -- so conditionally set the icons
+  if vim.g.TERM_EMULATOR = "kitty" then
+    tabStr = statusString({
+      { " 缾", "statusLineTabNormal" },
+    })
+  end
 
   for _, id in ipairs(vim.api.nvim_list_tabpages()) do
     if vim.api.nvim_win_get_tabpage(0) == id then
