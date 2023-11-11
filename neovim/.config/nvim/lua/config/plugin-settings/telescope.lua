@@ -27,6 +27,7 @@ telescope.setup({
         "rg",
         "--hidden", -- include hidden files
         "--glob", "!.git/", -- don't include .git directory
+        "--glob", "!packages/deprecated/",
         "--files",  -- include only files
       },
     },
@@ -34,6 +35,8 @@ telescope.setup({
       additional_args = {
         "--hidden", -- include hidden files
         "--glob", "!.git/", -- don't include .git directory
+        "--glob", "!packages/deprecated/",
+        "--glob", "!yarn.lock",
       },
     },
   },
