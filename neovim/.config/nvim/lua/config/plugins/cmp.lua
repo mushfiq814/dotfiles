@@ -54,6 +54,8 @@ return {
       if not cmp_status_ok then return end
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       if not snip_status_ok then return end
+      local border_loaded, b = pcall(require, 'config/utils/border')
+      if not border_loaded then return end
 
       -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline('/', {
@@ -157,7 +159,16 @@ return {
         },
         window = {
           documentation = {
-            border = { " ", " ", " ", " ", " ", " ", " ", " " },
+            border = {
+              b.default[1],
+              b.default[2],
+              b.default[3],
+              b.default[6],
+              b.default[9],
+              b.default[8],
+              b.default[7],
+              b.default[4],
+            },
           },
         },
         experimental = {

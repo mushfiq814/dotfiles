@@ -20,6 +20,7 @@ else
 end
 
 return {
+  default = borders,
   borderchars = {
     borders[2],
     borders[6],
