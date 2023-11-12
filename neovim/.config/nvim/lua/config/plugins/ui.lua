@@ -158,7 +158,6 @@ return {
   },
   {
     'folke/zen-mode.nvim',
-    config = function() require('config/plugin-settings/zen-mode') end,
     keys = {
       { "<leader>x", "<CMD>ZenMode<CR>", desc = "Toggle ZenMode" },
     },
@@ -248,7 +247,6 @@ return {
   {
     'edluffy/hologram.nvim',
     lazy = true,
-    config = function() require('config/plugin-settings/hologram') end,
     opts = function()
       return {
         auto_display = true
@@ -258,7 +256,6 @@ return {
   {
     'goolord/alpha-nvim',
     lazy = true,
-    config = function() require('config/plugin-settings/alpha') end,
     opts = function()
       local dashboard = require 'alpha.themes.dashboard'
 
