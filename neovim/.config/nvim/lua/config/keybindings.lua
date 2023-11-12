@@ -38,7 +38,7 @@ keymap('v', '>', '>gv', opts)
 keymap('n', '<leader>z', ':set wrap!<CR>', opts)
 
 -- open config files
-keymap('n', '<leader>ve', ':edit ~/.config/nvim/lua/config/plugins.lua<CR>', opts)
+keymap('n', '<leader>ve', ':edit ~/.config/nvim/init.lua<CR>', opts)
 keymap('n', '<leader>ze', ':edit ~/.config/zsh/.zshrc<CR>', opts)
 keymap('n', '<leader>te', ':edit ~/.tmux.conf<CR>', opts)
 
@@ -75,56 +75,16 @@ keymap(
   opts
 )
 
--- Prettier
-keymap('n', '<leader>fp', ':!prettier --write %<CR><CR>', opts)
-keymap('n', '<leader>fr', ':!rustywind --write %<CR><CR>', opts)
-
 -- change local working directory
 keymap('n', '<leader>cd', ':lcd %:h<CR>', opts)
 
 -- source current lua file
 keymap('n', '<leader>so', ':source % <bar> lua vim.notify("NeoVim config reloaded")<CR>', opts)
 
-local telescope_available, _ = pcall(require, 'telescope')
-if telescope_available then
-  keymap('n', '<C-p>', ':Telescope find_files prompt_prefix=\\ 🔍\\ <CR>', opts)
-  keymap('n', '<leader>b', ':Telescope buffers prompt_prefix=\\ 🔍\\ <CR>', opts)
-  keymap('n', '<leader>br', ':Telescope git_branches prompt_prefix=\\ \\ <CR>', opts)
-  keymap('n', '<leader>fg', ':Telescope live_grep prompt_prefix=\\ 🔍\\ <CR>', opts)
-  keymap('n', '<leader>gr',
-    ':lua require(\'telescope.builtin\').lsp_references(require(\'telescope.themes\').get_ivy({}))<CR>', opts)
-  keymap('n', '<leader>h', ':Telescope help_tags prompt_prefix=\\ 🆘\\ <CR>', opts)
-  keymap('n', '<leader>rc', ':Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>', opts)
-  keymap('n', '<leader>rr', ':Telescope resume prompt_prefix=\\ ⏰\\ <CR>', opts)
-  keymap('n', '<leader>ss', ':Telescope spell_suggest prompt_prefix=\\ ✅\\ <CR>', opts)
+-- yank filepath
+keymap('n', '<leader>yy', ':let @+ = expand("%")<CR>', opts)
 
-  -- open file picker for neovim settings
-  keymap(
-    'n',
-    '<leader>v<C-p>',
-    ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles/neovim/.config/nvim\' })<cr>',
-    opts
-  )
-  -- open live grep for neovim settings
-  keymap(
-    'n',
-    '<leader>vfg',
-    ':lua require\'telescope.builtin\'.live_grep({ cwd = \'~/dotfiles/neovim/.config/nvim\' })<cr>',
-    opts
-  )
-
-  -- open project directory
-  keymap(
-    'n',
-    '<leader>pr',
-    ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles\', hidden = true })<cr>',
-    opts
-  )
-
-  -- yank filepath
-  keymap('n', '<leader>yy', ':let @+ = expand("%")<CR>', opts)
-end
-
+-- reload theme
 keymap('n', '<leader>cc',
   function()
     -- remove cached colors module
