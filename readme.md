@@ -50,6 +50,19 @@ $ sudo apt install stow
 
 Use stow to create or remove symbolic links for different programs
 
+For understanding stow terminology, see [Stow Terminology](#Stow Terminology)
+
+## Clone repository (with submodules)
+
+This repo contains git submodules. Some are private repos that only I should have access to.
+
+```bash
+$ git clone --recurse-submodules <repo_url>
+
+# or if forgotten to do it at clone
+$ git submodule update --remote --merge
+```
+
 ## Link config files
 
 * Create directory with name of program for which the config files will be linked e.g. `zsh`.
@@ -67,21 +80,33 @@ Then run one of the following. Note: `<program_dir_name>` refers to the name cre
 ```sh
 # for testing out use -n
 $ stow -nSvt ~ <program_dir_name>
+$ stow --simulate --stow --verbose --target=$HOME <program_dir_name>
+
 # for actually creating the link
 $ stow -Svt ~ <program_dir_name>
+$ stow --stow --verbose --target=$HOME <program_dir_name>
+
 # in case config already exists, use --adopt to force stow to link
 $ stow --adopt -Svt ~ <program_dir_name>
+$ stow --adopt --stow --verbose --target=$HOME <program_dir_name>
 ```
+
 For `<program_dir_name>`, use the top level directory name that is in the repo, e.g. `neovim`, `zsh`, `bash`
 
 ## Unlink config files
+
 ```sh
 # for testing out use -n
 $ stow -nDvt ~ <program_dir_name>
+$ stow --simulate --delete --verbose --target=$HOME <program_dir_name>
+
 # for actually creating the link
 $ stow -Dvt ~ <program_dir_name>
+$ stow --delete --verbose --target=$HOME <program_dir_name>
+
 # in case config already exists, use --adopt to force stow to link
 $ stow --adopt -Dvt ~ <program_dir_name>
+$ stow --adopt --delete --verbose --target=$HOME <program_dir_name>
 ```
 
 ## Stow Terminology
