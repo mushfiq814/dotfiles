@@ -160,88 +160,84 @@ return {
     keys = {
       { "<leader>x", "<CMD>ZenMode<CR>", desc = "Toggle ZenMode" },
     },
-    opts = function()
-      return {
-        window = {
-          backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-          -- height and width can be:
-          -- * an absolute number of cells when > 1
-          -- * a percentage of the width / height of the editor when <= 1
-          -- * a function that returns the width or the height
-          width = 80, -- width of the Zen window
-          height = 1, -- height of the Zen window
-          -- by default, no options are changed for the Zen window
-          -- uncomment any of the options below, or add other vim.wo options you want to apply
-          options = {
-            signcolumn = 'no',      -- disable/enable signcolumn
-            number = false,         -- disable/enable number column
-            relativenumber = false, -- disable/enable relative numbers
-            cursorline = false,     -- disable/enable cursorline
-            cursorcolumn = false,   -- disable/enable cursor column
-            foldcolumn = '0',       -- disable/enable fold column
-            list = false,           -- disable/enable whitespace characters
-            wrap = true,            -- disable/enable line wrap
-          },
+    opts = {
+      window = {
+        backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+        -- height and width can be:
+        -- * an absolute number of cells when > 1
+        -- * a percentage of the width / height of the editor when <= 1
+        -- * a function that returns the width or the height
+        width = 80, -- width of the Zen window
+        height = 1, -- height of the Zen window
+        -- by default, no options are changed for the Zen window
+        -- uncomment any of the options below, or add other vim.wo options you want to apply
+        options = {
+          signcolumn = 'no',      -- disable/enable signcolumn
+          number = false,         -- disable/enable number column
+          relativenumber = false, -- disable/enable relative numbers
+          cursorline = false,     -- disable/enable cursorline
+          cursorcolumn = false,   -- disable/enable cursor column
+          foldcolumn = '0',       -- disable/enable fold column
+          list = false,           -- disable/enable whitespace characters
+          wrap = true,            -- disable/enable line wrap
         },
-        plugins = {
-          -- disable some global vim options (vim.o...)
-          options = {
-            enabled = true,
-            ruler = false,                -- disables the ruler text in the cmd line area
-            showcmd = false,              -- disables the command in the last line of the screen
-          },
-          gitsigns = { enabled = false }, -- disables/enables git signs
-          tmux = { enabled = true },      -- disables the tmux statusline
+      },
+      plugins = {
+        -- disable some global vim options (vim.o...)
+        options = {
+          enabled = true,
+          ruler = false,                -- disables the ruler text in the cmd line area
+          showcmd = false,              -- disables the command in the last line of the screen
         },
-        -- callback where you can add custom code when the Zen window opens
-        -- on_open = function(win) end,
-        -- callback where you can add custom code when the Zen window closes
-        -- on_close = function() end,
-      }
-    end
+        gitsigns = { enabled = false }, -- disables/enables git signs
+        tmux = { enabled = true },      -- disables the tmux statusline
+      },
+      -- callback where you can add custom code when the Zen window opens
+      -- on_open = function(win) end,
+      -- callback where you can add custom code when the Zen window closes
+      -- on_close = function() end,
+    },
   },
   {
     -- lazy load only after filetypes defined inside config for this
     'NvChad/nvim-colorizer.lua',
-    event = afterFileOpen,
-    opts = function()
-      return {
-        filetypes = {
-          "markdown",
-          "shell",
-          "sh",
-          "json",
-          "jsonc",
-          "javascript",
-          "typescript",
-          "javascriptreact",
-          "css",
-          "html",
-          "lua",
-        },
-        user_default_options = {
-          RGB = true,           -- #RGB hex codes
-          RRGGBB = true,        -- #RRGGBB hex codes
-          names = false,        -- "Name" codes like Blue or blue
-          RRGGBBAA = false,     -- #RRGGBBAA hex codes
-          AARRGGBB = true,      -- 0xAARRGGBB hex codes
-          rgb_fn = true,        -- CSS rgb() and rgba() functions
-          hsl_fn = false,       -- CSS hsl() and hsla() functions
-          css = false,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          -- Available modes for `mode`: foreground, background,  virtualtext
-          mode = "virtualtext", -- Set the display mode.
-          virtualtext = "",
-          -- Available methods are false / true / "normal" / "lsp" / "both"
-          -- True is same as normal
-          tailwind = false,                              -- Enable tailwind colors
-          -- parsers can contain values used in |user_default_options|
-          sass = { enable = false, parsers = { css }, }, -- Enable sass colors
-        },
-        -- all the sub-options of filetypes apply to buftypes
-        buftypes = {},
-      }
-    end
+    event = 'VeryLazy',
+    opts = {
+      filetypes = {
+        "markdown",
+        "shell",
+        "sh",
+        "json",
+        "jsonc",
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "css",
+        "html",
+        "lua",
+      },
+      user_default_options = {
+        RGB = true,           -- #RGB hex codes
+        RRGGBB = true,        -- #RRGGBB hex codes
+        names = false,        -- "Name" codes like Blue or blue
+        RRGGBBAA = false,     -- #RRGGBBAA hex codes
+        AARRGGBB = true,      -- 0xAARRGGBB hex codes
+        rgb_fn = true,        -- CSS rgb() and rgba() functions
+        hsl_fn = false,       -- CSS hsl() and hsla() functions
+        css = false,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        -- Available modes for `mode`: foreground, background,  virtualtext
+        mode = "virtualtext", -- Set the display mode.
+        virtualtext = "",
+        -- Available methods are false / true / "normal" / "lsp" / "both"
+        -- True is same as normal
+        tailwind = false,                              -- Enable tailwind colors
+        -- parsers can contain values used in |user_default_options|
+        sass = { enable = false, parsers = { css }, }, -- Enable sass colors
+      },
+      -- all the sub-options of filetypes apply to buftypes
+      buftypes = {},
+    },
   },
   {
     'edluffy/hologram.nvim',
