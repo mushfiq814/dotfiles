@@ -1,12 +1,5 @@
-local servers = {}
--- LSP_SERVERS is populated from env file via config/utils/read-env
-for s in vim.g.LSP_SERVERS:gmatch("[^,]+") do
-  table.insert(servers, s)
-end
-
 return {
   {
-    -- TODO: lazy load only during specified lsp server filetypes are loaded
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     keys = {
@@ -106,6 +99,8 @@ return {
         update_in_insert = false,
         severity_sort = false,
       })
+
+      local servers = vim.split(vim.g.LSP_SERVERS, ",")
 
       for _, server in ipairs(servers) do
         -- TODO: find way to enable inlay hints globally
