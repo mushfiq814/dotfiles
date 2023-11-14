@@ -1,5 +1,3 @@
-local afterFileOpen = { "BufReadPre", "BufNewFile" }
-
 local kind_icons = {
   Text          = "",
   Method        = "m",
@@ -37,7 +35,7 @@ return {
   {
     -- TODO: add lazy loading
     'L3MON4D3/LuaSnip',
-    event = afterFileOpen,
+    event = "VeryLazy",
   },
   {
     'hrsh7th/nvim-cmp',

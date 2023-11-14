@@ -1,8 +1,6 @@
 local border_loaded, b = pcall(require, 'config/utils/border')
 if not border_loaded then b = "single" end
 
-local afterFileOpen = { "BufReadPre", "BufNewFile" }
-
 return {
   {
     -- TODO: find lua/lighter alternative
@@ -64,9 +62,8 @@ return {
     }
   },
   {
-    -- TODO: add better lazy loading
     'lewis6991/gitsigns.nvim',
-    event = afterFileOpen,
+    event = "VeryLazy",
     opts = function()
       -- Key bindings
       local keymap = vim.api.nvim_set_keymap

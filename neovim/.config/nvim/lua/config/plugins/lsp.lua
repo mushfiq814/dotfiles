@@ -1,5 +1,3 @@
-local afterFileOpen = { "BufReadPre", "BufNewFile" }
-
 local servers = {}
 -- LSP_SERVERS is populated from env file via config/utils/read-env
 for s in vim.g.LSP_SERVERS:gmatch("[^,]+") do
@@ -10,7 +8,7 @@ return {
   {
     -- TODO: lazy load only during specified lsp server filetypes are loaded
     "neovim/nvim-lspconfig",
-    event = afterFileOpen,
+    event = "VeryLazy",
     keys = {
       {
         "K",

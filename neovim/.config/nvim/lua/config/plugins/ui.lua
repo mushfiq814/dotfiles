@@ -1,8 +1,6 @@
 local border_loaded, b = pcall(require, 'config/utils/border')
 if not border_loaded then return end
 
-local afterFileOpen = { "BufReadPre", "BufNewFile" }
-
 return {
   {
     'kyazdani42/nvim-tree.lua',
@@ -121,7 +119,7 @@ return {
     keys = {
       { "<leader>dd", "<CMD>lua require(\"notify\").dismiss()<CR>", desc = "Dismiss notifcation" },
     },
-    event = afterFileOpen,
+    event = 'VeryLazy',
     opts = function()
       -- set nvim-notify as default notify function for other plugins
       vim.notify = require("notify")
@@ -144,10 +142,11 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
-    event = afterFileOpen,
+    event = 'VeryLazy',
     opts = function()
       vim.opt.list = true
       vim.opt.termguicolors = true
+
       return {
         debounce = 100,
         -- Special Characters: '│' '█' '▏'
@@ -255,7 +254,7 @@ return {
   },
   {
     'goolord/alpha-nvim',
-    lazy = true,
+    event = 'VimEnter',
     opts = function()
       local dashboard = require 'alpha.themes.dashboard'
 

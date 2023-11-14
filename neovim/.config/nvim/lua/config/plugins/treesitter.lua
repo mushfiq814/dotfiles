@@ -1,14 +1,11 @@
-local afterFileOpen = { "BufReadPre", "BufNewFile" }
-
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-
 
 return {
   {
     -- lazy load only during specified treesitter parser filetypes are loaded
     'nvim-treesitter/nvim-treesitter',
-    event = afterFileOpen,
+    event = 'VeryLazy',
     config = function()
       local success, nvim_treesitter = pcall(require, 'nvim-treesitter.configs')
       if not success then return end
