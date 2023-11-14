@@ -151,6 +151,13 @@ return {
               navic.attach(client, bufnr)
             end
           }
+        elseif server == "bashls" then
+          lspconfig.bashls.setup {
+            on_attach = function(client, bufnr)
+              navic.attach(client, bufnr)
+            end,
+            filetypes = { "sh", "zsh", "bash" },
+          }
         end
       end
     end
