@@ -1,6 +1,3 @@
-local border_loaded, b = pcall(require, 'config/utils/border')
-if not border_loaded then return end
-
 return {
   {
     'kyazdani42/nvim-tree.lua',
@@ -121,6 +118,9 @@ return {
     },
     event = 'VeryLazy',
     opts = function()
+      local border_loaded, b = pcall(require, 'config/utils/border')
+      if not border_loaded then return end
+
       -- set nvim-notify as default notify function for other plugins
       vim.notify = require("notify")
       vim.opt.termguicolors = true

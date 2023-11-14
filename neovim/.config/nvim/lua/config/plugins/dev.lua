@@ -1,6 +1,3 @@
-local border_loaded, b = pcall(require, 'config/utils/border')
-if not border_loaded then b = "single" end
-
 return {
   {
     -- TODO: find lua/lighter alternative
@@ -65,6 +62,9 @@ return {
     'lewis6991/gitsigns.nvim',
     event = "VeryLazy",
     opts = function()
+      local border_loaded, b = pcall(require, 'config/utils/border')
+      if not border_loaded then b = "single" end
+
       -- Key bindings
       local keymap = vim.api.nvim_set_keymap
       local opts = { noremap = true, silent = true }
