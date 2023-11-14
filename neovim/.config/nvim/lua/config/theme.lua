@@ -19,6 +19,17 @@ local darkercursorline                = utils.darken(colors.grey0, 0.1)
 local darkerstatusline                = utils.darken(colors.grey1, 0.1)
 local darkeraccent                    = utils.darken(colors.accent, 0.1)
 
+-- Theme Color Highlights
+hi.ColorBlack = { guifg = colors.black }
+hi.ColorWhite = { guifg = colors.white }
+hi.ColorRed = { guifg = colors.neutral_red }
+hi.ColorYellow = { guifg = colors.neutral_yellow }
+hi.ColorOrange = { guifg = colors.neutral_orange }
+hi.ColorGreen = { guifg = colors.neutral_green }
+hi.ColorBlue = { guifg = colors.neutral_blue }
+hi.ColorAqua = { guifg = colors.neutral_aqua }
+hi.ColorPurple = { guifg = colors.neutral_purple }
+
 -- Vim editor colors
 hi.Normal                             = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi.EndOfBuffer                        = { guifg = colors.grey2, guibg = nil, gui = nil, guisp = nil }
