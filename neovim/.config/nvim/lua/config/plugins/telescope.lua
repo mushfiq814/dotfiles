@@ -41,7 +41,7 @@ return {
       },
       {
         '<leader>rc',
-        '<CMD>Telescope oldfiles prompt_prefix=\\ ⏰\\ <CR>',
+        '<CMD>Telescope oldfiles prompt_prefix=\\ ⏰\\  prompt_title=Recent\\ Files<CR>',
         desc = "Show recent files",
       },
       {
@@ -66,7 +66,7 @@ return {
       },
       {
         '<leader>pr',
-        ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles\', hidden = true })<cr>',
+        ':lua require\'telescope.builtin\'.find_files({ cwd = \'~/dotfiles\' })<cr>',
         desc = "Open project directory",
       },
     },
