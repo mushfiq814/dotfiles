@@ -8,6 +8,13 @@ local opts = { noremap = true, silent = true }
 
 -- Easier Escape from Insert Mode
 keymap('i', 'jk', '<Esc>', opts)
+-- Auto complete pair
+keymap('i', '(', '()<Left>', opts)
+keymap('i', '{', '{}<Left>', opts)
+keymap('i', '[', '[]<Left>', opts)
+keymap('i', '`', '``<Left>', opts)
+keymap('i', '"', '""<Left>', opts)
+keymap('i', '\'', '\'\'<Left>', opts)
 
 -- window management
 -- splits

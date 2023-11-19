@@ -32,60 +32,6 @@ luasnip.add_snippets("all", {
     },
     partial(os.date, "%Y-%m-%d")
   ),
-  s(
-    {
-      trig = "(",
-      dscr = "add opening/closing parenthesis",
-    },
-    fmta("(<>)", {
-      luasnip.i(1),
-    })
-  ),
-  s(
-    {
-      trig = "{",
-      dscr = "add opening/closing braces",
-    },
-    fmta("{<>}", {
-      luasnip.i(1),
-    })
-  ),
-  s(
-    {
-      trig = "[",
-      dscr = "add opening/closing brackets",
-    },
-    fmta("[<>]", {
-      luasnip.i(1),
-    })
-  ),
-  s(
-    {
-      trig = "`",
-      dscr = "add opening/closing backticks",
-    },
-    fmta("`<>`", {
-      luasnip.i(1),
-    })
-  ),
-  s(
-    {
-      trig = "'",
-      dscr = "add opening/closing quotes",
-    },
-    fmta("'<>'", {
-      luasnip.i(1),
-    })
-  ),
-  s(
-    {
-      trig = '"',
-      dscr = "add opening/closing double quotes",
-    },
-    fmta('"<>"', {
-      luasnip.i(1),
-    })
-  ),
 })
 
 luasnip.add_snippets("markdown", {
