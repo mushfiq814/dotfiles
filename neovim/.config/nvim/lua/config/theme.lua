@@ -222,7 +222,7 @@ hi.TSTag                              = { guifg = colors.bright_yellow, guibg = 
 hi.TSTagDelimiter                     = { guifg = colors.faded_orange, guibg = nil, gui = 'none', guisp = nil }
 hi.TSText                             = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
 hi.TSStrong                           = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil }
-hi.TSEmphasis                         = { guifg = colors.bright_orange, guibg = nil, gui = 'standout' }
+hi.TSEmphasis                         = { guifg = colors.bright_orange, guibg = nil, gui = 'italic' }
 hi.TSUnderline                        = { guifg = colors.black, guibg = nil, gui = 'underline', guisp = nil }
 hi.TSStrike                           = { guifg = colors.black, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi.TSTitle                            = { guifg = colors.bright_blue, guibg = nil, gui = 'none', guisp = nil }
@@ -385,7 +385,7 @@ hi['@punctuation.bracket']                 = { guifg = darkeraccent, guibg = nil
 hi['@punctuation.delimiter']               = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.special']                 = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@puntuation.strikethrough']            = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
-hi['@text.emphasis']                       = { guifg = darkeraccent, guibg = nil, gui = 'standout', guisp = nil }
+hi['@text.emphasis']                       = { guifg = darkeraccent, guibg = nil, gui = 'italic', guisp = nil }
 hi['@text.quote']                          = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
 hi['@markdown_quote_marker']               = { guifg = darkeraccent, guibg = colors.grey0, gui = nil, guisp = nil }
 hi['@text.strike']                         = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
