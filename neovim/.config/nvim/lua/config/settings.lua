@@ -25,7 +25,6 @@ o.spell = true
 o.clipboard = 'unnamed,unnamedplus'
 o.foldlevelstart = 20
 o.foldlevel = 99
-w.foldenable = true
 w.conceallevel = 2
 o.list = true
 o.listchars = {

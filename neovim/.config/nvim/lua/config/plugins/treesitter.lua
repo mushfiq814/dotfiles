@@ -9,6 +9,7 @@ return {
 
       vim.wo.foldmethod = 'expr'
       vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.wo.foldenable = false
 
       nvim_treesitter.setup {
         ensure_installed = {
