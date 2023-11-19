@@ -34,6 +34,10 @@ o.listchars = {
   extends = '⋯',
   space = '·',
   trail = '■',
+  multispace = nil,
+  leadmultispace = '▏ ',
+  nbsp = '⍽',
+  eol = nil,
 }
 o.fillchars = {
   horiz = '─', -- horizontal separators |:split|
