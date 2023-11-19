@@ -14,7 +14,7 @@ return {
         desc = "Show current line diagnostic in popup window"
       },
       {
-        "<leader>ka",
+        "<leader>df",
         "<CMD>lua vim.diagnostic.setqflist()<CR>",
         desc = "Populate quickfix list with diagnostics"
       },

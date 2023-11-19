@@ -18,15 +18,20 @@ keymap('i', '\'', '\'\'<Left>', opts)
 
 -- window management
 -- splits
-keymap('n', '<C-=>', ':vsplit<CR>', opts)
-keymap('n', '<C-->', ':split<CR>', opts)
--- splits duplicated
-keymap('n', '<C-w>=', ':vsplit<CR>', opts)
-keymap('n', '<C-w>-', ':split<CR>', opts)
+keymap('n', '<leader>=', ':vsplit<CR>', opts)
+keymap('n', '<leader>-', ':split<CR>', opts)
+-- move to window
+keymap('n', '<leader>h', '<C-w>h', opts)
+keymap('n', '<leader>j', '<C-w>j', opts)
+keymap('n', '<leader>k', '<C-w>k', opts)
+keymap('n', '<leader>l', '<C-w>l', opts)
+-- move window to desired edge
+keymap('n', '<leader>H', '<C-w>H', opts)
+keymap('n', '<leader>J', '<C-w>J', opts)
+keymap('n', '<leader>K', '<C-w>K', opts)
+keymap('n', '<leader>L', '<C-w>L', opts)
 -- new tab
-keymap('n', '<C-t>', ':tabnew<CR>', opts)
--- new terminal
-keymap('n', '<C-/>', ':terminal<CR>', opts)
+keymap('n', '<leader>t', ':tabnew<CR>', opts)
 -- focus current window to full screen
 keymap('n', '<C-w>F', ':wincmd _ | :wincmd |<CR>', opts)
 -- make all splits equal; should do the opposite of <C-w>F
@@ -36,6 +41,10 @@ keymap('n', '<C-Up>', ':resize -2<CR>', opts)
 keymap('n', '<C-Down>', ':resize +2<CR>', opts)
 keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
+
+-- jumplist navigation
+keymap('n', '<leader>.', '<C-i>', opts)
+keymap('n', '<leader>,', '<C-o>', opts)
 
 -- Stay in indent mode
 keymap('v', '<', '<gv', opts)
@@ -47,7 +56,7 @@ keymap('n', '<leader>z', ':set wrap!<CR>', opts)
 -- open config files
 keymap('n', '<leader>ve', ':edit ~/.config/nvim/init.lua<CR>', opts)
 keymap('n', '<leader>ze', ':edit ~/.config/zsh/.zshrc<CR>', opts)
-keymap('n', '<leader>te', ':edit ~/.tmux.conf<CR>', opts)
+keymap('n', '<leader>te', ':edit ~/.config/tmux/tmux.conf<CR>', opts)
 
 -- Folding/Unfolding
 keymap('n', '<tab>', 'za', opts)

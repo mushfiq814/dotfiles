@@ -15,7 +15,7 @@ return {
         desc = "Search files in cwd",
       },
       {
-        '<leader>b',
+        '<leader>bb',
         '<CMD>Telescope buffers prompt_prefix=\\ 🔍\\ <CR>',
         desc = "Show buffers",
       },
@@ -35,7 +35,7 @@ return {
         desc = "Go to LSP references",
       },
       {
-        '<leader>h',
+        '<leader>fh',
         '<CMD>Telescope help_tags prompt_prefix=\\ 🆘\\ <CR>',
         desc = "Show help topics",
       },
