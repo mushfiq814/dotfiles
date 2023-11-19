@@ -1,5 +1,12 @@
 #!/bin/sh
 
+IS_SHORT="$1"
+if [ "$IS_SHORT" = "1" ]; then
+  ICON=" "
+else
+  ICON=" VPN"
+fi
+
 source "$HOME/.config/sketchybar/colors"
 
 STATE=$(/opt/cisco/anyconnect/bin/vpn state | grep -i "state: connected" | wc -l)
@@ -13,4 +20,4 @@ else
   COLOR="0xFF${GREEN0:1}"
 fi
 
-sketchybar -m --set $NAME icon.color="$COLOR"
+sketchybar -m --set $NAME icon.color="$COLOR" icon="$ICON"

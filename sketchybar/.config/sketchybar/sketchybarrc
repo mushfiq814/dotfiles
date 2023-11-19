@@ -68,7 +68,7 @@ sketchybar -m                          \
   --set time                           \
     update_freq=1                      \
     icon=""                           \
-    script="$SCRIPTS/time"             \
+    script="$SCRIPTS/time $IS_SHORT"   \
                                        \
   --add item date right                \
   --set date                           \
@@ -91,25 +91,22 @@ sketchybar -m                          \
   --add item cpu right                 \
   --set cpu                            \
     update_freq=3                      \
-    icon=" CPU"                       \
-    script="$SCRIPTS/cpu"              \
+    script="$SCRIPTS/cpu $IS_SHORT"    \
                                        \
   --add item memory right              \
   --set memory                         \
     update_freq=3                      \
-    icon=" MEM"                       \
-    script="$SCRIPTS/mem"              \
+    script="$SCRIPTS/mem $IS_SHORT"    \
                                        \
   --add item vpn right                 \
   --set vpn                            \
     update_freq=3                      \
-    icon=" VPN"                       \
-    script="$SCRIPTS/vpncheck"         \
+    script="$SCRIPTS/vpncheck $IS_SHORT"\
                                        \
   --add item weather right             \
   --set weather                        \
     update_freq=600                    \
-    script="$SCRIPTS/weather"          \
+    script="$SCRIPTS/weather $IS_SHORT"\
                                        \
   --add item spotify center            \
   --subscribe spotify media_change     \

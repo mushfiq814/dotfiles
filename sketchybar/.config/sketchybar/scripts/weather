@@ -1,10 +1,14 @@
 #!/bin/sh
 
-CITY="tampa"
+IS_SHORT="$1"
 
-WEATHER_ICON=$(curl --silent "wttr.in/$CITY?format=%c")
-MINMAX=$(curl --silent "wttr.in/$CITY?format=j1" | jq -r '.weather[0] | .maxtempF+"°F/"+.mintempF+"°F"')
-
-WEATHER="$MINMAX $WEATHER_ICON"
+if [ "$IS_SHORT" = "1" ]; then
+  CURR_TEMP=$(curl --silent "wttr.in/?format=j1" | jq -r '.current_condition[0] | .temp_F+"°F"')
+  WEATHER="$CURR_TEMP"
+else
+  MINMAX=$(curl --silent "wttr.in/?format=j1" | jq -r '.weather[0] | .maxtempF+"°F/"+.mintempF+"°F"')
+  WEATHER_ICON=$(curl --silent "wttr.in/?format=%c")
+  WEATHER="$MINMAX $WEATHER_ICON"
+fi
 
 sketchybar -m --set $NAME label="$WEATHER"

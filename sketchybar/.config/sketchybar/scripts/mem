@@ -1,4 +1,11 @@
 #!/bin/sh
 
+IS_SHORT="$1"
+if [ "$IS_SHORT" = "1" ]; then
+  ICON=" "
+else
+  ICON=" MEM"
+fi
+
 MEM=$(memory_pressure | grep "System-wide memory free percentage:" | awk '{ printf("%02.0f\n", 100-$5"%") }')
-sketchybar -m --set $NAME label="$MEM%"
+sketchybar -m --set $NAME label="$MEM%" icon="$ICON"
