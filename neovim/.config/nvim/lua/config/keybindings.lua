@@ -8,6 +8,9 @@ local opts = { noremap = true, silent = true }
 
 -- Easier Escape from Insert Mode
 keymap('i', 'jk', '<Esc>', opts)
+keymap('i', 'kj', '<Esc>', opts)
+keymap('i', 'JK', '<Esc>', opts)
+keymap('i', 'KJ', '<Esc>', opts)
 -- Auto complete pair
 keymap('i', '(', '()<Left>', opts)
 keymap('i', '{', '{}<Left>', opts)
@@ -49,6 +52,9 @@ keymap('n', '<leader>,', '<C-o>', opts)
 -- Stay in indent mode
 keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
+
+-- sort selection
+keymap('v', '<leader>st', ':sort<CR>', opts)
 
 -- Text Wrapping
 keymap('n', '<leader>z', ':set wrap!<CR>', opts)
