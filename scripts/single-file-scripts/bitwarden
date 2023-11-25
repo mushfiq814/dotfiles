@@ -8,7 +8,7 @@ then
   # jq -r ".[0] | .name + \":\" + .id + \":\" + .login.uris[0].uri + \":\" + .revisionDate"
 else
   # get item from arguments
-  ITEM=$@
+  ITEM=$*
 fi
 
 # get username and password for all matching items

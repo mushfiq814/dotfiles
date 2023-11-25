@@ -1,3 +1,5 @@
+local servers = vim.split(vim.g.LSP_SERVERS, ",")
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -100,8 +102,6 @@ return {
         severity_sort = false,
       })
 
-      local servers = vim.split(vim.g.LSP_SERVERS, ",")
-
       for _, server in ipairs(servers) do
         -- TODO: find way to enable inlay hints globally
         -- and combine all lsp setup into one loop
@@ -138,7 +138,7 @@ return {
         elseif server == "lua_ls" then
           lspconfig.lua_ls.setup {
             settings = {
-              Lua = { diagnostics = { globals = { 'vim', 'use' } } },
+              Lua = { diagnostics = { globals = { 'vim', 'use', 'bit' } } },
             },
             on_attach = function(client, bufnr)
               navic.attach(client, bufnr)

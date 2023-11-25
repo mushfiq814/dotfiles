@@ -6,7 +6,7 @@ CURRENT_DISPLAY_FILE="$HOME/.config/current_display"
 
 brightness_up() {
   if [[ $('cat' "$CURRENT_DISPLAY_FILE") = "PRIMARY" ]]; then
-    value=$(basename $(brightnessctl s 1%+ | grep -Eo "[0-9]+%") %)
+    value=$(basename "$(brightnessctl s 1%+ | grep -Eo "[0-9]+%")" %)
   else
     value=$(
       /usr/bin/ddccontrol -r 0x10 -W 5 dev:/dev/$SECONDARY_DDC \
@@ -19,7 +19,7 @@ brightness_up() {
 
 brightness_down() {
   if [[ $('cat' "$CURRENT_DISPLAY_FILE") = "PRIMARY" ]]; then
-    value=$(basename $(brightnessctl s 1%- | grep -Eo "[0-9]+%") %)
+    value=$(basename "$(brightnessctl s 1%- | grep -Eo "[0-9]+%")" %)
   else
     value=$(
       /usr/bin/ddccontrol -r 0x10 -W -5 dev:/dev/$SECONDARY_DDC \

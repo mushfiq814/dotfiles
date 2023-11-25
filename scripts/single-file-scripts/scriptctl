@@ -3,8 +3,7 @@
 SCRIPT_DIR="$HOME/dotfiles/scripts/single-file-scripts"
 
 choose_script () {
-  SCRIPT=$(ls "$SCRIPT_DIR" | fzf)
-  echo "$SCRIPT"
+  find "$SCRIPT_DIR"/* -maxdepth 0 -type f -printf "%f\n" | fzf
 }
 
 modify_script () {

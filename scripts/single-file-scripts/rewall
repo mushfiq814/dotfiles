@@ -5,7 +5,7 @@ source "$HOME/dotfiles/.env"
 
 if [[ "$1" = "video" ]]; then
   if [[ $VIDEO_WALLPAPER_DIR ]]; then
-    MP4=$(ls "$VIDEO_WALLPAPER_DIR/*mp4" | shuf -n 1);
+    MP4=$(find "$VIDEO_WALLPAPER_DIR"/*.mp4 | shuf -n 1);
     pkill xwinwrap \
     | xwinwrap -b -s -fs -st -sp -nf -ov -fdt \
     -- mpv -wid WID --really-quiet --framedrop=vo --loop --no-audio --panscan="1.0" \
