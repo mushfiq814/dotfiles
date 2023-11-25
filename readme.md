@@ -42,10 +42,25 @@ My configuration files for different programs that I use. This repo uses [GNU St
 
 ## Setup!
 
+Clone repository with submodules (some maybe private)
+
+```sh
+$ git clone --recurse-submodules <ssh_or_https_repo_url>
+```
+
+If already cloned without submodules, use
+
+```sh
+$ git submodule update --init --recursive --remote
+```
+
 Make sure `stow` is installed
 
 ```sh
-$ sudo apt install stow
+$ sudo pacman -S stow # arch linux/pacman
+$ brew install stow # macos
+$ pkg install stow # termux
+$ sudo apt install stow # ubuntu/debian
 ```
 
 Use stow to create or remove symbolic links for different programs

@@ -1,5 +1,11 @@
 #!/bin/bash
 
-TIME=$(date +"%r")
+IS_SHORT="$1"
+
+if [ "$IS_SHORT" == "1" ]; then
+  TIME=$(date +"%I:%M %p")
+else
+  TIME=$(date +"%I:%M:%S %p")
+fi
 
 sketchybar -m --set $NAME label="$TIME"

@@ -7,25 +7,25 @@ SECONDARY_MODE="2560x1440"
 CURRENT_DISPLAY_FILE="$HOME/.config/current_display"
 
 display_on() {
-  xrandr --output $1 --primary --mode $2
+  xrandr --output "$1" --primary --mode "$2"
 }
 display_off() {
-  xrandr --output $1 --off
+  xrandr --output "$1" --off
 }
 display_dim() {
-  xrandr --output $1 --brightness 0
+  xrandr --output "$1" --brightness 0
 }
 display_undim() {
-  xrandr --output $1 --brightness 1
+  xrandr --output "$1" --brightness 1
 }
 
 primary_only() {
   display_on $PRIMARY $PRIMARY_MODE && display_off $SECONDARY
-  echo "PRIMARY" > $CURRENT_DISPLAY_FILE
+  echo "PRIMARY" > "$CURRENT_DISPLAY_FILE"
 }
 secondary_only() {
   display_off $PRIMARY && display_on $SECONDARY $SECONDARY_MODE
-  echo "SECONDARY" > $CURRENT_DISPLAY_FILE
+  echo "SECONDARY" > "$CURRENT_DISPLAY_FILE"
 }
 
 detect_current_resolution() {
@@ -36,7 +36,7 @@ detect_current_resolution() {
 }
 
 secondary_is_connected() {
-  if [[ $(xrandr --prop | grep -i "$SECONDARY connected") ]];
+  if xrandr --prop | grep -q -i "$SECONDARY connected";
   then
     return 0;
   else

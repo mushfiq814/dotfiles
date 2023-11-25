@@ -4,35 +4,31 @@
 THEME_FILE="$1" # theme file containing colors
 OPACITY="$2"
 
-# shellcheck source=colors/debug
+# shellcheck source=../colors/debug
 source "$THEME_FILE"
 # shellcheck source=../../.env
 source "$HOME/dotfiles/.env" # for $ITERM_FONT
-# shellcheck source=utils
-source "$HOME/dotfiles/scripts/colorscheme/utils"
 
-ITERM_CONFIG_BASE_FILE="$HOME/dotfiles/iTerm2/Library/Application Support/iTerm2/DynamicProfiles/profile_base.json"
-ITERM_CONFIG_FILE="/Library/Application Support/iTerm2/DynamicProfiles/profile.json"
-UTILS_FILE="$HOME/dotfiles/scripts/colorscheme/utils"
+if ! command -v "it2api" &> /dev/null; then
+  exit 0
+fi
 
-# TODO: check whether it2api is available
-IT2API="$HOME/.iterm2/it2api"
-SESSION_ID=$($IT2API list-sessions | grep --only-matching -e '[0-9A-Fa-f]\+\(-[0-9A-Fa-f]\+\)\+')
-PROFILE_NAME=$($IT2API get-profile-property "$SESSION_ID" "name" | sed 's/name: //')
+SESSION_ID=$(it2api list-sessions | grep --only-matching -e '[0-9A-Fa-f]\+\(-[0-9A-Fa-f]\+\)\+')
+PROFILE_NAME=$(it2api get-profile-property "$SESSION_ID" "name" | sed 's/name: //')
 
 echo "COLORSCHEME: setting iterm2 fonts"
-$IT2API set-profile-property "$SESSION_ID" "normal_font" "$ITERM_FONT"
+it2api set-profile-property "$SESSION_ID" "normal_font" "$ITERM_FONT"
 
 echo "COLORSCHEME: setting iterm2 transparency"
 TRANSPARENCY=$(echo "1.00 - $OPACITY" | bc | sed 's/^/0/')
 echo "setting transparency to $TRANSPARENCY"
-$IT2API set-profile-property "$SESSION_ID" "transparency" "$TRANSPARENCY"
+it2api set-profile-property "$SESSION_ID" "transparency" "$TRANSPARENCY"
 
 echo "COLORSCHEME: setting iterm2 colors"
 
-if [[ $($IT2API list-color-presets | grep "$NAME") ]]; then
+if it2api list-color-presets | grep -q "$NAME"; then
   echo "profile: $PROFILE_NAME, preset: $NAME"
-  $IT2API set-color-preset "$PROFILE_NAME" "$NAME"
+  it2api set-color-preset "$PROFILE_NAME" "$NAME"
   exit 0
 fi
 
@@ -41,14 +37,20 @@ COLOR_PRESET_FILE="$HOME/Downloads/$NAME.itermcolors"
 echo "[error]: generating preset file at $COLOR_PRESET_FILE..."
 echo "[error]: please import it manually inside iTerm"
 
-source "$UTILS_FILE"
+# shellcheck source=../utils
+source "$HOME/dotfiles/scripts/colorscheme/utils"
 
+xml_preamble () {
+  XML="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+  XML="$XML\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"
+  XML="$XML\n<plist version=\"1.0\">"
+  XML="$XML\n<dict>"
+}
 iterm2colorconversion () {
-  RGB=$(hex2rgb $2)
-  R=$(echo $RGB | cut -d : -f 1)
-  G=$(echo $RGB | cut -d : -f 2)
-  B=$(echo $RGB | cut -d : -f 3)
-  XML="$XML"
+  RGB=$(hex2rgb "$2")
+  R=$(echo "$RGB" | cut -d : -f 1)
+  G=$(echo "$RGB" | cut -d : -f 2)
+  B=$(echo "$RGB" | cut -d : -f 3)
   XML="$XML\n  <key>$1</key>"
   XML="$XML\n  <dict>"
   XML="$XML\n    <key>Red Component</key>"
@@ -63,12 +65,12 @@ iterm2colorconversion () {
   XML="$XML\n    <string>sRGB</string>"
   XML="$XML\n  </dict>"
 }
+xml_ending () {
+  XML="$XML\n</dict>"
+  XML="$XML\n</plist>"
+}
 
-XML="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-XML="$XML\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"
-XML="$XML\n<plist version=\"1.0\">"
-XML="$XML\n<dict>"
-
+xml_preamble
 iterm2colorconversion "Ansi 0 Color" $BLACK
 iterm2colorconversion "Ansi 1 Color" $BRIGHT_RED
 iterm2colorconversion "Ansi 2 Color" $BRIGHT_GREEN
@@ -91,9 +93,7 @@ iterm2colorconversion "Selection Color" $WHITE
 iterm2colorconversion "Selected Text Color" $BLACK
 iterm2colorconversion "Cursor Color" $WHITE
 iterm2colorconversion "Cursor Text Color" $BLACK
-
-XML="$XML\n</dict>"
-XML="$XML\n</plist>"
+xml_ending
 
 echo "$XML" > "$COLOR_PRESET_FILE"
 echo "color preset file saved at $COLOR_PRESET_FILE"

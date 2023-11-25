@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 update_polybar_hook() {
   PARENT_BAR="mushfiq"
@@ -18,7 +18,7 @@ update_polybar_hook() {
 
 set_active_sink_volume() {
   ACTIVE_SINK=$(pactl list sinks short | grep RUNNING | awk '{print $1; exit}')
-  pactl set-sink-volume $ACTIVE_SINK "$1"
+  pactl set-sink-volume "$ACTIVE_SINK" "$1"
 }
 
 get_sink_inputs() {
@@ -29,14 +29,14 @@ get_sink_inputs() {
 
 set_sink_input_volume() {
   for id in $(get_sink_inputs); do
-    pactl set-sink-input-volume $id $1
+    pactl set-sink-input-volume "$id" "$1"
   done
 }
 
 balance_sink_input_volumes() {
   VOLUME=$(get_volume)
   for id in $(get_sink_inputs); do
-    pactl set-sink-input-volume $id $VOLUME
+    pactl set-sink-input-volume "$id" "$VOLUME"
   done
 }
 
@@ -44,8 +44,8 @@ volume_up() {
   VOLUME=$(get_volume)
   NEXT_VOLUME=$(echo "$VOLUME+1" | bc)
   NEXT_VOLUME_PERCENT="$NEXT_VOLUME%"
-  set_active_sink_volume $NEXT_VOLUME_PERCENT
-  set_sink_input_volume $NEXT_VOLUME_PERCENT
+  set_active_sink_volume "$NEXT_VOLUME_PERCENT"
+  set_sink_input_volume "$NEXT_VOLUME_PERCENT"
   update_polybar_hook
 }
 
@@ -53,8 +53,8 @@ volume_down() {
   VOLUME=$(get_volume)
   NEXT_VOLUME=$(echo "$VOLUME-1" | bc)
   NEXT_VOLUME_PERCENT="$NEXT_VOLUME%"
-  set_active_sink_volume $NEXT_VOLUME_PERCENT
-  set_sink_input_volume $NEXT_VOLUME_PERCENT
+  set_active_sink_volume "$NEXT_VOLUME_PERCENT"
+  set_sink_input_volume "$NEXT_VOLUME_PERCENT"
   update_polybar_hook
 }
 
@@ -62,7 +62,7 @@ get_volume() {
   pactl list sinks \
   | grep -i -A15 'RUNNING' \
   | grep -i '^[[:space:]]Volume:' \
-  | head -n $(( $SINK + 1 )) \
+  | head -n $(( SINK + 1 )) \
   | tail -n 1 \
   | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
 }
@@ -73,10 +73,10 @@ show_notification() {
 
 if [[ $1 == "+" || $1 == "up" || $1 == "inc" ]]; then
   volume_up
-  show_notification $(get_volume)
+  show_notification "$(get_volume)"
 elif [[ $1 == "-" || $1 == "down" || $1 == "dec" ]]; then
-  VAL=$(volume_down)
-  show_notification $(get_volume)
+  volume_down
+  show_notification "$(get_volume)"
 elif [[ $1 == "info-percent" || $1 == "percent" ]]; then
   VOLUME=$(get_volume)
   echo "$VOLUME%"

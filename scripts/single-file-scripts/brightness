@@ -1,16 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-PRIMARY_XRANDR="eDP-1" # needed for xrandr
+# PRIMARY_XRANDR="eDP-1" # needed for xrandr
 SECONDARY_DDC="i2c-19" # needed for ddccontrol. find by `sudo ddccontrol -p`
 CURRENT_DISPLAY_FILE="$HOME/.config/current_display"
 
-find_current_display() {
-  return cat $CURRENT_DISPLAY_FILE
-}
-
 brightness_up() {
-  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY" ]]; then
-    value=$(basename $(brightnessctl s 1%+ | grep -Eo "[0-9]+%") %)
+  if [[ $('cat' "$CURRENT_DISPLAY_FILE") = "PRIMARY" ]]; then
+    value=$(basename "$(brightnessctl s 1%+ | grep -Eo "[0-9]+%")" %)
   else
     value=$(
       /usr/bin/ddccontrol -r 0x10 -W 5 dev:/dev/$SECONDARY_DDC \
@@ -18,12 +14,12 @@ brightness_up() {
       | sed 's/Control 0x10: +\/\([0-9]\+\).*\[Brightness\]/\1/'
     )
   fi
-  echo $value
+  echo "$value"
 }
 
 brightness_down() {
-  if [[ $('cat' $CURRENT_DISPLAY_FILE) = "PRIMARY" ]]; then
-    value=$(basename $(brightnessctl s 1%- | grep -Eo "[0-9]+%") %)
+  if [[ $('cat' "$CURRENT_DISPLAY_FILE") = "PRIMARY" ]]; then
+    value=$(basename "$(brightnessctl s 1%- | grep -Eo "[0-9]+%")" %)
   else
     value=$(
       /usr/bin/ddccontrol -r 0x10 -W -5 dev:/dev/$SECONDARY_DDC \
@@ -31,7 +27,7 @@ brightness_down() {
       | sed 's/Control 0x10: +\/\([0-9]\+\).*\[Brightness\]/\1/'
     )
   fi
-  echo $value
+  echo "$value"
 }
 
 show_notification() {
@@ -40,10 +36,10 @@ show_notification() {
 
 if [[ $1 == "+" || $1 == "up" || $1 == "inc" ]]; then
   VAL=$(brightness_up)
-  show_notification $VAL
+  show_notification "$VAL"
 elif [[ $1 == "-" || $1 == "down" || $1 == "dec" ]]; then
   VAL=$(brightness_down)
-  show_notification $VAL
+  show_notification "$VAL"
 else
   echo "invalid argument"
 fi

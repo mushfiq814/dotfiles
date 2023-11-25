@@ -2,16 +2,11 @@
 
 # Using the spotify web api: https://developer.spotify.com/documentation/web-api/reference/
 SPOTIFY_AUTH_URL="https://accounts.spotify.com/api/token"
-SPOTIFY_CLIENT_ID="c7773039994d440e9573e56654a1e449"
-SPOTIFY_CLIENT_SECRET="3e6a505775ca453ca3e4d8d6787f2e49"
-# TODO: use base 64 encoding in this script rather than saving the encoded creds
-# currently the encoded string prints in 2 lines instead of 1
-# SPOTIFY_ENCODED_CREDS=$(printf '%s:%s' "$SPOTIFY_CLIENT_ID" "$SPOTIFY_CLIENT_SECRET" | base64)
-SPOTIFY_ENCODED_CREDS="Yzc3NzMwMzk5OTRkNDQwZTk1NzNlNTY2NTRhMWU0NDk6M2U2YTUwNTc3NWNhNDUzY2EzZTRkOGQ2Nzg3ZjJlNDk="
+SPOTIFY_CLIENT_ID=""
+SPOTIFY_CLIENT_SECRET=""
+SPOTIFY_ENCODED_CREDS=$(printf '%s:%s' "$SPOTIFY_CLIENT_ID" "$SPOTIFY_CLIENT_SECRET" | base64)
 SPOTIFY_API_URL="https://api.spotify.com"
-SPOTIFY_REDIRECT_URI="https://mushfiqmahmud.com"
-SPOTIFY_REFRESH_TOKEN="AQAN8maLM9uKYuqgwf0QuTgMB8C43PSbsg3z5Y2Cgy3V3Ho6HRhq31EV57hd9QsaFdgEiCeJ0zGBC96svxy3fQ8p_aUKlx0lMm-4qSw8vwpHFADqxxxfJ-MCkxqJKUZ3MfQ"
-SPOTIFY_ACCESS_CODE="AQCvu3M7BQgFEr2KWnu6mm2v-yu9jrpLunfU3-6woWyY5DpBfFNgGvN13fC93v5Pr0L75nqEI45hOuITCtA7eD8BxIzRVZwdqCeQGpnjrG7IO_ZzauUh2hx_6dOTqCNt6jHwztrFo73FuPN2rP-KlGoj4dxwuOtVWee49YI"
+SPOTIFY_REFRESH_TOKEN=""
 
 # file to save current token and expiration time to
 TOKEN_STORE=/tmp/spotify-mp3-tag
@@ -35,8 +30,8 @@ refresh_token () {
     --request POST $SPOTIFY_AUTH_URL)
 
   # get relevant fields
-  SPOTIFY_ACCESS_TOKEN=$(echo $AUTH_RESPONSE | jq '.access_token' | sed 's/\"//g')
-  EXPIRY_SECONDS=$(echo $AUTH_RESPONSE | jq '.expires_in')
+  SPOTIFY_ACCESS_TOKEN=$(echo "$AUTH_RESPONSE" | jq '.access_token' | sed 's/\"//g')
+  EXPIRY_SECONDS=$(echo "$AUTH_RESPONSE" | jq '.expires_in')
 
   # calculate expiration timestamp
   EXPIRATION_TIMESTAMP=$(date +"%s" | xargs echo "$EXPIRY_SECONDS + " | bc)
@@ -53,7 +48,7 @@ main () {
   fi
 
   # sanitize input
-  QUERY=$(echo $1 | sed 's/ /+/g')
+  QUERY=$(echo "$1" | sed 's/ /+/g')
 
   # read stored expiry timestamp if exists
   if [ -e $TOKEN_STORE ]
@@ -62,7 +57,7 @@ main () {
     SPOTIFY_ACCESS_TOKEN=$(cat $TOKEN_STORE | jq '.token' | sed 's/\"//g')
     EXPIRATION_TIMESTAMP=$(cat $TOKEN_STORE | jq '.expiration')
     CURRENT_TIMESTAMP=$(date +"%s")
-    if [ $EXPIRATION_TIMESTAMP -lt $CURRENT_TIMESTAMP ]
+    if [ "$EXPIRATION_TIMESTAMP" -lt "$CURRENT_TIMESTAMP" ]
     then
       refresh_token
     fi

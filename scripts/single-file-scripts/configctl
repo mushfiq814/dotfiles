@@ -3,8 +3,7 @@
 CONFIG_DIR="$HOME/.config"
 
 choose_config () {
-  PROGRAM=$(ls $CONFIG_DIR | fzf)
-  echo $PROGRAM
+  find "$CONFIG_DIR"/* -maxdepth 0 -type d -printf "%f\n" | fzf
 }
 
 modify_config () {
@@ -13,12 +12,7 @@ modify_config () {
     echo "[configctl] No program specified to modify_config"
     exit
   fi
-  $EDITOR $CONFIG_DIR/$1
+  $EDITOR "$CONFIG_DIR/$1"
 }
 
-case "$1" in
-  1) echo "test"
-  ;;
-  *) modify_config $(choose_config)
-  ;;
-esac
+modify_config "$(choose_config)"

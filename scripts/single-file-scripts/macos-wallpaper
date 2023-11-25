@@ -1,6 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 shopt -s extglob
-IMG=$('ls' $HOME/Pictures/wallpapers/*.@(png|jpg) | sort -R | tail -1)
+
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env"
+
+IMG=$(find "$WALLPAPER_DIR"/*.@(png|jpg) -maxdepth 1 | sort -R | tail -1)
 
 osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$IMG\""

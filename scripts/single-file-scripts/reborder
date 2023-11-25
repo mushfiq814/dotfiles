@@ -1,4 +1,4 @@
 #!/bin/sh
 
 pkill --exact xborders
-/usr/local/bin/xborders --disable-version-warning --config $HOME/.config/xborders/xborders.json 1>/dev/null 2>/dev/null &
+/usr/local/bin/xborders --disable-version-warning --config "$HOME/.config/xborders/xborders.json" 1>/dev/null 2>/dev/null &

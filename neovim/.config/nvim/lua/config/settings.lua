@@ -25,7 +25,6 @@ o.spell = true
 o.clipboard = 'unnamed,unnamedplus'
 o.foldlevelstart = 20
 o.foldlevel = 99
-w.foldenable = true
 w.conceallevel = 2
 o.list = true
 o.listchars = {
@@ -34,6 +33,10 @@ o.listchars = {
   extends = '⋯',
   space = '·',
   trail = '■',
+  multispace = nil,
+  leadmultispace = '▏ ',
+  nbsp = '⍽',
+  eol = nil,
 }
 o.fillchars = {
   horiz = '─', -- horizontal separators |:split|
@@ -60,7 +63,7 @@ o.splitbelow = true
 if vim.g.neovide then
   -- Helper function for transparency formatting
   local alpha = function()
-    return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+    return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8)))
   end
   -- Put anything you want to happen only in Neovide here
   vim.o.guifont = "LigaSaucyCodePro Nerd Font,Noto Color Emoji:h11"

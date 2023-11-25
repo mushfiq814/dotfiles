@@ -15,7 +15,7 @@ update_polybar_hook() {
 
   while IFS= read -r id
   do
-    polybar-msg -p "$id" hook $HOOK $HOOK_NUMBER 1>/dev/null 2>&1
+    polybar-msg -p "$id" hook "$HOOK" "$HOOK_NUMBER" 1>/dev/null 2>&1
   done < <(echo "$PARENT_BAR_PID")
 }
 
@@ -28,7 +28,7 @@ stop() {
 }
 
 get_play_status() {
-  if [ -z $(pidof mpv) ];
+  if [ -z "$(pidof mpv)" ];
   then
     echo "STOPPED";
     exit;

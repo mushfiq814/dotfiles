@@ -3,7 +3,7 @@
 
 THEME_FILE="$1" # theme file containing colors
 
-# shellcheck source=colors/debug
+# shellcheck source=../colors/debug
 source "$THEME_FILE"
 
 TMUX_COLORS_FILE="$HOME/.config/tmux/colors.conf"

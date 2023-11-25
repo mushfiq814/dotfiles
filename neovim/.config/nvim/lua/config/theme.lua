@@ -13,11 +13,22 @@ local utils = require('config/utils/color-utils')
 if vim.fn.exists('syntax_on') then
   vim.cmd('syntax reset')
 end
-local hi                              = utils.highlight
-local darkerbg                        = utils.darken(colors.black, 0.1)
-local darkercursorline                = utils.darken(colors.grey0, 0.1)
-local darkerstatusline                = utils.darken(colors.grey1, 0.1)
-local darkeraccent                    = utils.darken(colors.accent, 0.1)
+local hi               = utils.highlight
+local darkerbg         = utils.darken(colors.black, 0.1)
+local darkercursorline = utils.darken(colors.grey0, 0.1)
+local darkerstatusline = utils.darken(colors.grey1, 0.1)
+local darkeraccent     = utils.darken(colors.accent, 0.1)
+
+-- Theme Color Highlights
+hi.ColorBlack = { guifg = colors.black }
+hi.ColorWhite = { guifg = colors.white }
+hi.ColorRed = { guifg = colors.neutral_red }
+hi.ColorYellow = { guifg = colors.neutral_yellow }
+hi.ColorOrange = { guifg = colors.neutral_orange }
+hi.ColorGreen = { guifg = colors.neutral_green }
+hi.ColorBlue = { guifg = colors.neutral_blue }
+hi.ColorAqua = { guifg = colors.neutral_aqua }
+hi.ColorPurple = { guifg = colors.neutral_purple }
 
 -- Vim editor colors
 hi.Normal                             = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
@@ -211,7 +222,7 @@ hi.TSTag                              = { guifg = colors.bright_yellow, guibg = 
 hi.TSTagDelimiter                     = { guifg = colors.faded_orange, guibg = nil, gui = 'none', guisp = nil }
 hi.TSText                             = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
 hi.TSStrong                           = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil }
-hi.TSEmphasis                         = { guifg = colors.bright_orange, guibg = nil, gui = 'standout'}
+hi.TSEmphasis                         = { guifg = colors.bright_orange, guibg = nil, gui = 'italic' }
 hi.TSUnderline                        = { guifg = colors.black, guibg = nil, gui = 'underline', guisp = nil }
 hi.TSStrike                           = { guifg = colors.black, guibg = nil, gui = 'strikethrough', guisp = nil }
 hi.TSTitle                            = { guifg = colors.bright_blue, guibg = nil, gui = 'none', guisp = nil }
@@ -348,39 +359,39 @@ local function getMdTitleHighlight(level)
   }
 end
 
-hi['@text.title.1']             = getMdTitleHighlight(1)
-hi['@text.title.2']             = getMdTitleHighlight(2)
-hi['@text.title.3']             = getMdTitleHighlight(3)
-hi['@text.title.4']             = getMdTitleHighlight(4)
-hi['@text.title.5']             = getMdTitleHighlight(5)
-hi['@text.title.6']             = getMdTitleHighlight(6)
+hi['@text.title.1']                        = getMdTitleHighlight(1)
+hi['@text.title.2']                        = getMdTitleHighlight(2)
+hi['@text.title.3']                        = getMdTitleHighlight(3)
+hi['@text.title.4']                        = getMdTitleHighlight(4)
+hi['@text.title.5']                        = getMdTitleHighlight(5)
+hi['@text.title.6']                        = getMdTitleHighlight(6)
 
-hi['@text.title.1.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.2.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.3.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.4.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.5.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.6.marker']      = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.1.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.2.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.3.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.4.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.5.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.title.6.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
 
-hi['@text.reference']           = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.literal']             = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
-hi['@text.uri']                 = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+hi['@text.reference']                      = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
+hi['@text.literal']                        = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
+hi['@text.uri']                            = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 
-hi['@markdown_check_undone']    = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
-hi['@markdown_check_done']      = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
-hi['@markdown_list_marker']     = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@none']                     = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.bracket']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.delimiter']    = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.special']      = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@puntuation.strikethrough'] = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
-hi['@text.emphasis']            = { guifg = darkeraccent, guibg = nil, gui = 'standout', guisp = nil }
-hi['@text.quote']               = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
-hi['@markdown_quote_marker']    = { guifg = darkeraccent, guibg = colors.grey0, gui = nil, guisp = nil }
-hi['@text.strike']              = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
-hi['@text.strong']              = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markdown_check_undone']               = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
+hi['@markdown_check_done']                 = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
+hi['@markdown_list_marker']                = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@none']                                = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.bracket']                 = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.delimiter']               = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.special']                 = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@puntuation.strikethrough']            = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
+hi['@text.emphasis']                       = { guifg = darkeraccent, guibg = nil, gui = 'italic', guisp = nil }
+hi['@text.quote']                          = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
+hi['@markdown_quote_marker']               = { guifg = darkeraccent, guibg = colors.grey0, gui = nil, guisp = nil }
+hi['@text.strike']                         = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
+hi['@text.strong']                         = { guifg = darkeraccent, guibg = nil, gui = 'bold', guisp = nil }
 
-local mdCodeBlockBg = nil
+local mdCodeBlockBg                        = nil
 hi['@markdown_code_block_marker']          = { guifg = colors.bright_yellow, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
 hi['@markdown_code_block_lang_javascript'] = { guifg = colors.bright_yellow, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
 hi['@markdown_code_block_lang_typescript'] = { guifg = colors.bright_blue, guibg = mdCodeBlockBg, gui = 'bold', guisp = nil }
@@ -396,24 +407,24 @@ hi['@markdown_code_block_lang_css']        = { guifg = colors.bright_blue, guibg
 hi['@markdown_code_block_lang_sql']        = { guifg = colors.bright_yellow, guibg = colors.grey0, gui = 'bold', guisp = nil }
 
 -- comments
-hi['@text.todo']                = { guifg = colors.black, guibg = colors.bright_yellow, gui = 'bold', guisp = nil }
-hi['@text.note']                = { guifg = colors.black, guibg = colors.bright_aqua, gui = 'bold', guisp = nil }
-hi['@text.danger']              = { guifg = colors.black, guibg = colors.bright_red, gui = 'bold', guisp = nil }
-hi['@text.warning']             = { guifg = colors.black, guibg = colors.bright_orange, gui = 'bold', guisp = nil }
+hi['@text.todo']                           = { guifg = colors.black, guibg = colors.bright_yellow, gui = 'bold', guisp = nil }
+hi['@text.note']                           = { guifg = colors.black, guibg = colors.bright_aqua, gui = 'bold', guisp = nil }
+hi['@text.danger']                         = { guifg = colors.black, guibg = colors.bright_red, gui = 'bold', guisp = nil }
+hi['@text.warning']                        = { guifg = colors.black, guibg = colors.bright_orange, gui = 'bold', guisp = nil }
 
 -- unlink todo checkbox highlights
-hi['@text.todo.checked.markdown']   = "NONE"
-hi['@text.todo.unchecked.markdown'] = "NONE"
+hi['@text.todo.checked.markdown']          = "NONE"
+hi['@text.todo.unchecked.markdown']        = "NONE"
 
 -- gitsigns
-hi.GitSignsAdd                  = { guifg = colors.bright_green, guibg = nil }
-hi.GitSignsChange               = { guifg = colors.bright_aqua, guibg = nil }
-hi.GitSignsDelete               = { guifg = colors.bright_red, guibg = nil }
-hi.GitSignsChangeDelete         = { guifg = colors.bright_aqua, guibg = colors.bright_red }
+hi.GitSignsAdd                             = { guifg = colors.bright_green, guibg = nil }
+hi.GitSignsChange                          = { guifg = colors.bright_aqua, guibg = nil }
+hi.GitSignsDelete                          = { guifg = colors.bright_red, guibg = nil }
+hi.GitSignsChangeDelete                    = { guifg = colors.bright_aqua, guibg = colors.bright_red }
 
 -- diff
-hi['@text.diff.delete'] = { guifg = colors.neutral_red, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.diff.add'] = { guifg = colors.neutral_green, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.diff.delete']                    = { guifg = colors.neutral_red, guibg = nil, gui = 'bold', guisp = nil }
+hi['@text.diff.add']                       = { guifg = colors.neutral_green, guibg = nil, gui = 'bold', guisp = nil }
 
 -- highlight groups
 vim.cmd('set background=' .. colors.mode)
@@ -427,10 +438,10 @@ vim.cmd('sign define DiagnosticSignWarn  text= texthl=LspDiagnosticsDefaultWa
 vim.cmd('sign define DiagnosticSignInfo  text= texthl=LspDiagnosticsDefaultInformation linehl= numhl=')
 vim.cmd('sign define DiagnosticSignHint  text= texthl=LspDiagnosticsDefaultHint        linehl= numhl=')
 
-hi.healthSuccess = { guifg = colors.neutral_aqua, guibg = nil, gui = 'bold' }
-hi.healthHelp    = { guifg = colors.faded_blue, guibg = nil, gui = 'bold' }
-hi.healthError   = { guifg = colors.bright_red, guibg = nil, gui = 'bold' }
-hi.healthWarning = { guifg = colors.bright_orange, guibg = nil, gui = 'bold' }
+hi.healthSuccess          = { guifg = colors.neutral_aqua, guibg = nil, gui = 'bold' }
+hi.healthHelp             = { guifg = colors.faded_blue, guibg = nil, gui = 'bold' }
+hi.healthError            = { guifg = colors.bright_red, guibg = nil, gui = 'bold' }
+hi.healthWarning          = { guifg = colors.bright_orange, guibg = nil, gui = 'bold' }
 
 -- winbar
 hi.winbarFileName         = {

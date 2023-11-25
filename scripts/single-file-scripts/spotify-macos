@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 TITLE="name of current track"
 ARTIST="artist of current track"
-ALBUM="album of current track"
+# ALBUM="album of current track"
 
 spotify_tell() {
-  osascript -e "tell application \"Spotify\" to $@"
+  osascript -e "tell application \"Spotify\" to $*"
 }
 
 get_play_status() {

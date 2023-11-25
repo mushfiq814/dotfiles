@@ -8,14 +8,14 @@ then
   # jq -r ".[0] | .name + \":\" + .id + \":\" + .login.uris[0].uri + \":\" + .revisionDate"
 else
   # get item from arguments
-  ITEM=$@
+  ITEM=$*
 fi
 
 # get username and password for all matching items
-JSON=$(bw list items --search $ITEM | jq '[.[].login | { username, password }]')
+JSON=$(bw list items --search "$ITEM" | jq '[.[].login | { username, password }]')
 
 # present a list of usernames
-USERNAME=$(echo $JSON | jq -r '.[].username' | rofi -dmenu -p 🔎)
+USERNAME=$(echo "$JSON" | jq -r '.[].username' | rofi -dmenu -p 🔎)
 
 # check whether username exists
 if [ "$USERNAME" = "" ]
@@ -25,9 +25,9 @@ then
 fi
 
 # filter out password using username
-PASSWORD=$(echo $JSON | jq -r "map(select(.username == \"$USERNAME\")) | .[0].password" )
+PASSWORD=$(echo "$JSON" | jq -r "map(select(.username == \"$USERNAME\")) | .[0].password" )
 
 # paste password to clipboard
-echo $PASSWORD | xclip -r -selection clipboard
+echo "$PASSWORD" | xclip -r -selection clipboard
 
 dunstify --appname="bitwarden script" "Password copied to clipboard for username: $USERNAME"
