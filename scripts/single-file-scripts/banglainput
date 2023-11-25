@@ -1,10 +1,10 @@
 #!/bin/sh
 
-QUERY=$(echo $1 | sed 's/ /%20/g')
+QUERY=$(echo "$1" | sed 's/ /%20/g')
 LANGUAGE="bn"
 URL="https://inputtools.google.com/request?text=$QUERY&itc=$LANGUAGE-t-i0-und&num=5&cp=0&cs=1&ie=utf-8&oe=utf-8"
 
-curl --silent $URL \
+curl --silent "$URL" \
   | jq '.[1][0][1] | @csv' \
   | sed 's/["\\]//g' \
   | tr , "\n" \

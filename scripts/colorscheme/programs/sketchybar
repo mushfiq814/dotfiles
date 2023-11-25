@@ -5,7 +5,7 @@ THEME_FILE="$1" # theme file containing colors
 ACCENT="$2" # accent color from theme file
 BLACK_TR="$3"
 
-# shellcheck source=colors/debug
+# shellcheck source=../colors/debug
 source "$THEME_FILE"
 # shellcheck source=../../.env
 source "$HOME/dotfiles/.env" # for $SKETCHYBAR_FONT

@@ -1,14 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-source $HOME/dotfiles/.env
+# shellcheck source=../../.env
+source "$HOME/dotfiles/.env"
 
-if [[ $1 = "video" ]]; then
+if [[ "$1" = "video" ]]; then
   if [[ $VIDEO_WALLPAPER_DIR ]]; then
-    MP4=$(ls $VIDEO_WALLPAPER_DIR/*mp4 | shuf -n 1);
+    MP4=$(ls "$VIDEO_WALLPAPER_DIR/*mp4" | shuf -n 1);
     pkill xwinwrap \
     | xwinwrap -b -s -fs -st -sp -nf -ov -fdt \
     -- mpv -wid WID --really-quiet --framedrop=vo --loop --no-audio --panscan="1.0" \
-    $MP4 &
+    "$MP4" &
   else
     notify-send --urgency=critical \
       "VIDEO_WALLPAPER_DIR not defined. Please make sure .env in dotfiles exists!"
@@ -17,7 +18,7 @@ else
   if [[ $WALLPAPER_DIR ]]; then
     # FIY: to change the anchor position really tall or wide pictures
     # feh --bg-fill --geometry '+0+3000' example.jpg
-    pkill xwinwrap | feh --randomize --bg-fill $WALLPAPER_DIR
+    pkill xwinwrap | feh --randomize --bg-fill "$WALLPAPER_DIR"
   else
     notify-send --urgency=critical \
       "WALLPAPER_DIR not defined. Please make sure .env in dotfiles exists!"

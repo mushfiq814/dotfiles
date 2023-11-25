@@ -1,8 +1,8 @@
 #!/bin/sh
 
-STATE=$(/opt/cisco/anyconnect/bin/vpn state | grep -i "state: connected" | wc -l)
+STATE=$(/opt/cisco/anyconnect/bin/vpn state | grep -i -c "state: connected")
 
-if [ $STATE -eq 0 ]
+if [ "$STATE" -eq 0 ]
 then
   CONNECTED="NO"
 else
