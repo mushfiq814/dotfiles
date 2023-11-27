@@ -18,6 +18,7 @@ keymap('n', '<BS>', '<C-o>', opts)
 keymap('n', '<leader>a', ':Tabularize /|<CR>', opts)
 
 -- functions
+-- TODO: if extension exists (e.g. file.json), don't append markdown extension
 function FollowMarkdownLink()
   -- get text of current line
   local txt = vim.api.nvim_get_current_line()
