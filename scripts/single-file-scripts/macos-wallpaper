@@ -5,6 +5,6 @@ shopt -s extglob
 # shellcheck source=../../.env
 source "$HOME/dotfiles/.env"
 
-IMG=$(find "$WALLPAPER_DIR"/*.@(png|jpg) -maxdepth 1 | sort -R | tail -1)
+IMG=$(find -E "$WALLPAPER_DIR" -regex '.*(jpeg|png|jpg)' -maxdepth 1 | sort -R | tail -1)
 
 osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$IMG\""
