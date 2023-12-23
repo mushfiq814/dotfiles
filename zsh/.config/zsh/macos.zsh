@@ -1,3 +1,6 @@
+# shellcheck source=../../../.env
+source "$HOME/dotfiles/.env"
+
 # hostname
 HOST="macbook"
 
@@ -31,7 +34,6 @@ if [ -d "/opt/homebrew/bin" ]; then
 fi
 
 # iterm2
-source "$HOME/dotfiles/.env"
 term=$(echo $TERM_EMULATOR | tr "[:upper:]" "[:lower:]")
 if [ $term = "iterm" ] && [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
   source "${HOME}/.iterm2_shell_integration.zsh";
