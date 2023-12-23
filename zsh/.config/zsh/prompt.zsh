@@ -37,7 +37,7 @@ set_prompt () {
   PROMPT+="["
   PROMPT+="%F{$CY1}%1d%f"
   PROMPT+="]"
-  PROMPT+="%F{$MA1}${vcs_info_msg_0_}%f"
+  PROMPT+=$( test $ENABLE_ZSH_GIT -eq 1 && echo "%F{$MA1}${vcs_info_msg_0_}%f" )
   PROMPT+="%(1j. .)"
   # PROMPT+="%(1j. 💬.)"
   PROMPT+=" %B${SUFFIX}%b "

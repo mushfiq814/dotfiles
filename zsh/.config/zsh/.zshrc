@@ -12,7 +12,9 @@ fi
 source "$HOME/.config/zsh/aliases.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 source "$HOME/.config/zsh/misc.zsh"
-source "$HOME/.config/zsh/git.zsh"
+if [[ $ENABLE_ZSH_GIT -eq 1 ]]; then
+  source "$HOME/.config/zsh/git.zsh"
+fi
 source "$HOME/.config/zsh/prompt.zsh"
 source "$HOME/.config/zsh/programs.zsh"
 if [[ $ENABLE_ZSH_COMP -eq 1 ]]; then
@@ -20,8 +22,10 @@ if [[ $ENABLE_ZSH_COMP -eq 1 ]]; then
 fi
 
 # Zsh Plugins; NOTE: SHOULD BE LAST.
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+if [[ $ENABLE_ZSH_PLUGINS -eq 1 ]]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+fi
 
 # exit functions
 set_prompt
