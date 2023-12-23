@@ -2,22 +2,21 @@
 vim.opt.list = false
 
 -- tabs & spaces
-vim.opt.shiftwidth = 2 -- of spaces to use for each step of (auto)indent (>>, <<)
-vim.opt.tabstop = 2 -- of spaces that a <Tab> counts for
+vim.opt.shiftwidth = 2  -- of spaces to use for each step of (auto)indent (>>, <<)
+vim.opt.tabstop = 2     -- of spaces that a <Tab> counts for
 vim.opt.softtabstop = 2 -- of spaces that a <Tab> counts while editing
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = false }
 
--- follow markdown links
-keymap('n', '<CR>', ':lua FollowMarkdownLink()<CR>', opts)
 -- go backwards
 keymap('n', '<BS>', '<C-o>', opts)
 -- align tables using Tabular
 keymap('n', '<leader>a', ':Tabularize /|<CR>', opts)
 
--- functions
+-- follow markdown links
+keymap('n', '<CR>', ':lua FollowMarkdownLink()<CR>', opts)
 -- TODO: if extension exists (e.g. file.json), don't append markdown extension
 function FollowMarkdownLink()
   -- get text of current line

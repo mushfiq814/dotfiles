@@ -20,6 +20,17 @@ luasnip.add_snippets("all", {
   ),
   s(
     {
+      trig = "slack",
+      dscr = "generate branch deployment notification for slack",
+    },
+    fmt("@here deploying `{}` branch of `{}` to {}", {
+      luasnip.i(1),
+      luasnip.i(2),
+      luasnip.i(3),
+    })
+  ),
+  s(
+    {
       trig = "time",
       dscr = "Insert the current time",
     },
