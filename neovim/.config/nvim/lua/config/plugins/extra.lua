@@ -6,8 +6,10 @@ return {
     lazy = true,
   },
   {
+    -- TODO: remove vim-checkbox
     'jkramer/vim-checkbox',
-    keys = '<leader>tt'
+    keys = '<leader>tt',
+    enabled = false
   },
   {
     'godlygeek/tabular',
