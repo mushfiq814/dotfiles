@@ -1,4 +1,4 @@
-# showFuzzyDirContents {{{
+# showFuzzyDirContents
 function showFuzzyDirContents() {
   DIR="$1"
   SELECTION=$('ls' "$DIR" | fzf --height=10)
@@ -6,9 +6,8 @@ function showFuzzyDirContents() {
     cd "$DIR"/"$SELECTION"
   fi
 }
-# }}}
 
-# launcher {{{
+# launcher
 function launcher() {
   case $(print "dotfiles\nprojects\nconfig\ndownloads" | fzf --height=10) in
     "dotfiles")
@@ -23,9 +22,8 @@ function launcher() {
       cd "$HOME" ;;
   esac
 }
-# }}}
 
-# prettyGitLog {{{
+# prettyGitLog
 function prettyGitLog() {
   # format strings; check man git log for more `placeholders`
   local authorDate='%aI'            # author date
@@ -49,9 +47,8 @@ function prettyGitLog() {
   # call git log with custom format and append any flags passed in
   git log --pretty="$format" $@
 }
-# }}}
 
-# fzf git checkout {{{
+# fzf git checkout
 # RESOURCE: https://koenwoortman.com/git-faster-branch-checkouts-with-fzf/
 # RESOURCE: http://ses4j.github.io/2020/04/01/git-alias-recent-branches/
 function fuzzyGitCheckout() {
@@ -91,16 +88,14 @@ function fuzzyGitCheckout() {
     fi
   fi
 }
-# }}}
 
-# fzf git diff {{{
+# fzf git diff
 fuzzyGitDiff () {
   preview="git diff $@ --color=always -- {-1}"
   git diff $(git diff $@ --name-only | fzf --height=50 -m --ansi --preview $preview)
 }
-# }}}
 
-# fzf git stash {{{
+# fzf git stash
 fuzzyGitStash () {
   preview="git stash $@ show -p --color \$(echo {1} | cut -d: -f1)"
   stashItem=$(
@@ -114,31 +109,8 @@ fuzzyGitStash () {
   echo $stashItem
   # git stash apply "$(echo $stashItem | cut -d: -f1)"
 }
-# }}}
 
-# texclean {{{
-function texclean() {
-  rm -i *.log *.aux
-}
-# }}}
-
-# convertWinPath {{{
-function convertWinPath() {
-  echo "'$1'"
-  echo "'$1'" | sed 's/\\/\//g'
-  echo "'$1'" | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/g'
-}
-# }}}
-
-# vlcplay {{{
-function vlcplay() {
-  vlc="C:\Program Files (x86)\VideoLan\VLC\\\vlc.exe"
-  pth="$(echo $1 | sed 's/\/home\/mushfiq\/windows/C:/g; s/\//\\/g')"
-  powershell.exe $vlc $pth
-}
-# }}}
-
-# md2html: Convert from markdown to html {{{
+# md2html: Convert from markdown to html
 function md2html() {
   css="~/dotfiles/pandoc/mvp.css"
   html="$HOME/dotfiles/pandoc/template.html"
@@ -156,15 +128,3 @@ function md2html() {
   # open in browser
   # powershell.exe Invoke-Item $out
 }
-# }}}
-
-# changeBG {{{
-function changeBG() {
-  pre="C:\/Users\/mushf\/Downloads\/screenshots"
-  img="$pre\/$1.png"
-  term1="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
-  term2="/mnt/c/Users/mushf/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-  sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term1
-  sed -i "0,/\"backgroundImage\"/s/\(\"backgroundImage\"\s*:\s*\"\).*\(\",\s*\)/\1$img\2/" $term2
-}
-# }}}

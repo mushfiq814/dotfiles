@@ -3,7 +3,7 @@ return {
     -- TODO: remove popup.nvim
     'nvim-lua/popup.nvim',
     enabled = false,
-    lazy = true
+    lazy = true,
   },
   {
     'jkramer/vim-checkbox',
@@ -12,6 +12,6 @@ return {
   {
     'godlygeek/tabular',
     keys = '<leader>a',
-    cmd = 'Tabularize'
+    cmd = 'Tabularize',
   },
 }

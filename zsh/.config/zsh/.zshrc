@@ -1,4 +1,5 @@
 # get env specific values
+# shellcheck source=../../../.env
 source "$HOME/dotfiles/.env"
 
 if [[ ${OSTYPE:0:6} = "darwin" ]]; then
