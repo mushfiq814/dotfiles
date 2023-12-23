@@ -1,4 +1,4 @@
-# Colors {{{
+# Colors
 BB0='0'  # black
 RE0='1'  # red
 GR0='2'  # green
@@ -15,9 +15,8 @@ BL1='12' # bright blue
 MA1='13' # bright purple
 CY1='14' # bright cyan
 WH1='15' # bright white
-# }}}
 
-# Prompt Helpers {{{
+# Prompt Helpers
 COL_BAR='%F{$RE0}%f'\
 '%K{$RE0}%F{$YE0}░▒▓█%k%f'\
 '%K{$YE0}%F{$GR0}░▒▓█%k%f'\
@@ -25,12 +24,10 @@ COL_BAR='%F{$RE0}%f'\
 '%F{$BL0}%f '
 
 SUFFIX="%(!.%F{$YE0}%n%f.)%(!.%F{$YE0}.%F{$BL1})"$(printf "\u276f%.0s" {1..$SHLVL})"%f"
-# }}}
 
 # function to set prompt
 set_prompt () {
   PROMPT="%B"
-  # PROMPT+="💻 "
   PROMPT+="%F{$YE1}%n%f"
   PROMPT+="%F{$MA1}:%f"
   PROMPT+="%F{$GR1}%m %f"
@@ -39,7 +36,5 @@ set_prompt () {
   PROMPT+="]"
   PROMPT+=$( test $ENABLE_ZSH_GIT -eq 1 && echo "%F{$MA1}${vcs_info_msg_0_}%f" )
   PROMPT+="%(1j. .)"
-  # PROMPT+="%(1j. 💬.)"
   PROMPT+=" %B${SUFFIX}%b "
-  # PROMPT+="$COL_BAR"
 }
