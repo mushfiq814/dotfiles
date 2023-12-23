@@ -15,13 +15,15 @@ source "$HOME/dotfiles/.env"
 # shellcheck source=utils
 source "$HOME/dotfiles/scripts/colorscheme/utils"
 
-LAUNCHER_CMD="rofi"
-if ! command -v "$LAUNCHER_CMD" &> /dev/null
+LAUNCHER_CMD="fzf"
+if command -v "rofi" &> /dev/null
 then
-  LAUNCHER_CMD="fzf"
-else
   LAUNCHER_CMD="rofi -dmenu"
+elif command -v "choose" &> /dev/null
+then
+  LAUNCHER_CMD="choose"
 fi
+printf "launcher is %s" "$LAUNCHER_CMD"
 
 # show list of available colorschemes
 quit_on_file_dne "$COLORS_DIR"
@@ -55,6 +57,7 @@ else
   OPACITY="0.80"
 fi
 
+if [[ $ENABLE_CHOOSE -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/choose" "$THEME_FILE" "$ACCENT"; fi
 if [[ $ENABLE_DUNST -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/dunst" "$THEME_FILE" "$ACCENT"; fi
 if [[ $ENABLE_I3 -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/i3" "$THEME_FILE" "$ACCENT"; fi
 if [[ $ENABLE_ITERM -eq 1 ]]; then "$HOME/dotfiles/scripts/colorscheme/programs/iterm" "$THEME_FILE" "$OPACITY"; fi

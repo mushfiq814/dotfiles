@@ -1,0 +1,78 @@
+#!/bin/bash
+
+LAUNCHER_CMD=(fzf)
+if command -v "rofi" &> /dev/null
+then
+  LAUNCHER_CMD=(rofi -dmenu)
+elif command -v "choose" &> /dev/null
+then
+  LAUNCHER_CMD=(choose -p "bookmarks")
+fi
+
+PROJECTS_LIST=(
+  "acquisition-fplus-web"
+  "aus-integration"
+  "cplus-crm"
+  "cplus-sf-api-automation"
+  "document-management"
+  "ecm-document-service"
+  "fdr-cx-event-horizon"
+  "ffam-acquisition-aal-web"
+  "ffam-cplus-web"
+  "ffam-customer-service"
+  "ffam-dashboard"
+  "ffam-integration-hub-proxy"
+  "ffam-notification-engine"
+  "ffam-partners-api"
+  "ffn-cx-tooling-packages"
+  "ffn-infrastructure"
+  "ffn-ingress-redirects"
+  "fplus-loan-app"
+  "freedomplus-core"
+  "freedomplus-crm"
+  "freedompluscreditmodel"
+  "genie-data-service"
+  "lapstone"
+  "pipeline"
+  "sfdc-manager-service"
+  "sunbeam"
+  "terraform-ws-dns"
+  "terraform-ws-ffam"
+  "terraform-ws-ffam-acquisition"
+  "terraform-ws-ffn-cx-fdr"
+)
+
+PROJ=$(IFS=$'\n'; echo "${PROJECTS_LIST[*]}" | "${LAUNCHER_CMD[@]}")
+
+# TODO: check whether $PROJ exists
+
+ACTIONS_LIST=(
+  "Repo URL"
+  "Branches"
+  "Pipelines"
+  "Pull Requests (PRs)"
+  "Deployments"
+)
+ACTION=$(IFS=$'\n'; echo "${ACTIONS_LIST[*]}" | "${LAUNCHER_CMD[@]}")
+
+case $ACTION in
+  "Repo URL")
+    URL="https://bitbucket.org/billsdotcom_bills/$PROJ"
+    ;;
+  "Branches")
+    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/branches/"
+    ;;
+  "Pipelines")
+    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/pipelines/results/page/1"
+    ;;
+  "Pull Requests")
+    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/pull-requests/"
+    ;;
+  "Deployments")
+    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/deployments"
+    ;;
+esac
+
+# TODO: error handling for cancelling out of launcher
+
+open "$URL"

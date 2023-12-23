@@ -69,6 +69,12 @@ alt - down : /usr/local/bin/spotify-macos toggle
 alt - left : /usr/local/bin/spotify-macos prev
 alt - right : /usr/local/bin/spotify-macos next
 
+# colorscheme picker
+alt - c : /usr/local/bin/colorscheme
+
+# bookmarks
+alt - b : /usr/local/bin/bookmarks
+
 # general keybinds for non-terminal applications to switch macos cmd <-> ctrl
 
 # copy

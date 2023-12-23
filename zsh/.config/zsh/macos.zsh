@@ -39,6 +39,12 @@ if [ $term = "iterm" ] && [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
   source "${HOME}/.iterm2_shell_integration.zsh";
 fi
 
+# choose (fuzzy launcher)
+if command -v "choose" &> /dev/null
+then
+  alias choose="choose -f \"$CHOOSE_FONT\" -s $CHOOSE_FONT_SIZE"
+fi
+
 # jira-cli: https://github.com/ankitpokhrel/jira-cli
 if [ -e "$HOME/.secrets/JIRA_API_TOKEN" ]; then
   export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)";
