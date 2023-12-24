@@ -90,7 +90,7 @@ c.colors.webpage.darkmode.contrast = 1
 c.colors.webpage.darkmode.policy.images = "smart"
 c.colors.webpage.darkmode.policy.page = "smart"
 c.colors.webpage.darkmode.threshold.background = 205
-c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.darkmode.threshold.foreground = 150
 c.colors.webpage.preferred_color_scheme = MODE
 
 # site permissions
