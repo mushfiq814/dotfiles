@@ -35,6 +35,11 @@ if [ -e "$HOME/.secrets/BW_SESSION" ]; then
   export BW_SESSION="$(cat $HOME/.secrets/BW_SESSION)";
 fi
 
+# go
+if [ -d "/usr/local/go/bin" ]; then
+  export PATH="$PATH:/usr/local/go/bin";
+fi
+
 # Colorful Man Pages
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'

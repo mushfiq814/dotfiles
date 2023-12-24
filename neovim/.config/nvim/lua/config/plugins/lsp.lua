@@ -150,6 +150,12 @@ return {
               navic.attach(client, bufnr)
             end
           }
+        elseif server == "gopls" then
+          lspconfig.gopls.setup {
+            on_attach = function(client, bufnr)
+              navic.attach(client, bufnr)
+            end
+          }
         elseif server == "bashls" then
           lspconfig.bashls.setup {
             on_attach = function(client, bufnr)
