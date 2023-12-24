@@ -5,6 +5,9 @@ alias soz='source ~/.config/zsh/.zshrc'
 alias pac='sudo pacman -Syu'
 alias pacsearch='sudo pacman -Ss'
 
+# safe move
+alias mv='mv -n'
+
 # exa (an ls alternative); NOTE: overrides the ls aliases
 alias ls='exa --oneline --icons'
 alias la='exa --long --all --icons'
