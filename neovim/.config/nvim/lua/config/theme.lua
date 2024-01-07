@@ -112,7 +112,7 @@ hi.StorageClass                       = { guifg = colors.bright_yellow, guibg = 
 hi.String                             = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
 hi.Structure                          = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi.Tag                                = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
-hi.Todo                               = { guifg = colors.bright_yellow, guibg = colors.grey0, gui = nil, guisp = nil }
+hi.Todo                               = { guifg = colors.bright_yellow, guibg = colors.grey0, gui = 'bold', guisp = nil }
 hi.Type                               = { guifg = colors.bright_yellow, guibg = nil, gui = 'none', guisp = nil }
 hi.Typedef                            = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 
