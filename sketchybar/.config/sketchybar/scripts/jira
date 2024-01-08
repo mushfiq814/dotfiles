@@ -15,6 +15,7 @@ SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
 END=$(echo "$RESULT" | cut -d "	" -f 2)
 
 if [[ "$RESULT" == "" || "$END" == "" ]]; then
+  sketchybar -m --set $NAME label="fetching..."
   # fetch from API
   export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)"
   RESULT=$(
@@ -49,5 +50,5 @@ else
 fi
 
 if [ "$IS_SHORT" = "0" ]; then
-  sketchybar -m --set $NAME label="$NOTIFY"
+  sketchybar -m --set $NAME label="$NOTIFY" click_script="rm -rf \"$CACHE\" && $SCRIPTS/jira"
 fi
