@@ -123,6 +123,12 @@ return {
               },
             },
           }
+        elseif server == "eslint" then
+          lspconfig.eslint.setup {}
+        elseif server == "graphql" then
+          lspconfig.graphql.setup {
+            filetypes = { "gql", "graphql" },
+          }
         elseif server == "gopls" then
           lspconfig.gopls.setup {
             on_attach = function(client, bufnr)
