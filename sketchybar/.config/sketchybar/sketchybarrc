@@ -61,7 +61,7 @@ sketchybar -m                          \
   --set jira                           \
     label.color="0xFF${ACCENT:1}"      \
     update_freq=3600                   \
-    script="$SCRIPTS/jira"             \
+    script="$SCRIPTS/jira $IS_SHORT"   \
                                        \
   --add item title left                \
   --subscribe title front_app_switched \
@@ -118,7 +118,7 @@ sketchybar -m                          \
     updates=on                         \
     icon="ﱘ"                           \
     click_script="open -a 'Spotify'"   \
-    script="$SCRIPTS/spotify"
+    script="$SCRIPTS/spotify $IS_SHORT"
 
 # Finalizing Setup
 # The below command is only needed at the end of the initial configuration and

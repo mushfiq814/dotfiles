@@ -1,5 +1,10 @@
 #!/bin/bash
 
+IS_SHORT="$1"
+
+# scripts dir
+SCRIPTS="$HOME/.config/sketchybar/scripts"
+
 CACHE="$HOME/.config/sketchybar/scripts/jira-curr-sprint"
 
 # read cached result if it exists
@@ -21,7 +26,7 @@ if [[ "$RESULT" == "" || "$END" == "" ]]; then
   )
 
   # save result as cache
-  echo "$RESULT" > "$HOME/.config/sketchybar/scripts/jira-curr-sprint"
+  echo "$RESULT" > "$CACHE"
 
   # parse values again
   SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
@@ -43,4 +48,6 @@ else
   NOTIFY="$SPRINT ends in $DIFF day(s)"
 fi
 
-sketchybar -m --set $NAME label="$NOTIFY"
+if [ "$IS_SHORT" = "0" ]; then
+  sketchybar -m --set $NAME label="$NOTIFY"
+fi

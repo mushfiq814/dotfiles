@@ -1,8 +1,14 @@
 #!/bin/sh
 
+IS_SHORT="$1"
+
 # this script will be called by sketchybar with the media_changed event
 # subscribed providing media info in $INFO
-APP="$(echo "$INFO" | jq -r '.app')"
-META="$(echo "$INFO" | jq -r '.artist + " - " + .title')"
+# APP="$(echo "$INFO" | jq -r '.app')"
+if [ "$IS_SHORT" = "1" ]; then
+  META="$(echo "$INFO" | jq -r '.title')"
+else
+  META="$(echo "$INFO" | jq -r '.artist + " - " + .title')"
+fi
 
-sketchybar -m --set $NAME label="$META"
+sketchybar -m --set "$NAME" label="$META"
