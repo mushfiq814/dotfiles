@@ -3,6 +3,9 @@ source "$HOME/dotfiles/.env"
 
 # General Zsh settings {{{
 
+setopt autopushd
+setopt pushdminus
+
 # Enable colors
 autoload -Uz colors && colors
 # Change dir without cd
