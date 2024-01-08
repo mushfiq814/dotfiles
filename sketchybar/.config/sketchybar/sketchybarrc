@@ -1,16 +1,20 @@
 # colors file
-COLORS="$HOME/.config/sketchybar/colors"
-source "$COLORS"
-FONTS="$HOME/.config/sketchybar/font"
-source "$FONTS"
+# shellcheck source=./colors
+source "$HOME/.config/sketchybar/colors"
+# shellcheck source=./font
+source "$HOME/.config/sketchybar/font"
 
 # scripts dir
 SCRIPTS="$HOME/.config/sketchybar/scripts"
 
-SCREEN_WIDTH=$(system_profiler SPDisplaysDataType | awk '/Resolution/{print $2}')
-SCREEN_WIDTH_THRESHOLD=1000
-IS_SHORT=$(test $SCREEN_WIDTH -gt $SCREEN_WIDTH_THRESHOLD; echo $?)
+SCREEN_DIMS=$(displayplacer list | grep -i "current mode" | sed 's/.*res:\([0-9]*\)x\([0-9]*\).*/\1 \2/g')
+SCREEN_WIDTH=$(echo "$SCREEN_DIMS" | cut -d " " -f 1)
+# SCREEN_HEIGHT=$(echo "$SCREEN_DIMS" | cut -d " " -f 2)
+SCREEN_WIDTH_THRESHOLD=2000
 IS_SHORT=0
+if [[ $SCREEN_WIDTH -lt $SCREEN_WIDTH_THRESHOLD ]]; then
+  IS_SHORT=1
+fi
 
 # Bar Appearance
 sketchybar --bar       \
@@ -20,7 +24,7 @@ sketchybar --bar       \
   sticky=off           \
   padding_left=10      \
   padding_right=10     \
-  color=0x${BLACKTR:1}
+  color="0x${BLACKTR:1}"
 
 # Defaults
 sketchybar --default           \
@@ -40,12 +44,12 @@ sketchybar --default           \
 SPACE_ICONS=("" "" "" "" "" "")
 for i in "${!SPACE_ICONS[@]}"
 do
-  sid=$(($i+1))
+  sid=$((i+1))
   KEYCODE=$(echo "18 + $i" | bc);
   sketchybar                                 \
     --add space space.$sid left              \
     --set space.$sid space=$sid              \
-      icon=${SPACE_ICONS[i]}                 \
+      icon="${SPACE_ICONS[i]}"               \
       icon.color="0xFF${WHITE:1}"            \
       icon.highlight_color="0xFF${ACCENT:1}" \
       click_script="osascript -e 'tell application \"System Events\" to key code $KEYCODE using option down'"
