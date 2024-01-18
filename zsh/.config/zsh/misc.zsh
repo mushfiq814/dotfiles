@@ -1,8 +1,7 @@
 # get env specific values
 source "$HOME/dotfiles/.env"
 
-# General Zsh settings {{{
-
+# General Zsh settings
 setopt autopushd
 setopt pushdminus
 
@@ -23,9 +22,7 @@ else
   export TERM="xterm-256color"
 fi
 
-# }}}
-
-# Editing {{{
+# Editing
 
 # Default Editor
 export EDITOR=nvim
@@ -39,9 +36,7 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# }}}
-
-# History {{{
+# History
 
 # enable history
 export HISTSIZE=10000
@@ -56,6 +51,3 @@ setopt HIST_REDUCE_BLANKS
 # share history between shells
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
-
-# }}}
-
