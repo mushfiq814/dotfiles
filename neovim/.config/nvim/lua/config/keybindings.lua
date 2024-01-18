@@ -8,7 +8,6 @@ local opts = { noremap = true, silent = true }
 
 -- Easier Escape from Insert Mode
 keymap('i', 'jk', '<Esc>', opts)
-keymap('i', 'kj', '<Esc>', opts)
 keymap('i', 'JK', '<Esc>', opts)
 keymap('i', 'KJ', '<Esc>', opts)
 -- Auto complete pair
