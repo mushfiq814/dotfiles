@@ -56,19 +56,19 @@ ACTIONS_LIST=(
 ACTION=$(IFS=$'\n'; echo "${ACTIONS_LIST[*]}" | "${LAUNCHER_CMD[@]}")
 
 case $ACTION in
-  "Repo URL")
+  ${ACTIONS_LIST[0]})
     URL="https://bitbucket.org/billsdotcom_bills/$PROJ"
     ;;
-  "Branches")
+  ${ACTIONS_LIST[1]})
     URL="https://bitbucket.org/billsdotcom_bills/$PROJ/branches/"
     ;;
-  "Pipelines")
+  ${ACTIONS_LIST[2]})
     URL="https://bitbucket.org/billsdotcom_bills/$PROJ/pipelines/results/page/1"
     ;;
-  "Pull Requests")
+  ${ACTIONS_LIST[3]})
     URL="https://bitbucket.org/billsdotcom_bills/$PROJ/pull-requests/"
     ;;
-  "Deployments")
+  ${ACTIONS_LIST[4]})
     URL="https://bitbucket.org/billsdotcom_bills/$PROJ/deployments"
     ;;
 esac
