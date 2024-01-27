@@ -135,6 +135,12 @@ return {
               navic.attach(client, bufnr)
             end
           }
+        elseif server == "pylsp" then
+          lspconfig.pylsp.setup {
+            on_attach = function(client, bufnr)
+              navic.attach(client, bufnr)
+            end
+          }
         elseif server == "jsonls" then
           lspconfig.jsonls.setup {
             on_attach = function(client, bufnr)
