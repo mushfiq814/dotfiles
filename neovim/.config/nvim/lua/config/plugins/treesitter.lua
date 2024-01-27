@@ -29,6 +29,7 @@ return {
           'go',
           'gomod',
           'gosum',
+          'python',
         },
         highlight = { enable = true },
         incremental_selection = { enable = true },
