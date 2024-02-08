@@ -30,6 +30,50 @@ hi.ColorBlue = { guifg = colors.neutral_blue }
 hi.ColorAqua = { guifg = colors.neutral_aqua }
 hi.ColorPurple = { guifg = colors.neutral_purple }
 
+-- new treesitter highlights
+hi["@comment.error"] = "@text.danger"
+hi["@comment.hint"] = "@text.note"
+hi["@comment.info"] = "@text.note"
+hi["@comment.note"] = "@text.note"
+hi["@comment.ok"] = "@text.note"
+hi["@comment.todo"] = "@text.todo"
+hi["@comment.warning"] = "@text.warning"
+hi["@diff.delta"] = "@text.diff.change"
+hi["@diff.minus"] = "@text.diff.delete"
+hi["@diff.plus"] = "@text.diff.add"
+hi["@function.method"] = "@method"
+hi["@function.method.call"] = "@method.call"
+hi["@keyword.conditional"] = "@conditional"
+hi["@keyword.debug"] = "@debug"
+hi["@keyword.directive"] = "@define"
+hi["@keyword.directive"] = "@preproc"
+hi["@keyword.exception"] = "@exception"
+hi["@keyword.import"] = "@include"
+hi["@keyword.repeat"] = "@repeat"
+hi["@keyword.storage"] = "@storageclass"
+hi["@markup.environment"] = "@text.environment"
+hi["@markup.environment.name"] = "@text.environment.name"
+hi["@markup.heading"] = "@text.title"
+hi["@markup.italic"] = "@text.emphasis"
+hi["@markup.link"] = "@text.reference"
+hi["@markup.link.label"] = "@string.special"
+hi["@markup.link.url"] = "@text.uri"
+hi["@markup.list"] = "@punctuation.special"
+hi["@markup.math"] = "@text.math"
+hi["@markup.quote"] = "@text.quote"
+hi["@markup.raw"] = "@text.literal"
+hi["@markup.raw.block"] = "@text.literal.block"
+hi["@markup.strikethrough"] = "@text.strike"
+hi["@markup.strong"] = "@text.strong"
+hi["@markup.underline"] = "@text.underline" -- note: some are changed to @string.special
+hi["@module"] = "@namespace"
+hi["@number.float"] = "@float"
+hi["@string.regexp"] = "@string.regex"
+hi["@string.special.symbol"] = "@symbol"
+hi["@string.special.url"] = "@text.uri"
+hi["@variable.member"] = "@field"
+hi["@variable.parameter"] = "@parameter"
+
 -- Vim editor colors
 hi.Normal                             = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
 hi.EndOfBuffer                        = { guifg = colors.grey2, guibg = nil, gui = nil, guisp = nil }
@@ -500,7 +544,8 @@ winbarTagHighlightIcon("NavicIconsVariable")
 local background                = colors.grey0
 local foreground                = colors.white
 
-hi.statusLineModeNormal         = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = "bold", }
+-- hi.statusLineModeNormal         = { guifg = colors.grey0, guibg = colors.bright_aqua, gui = "bold", }
+vim.api.nvim_set_hl(0, "statusLineModeNormal", { fg = colors.grey0, bg = colors.bright_aqua, bold = true })
 hi.statusLineModeInsert         = { guifg = colors.grey0, guibg = colors.bright_blue, gui = "bold", }
 hi.statusLineModeVisual         = { guifg = colors.grey0, guibg = colors.bright_orange, gui = "bold", }
 hi.statusLineModeCommand        = { guifg = colors.grey0, guibg = colors.bright_yellow, gui = "bold", }
