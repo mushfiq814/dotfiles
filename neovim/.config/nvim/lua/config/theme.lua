@@ -33,15 +33,15 @@ local sharedColors = {
 local highlights   = {
 
   -- Theme Color Highlights, used in plugin settings
-  ColorBlack = { fg = colors.black },
-  ColorWhite = { fg = colors.white },
-  ColorRed = { fg = colors.neutral_red },
-  ColorYellow = { fg = colors.neutral_yellow },
-  ColorOrange = { fg = colors.neutral_orange },
-  ColorGreen = { fg = colors.neutral_green },
-  ColorBlue = { fg = colors.neutral_blue },
-  ColorAqua = { fg = colors.neutral_aqua },
-  ColorPurple = { fg = colors.neutral_purple },
+  ColorBlack                               = { fg = colors.black },
+  ColorWhite                               = { fg = colors.white },
+  ColorRed                                 = { fg = colors.neutral_red },
+  ColorYellow                              = { fg = colors.neutral_yellow },
+  ColorOrange                              = { fg = colors.neutral_orange },
+  ColorGreen                               = { fg = colors.neutral_green },
+  ColorBlue                                = { fg = colors.neutral_blue },
+  ColorAqua                                = { fg = colors.neutral_aqua },
+  ColorPurple                              = { fg = colors.neutral_purple },
 
   -- Vim editor colors
   Bold                                     = { bold = true, },
