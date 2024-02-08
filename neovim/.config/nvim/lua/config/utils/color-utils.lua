@@ -99,50 +99,46 @@ function M.colorInterpolate(c1, c2, n)
   return midColors
 end
 
-M.highlight = setmetatable({}, {
-  __newindex = function(_, hlgroup, args)
-    if (next(args) == nil) then
-      vim.cmd(('hi! link %s NONE'):format(hlgroup))
-      return
-    end
-
-    if (args.link) then
-      vim.cmd(('hi! link %s %s'):format(hlgroup, args.link))
-      return
-    end
-
-    local fg = args.fg or nil
-    local bg = args.bg or nil
-    local sp = args.sp or nil
-
-    local gui = {}
-    if args.bold or false then table.insert(gui, "bold") end
-    if args.standout or false then table.insert(gui, "standout") end
-    if args.underline or false then table.insert(gui, "underline") end
-    if args.undercurl or false then table.insert(gui, "undercurl") end
-    if args.underdouble or false then table.insert(gui, "underdouble") end
-    if args.underdotted or false then table.insert(gui, "underdotted") end
-    if args.underdashed or false then table.insert(gui, "underdashed") end
-    if args.strikethrough or false then table.insert(gui, "strikethrough") end
-    if args.italic or false then table.insert(gui, "italic") end
-    if args.reverse or false then table.insert(gui, "reverse") end
-    if args.nocombine or false then table.insert(gui, "nocombine") end
-    local guistr = table.concat(gui, ',')
-
-    local cmd = { 'hi!', hlgroup }
-    if fg then table.insert(cmd, 'guifg=' .. fg) end
-    if bg then table.insert(cmd, 'guibg=' .. bg) end
-    if sp then table.insert(cmd, 'guisp=' .. sp) end
-    if #guistr > 0 then table.insert(cmd, 'gui=' .. guistr) end
-    vim.cmd(table.concat(cmd, ' '))
+M.highlight = function(hlgroup, args)
+  if (next(args) == nil) then
+    vim.cmd(('hi! link %s NONE'):format(hlgroup))
+    return
   end
-})
+
+  if (args.link) then
+    vim.cmd(('hi! link %s %s'):format(hlgroup, args.link))
+    return
+  end
+
+  local fg = args.fg or nil
+  local bg = args.bg or nil
+  local sp = args.sp or nil
+
+  local gui = {}
+  if args.bold or false then table.insert(gui, "bold") end
+  if args.standout or false then table.insert(gui, "standout") end
+  if args.underline or false then table.insert(gui, "underline") end
+  if args.undercurl or false then table.insert(gui, "undercurl") end
+  if args.underdouble or false then table.insert(gui, "underdouble") end
+  if args.underdotted or false then table.insert(gui, "underdotted") end
+  if args.underdashed or false then table.insert(gui, "underdashed") end
+  if args.strikethrough or false then table.insert(gui, "strikethrough") end
+  if args.italic or false then table.insert(gui, "italic") end
+  if args.reverse or false then table.insert(gui, "reverse") end
+  if args.nocombine or false then table.insert(gui, "nocombine") end
+  local guistr = table.concat(gui, ',')
+
+  local cmd = { 'hi!', hlgroup }
+  if fg then table.insert(cmd, 'guifg=' .. fg) end
+  if bg then table.insert(cmd, 'guibg=' .. bg) end
+  if sp then table.insert(cmd, 'guisp=' .. sp) end
+  if #guistr > 0 then table.insert(cmd, 'gui=' .. guistr) end
+  vim.cmd(table.concat(cmd, ' '))
+end
 
 -- TODO: implement
-M.highlight_new = setmetatable({}, {
-  __newindex = function(_, hlgroup, args)
-    vim.api.nvim_set_hl(0, hlgroup, args)
-  end
-})
+M.highlight_new = function(hlgroup, args)
+  vim.api.nvim_set_hl(0, hlgroup, args)
+end
 
 return M
