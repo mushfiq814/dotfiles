@@ -21,6 +21,7 @@ o.mouse = 'a'
 o.swapfile = false
 o.wrap = false
 o.linebreak = true
+o.breakindent = true
 o.spell = true
 o.clipboard = 'unnamed,unnamedplus'
 o.foldlevelstart = 20
