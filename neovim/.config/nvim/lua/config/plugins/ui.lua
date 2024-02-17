@@ -323,11 +323,6 @@ return {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     opts = function()
-      vim.cmd [[ highlight link DashboardHeader ColorYellow ]]
-      vim.cmd [[ highlight link DashboardProjectTitle ColorBlue ]]
-      vim.cmd [[ highlight link DashboardProjectIcon ColorYellow ]]
-      vim.cmd [[ highlight link DashboardMruTitle ColorBlue ]]
-
       local logo = require('config/utils/ascii_art')
       table.insert(logo, "")
       table.insert(logo, "")
