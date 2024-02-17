@@ -86,3 +86,6 @@ alias blender='~/.steam/debian-installation/steamapps/common/Blender/blender'
 
 # i3lock
 alias lock='i3lock -i ~/Pictures/wallpapers/xcwwpikoxeh31.png -t -c "#000000"'
+
+# image cat
+alias icat='kitty +kitten icat'
