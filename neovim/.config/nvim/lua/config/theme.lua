@@ -143,7 +143,7 @@ hi.Float                              = { guifg = colors.bright_orange, guibg = 
 hi.Function                           = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
 hi.Identifier                         = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
 hi.Include                            = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
-hi.Keyword                            = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
+hi.Keyword                            = { guifg = colors.bright_purple, guibg = nil, gui = 'bold', guisp = nil }
 hi.Label                              = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi.Number                             = { guifg = colors.bright_orange, guibg = nil, gui = nil, guisp = nil }
 hi.Operator                           = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
