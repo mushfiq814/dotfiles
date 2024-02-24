@@ -73,7 +73,7 @@ alt - right : /usr/local/bin/spotify-macos next
 alt - c : /usr/local/bin/colorscheme
 
 # bookmarks
-alt - b : /usr/local/bin/bookmarks
+alt - b : ~/dotfiles/scripts/single-file-scripts/bookmarks
 
 # general keybinds for non-terminal applications to switch macos cmd <-> ctrl
 

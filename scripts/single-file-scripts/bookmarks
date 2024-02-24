@@ -1,78 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env zx
+$.verbose = false;
 
-LAUNCHER_CMD=(fzf)
-if command -v "rofi" &> /dev/null
-then
-  LAUNCHER_CMD=(rofi -dmenu)
-elif command -v "choose" &> /dev/null
-then
-  LAUNCHER_CMD=(choose -p "bookmarks")
-fi
+// handle args as follows
+// argv._[];
 
-PROJECTS_LIST=(
-  "acquisition-fplus-web"
-  "aus-integration"
-  "cplus-crm"
-  "cplus-sf-api-automation"
-  "document-management"
-  "ecm-document-service"
-  "fdr-cx-event-horizon"
-  "ffam-acquisition-aal-web"
-  "ffam-cplus-web"
-  "ffam-customer-service"
-  "ffam-dashboard"
-  "ffam-integration-hub-proxy"
-  "ffam-notification-engine"
-  "ffam-partners-api"
-  "ffn-cx-tooling-packages"
-  "ffn-infrastructure"
-  "ffn-ingress-redirects"
-  "fplus-loan-app"
-  "freedomplus-core"
-  "freedomplus-crm"
-  "freedompluscreditmodel"
-  "genie-data-service"
-  "lapstone"
-  "pipeline"
-  "sfdc-manager-service"
-  "sunbeam"
-  "terraform-ws-dns"
-  "terraform-ws-ffam"
-  "terraform-ws-ffam-acquisition"
-  "terraform-ws-ffn-cx-fdr"
-)
+// read bookmarks from file
+const bookmarksFile = `${process.env.HOME}/dotfiles/scripts/single-file-scripts/bookmarks.json`;
+const bookmarks = await fs.readJson(bookmarksFile);
 
-PROJ=$(IFS=$'\n'; echo "${PROJECTS_LIST[*]}" | "${LAUNCHER_CMD[@]}")
+// remove duplicate labels
+const uniqueLabels = [...new Set(bookmarks.map(b => b.label))];
 
-# TODO: check whether $PROJ exists
+// present list of URLs for selection
+const { stdout: selectedLabel, exitCode } = await $`echo ${
+  uniqueLabels.join("\n")
+} | choose`.nothrow();
 
-ACTIONS_LIST=(
-  "Repo URL"
-  "Branches"
-  "Pipelines"
-  "Pull Requests (PRs)"
-  "Deployments"
-)
-ACTION=$(IFS=$'\n'; echo "${ACTIONS_LIST[*]}" | "${LAUNCHER_CMD[@]}")
+// handle error in selection
+if (exitCode != 0) {
+  throw(chalk.red("couldn't select bookmark! exiting..."));
+}
 
-case $ACTION in
-  ${ACTIONS_LIST[0]})
-    URL="https://bitbucket.org/billsdotcom_bills/$PROJ"
-    ;;
-  ${ACTIONS_LIST[1]})
-    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/branches/"
-    ;;
-  ${ACTIONS_LIST[2]})
-    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/pipelines/results/page/1"
-    ;;
-  ${ACTIONS_LIST[3]})
-    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/pull-requests/"
-    ;;
-  ${ACTIONS_LIST[4]})
-    URL="https://bitbucket.org/billsdotcom_bills/$PROJ/deployments"
-    ;;
-esac
+// find associated URL and open in default browser
+const selectedUrl =  bookmarks.find(b => b.label === selectedLabel)?.url;
+await $`open ${selectedUrl}`;
 
-# TODO: error handling for cancelling out of launcher
-
-open "$URL"
+// vim:ft=javascript
