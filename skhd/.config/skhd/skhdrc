@@ -52,6 +52,8 @@ shift + alt - w : /usr/local/bin/macos-wallpaper
 # open terminal
 alt - return : /usr/local/bin/kitty
 
+lctrl + alt - return : /usr/local/bin/kitty --title Float --override tab_bar_style=hidden nvim ~/.config/nvim/init.lua
+
 # reload window manager/keybindings/bar
 shift + alt - r : yabai --restart-service; skhd --restart-service; sketchybar --reload
 

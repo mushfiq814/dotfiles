@@ -24,6 +24,7 @@ yabai -m rule --add app="^Path Finder$"             manage=off
 yabai -m rule --add app="^Time Out$"                manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
 yabai -m rule --add app="^choose$"                  sticky=on layer=above manage=off
+yabai -m rule --add title="^Float$"                 sticky=on layer=above manage=off grid=3:3:1:1:1:1 border=off
 
 yabai -m config auto_padding on
 yabai -m config auto_padding_min_aspect 3.00
