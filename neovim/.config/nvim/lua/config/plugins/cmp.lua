@@ -5,7 +5,6 @@ end
 
 return {
   {
-    -- TODO: add lazy loading
     'L3MON4D3/LuaSnip',
     event = "VeryLazy",
   },
@@ -27,8 +26,8 @@ return {
       local border_loaded, b = pcall(require, 'config/utils/border')
       if not border_loaded then return end
 
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'buffer' }
         }
@@ -36,6 +35,7 @@ return {
 
       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
           {
             { name = 'path' }
@@ -79,7 +79,6 @@ return {
         TypeParameter = "",
       }
 
-
       return {
         completion = {
           completeopt = "menu,menuone,noselect",
@@ -90,8 +89,8 @@ return {
           end,
         },
         mapping = {
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
           ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -103,39 +102,10 @@ return {
           -- Accept currently selected item. If none selected, `select` first item.
           -- Set `select` to `false` to only confirm explicitly selected items.
           ["<CR>"] = cmp.mapping.confirm { select = true },
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expandable() then
-              luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif check_backspace() then
-              fallback()
-            else
-              fallback()
-            end
-          end, {
-            "i",
-            "s",
-          }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, {
-            "i",
-            "s",
-          }),
         },
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            -- Kind icons
             vim_item.kind = string.format(" %s ", kind_icons[vim_item.kind])
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
@@ -149,7 +119,18 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
-          { name = "buffer" },
+          {
+            name = "buffer",
+            option = {
+              get_bufnrs = function()
+                local bufs = {}
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                  bufs[vim.api.nvim_win_get_buf(win)] = true
+                end
+                return vim.tbl_keys(bufs)
+              end
+            }
+          },
           { name = "path" },
         },
         confirm_opts = {
