@@ -6,6 +6,14 @@ vim.g.mapleader = " "
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+vim.api.nvim_create_user_command('E', 'e', {})
+vim.api.nvim_create_user_command('WQ', 'wq', {})
+vim.api.nvim_create_user_command('Wq', 'wq', {})
+vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command('Wa', 'wa', {})
+vim.api.nvim_create_user_command('Qa', 'qa', {})
+vim.api.nvim_create_user_command('Q', 'q', {})
+
 -- Easier Escape from Insert Mode
 keymap('i', 'jk', '<Esc>', opts)
 keymap('i', 'JK', '<Esc>', opts)
