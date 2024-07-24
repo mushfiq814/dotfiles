@@ -30,8 +30,11 @@ return {
           'gomod',
           'gosum',
           'python',
+          'vimdoc',
         },
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+        },
         incremental_selection = { enable = true },
         indent = { enable = true },
       }
