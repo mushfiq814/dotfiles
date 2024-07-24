@@ -17,7 +17,7 @@ local hi               = utils.highlight
 local darkerbg         = utils.darken(colors.black, 0.1)
 local darkercursorline = utils.darken(colors.grey0, 0.1)
 local darkerstatusline = utils.darken(colors.grey1, 0.1)
-local darkeraccent     = utils.darken(colors.accent, 0.1)
+local darkeraccent     = utils.lightenForMode(colors.mode, colors.accent, 0.1)
 
 -- Theme Color Highlights
 hi.ColorBlack = { guifg = colors.black }
@@ -43,35 +43,13 @@ hi["@diff.minus"] = "@text.diff.delete"
 hi["@diff.plus"] = "@text.diff.add"
 hi["@function.method"] = "@method"
 hi["@function.method.call"] = "@method.call"
-hi["@keyword.conditional"] = "@conditional"
-hi["@keyword.debug"] = "@debug"
-hi["@keyword.directive"] = "@define"
-hi["@keyword.directive"] = "@preproc"
-hi["@keyword.exception"] = "@exception"
-hi["@keyword.import"] = "@include"
-hi["@keyword.repeat"] = "@repeat"
-hi["@keyword.storage"] = "@storageclass"
-hi["@markup.environment"] = "@text.environment"
-hi["@markup.environment.name"] = "@text.environment.name"
-hi["@markup.heading"] = "@text.title"
-hi["@markup.italic"] = "@text.emphasis"
-hi["@markup.link"] = "@text.reference"
-hi["@markup.link.label"] = "@string.special"
-hi["@markup.link.url"] = "@text.uri"
-hi["@markup.list"] = "@punctuation.special"
-hi["@markup.math"] = "@text.math"
-hi["@markup.quote"] = "@text.quote"
-hi["@markup.raw"] = "@text.literal"
-hi["@markup.raw.block"] = "@text.literal.block"
-hi["@markup.strikethrough"] = "@text.strike"
-hi["@markup.strong"] = "@text.strong"
-hi["@markup.underline"] = "@text.underline" -- note: some are changed to @string.special
 hi["@module"] = "@namespace"
 hi["@number.float"] = "@float"
 hi["@string.regexp"] = "@string.regex"
 hi["@string.special.symbol"] = "@symbol"
 hi["@string.special.url"] = "@text.uri"
-hi["@variable.member"] = "@field"
+hi["@variable"] = "Special"
+hi["@variable.member"] = "TSField"
 hi["@variable.parameter"] = "@parameter"
 
 -- Vim editor colors
@@ -236,7 +214,7 @@ hi.TSConstBuiltin                     = { guifg = colors.bright_orange, guibg = 
 hi.TSConstMacro                       = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
 hi.TSError                            = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
 hi.TSException                        = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
-hi.TSField                            = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
+hi.TSField                            = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
 hi.TSFloat                            = { guifg = colors.bright_orange, guibg = nil, gui = 'none', guisp = nil }
 hi.TSFunction                         = { guifg = colors.bright_blue, guibg = nil, gui = 'none', guisp = nil }
 hi.TSFuncBuiltin                      = { guifg = colors.bright_blue, guibg = nil, gui = 'standout', guisp = nil }
@@ -407,32 +385,58 @@ local function getMdTitleHighlight(level)
   }
 end
 
-hi['@text.title.1']                        = getMdTitleHighlight(1)
-hi['@text.title.2']                        = getMdTitleHighlight(2)
-hi['@text.title.3']                        = getMdTitleHighlight(3)
-hi['@text.title.4']                        = getMdTitleHighlight(4)
-hi['@text.title.5']                        = getMdTitleHighlight(5)
-hi['@text.title.6']                        = getMdTitleHighlight(6)
+hi['@markup.heading.1']                        = getMdTitleHighlight(1)
+hi['@markup.heading.2']                        = getMdTitleHighlight(2)
+hi['@markup.heading.3']                        = getMdTitleHighlight(3)
+hi['@markup.heading.4']                        = getMdTitleHighlight(4)
+hi['@markup.heading.5']                        = getMdTitleHighlight(5)
+hi['@markup.heading.6']                        = getMdTitleHighlight(6)
 
-hi['@text.title.1.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.2.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.3.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.4.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.5.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@text.title.6.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.1.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.2.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.3.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.4.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.5.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.6.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
 
 hi['@text.reference']                      = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.literal']                        = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.uri']                            = { guifg = colors.bright_blue, guibg = nil, gui = nil, guisp = nil }
+
+hi["@markup.environment"] = "@text.environment"
+hi["@markup.environment.name"] = "@text.environment.name"
+hi["@markup.heading"] = "@text.title"
+hi["@markup.italic"] = "@text.emphasis"
+hi["@markup.link"] = "@text.reference"
+hi["@markup.link.label"] = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi["@markup.link.url"] = "@text.uri"
+hi["@markup.list"] = "@punctuation.special"
+hi["@markup.math"] = "@text.math"
+hi["@markup.quote"] = "@text.quote"
+hi["@markup.raw"] = "@text.literal"
+hi["@markup.raw.block"] = "@text.literal.block"
+hi["@markup.strikethrough"] = "@text.strike"
+hi["@markup.strong"] = "@text.strong"
+hi["@markup.underline"] = "@text.underline"
 
 hi['@markdown_check_undone']               = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@markdown_check_done']                 = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
 hi['@markdown_list_marker']                = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@none']                                = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.bracket']                 = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
-hi['@punctuation.delimiter']               = { guifg = colors.grey4, guibg = nil, gui = nil, guisp = nil }
+hi['@punctuation.delimiter']               = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.special']                 = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@puntuation.strikethrough']            = { guifg = darkeraccent, guibg = nil, gui = 'strikethrough', guisp = nil }
+hi["@keyword.conditional"] = "Conditional"
+hi["@keyword.conditional.ternary"] = "Conditional"
+hi["@keyword.debug"] = "@debug"
+hi["@keyword.directive"] = "@define"
+hi["@keyword.directive"] = "@preproc"
+hi["@keyword.exception"] = "@exception"
+hi["@keyword.import"] = "@keyword.include"
+hi["@keyword.include"] = "Include"
+hi["@keyword.repeat"] = "@repeat"
+hi["@keyword.storage"] = "@storageclass"
 hi['@text.emphasis']                       = { guifg = darkeraccent, guibg = nil, gui = 'italic', guisp = nil }
 hi['@text.quote']                          = { guifg = darkeraccent, guibg = colors.grey0, gui = 'italic', guisp = nil }
 hi['@markdown_quote_marker']               = { guifg = darkeraccent, guibg = colors.grey0, gui = nil, guisp = nil }
@@ -466,9 +470,31 @@ hi['@text.todo.unchecked.markdown']        = "NONE"
 
 -- gitsigns
 hi.GitSignsAdd                             = { guifg = colors.bright_green, guibg = nil }
+hi.GitSignsStagedAdd                       = { guifg = utils.darken(colors.bright_green, 0.4), guibg = nil }
 hi.GitSignsChange                          = { guifg = colors.bright_aqua, guibg = nil }
+hi.GitSignsStagedChange                    = { guifg = utils.darken(colors.bright_aqua, 0.4), guibg = nil }
 hi.GitSignsDelete                          = { guifg = colors.bright_red, guibg = nil }
-hi.GitSignsChangeDelete                    = { guifg = colors.bright_aqua, guibg = colors.bright_red }
+hi.GitSignsStagedDelete                    = { guifg = utils.darken(colors.bright_red, 0.4), guibg = nil }
+hi.GitSignsChangeDelete                    = { guifg = colors.bright_aqua, guibg = nil }
+hi.GitSignsStagedChangeDelete              = { guifg = utils.darken(colors.bright_aqua, 0.4), guibg = nil }
+
+hi.GitSignsAddNr                           = "GitSignsAdd"
+hi.GitSignsAddLn                           = "GitSignsAdd"
+hi.GitSignsChangeNr                        = "GitSignsChange"
+hi.GitSignsChangeLn                        = "GitSignsChange"
+hi.GitSignsDeleteNr                        = "GitSignsDelete"
+hi.GitSignsDeleteLn                        = "GitSignsDelete"
+hi.GitSignsChangeDeleteNr                  = "GitSignsChangeDelete"
+hi.GitSignsChangeDeleteLn                  = "GitSignsChangeDelete"
+
+hi.GitSignsStagedAddNr                           = "GitSignsStagedAdd"
+hi.GitSignsStagedAddLn                           = "GitSignsStagedAdd"
+hi.GitSignsStagedChangeNr                        = "GitSignsStagedChange"
+hi.GitSignsStagedChangeLn                        = "GitSignsStagedChange"
+hi.GitSignsStagedDeleteNr                        = "GitSignsStagedDelete"
+hi.GitSignsStagedDeleteLn                        = "GitSignsStagedDelete"
+hi.GitSignsStagedChangeDeleteNr                  = "GitSignsStagedChangeDelete"
+hi.GitSignsStagedChangeDeleteLn                  = "GitSignsStagedChangeDelete"
 
 -- diff
 hi['@text.diff.delete']                    = { guifg = colors.neutral_red, guibg = nil, gui = 'bold', guisp = nil }
