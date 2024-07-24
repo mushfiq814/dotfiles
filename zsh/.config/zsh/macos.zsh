@@ -58,3 +58,15 @@ fi
 # outlook-cli
 alias outlook="yarn --cwd $HOME/projects/outlook-cli/ --silent run run"
 
+# postgresql
+if [ -d "/opt/homebrew/opt/postgresql@15/bin" ]; then
+  export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+fi
+
+# rust/cargo
+if [ -d "$HOME/.cargo/bin" ]; then
+  export PATH="$PATH:$HOME/.cargo/bin"
+fi
+if [ -d "$HOME/go/bin" ]; then
+  export PATH="$PATH:$HOME/go/bin"
+fi
