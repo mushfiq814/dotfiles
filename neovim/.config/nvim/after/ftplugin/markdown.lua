@@ -5,6 +5,7 @@ vim.opt.list = false
 vim.opt.shiftwidth = 2  -- of spaces to use for each step of (auto)indent (>>, <<)
 vim.opt.tabstop = 2     -- of spaces that a <Tab> counts for
 vim.opt.softtabstop = 2 -- of spaces that a <Tab> counts while editing
+vim.o.breakindentopt = 'list:-1'
 
 -- keybindings
 local keymap = vim.api.nvim_set_keymap
