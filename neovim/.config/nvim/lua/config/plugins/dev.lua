@@ -54,7 +54,7 @@ return {
       }
     end,
     keys = {
-      { 'gc', mode = { "n", "v" } },
+      { 'gc',  mode = { "n", "v" } },
       { 'gcc', mode = { "n" } },
     }
   },
@@ -76,47 +76,22 @@ return {
 
       return {
         signs = {
-          add = {
-            hl = 'GitSignsAdd',
-            text = '▌',
-            numhl = 'GitSignsAdd',
-            linehl = 'GitSignsAdd'
-          },
-          change = {
-            hl = 'GitSignsChange',
-            text = '▌',
-            numhl = 'GitSignsChange',
-            linehl = 'GitSignsChange'
-          },
-          delete = {
-            hl = 'GitSignsDelete',
-            text = '▌',
-            numhl = 'GitSignsDelete',
-            linehl = 'GitSignsDelete'
-          },
-
-          topdelete = {
-            hl = 'GitSignsDelete',
-            text = '⫧',
-            numhl = 'GitSignsDelete',
-            linehl = 'GitSignsDelete'
-          },
-
-          changedelete = {
-            hl = 'GitSignsChange',
-            text = '▶',
-            numhl = 'GitSignsChange',
-            linehl = 'GitSignsChange'
-          },
-
-          untracked = {
-            hl = 'GitSignsAdd',
-            text = '▌',
-            numhl = 'GitSignsAdd',
-            linehl = 'GitSignsAddLn'
-          },
-
+          add = { text = '▌' },
+          change = { text = '▌' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '▶' },
+          untracked = { text = '┆' },
         },
+        signs_staged = {
+          add = { text = '▌' },
+          change = { text = '▌' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '▶' },
+          untracked = { text = '┆' },
+        },
+        signs_staged_enable = true,
         signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
         numhl = true,      -- Toggle with `:Gitsigns toggle_numhl`
         linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
@@ -125,6 +100,7 @@ return {
           interval = 1000,
           follow_files = true
         },
+        auto_attach = true,
         attach_to_untracked = false,
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_opts = {
@@ -145,9 +121,6 @@ return {
           relative = 'cursor',
           row = 0,
           col = 1
-        },
-        yadm = {
-          enable = false
         },
       }
     end,
