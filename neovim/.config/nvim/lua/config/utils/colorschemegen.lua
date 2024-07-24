@@ -83,13 +83,27 @@ function M.generate()
     end
   end
 
-  -- handle missing orange
+  -- handle missing secondaries
   if colorscheme.colors.orange == nil then
     local orange = colorUtils.colorMidpoint(colorscheme.colors.red, colorscheme.colors.yellow)
     vim.notify("orange not found...generating new orange: " .. orange)
     table.insert(gen, "BRIGHT_ORANGE=\"" .. colorUtils.lighten(orange, 0.20) .. "\"")
     table.insert(gen, "NEUTRAL_ORANGE=\"" .. orange .. "\"")
     table.insert(gen, "FADED_ORANGE=\"" .. colorUtils.darken(orange, 0.20) .. "\"")
+  end
+  if colorscheme.colors.purple == nil then
+    local purple = colorUtils.colorMidpoint(colorscheme.colors.red, colorscheme.colors.blue)
+    vim.notify("purple not found...generating new purple: " .. purple)
+    table.insert(gen, "BRIGHT_PURPLE=\"" .. colorUtils.lighten(purple, 0.20) .. "\"")
+    table.insert(gen, "NEUTRAL_PURPLE=\"" .. purple .. "\"")
+    table.insert(gen, "FADED_PURPLE=\"" .. colorUtils.darken(purple, 0.20) .. "\"")
+  end
+  if colorscheme.colors.aqua == nil then
+    local aqua = colorUtils.colorMidpoint(colorscheme.colors.blue, colorscheme.colors.green)
+    vim.notify("aqua not found...generating new aqua: " .. aqua)
+    table.insert(gen, "BRIGHT_AQUA=\"" .. colorUtils.lighten(aqua, 0.20) .. "\"")
+    table.insert(gen, "NEUTRAL_AQUA=\"" .. aqua .. "\"")
+    table.insert(gen, "FADED_AQUA=\"" .. colorUtils.darken(aqua, 0.20) .. "\"")
   end
 
   -- append generated values to current file

@@ -40,6 +40,22 @@ local function rgb_to_hex(r, g, b)
   return bit.tohex(bit.bor(bit.lshift(r, 16), bit.lshift(g, 8), b), 6)
 end
 
+function M.lightenForMode (mode, hex, pct)
+  if mode == 'dark' then
+    return M.lighten(hex, pct)
+  else
+    return M.darken(hex, pct)
+  end
+end
+
+function M.darkenForMode (mode, hex, pct)
+  if mode == 'dark' then
+    return M.darken(hex, pct)
+  else
+    return M.lighten(hex, pct)
+  end
+end
+
 function M.lighten(hex, pct)
   local r, g, b = hex_to_rgb(string.sub(hex, 2))
   r = math.min(math.floor(r * (1 + pct)), 255)
@@ -109,7 +125,7 @@ M.highlight = setmetatable({}, {
     local guifg, guibg, gui, guisp = args.guifg or nil, args.guibg or nil, args.gui or nil, args.guisp or nil
     local cmd = { 'hi!', hlgroup }
     if guifg then table.insert(cmd, 'guifg=' .. guifg) end
-    if guibg then table.insert(cmd, 'guibg=' .. guibg) end
+    if guibg then table.insert(cmd, 'guibg=' .. guibg) else table.insert(cmd, 'guibg=NONE')  end
     if gui then table.insert(cmd, 'gui=' .. gui) end
     if guisp then table.insert(cmd, 'guisp=' .. guisp) end
     vim.cmd(table.concat(cmd, ' '))
