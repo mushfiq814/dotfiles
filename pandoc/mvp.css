@@ -377,8 +377,11 @@ select,
 textarea {
   border: 1px solid var(--color-bg-secondary);
   border-radius: var(--border-radius);
-  margin-bottom: 1rem;
   padding: 0.4rem 0.8rem;
+}
+select,
+textarea {
+  margin-bottom: 1rem;
 }
 
 input[readonly],
@@ -453,4 +456,28 @@ blockquote footer {
   font-size: small;
   line-height: var(--line-height);
   padding: 1.5rem 0;
+}
+
+code.sourceCode {
+  background: var(--color-bg-secondary);
+  font-family: 'LigaSauceCodePro', 'LigaSaucyCodePro Nerd Font', 'Fira Code', 'FiraCode Nerd Font', monospace;
+  font-size: 0.9em;
+}
+
+code {
+  font-family: 'LigaSauceCodePro', 'LigaSaucyCodePro Nerd Font', 'Fira Code', 'FiraCode Nerd Font', monospace !important;
+  font-size: 0.8rem !important;
+}
+
+code, samp {
+  font-size: 1.2em;
+}
+
+nav {
+  justify-content: space-evenly;
+}
+
+a:hover {
+  filter: none;
+  color: #df6e21;
 }

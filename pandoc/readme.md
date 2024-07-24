@@ -5,6 +5,7 @@ Date: Wed Feb 24 01:48:34 2021 -0500
 ---
 
 # Pandoc Settings
+
 I am trying to use pandoc to convert from markdown to html. I am adding my specific files -- theme, css, html templates -- to my dotfiles to tweak on them further. Although, I am pretty happy with the html that is being output, I am going to customize the setup further.
 
 ```sh
@@ -31,6 +32,7 @@ Some interesting topics for me:
 * [html templates](https://pandoc.org/MANUAL.html#templates)
 
 ## Showcase
+
 This is how this readme file looks after being converted.
 
 ![rendered html](./images/screenshot.png)
@@ -42,6 +44,7 @@ Some markdown features exhibited:
 > This is important
 
 ## Fenced Code Blocks
+
 ```typescript
 const x: number;
 
@@ -51,12 +54,19 @@ const myFunc(x: number): void => {
 ```
 
 ## Lists
+
 This is a list
 
 * item 1
 * item 2
 * item 3
   * subitem 1
+* item 4: checkboxes
+  * [ ] checkbox 1
+  * [x] checkbox 2
+  * [ ] checkbox 3
+  * [x] checkbox 4
+  * [x] checkbox 5
 
 This is another list:
 
