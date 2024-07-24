@@ -1,0 +1,17 @@
+#!/bin/bash
+
+URL="$1"
+
+# get description
+RESPONSE=$(termux-dialog text -t "Bookmark: $URL" -i "Description")
+
+RESPONSE_CODE=$(echo "$RESPONSE" | jq ".code ")
+if [ "$RESPONSE_CODE" == "-2" ]; then
+  # cancelled
+  exit 1
+fi
+
+DESCRIPTION=$(echo "$RESPONSE" | jq ".text")
+echo "* [$DESCRIPTION]($URL)" >> ~/vimwiki/diary/refile.md
+
+termux-notification --title "Bookmark Added: $DESCRIPTION" --content "$URL"
