@@ -48,7 +48,7 @@ local function cacheGitBranch()
   local handle = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
   if handle == nil then return "" end
   local branch_name = handle:read("*a")
-  branch_name = string.gsub(branch_name, "[^%w-/\\.]", "")
+  branch_name = string.gsub(branch_name, "[^%w-_/\\.]", "")
   handle:close()
 
   if branch_name == nil or branch_name == "" then
