@@ -23,22 +23,26 @@ if [[ "$RESULT" == "" || "$END" == "" ]]; then
       --state active \
       --table --plain --no-headers \
       --columns name,end \
-      | grep -i "achievers"
+      | grep -i "t rex"
   )
 
   # save result as cache
+  sketchybar -m --set $NAME label="caching..."
   echo "$RESULT" > "$CACHE"
+
+  sketchybar -m --set $NAME label="formatting..."
 
   # parse values again
   SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
-  END=$(echo "$RESULT" | cut -d "	" -f 2)
+  END=$(echo "$RESULT" | tr -s "\t" | cut -d "	" -f 2)
+  sketchybar -m --set $NAME label="formatting complete..."
 fi
 
 NOTIFY=""
 if [[ "$RESULT" == "" ]]; then
   NOTIFY="No active sprints"
 elif [[ "$SPRINT" == "" ]] || [[ "$END" == "" ]]; then
-  NOTIFY="ERROR"
+  NOTIFY="ERROR | SPRINT: $SPRINT | END: $END"
 else
   # get sprint end and current timestamps
   CURR_TS=$(date +%s)
@@ -46,9 +50,8 @@ else
 
   # calculate number of days
   DIFF=$(( ($END_TS - $CURR_TS) / (24 * 60 * 60) + 1))
+
   NOTIFY="$SPRINT ends in $DIFF day(s)"
 fi
 
-if [ "$IS_SHORT" = "0" ]; then
-  sketchybar -m --set $NAME label="$NOTIFY" click_script="rm -rf \"$CACHE\" && $SCRIPTS/jira"
-fi
+sketchybar -m --set $NAME label="$NOTIFY" click_script="rm -rf \"$CACHE\" && $SCRIPTS/jira"
