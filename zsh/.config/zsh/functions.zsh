@@ -48,20 +48,27 @@ function prettyGitLog() {
   git log --pretty="$format" $@
 }
 
-# fzf git checkout
+# showFuzzyGitBranches
 # RESOURCE: https://koenwoortman.com/git-faster-branch-checkouts-with-fzf/
 # RESOURCE: http://ses4j.github.io/2020/04/01/git-alias-recent-branches/
+function showFuzzyGitBranches() {
+  # local BRANCH_LIST=$(git for-each-ref refs/heads/ --format='%(refname:short)')
+  local BRANCH_LIST=$(
+    git reflog show --pretty=format:'%gs ~ %gd' --date=relative \
+    | grep 'checkout:' \
+    | grep -oE '[^ ]+ ~ .*' \
+    | awk -F~ '!seen[$1]++' \
+    | awk -F' ~ HEAD@{' '{print($1)}'
+  )
+  echo $BRANCH_LIST | fzf --height=~50
+}
+
+bindkey -s '^g' '$(showFuzzyGitBranches)\n'
+
+# fzf git checkout
 function fuzzyGitCheckout() {
   if [ $# -eq 0 ]; then
-    # local BRANCH_LIST=$(git for-each-ref refs/heads/ --format='%(refname:short)')
-    local BRANCH_LIST=$(
-      git reflog show --pretty=format:'%gs ~ %gd' --date=relative \
-      | grep 'checkout:' \
-      | grep -oE '[^ ]+ ~ .*' \
-      | awk -F~ '!seen[$1]++' \
-      | awk -F' ~ HEAD@{' '{print($1)}'
-    )
-    local BRANCH=$(echo $BRANCH_LIST | fzf --height=~50)
+    local BRANCH=$(showFuzzyGitBranches)
     if [[ $? -eq 0 && "$BRANCH" != "" ]]; then
       echo "checking out $BRANCH..."
       git checkout "$BRANCH"
@@ -86,6 +93,30 @@ function fuzzyGitCheckout() {
         fi
       fi
     fi
+  fi
+}
+
+function fuzzyGitPullOrigin() {
+  local BRANCH="$1"
+
+  if [[ $# -eq 0 || "$BRANCH" == "" ]]; then
+    BRANCH=$(showFuzzyGitBranches)
+  fi
+
+  if [[ $? -eq 0 && "$BRANCH" != "" ]]; then
+    echo "pulling $BRANCH from remote origin..."
+    git pull origin "$BRANCH"
+  fi
+}
+
+function fuzzyGitPushOrigin() {
+  local BRANCH=$(showFuzzyGitBranches)
+
+  echo "\$@: $@"
+
+  if [[ $? -eq 0 && "$BRANCH" != "" ]]; then
+    echo "pushing $BRANCH to remote origin..."
+    git push origin $@ "$BRANCH"
   fi
 }
 

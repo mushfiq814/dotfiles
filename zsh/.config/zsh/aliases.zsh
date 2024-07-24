@@ -32,8 +32,8 @@ alias gsl=fuzzyGitStash
 
 alias gco=fuzzyGitCheckout
 alias gfo='git fetch origin'
-alias gpo='git pull origin'
-alias gpush='git push origin'
+alias gpo=fuzzyGitPullOrigin
+alias gpush=fuzzyGitPushOrigin
 
 # silent mode for make (suppress output)
 alias make='make -s'
