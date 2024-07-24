@@ -14,7 +14,7 @@ const uniqueLabels = [...new Set(bookmarks.map(b => b.label))];
 // present list of URLs for selection
 const { stdout: selectedLabel, exitCode } = await $`echo ${
   uniqueLabels.join("\n")
-} | choose`.nothrow();
+} | choose -w 20 -p "Select bookmark to open"`.nothrow();
 
 // handle error in selection
 if (exitCode != 0) {
