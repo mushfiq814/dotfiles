@@ -31,4 +31,3 @@ fi
 set_prompt
 if [[ $SHOW_SYS_FETCH -eq 1 ]]; then fetch; fi
 if [[ $ENABLE_LAUNCHER -eq 1 ]]; then launcher; fi
-cd "$HOME"

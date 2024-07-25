@@ -159,3 +159,8 @@ function md2html() {
   # open in browser
   # powershell.exe Invoke-Item $out
 }
+
+function kittyWorkSession() {
+  nohup kitty --session ~/.config/kitty/session & disown
+  exit
+}
