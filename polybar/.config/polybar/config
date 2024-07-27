@@ -48,7 +48,7 @@ font-2 = ${font.font_2}
 
 modules-left = i3 xwindow
 modules-center = weather spotify volume pacmd
-modules-right = mpv-prev mpv-play-pause mpv-next colorscheme btconnect paselectsource memory cpu wlan battery date time
+modules-right = btconnect paselectsource memory cpu wlan battery date time
 
 ; tray-position options: left, center, right, none
 tray-position = none
