@@ -20,7 +20,7 @@ local modes = {
   ["i"] = { name = "INSERT", highlight = "statusLineModeInsert" },
   ["ic"] = { name = "INSERT", highlight = "statusLineModeInsert" },
   ["R"] = { name = "REPLACE", highlight = "statusLineModeNormal" },
-  ["Rv"] = { name = "VISUAL REPLACE", highlight = "statusLineModeNormal" },
+  ["Rv"] = { name = "VIRTUAL REPLACE", highlight = "statusLineModeNormal" },
   ["c"] = { name = "COMMAND", highlight = "statusLineModeCommand" },
   ["cv"] = { name = "VIM EX", highlight = "statusLineModeNormal" },
   ["ce"] = { name = "EX", highlight = "statusLineModeNormal" },

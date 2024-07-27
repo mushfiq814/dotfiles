@@ -128,7 +128,7 @@ hi.Operator                           = { guifg = colors.grey4, guibg = nil, gui
 hi.PreProc                            = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi.Repeat                             = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi.Special                            = { guifg = colors.bright_aqua, guibg = nil, gui = nil, guisp = nil }
-hi.SpecialChar                        = { guifg = colors.faded_orange, guibg = nil, gui = nil, guisp = nil }
+hi.SpecialChar                        = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi.Statement                          = { guifg = colors.bright_red, guibg = nil, gui = nil, guisp = nil }
 hi.StorageClass                       = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi.String                             = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
