@@ -74,7 +74,7 @@ alias vw='v ~/vimwiki/index.md'
 alias ytfzf='ytfzf -t'
 
 # neofetch
-alias fetch='neofetch --backend chafa --source ~/pictures/wallpapers/portrait/UvSvAAP.jpg --disable gpu --size 30% --xoffset 2 --yoffset 1 --gap 5'
+alias fetch='neofetch --backend kitty --source ~/pictures/neofetch-wallpaper.png --disable gpu --size 20% --xoffset 0 --yoffset 1 --gap 2'
 
 alias wifictl='nmtui'
 
