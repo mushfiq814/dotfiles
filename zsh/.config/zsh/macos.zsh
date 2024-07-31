@@ -63,6 +63,11 @@ if [ -d "/opt/homebrew/opt/postgresql@15/bin" ]; then
   export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 fi
 
+# snyk-cli
+if [ -e "$HOME/.secrets/SNYK_CLI_API_TOKEN" ]; then
+  export SNYK_TOKEN="$(cat $HOME/.secrets/SNYK_CLI_API_TOKEN)";
+fi
+
 # rust/cargo
 if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$PATH:$HOME/.cargo/bin"
