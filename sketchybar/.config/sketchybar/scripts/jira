@@ -1,24 +1,17 @@
 #!/bin/bash
 
-IS_SHORT="$1"
+# shellcheck source=../colors
+source "$HOME/.config/sketchybar/colors"
 
-# scripts dir
 SCRIPTS="$HOME/.config/sketchybar/scripts"
 
 CACHE="$HOME/.config/sketchybar/scripts/jira-curr-sprint"
 
-# read cached result if it exists
-RESULT=$(cat "$CACHE" 2> /dev/null)
+get_from_jira_api() {
+  JIRA_API_TOKEN=$(cat "$HOME/.secrets/JIRA_API_TOKEN")
+  export JIRA_API_TOKEN
 
-# split on tabs
-SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
-END=$(echo "$RESULT" | cut -d "	" -f 2)
-
-if [[ "$RESULT" == "" || "$END" == "" ]]; then
-  sketchybar -m --set $NAME label="fetching..."
-  # fetch from API
-  export JIRA_API_TOKEN="$(cat $HOME/.secrets/JIRA_API_TOKEN)"
-  RESULT=$(
+  SPRINT=$(
     jira sprint list \
       --state active \
       --table --plain --no-headers \
@@ -26,32 +19,127 @@ if [[ "$RESULT" == "" || "$END" == "" ]]; then
       | grep -i "t rex"
   )
 
-  # save result as cache
-  sketchybar -m --set $NAME label="caching..."
-  echo "$RESULT" > "$CACHE"
+  SPRINT_NAME_FULL=$(echo "$SPRINT" | cut -d $'\t' -f 1)
+  SPRINT_NAME_SHORT=$(echo "$SPRINT_NAME_FULL" | grep -i "sprint \d\+" -o)
+  SPRINT_END_DATE=$(echo "$SPRINT" | tr -s "\t" | cut -d $'\t' -f 2)
 
-  sketchybar -m --set $NAME label="formatting..."
+  SPRINT_ISSUES=$(
+    jira issue list \
+      --plain --no-headers \
+      -a"$(jira me)" \
+      -q"Sprint = '$SPRINT_NAME_FULL'" \
+      -t~Sub-Task \
+      --columns KEY,SUMMARY,STATUS,TYPE
+  )
 
-  # parse values again
-  SPRINT=$(echo "$RESULT" | cut -d "	" -f 1 | grep -i "sprint \d\+" -o)
-  END=$(echo "$RESULT" | tr -s "\t" | cut -d "	" -f 2)
-  sketchybar -m --set $NAME label="formatting complete..."
+  ISSUES_ARRAY=$(echo "$SPRINT_ISSUES" | awk -F '[\t]\+' '{
+    print "{ \"key\": \"" $1 "\", \
+    \"summary\": \"" $2 "\", \
+    \"status\": \"" $3 "\", \
+    \"type\": \"" $4 "\" }"
+  }' | jq --slurp '.')
+
+  echo "{}" | jq -n \
+    ".sprint_name_full=\"$SPRINT_NAME_FULL\"
+    | .sprint_name_short=\"$SPRINT_NAME_SHORT\"
+    | .sprint_end_date=\"$SPRINT_END_DATE\"
+    | .issues=$ISSUES_ARRAY" > "$CACHE"
+}
+
+CACHED=$(cat "$CACHE" 2> /dev/null)
+
+if [[ "$CACHED" == "" ]]; then
+  # sketchybar -m --set "$NAME" label="fetching..."
+  get_from_jira_api
+  CACHED=$(cat "$CACHE" 2> /dev/null)
+  # sketchybar -m --set "$NAME" label="parsing..."
 fi
 
+SPRINT_NAME_FULL=$(echo "$CACHED" | jq -r ".sprint_name_full")
+SPRINT_NAME_SHORT=$(echo "$CACHED" | jq -r ".sprint_name_short")
+SPRINT_END_DATE=$(echo "$CACHED" | jq -r ".sprint_end_date")
+SPRINT_ISSUES=$(echo "$CACHED" | jq ".issues")
+SPRINT_ISSUES_LENGTH=$(echo "$CACHED" | jq ".issues | length")
+
 NOTIFY=""
-if [[ "$RESULT" == "" ]]; then
+if [[ "$SPRINT_NAME_SHORT" == "" ]]; then
   NOTIFY="No active sprints"
-elif [[ "$SPRINT" == "" ]] || [[ "$END" == "" ]]; then
-  NOTIFY="ERROR | SPRINT: $SPRINT | END: $END"
 else
   # get sprint end and current timestamps
   CURR_TS=$(date +%s)
-  END_TS=$(date -j -f '%Y-%m-%d %H:%M:%S' "$END" +'%s')
+  END_TS=$(date -j -f '%Y-%m-%d %H:%M:%S' "$SPRINT_END_DATE" +'%s')
 
   # calculate number of days
   DIFF=$(( ($END_TS - $CURR_TS) / (24 * 60 * 60) + 1))
 
-  NOTIFY="$SPRINT ends in $DIFF day(s)"
+  NOTIFY="$SPRINT_NAME_SHORT 󰔛 $DIFF day(s)  $SPRINT_ISSUES_LENGTH"
 fi
 
-sketchybar -m --set $NAME label="$NOTIFY" click_script="rm -rf \"$CACHE\" && $SCRIPTS/jira"
+sketchybar -m \
+  --set "$NAME" \
+  label="$NOTIFY" \
+  click_script="sketchybar -m --set \$NAME popup.drawing=toggle" \
+  \
+  popup.height=20 \
+  popup.background.drawing=on \
+  popup.background.border_width=2 \
+  popup.background.color="0xff${BLACK:1}" \
+  popup.background.border_color="0xff${ACCENT:1}" \
+  popup.background.corner_radius=3 \
+  \
+  --default \
+    background.padding_left=15 \
+    background.padding_right=10 \
+    icon.padding_right=10
+
+# add issues to popup
+for i in $(seq 0 $((SPRINT_ISSUES_LENGTH - 1))); do
+  key=$(echo "$SPRINT_ISSUES" | jq -r ".[$i] | .key")
+  summary=$(echo "$SPRINT_ISSUES" | jq -r ".[$i] | .summary")
+
+  type=$(echo "$SPRINT_ISSUES" | jq -r ".[$i] | .type")
+  if [[ "$type" == "Story" ]]; then
+    icon=""
+    icon_color="0xff${GREEN0:1}"
+  elif [[ "$type" == "Bug" ]]; then
+    icon="󱗜"
+    icon_color="0xff${RED0:1}"
+  else
+    icon=""
+    icon_color="0xff${BLUE0:1}"
+  fi
+
+  status=$(echo "$SPRINT_ISSUES" | jq -r ".[$i] | .status")
+  label_color="0xff${WHITE:1}"
+  if [[ "$status" == "Closed" ]]; then
+    label_color="0xff${GREEN0:1}"
+  elif [[ "$status" == "In Progress" ]]; then
+    label_color="0xff${ORANGE1:1}"
+  elif [[ "$status" == "Code Review" ]]; then
+    label_color="0xff${PURPLE0:1}"
+  elif [[ "$status" == "To Do" ]]; then
+    label_color="0xff${GREY3:1}"
+  else
+    label_color="0xff${YELLOW0:1}"
+  fi
+
+  sketchybar \
+    --add item "jira.issues.$i" "popup.$NAME" \
+    --set "jira.issues.$i" \
+      icon=$icon \
+      icon.color="$icon_color" \
+      label="$key: $summary" \
+      label.color="$label_color" \
+      click_script="sketchybar -m --set $NAME popup.drawing=off; open https://billsdev.atlassian.net/browse/$key"
+done
+
+# TODO: add refresh button
+# currently, the refresh button is not working. probably the $NAME is not being passed correctly
+# sketchybar \
+#   --add item "jira.issues.refresh" "popup.$NAME" \
+#   --set "jira.issues.refresh" \
+#     icon= \
+#     icon.color="0xff${YELLOW0:1}" \
+#     label="Refresh" \
+#     click_script="sketchybar -m --set $NAME popup.drawing=off; rm -rf \"$CACHE\" && export NAME=$NAME && $SCRIPTS/jira"
+
