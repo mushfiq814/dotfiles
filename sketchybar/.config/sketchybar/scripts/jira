@@ -80,12 +80,13 @@ sketchybar -m \
   label="$NOTIFY" \
   click_script="sketchybar -m --set \$NAME popup.drawing=toggle" \
   \
-  popup.height=20 \
+  popup.height=30 \
   popup.background.drawing=on \
   popup.background.border_width=2 \
-  popup.background.color="0xff${BLACK:1}" \
-  popup.background.border_color="0xff${ACCENT:1}" \
-  popup.background.corner_radius=3 \
+  popup.background.color="0xff${BLACKTR:1}" \
+  popup.background.border_color="0xff${GREY0:1}" \
+  popup.background.corner_radius=10 \
+  popup.blur_radius=50 \
   \
   --default \
     background.padding_left=15 \
@@ -111,15 +112,21 @@ for i in $(seq 0 $((SPRINT_ISSUES_LENGTH - 1))); do
 
   status=$(echo "$SPRINT_ISSUES" | jq -r ".[$i] | .status")
   label_color="0xff${WHITE:1}"
+  status_text=""
   if [[ "$status" == "Closed" ]]; then
+    status_text="DONE"
     label_color="0xff${GREEN0:1}"
   elif [[ "$status" == "In Progress" ]]; then
+    status_text="WIP "
     label_color="0xff${ORANGE1:1}"
   elif [[ "$status" == "Code Review" ]]; then
+    status_text="PR  "
     label_color="0xff${PURPLE0:1}"
   elif [[ "$status" == "To Do" ]]; then
+    status_text="TODO"
     label_color="0xff${GREY3:1}"
   else
+    status_text="    "
     label_color="0xff${YELLOW0:1}"
   fi
 
@@ -128,7 +135,7 @@ for i in $(seq 0 $((SPRINT_ISSUES_LENGTH - 1))); do
     --set "jira.issues.$i" \
       icon=$icon \
       icon.color="$icon_color" \
-      label="$key: $summary" \
+      label="$status_text $key: $summary" \
       label.color="$label_color" \
       click_script="sketchybar -m --set $NAME popup.drawing=off; open https://billsdev.atlassian.net/browse/$key"
 done
