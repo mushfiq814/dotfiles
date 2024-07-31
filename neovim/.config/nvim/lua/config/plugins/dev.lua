@@ -127,18 +127,54 @@ return {
   },
   {
     'github/copilot.vim',
-    config = function()
-      vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+    keys = {
+      {
+        '<C-J>',
+        'copilot#Accept("\\<CR>")',
+        mode = 'i',
+        desc = "Accept the next line of the current suggestion.",
         expr = true,
         replace_keycodes = false
-      })
+      },
+      -- {
+      --   '<C-]>',
+      --   '<Plug>(copilot-dismiss)',
+      --   mode = 'i',
+      --   desc = "Dismiss the current suggestion.",
+      -- },
+      {
+        '<C-l>',
+        '<Plug>(copilot-next)',
+        mode = 'i',
+        desc = "Cycle to the next suggestion, if one is available.",
+      },
+      {
+        '<C-h>',
+        '<Plug>(copilot-previous)',
+        mode = 'i',
+        desc = "Cycle to the previous suggestion.",
+      },
+      -- {
+      --   '<C-h>',
+      --   '<Plug>(copilot-suggest)',
+      --   mode = 'i',
+      --   desc = "Explicitly request a suggestion, even if Copilot is disabled.",
+      -- },
+      {
+        '<C-Right>',
+        '<Plug>(copilot-accept-word)',
+        mode = 'i',
+        desc = "Accept the next word of the current suggestion.",
+      },
+      -- {
+      --   '<C-Left>',
+      --   '<Plug>(copilot-accept-line)',
+      --   mode = 'i',
+      --   desc = "Accept the next line of the current suggestion.",
+      -- },
+    },
+    config = function()
       vim.g.copilot_no_tab_map = true
-      vim.keymap.set('i', '<C-]>', '<Plug>(copilot-dismiss)')         -- Dismiss the current suggestion.
-      vim.keymap.set('i', '<C-i>', '<Plug>(copilot-next)')            -- Cycle to the next suggestion, if one is available.
-      vim.keymap.set('i', '<C-u>', '<Plug>(copilot-previous)')        -- Cycle to the previous suggestion.
-      vim.keymap.set('i', '<C-h>', '<Plug>(copilot-suggest)')         -- Explicitly request a suggestion, even if Copilot is disabled.
-      vim.keymap.set('i', '<C-Right>', '<Plug>(copilot-accept-word)') -- Accept the next word of the current suggestion.
-      vim.keymap.set('i', '<C-Left>', '<Plug>(copilot-accept-line)')  -- Accept the next line of the current suggestion.
 
       -- copilot_workspace_folders
       --   A list of "workspace folders" or project roots that
