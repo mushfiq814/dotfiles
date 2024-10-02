@@ -150,6 +150,10 @@ fuzzyGitStash () {
   # git stash apply "$(echo $stashItem | cut -d: -f1)"
 }
 
+# zsh auto suggestions by word: Ctrl + Left/Right
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 # md2html: Convert from markdown to html
 function md2html() {
   css="~/dotfiles/pandoc/mvp.css"
