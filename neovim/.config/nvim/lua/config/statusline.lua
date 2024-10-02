@@ -36,10 +36,6 @@ local function mode()
   local modeStr = string.format(" %s ", modes[current_mode].name):upper()
   return statusString({
     { modeStr, modes[current_mode].highlight },
-    { "  ", "flagBlue" },
-    { "  ", "flagYellow" },
-    { "  ", "flagOrange" },
-    { "  ", "flagRed" },
   })
 end
 
