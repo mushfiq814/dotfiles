@@ -121,3 +121,12 @@ keymap('n', '<leader>cc',
     vim.notify("Reloaded theme")
   end,
   opts)
+
+-- find non-space characters in column
+keymap('n', '<leader>fc',
+  function ()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    vim.cmd("/\\%" .. (cursor[2] + 1) .. "c[^ ]")
+  end,
+  opts
+)
