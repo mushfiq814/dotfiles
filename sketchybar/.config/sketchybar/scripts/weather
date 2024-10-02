@@ -1,19 +1,33 @@
 #!/bin/sh
 
+sketchybar -m --set "$NAME" label="weather loading..."
+
 IS_SHORT="$1"
 
-WEATHER_ICON=$(curl --silent "wttr.in/?format=%c")
+LOCATION="wesley_chapel"
+UNIT="°F"
+
+WEATHER_ICON=$(curl --silent "wttr.in/$LOCATION?format=%c")
+
 if [[ "$WEATHER_ICON" =~ "Unknown location" ]]; then
   sketchybar -m --set "$NAME" label="Error with wttr.in"
   exit
 fi
 
+WEATHER_JSON=$(curl --silent "wttr.in/$LOCATION?format=j1")
+
+CURR_TEMP=$(echo "$WEATHER_JSON" | jq -r '.current_condition[0].FeelsLikeF')
+EIGHT_HOUR_AVG=$(echo "$WEATHER_JSON" \
+  | jq -r '[.weather[0].hourly[].FeelsLikeF | tonumber]
+    | add / length
+    | round')
+MIN=$(echo "$WEATHER_JSON" | jq -r '.weather[0].maxtempF')
+MAX=$(echo "$WEATHER_JSON" | jq -r '.weather[0].mintempF')
+
 if [ "$IS_SHORT" = "1" ]; then
-  CURR_TEMP=$(curl --silent "wttr.in/?format=j1" | jq -r '.current_condition[0] | .temp_F+"°F"')
-  WEATHER="$CURR_TEMP"
+  WEATHER="$CURR_TEMP$UNIT"
 else
-  MINMAX=$(curl --silent "wttr.in/?format=j1" | jq -r '.weather[0] | .maxtempF+"°F/"+.mintempF+"°F"')
-  WEATHER="$MINMAX $WEATHER_ICON"
+  WEATHER="$MIN$UNIT/$EIGHT_HOUR_AVG$UNIT/$MAX$UNIT $WEATHER_ICON"
 fi
 
 sketchybar -m --set "$NAME" label="$WEATHER"
