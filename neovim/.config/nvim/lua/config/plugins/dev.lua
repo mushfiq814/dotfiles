@@ -130,6 +130,7 @@ return {
   },
   {
     'github/copilot.vim',
+    enabled = false,
     keys = {
       {
         '<C-J>',
@@ -200,6 +201,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     event = "VeryLazy",
     branch = "canary",
     dependencies = {
