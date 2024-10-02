@@ -1,0 +1,102 @@
+#!/usr/bin/env zx
+$.verbose = false;
+
+import { $, argv } from "zx";
+import chalk from "chalk";
+
+const WORKSPACE = "billsdotcom_bills"
+const REPO_SLUG = "ffam-integration-spinwheel"
+const BASE_URL = `https://api.bitbucket.org/2.0/repositories/${WORKSPACE}/${REPO_SLUG}`;
+
+const TOKEN_FILE = `${process.env.HOME}/.secrets/BITBUCKET_ACCESS_TOKEN`;
+const { stdout: tokenStdOut } = await $`'cat' ${TOKEN_FILE}`;
+
+const ACCESS_TOKEN = tokenStdOut.trim();
+
+async function fetchAndResponse (url, fetchOptions, prefix) {
+  let response, out;
+
+  try {
+    response = await fetch(url, fetchOptions);
+  } catch (e) {
+    throw (chalk.red(prefix, "error in fetch,", e));
+  }
+
+  if (!response) {
+    throw (chalk.red(prefix, "no response!"));
+  }
+
+  if (response.headers.get("Content-Type") === "application/json") {
+    out = await response.json();
+  } else {
+    out = await response.text();
+  }
+
+  return out;
+}
+
+const getRepo = async () => {
+  const prefix = "[getRepo]";
+
+  return await fetchAndResponse(`${BASE_URL}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+      Accept: "application/json",
+    }
+  }, prefix);
+}
+
+const listPrs = async () => {
+  const prefix = "[listPrs]";
+
+  return await fetchAndResponse(`${BASE_URL}/pullrequests`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+      Accept: "application/json",
+    }
+  }, prefix);
+}
+
+const getPr = async (id) => {
+  const prefix = "[getPr]";
+
+  return await fetchAndResponse(`${BASE_URL}/pullrequests/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+      Accept: "application/json",
+    }
+  }, prefix);
+}
+
+const updatePr = async (id) => {
+  const prefix = "[updatePr]";
+
+  return await fetchAndResponse(`${BASE_URL}/pullrequests/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      type: "pullrequest",
+      summary: {
+        raw: "# Hello From Script",
+        markup: "markdown",
+      },
+    }),
+  }, prefix);
+}
+
+const prId = argv._[1];
+
+// const x = await listPrs();
+// const x = await getPr(prId);
+// const x = await updatePr(prId);
+const x = await getRepo();
+console.log(x);
+
+// vim:ft=javascript
