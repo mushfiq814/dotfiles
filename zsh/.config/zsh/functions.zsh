@@ -63,7 +63,16 @@ function showFuzzyGitBranches() {
   echo $BRANCH_LIST | fzf --height=~50
 }
 
-bindkey -s '^g' '$(showFuzzyGitBranches)\n'
+# auto fill from fzf instead of executing it directly
+_autoFillGitBranch () {
+  CURSOR=$#BUFFER
+  LBUFFER+=$(showFuzzyGitBranches)
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
+
+zle -N _autoFillGitBranch
+bindkey '^g' _autoFillGitBranch
 
 # fzf git checkout
 function fuzzyGitCheckout() {
