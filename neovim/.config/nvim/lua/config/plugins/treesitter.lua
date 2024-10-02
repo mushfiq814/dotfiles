@@ -31,6 +31,8 @@ return {
           'gosum',
           'python',
           'vimdoc',
+          'http',
+          'html',
         },
         highlight = {
           enable = true,

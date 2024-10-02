@@ -206,6 +206,17 @@ local function tabpages()
   return tabStr
 end
 
+local function kulalaEnv()
+  local icon = " 󱂛 "
+  local kulala_loaded, kulala = pcall(require, "kulala")
+  if not kulala_loaded then return "" end
+  local env = kulala.get_selected_env()
+  if env == nil then return "" end
+  return statusString({
+    { " " .. icon .. env .. " ", "statusLineKulalaEnv" },
+  })
+end
+
 -- make statusline smaller depending on screen size
 WINCOLS = nil
 local augroupResize = vim.api.nvim_create_augroup("statusLineResizeGroup", { clear = true })
@@ -241,6 +252,7 @@ function MyStatusLine()
       cwd(),
       filename(),
       spacer(),
+      kulalaEnv(),
       lspDiagnosticCounts(),
       activeLlspClient(),
       filetype(),

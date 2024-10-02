@@ -596,6 +596,7 @@ hi.flagYellow                   = { guifg = colors.grey0, guibg = colors.neutral
 hi.flagOrange                   = { guifg = colors.grey0, guibg = colors.neutral_orange, gui = "bold", }
 hi.flagRed                      = { guifg = colors.grey0, guibg = colors.neutral_red, gui = "bold", }
 hi.statusLineFileTypeIcon       = { guibg = background }
+hi.statusLineKulalaEnv          = { guifg = colors.bright_red, guibg = background, gui = "bold", }
 
 -- add nvimtree highlights
 hi.NvimTreeBookmark             = { guifg = colors.bright_red }

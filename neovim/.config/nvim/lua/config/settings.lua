@@ -92,3 +92,10 @@ o.hidden = true
 
 -- shell aliases
 o.shellcmdflag = "-ic"
+
+-- http filetype association
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
