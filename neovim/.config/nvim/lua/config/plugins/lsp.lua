@@ -105,8 +105,8 @@ return {
       for _, server in ipairs(servers) do
         -- TODO: find way to enable inlay hints globally
         -- and combine all lsp setup into one loop
-        if server == "tsserver" then
-          lspconfig.tsserver.setup {
+        if server == "ts_ls" then
+          lspconfig.ts_ls.setup {
             on_attach = function(client, bufnr)
               navic.attach(client, bufnr)
             end,
