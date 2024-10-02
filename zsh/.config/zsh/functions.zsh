@@ -137,11 +137,15 @@ fuzzyGitDiff () {
 
 # fzf git stash
 fuzzyGitStash () {
-  preview="git stash $@ show -p --color \$(echo {1} | cut -d: -f1)"
   stashItem=$(
-    git stash list | fzf \
-      -m --ansi \
-      --preview $preview --preview-window 'right,<80(down,wrap)' \
+    git stash list \
+      --pretty=format:"%C(bold magenta)%gd: %C(green)(%cr)%C(reset) %<(70,trunc)%s" \
+      --color=always \
+    | fzf \
+      -m \
+      --ansi \
+      --preview "git stash $@ show -p --color \$(echo {1} | cut -d: -f1)" \
+      --preview-window 'right,<80(down,wrap)' \
       --margin 1,5% \
       --border top --border-label " git stash " \
       --color 'marker:yellow,pointer:yellow,border:cyan,gutter:-1'
