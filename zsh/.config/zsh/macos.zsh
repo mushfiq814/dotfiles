@@ -75,3 +75,8 @@ fi
 if [ -d "$HOME/go/bin" ]; then
   export PATH="$PATH:$HOME/go/bin"
 fi
+
+# emacs
+if [ -d "$HOME/.config/emacs/bin" ]; then
+  export PATH="$PATH:$HOME/.config/emacs/bin"
+fi
