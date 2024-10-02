@@ -8,8 +8,8 @@ vim.opt.softtabstop = 2 -- of spaces that a <Tab> counts while editing
 vim.o.breakindentopt = 'list:-1'
 
 -- keybindings
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = false }
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = false, buffer = true }
 
 -- go backwards
 keymap('n', '<BS>', '<C-o>', opts)
