@@ -2,7 +2,10 @@ return {
   {
     -- TODO: find lua/lighter alternative
     'tpope/vim-fugitive',
-    cmd = { 'G', 'Gvdiffsplit' },
+    cmd = { 'G', 'Gvdiffsplit', 'GBrowse' },
+  },
+  {
+    "tommcdo/vim-fubitive",
   },
   {
     'numToStr/Comment.nvim',
