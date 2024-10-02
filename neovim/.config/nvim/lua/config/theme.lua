@@ -43,6 +43,7 @@ hi["@diff.minus"] = "@text.diff.delete"
 hi["@diff.plus"] = "@text.diff.add"
 hi["@function.method"] = "@method"
 hi["@function.method.call"] = "@method.call"
+hi["@method"] = "TSMethod"
 hi["@module"] = "@namespace"
 hi["@number.float"] = "@float"
 hi["@string.regexp"] = "@string.regex"
@@ -102,7 +103,7 @@ hi.ColorColumn                        = { guifg = nil, guibg = colors.grey0, gui
 hi.CursorColumn                       = { guifg = nil, guibg = colors.grey0, gui = 'none', guisp = nil }
 hi.CursorLine                         = { guifg = nil, guibg = colors.grey0, gui = 'none', guisp = nil }
 hi.CursorLineNr                       = { guifg = colors.grey3, guibg = colors.grey0, gui = nil, guisp = nil }
-hi.QuickFixLine                       = { guifg = nil, guibg = colors.grey0, gui = 'none', guisp = nil }
+hi.QuickFixLine                       = { guifg = colors.bright_red, guibg = colors.grey0, gui = 'none', guisp = nil }
 hi.PMenu                              = { guifg = colors.grey4, guibg = colors.grey0, gui = 'none', guisp = nil }
 hi.PMenuSel                           = { guifg = colors.grey0, guibg = colors.grey4, gui = nil, guisp = nil }
 hi.TabLine                            = { guifg = colors.grey2, guibg = colors.grey0, gui = 'none', guisp = nil }
@@ -224,7 +225,7 @@ hi.TSKeyword                          = { guifg = colors.bright_purple, guibg = 
 hi.TSKeywordFunction                  = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
 hi.TSKeywordOperator                  = { guifg = colors.bright_purple, guibg = nil, gui = 'none', guisp = nil }
 hi.TSLabel                            = { guifg = colors.bright_yellow, guibg = nil, gui = 'none', guisp = nil }
-hi.TSMethod                           = { guifg = colors.bright_blue, guibg = nil, gui = 'none', guisp = nil }
+hi.TSMethod                           = { guifg = colors.bright_purple, guibg = nil, gui = 'bold', guisp = nil }
 hi.TSNamespace                        = { guifg = colors.bright_red, guibg = nil, gui = 'none', guisp = nil }
 hi.TSNone                             = { guifg = colors.grey4, guibg = nil, gui = 'none', guisp = nil }
 hi.TSNumber                           = { guifg = colors.bright_orange, guibg = nil, gui = 'none', guisp = nil }
