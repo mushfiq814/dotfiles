@@ -5,7 +5,7 @@ $.verbose = false;
 // argv._[];
 
 // read bookmarks from file
-const bookmarksFile = `${process.env.HOME}/dotfiles/scripts/single-file-scripts/bookmarks.json`;
+const bookmarksFile = `${process.env.HOME}/vimwiki/work/achieve/bookmarks.json`;
 const bookmarks = await fs.readJson(bookmarksFile);
 
 // remove duplicate labels
