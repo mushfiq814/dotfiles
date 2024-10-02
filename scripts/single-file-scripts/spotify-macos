@@ -13,7 +13,7 @@ get_play_status() {
 
   if [[ $STATE == "playing" ]]; then
     STATUS="PLAYING"
-  elif [[ $STATE == "stopped" ]]; then 
+  elif [[ $STATE == "stopped" ]]; then
     STATUS="STOPPED"
   else
     STATUS="PAUSED"
