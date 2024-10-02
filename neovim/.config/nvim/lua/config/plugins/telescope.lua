@@ -25,9 +25,14 @@ return {
         desc = "Show git branches",
       },
       {
-        '<leader>fg',
+        '<leader>fgg',
         '<CMD>Telescope live_grep prompt_prefix=\\ 🔍\\ <CR>',
         desc = "Telescope live grep: search cwd with regex",
+      },
+      {
+        '<leader>fgf',
+        '<CMD>Telescope grep_string prompt_prefix=\\ 🔍\\ <CR>',
+        desc = "Telescope grep string: search string under cursor with regex",
       },
       {
         '<leader>gr',
