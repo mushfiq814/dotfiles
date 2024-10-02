@@ -15,15 +15,18 @@ source "$HOME/dotfiles/.env"
 # shellcheck source=utils
 source "$HOME/dotfiles/scripts/colorscheme/utils"
 
-LAUNCHER_CMD="fzf"
-if command -v "rofi" &> /dev/null
-then
-  LAUNCHER_CMD="rofi -dmenu"
-elif command -v "choose" &> /dev/null
-then
-  LAUNCHER_CMD="choose"
+if [ "$#" -gt 0 ]; then
+  LAUNCHER_CMD="$1"
+else
+  LAUNCHER_CMD="fzf"
+  if command -v "rofi" &> /dev/null
+  then
+    LAUNCHER_CMD="rofi -dmenu"
+  elif command -v "choose" &> /dev/null
+  then
+    LAUNCHER_CMD="choose"
+  fi
 fi
-printf "launcher is %s" "$LAUNCHER_CMD"
 
 # show list of available colorschemes
 quit_on_file_dne "$COLORS_DIR"

@@ -52,7 +52,7 @@ shift + alt - w : /usr/local/bin/macos-wallpaper
 # open terminal
 alt - return : /usr/local/bin/kitty
 
-lctrl + alt - return : /usr/local/bin/kitty --title Float --override tab_bar_style=hidden nvim ~/.config/nvim/init.lua
+lctrl + alt - return : /usr/local/bin/kitty --title Float --override tab_bar_style=hidden colorscheme fzf
 
 # reload window manager/keybindings/bar
 shift + alt - r : yabai --restart-service; skhd --restart-service; sketchybar --reload
@@ -72,7 +72,7 @@ alt - left : /usr/local/bin/spotify-macos prev
 alt - right : /usr/local/bin/spotify-macos next
 
 # colorscheme picker
-alt - c : /usr/local/bin/colorscheme
+alt - c : /usr/local/bin/colorscheme choose
 
 # bookmarks
 alt - b : ~/dotfiles/scripts/single-file-scripts/bookmarks
