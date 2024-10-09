@@ -1,42 +1,57 @@
 windows:
 - active: true
   geometry: !!binary |
-    AdnQywADAAAAAAAAAAAAAAAAB38AAASvAAAAMgAAAEsAAAOmAAAEfQAAAAAABAAAB4AAAAAAAAAA
-    AAAAB38AAASv
+    AdnQywADAAAAAAAyAAAASwAACc0AAAVtAAAAMgAAAEsAAAnNAAAFbQAAAAAAAAAACgAAAAAyAAAA
+    SwAACc0AAAVt
   tabs:
   - history:
-    - last_visited: '2024-01-07T17:18:14'
-      pinned: false
-      title: Your Repositories
-      url: https://github.com/mushfiq814?tab=repositories&q=&type=public&language=&sort=
-    - last_visited: '2024-01-07T17:19:01'
-      pinned: false
-      title: Confirm access
-      url: https://github.com/settings/two_factor_authentication/setup/intro
-    - last_visited: '2024-01-07T17:19:14'
-      pinned: false
-      title: Configure two-factor authentication
-      url: https://github.com/settings/two_factor_authentication/setup/intro
-    - last_visited: '2024-01-07T17:20:04'
-      pinned: false
-      title: Account security
-      url: https://github.com/settings/security
+    - last_visited: '2024-03-09T11:19:28'
+      pinned: true
+      title: WhatsApp
+      url: https://web.whatsapp.com/
     - active: true
-      last_visited: '2024-01-07T17:38:21'
-      pinned: false
+      last_visited: '2024-03-09T11:19:35'
+      pinned: true
       scroll-pos:
         x: 0
         y: 0
+      title: (6) WhatsApp
+      url: https://web.whatsapp.com/
+      zoom: 1.0
+  - history:
+    - active: true
+      last_visited: '2024-03-09T11:19:27'
+      pinned: true
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Google Messages for web
+      url: https://messages.google.com/web/conversations/4
+      zoom: 1.0
+  - history:
+    - active: true
+      last_visited: '2024-03-09T11:19:25'
+      pinned: true
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Google Calendar - Tasks
+      url: https://calendar.google.com/calendar/u/0/r/tasks
+      zoom: 1.0
+  - active: true
+    history:
+    - active: true
+      last_visited: '2024-03-09T11:19:02'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 632
       title: Calendar | Armature Works
       url: https://armatureworks.com/calendar/
       zoom: 1.0
   - history:
-    - last_visited: '2024-01-07T17:38:22'
-      pinned: false
-      title: DuckDuckGo — Privacy, simplified.
-      url: https://start.duckduckgo.com/
     - active: true
-      last_visited: '2024-01-07T17:38:32'
+      last_visited: '2024-03-09T11:19:04'
       pinned: false
       scroll-pos:
         x: 0
@@ -45,54 +60,38 @@ windows:
       url: https://sparkmanwharf.com/events/
       zoom: 1.0
   - history:
-    - last_visited: '2024-01-07T17:38:32'
-      pinned: false
-      title: DuckDuckGo — Privacy, simplified.
-      url: https://start.duckduckgo.com/
     - active: true
-      last_visited: '2024-01-07T17:38:37'
+      last_visited: '2024-03-09T11:19:02'
       pinned: false
       scroll-pos:
         x: 0
         y: 0
-      title: Events from January 6 – January 21 – Water Street Tampa
+      title: Events from March 20 – March 16 – Water Street Tampa
       url: https://waterstreettampa.com/events
       zoom: 1.0
   - history:
-    - last_visited: '2024-01-07T17:38:37'
-      pinned: false
-      title: DuckDuckGo — Privacy, simplified.
-      url: https://start.duckduckgo.com/
     - active: true
-      last_visited: '2024-01-07T17:38:40'
+      last_visited: '2024-03-09T11:19:03'
       pinned: false
       scroll-pos:
         x: 0
         y: 0
-      title: Events from Mon, Jan 8 – Sun, Feb 4 – Hyde Park
+      title: Events from Wed, Mar 27 – Tue, Mar 26 – Hyde Park
       url: https://hydeparkvillage.com/events/
       zoom: 1.0
   - history:
-    - last_visited: '2024-01-07T17:38:41'
-      pinned: false
-      title: DuckDuckGo — Privacy, simplified.
-      url: https://start.duckduckgo.com/
     - active: true
-      last_visited: '2024-01-07T17:38:45'
+      last_visited: '2024-03-09T11:19:03'
       pinned: false
       scroll-pos:
         x: 0
         y: 0
-      title: Events - Midtown Tampa
+      title: Events | Midtown Tampa
       url: https://midtowntampa.com/midtown-events/
       zoom: 1.0
   - history:
-    - last_visited: '2024-01-07T17:38:45'
-      pinned: false
-      title: DuckDuckGo — Privacy, simplified.
-      url: https://start.duckduckgo.com/
     - active: true
-      last_visited: '2024-01-07T17:38:51'
+      last_visited: '2024-03-09T11:19:03'
       pinned: false
       scroll-pos:
         x: 0
@@ -101,12 +100,8 @@ windows:
       url: https://tampatheatre.org/
       zoom: 1.0
   - history:
-    - last_visited: '2024-01-07T17:40:18'
-      pinned: false
-      title: Creative Loafing Tampa Bay
-      url: https://www.cltampa.com/
     - active: true
-      last_visited: '2024-01-07T17:41:07'
+      last_visited: '2024-03-09T11:19:03'
       pinned: false
       scroll-pos:
         x: 0
@@ -114,15 +109,23 @@ windows:
       title: Events in Tampa | Creative Loafing Tampa Bay
       url: https://www.cltampa.com/tampa/EventSearch?v=d
       zoom: 1.0
-  - active: true
-    history:
+  - history:
     - active: true
-      last_visited: '2024-01-07T17:40:40'
-      original-url: https://www.unation.com/fl/tampa-bay
+      last_visited: '2024-03-09T11:19:02'
       pinned: false
       scroll-pos:
         x: 0
-        y: 217
+        y: 0
       title: 'Things to do in Tampa Bay: Top Events, Attractions & More'
       url: https://www.unation.com/fl/tampa-bay/
+      zoom: 1.0
+  - history:
+    - active: true
+      last_visited: '2024-03-09T11:19:03'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: Upcoming Events – Florida State Fair
+      url: https://floridastatefair.com/events/
       zoom: 1.0
