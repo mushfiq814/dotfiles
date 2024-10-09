@@ -147,52 +147,6 @@ return {
     end
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    enabled = false,
-    main = "ibl",
-    event = 'VeryLazy',
-    opts = function()
-      vim.opt.list = true
-      vim.opt.termguicolors = true
-
-      return {
-        debounce = 100,
-        -- Special Characters: '│' '█' '▏'
-        indent = { char = "▏", highlight = { "Whitespace", "NonText" }, },
-        whitespace = { highlight = { "Whitespace", "NonText" } },
-        exclude = {
-          filetypes = { "help", "alpha", "dashboard", "Trouble", "lazy" },
-        },
-      }
-    end
-  },
-  {
-    'folke/twilight.nvim',
-    enabled = false,
-    opts = {
-      {
-        dimming = {
-          alpha = 0.50, -- amount of dimming
-          -- we try to get the foreground from the highlight groups or fallback color
-          color = { "Normal", "#ffffff" },
-          term_bg = "#dbdbdb", -- if guibg=NONE, this will be used to calculate text color
-          inactive = false,    -- when true, other windows will be fully dimmed (unless they contain the same buffer)
-        },
-        context = 10,          -- amount of lines we will try to show around the current line
-        treesitter = true,     -- use treesitter when available for the filetype
-        -- treesitter is used to automatically expand the visible text,
-        -- but you can further control the types of nodes that should always be fully expanded
-        expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
-          "function",
-          "method",
-          "table",
-          "if_statement",
-        },
-        exclude = {}, -- exclude these filetypes
-      }
-    }
-  },
-  {
     'folke/zen-mode.nvim',
     keys = {
       { "<leader>x", "<CMD>ZenMode<CR>", desc = "Toggle ZenMode" },
@@ -277,15 +231,6 @@ return {
     },
   },
   {
-    'edluffy/hologram.nvim',
-    lazy = true,
-    opts = function()
-      return {
-        auto_display = true
-      }
-    end
-  },
-  {
     '3rd/image.nvim',
     lazy = true,
     event = 'VeryLazy',
@@ -320,48 +265,6 @@ return {
       tmux_show_only_in_active_window = false,                                            -- auto show/hide images in the correct Tmux window (needs visual-activity off)
       hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
     }
-  },
-  {
-    'goolord/alpha-nvim',
-    enabled = false,
-    event = 'VimEnter',
-    opts = function()
-      local dashboard = require 'alpha.themes.dashboard'
-
-      dashboard.section.buttons.val = {
-        dashboard.button("i", "  New file", ":enew<CR>"),
-        dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
-        dashboard.button("v", "הּ  Vim Options", ":Telescope vim_options<CR>"),
-        dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
-        dashboard.button("s", "  Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-        dashboard.button("q", "  Quit", ":qa<CR>"),
-      }
-
-      local function padding(value)
-        return {
-          type = "padding",
-          val = value,
-        }
-      end
-
-      dashboard.config = {
-        layout = {
-          padding(2),
-          dashboard.section.header,
-          padding(2),
-          dashboard.section.buttons,
-          padding(3),
-          dashboard.section.footer,
-        },
-        opts = {
-          margin = 5,
-          noautocmd = true,
-        },
-      }
-
-      dashboard.section.header.val = require('config/utils/ascii_art')
-      return dashboard.config
-    end
   },
   {
     'nvimdev/dashboard-nvim',
