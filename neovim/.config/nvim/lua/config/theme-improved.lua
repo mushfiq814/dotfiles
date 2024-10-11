@@ -1,47 +1,24 @@
-local color_utils = require("config/utils/color-utils")
+local utils_found, color_utils = pcall(require, "config/utils/color-utils")
+if not utils_found then
+  vim.notify("[theme]: error loading color utils.")
+  return
+end
+
+local colors_found, palette = pcall(require, 'config/colors')
+if not colors_found then
+  vim.notify('[theme]: please generate colors file using the colorscheme script')
+  return
+end
+
 local adjustColor = color_utils.adjustColor
 local colorInterpolate = color_utils.colorInterpolate
 local blend = color_utils.blend
-
-local palette = {
-  theme          = "tokyonight",
-  mode           = "dark",
-  accent         = "#f7768e",
-  black          = "#15161e",
-  grey0          = "#2e303d",
-  grey1          = "#464a5c",
-  grey2          = "#5f647b",
-  grey3          = "#777d99",
-  grey4          = "#9097b8",
-  grey5          = "#a8b1d7",
-  white          = "#c0caf5",
-  bright_red     = "#ff8daa",
-  neutral_red    = "#f7768e",
-  faded_red      = "#db4b4b",
-  bright_green   = "#bdf77f",
-  neutral_green  = "#9ece6a",
-  faded_green    = "#7ea454",
-  bright_yellow  = "#ffd27c",
-  neutral_yellow = "#e0af68",
-  faded_yellow   = "#b38c53",
-  bright_blue    = "#92c2ff",
-  neutral_blue   = "#6183bb",
-  faded_blue     = "#6181c5",
-  bright_purple  = "#bb9af7",
-  neutral_purple = "#9d7cd8",
-  faded_purple   = "#957bc5",
-  bright_aqua    = "#7dcfff",
-  neutral_aqua   = "#41a6b5",
-  faded_aqua     = "#64a5cc",
-  bright_orange  = "#ffb093",
-  neutral_orange = "#ff9e64",
-  faded_orange   = "#914c54",
-}
 
 local DEBUG = false
 
 local colors = {}
 if DEBUG then
+  -- actual tokyonight colors
   colors = {
     none = "NONE",
     bg = "#24283b",
@@ -80,6 +57,7 @@ if DEBUG then
     },
   }
 else
+  -- my color associations from palette
   local greys = colorInterpolate(palette.black, palette.white, 8)
   colors = {
     none = "NONE",
