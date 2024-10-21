@@ -80,3 +80,11 @@ fi
 if [ -d "$HOME/.config/emacs/bin" ]; then
   export PATH="$PATH:$HOME/.config/emacs/bin"
 fi
+
+# deno
+if [ -d "$HOME/.deno/bin" ]; then
+  export PATH="$PATH:$HOME/.deno/bin"
+fi
+if [[ ":$FPATH:" != *":/Users/mumahmud/.config/zsh/completions:"* ]];
+  then export FPATH="/Users/mumahmud/.config/zsh/completions:$FPATH";
+fi

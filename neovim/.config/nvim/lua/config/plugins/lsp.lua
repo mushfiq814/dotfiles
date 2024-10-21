@@ -103,13 +103,22 @@ return {
       })
 
       for _, server in ipairs(servers) do
+        if server == "denols" then
+          lspconfig.denols.setup {
+            on_attach = function(client, bufnr)
+              navic.attach(client, bufnr)
+            end,
+            root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+          }
         -- TODO: find way to enable inlay hints globally
         -- and combine all lsp setup into one loop
-        if server == "ts_ls" then
+        elseif server == "ts_ls" then
           lspconfig.ts_ls.setup {
             on_attach = function(client, bufnr)
               navic.attach(client, bufnr)
             end,
+            root_dir = lspconfig.util.root_pattern("package.json"),
+            single_file_support = false,
             init_options = {
               preferences = {
                 includeInlayParameterNameHints = 'all',
