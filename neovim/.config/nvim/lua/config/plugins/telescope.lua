@@ -106,6 +106,15 @@ return {
               "--glob", "!yarn.lock",
             },
           },
+          grep_string = {
+            additional_args = {
+              "--hidden",         -- include hidden files
+              "--glob", "!.git/", -- don't include .git directory
+              "--glob", "!packages/deprecated/",
+              "--glob", "!yarn.lock",
+            },
+          },
+
         },
       }
     end,
