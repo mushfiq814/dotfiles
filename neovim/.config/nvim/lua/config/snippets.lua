@@ -10,8 +10,18 @@ local fmta = require("luasnip/extras/fmt").fmta
 luasnip.add_snippets("all", {
   s(
     {
+      trig = "ale",
+      dscr = "Link Jira ALE3 Ticket using Slug",
+    },
+    fmt("[ALE3-{}](https://billsdev.atlassian.net/browse/ALE3-{})", {
+      luasnip.i(1),
+      rep(1),
+    })
+  ),
+  s(
+    {
       trig = "ffam",
-      dscr = "Link Jira Ticket using Slug",
+      dscr = "Link Jira FFAM Ticket using Slug",
     },
     fmt("[FFAM-{}](https://billsdev.atlassian.net/browse/FFAM-{})", {
       luasnip.i(1),
