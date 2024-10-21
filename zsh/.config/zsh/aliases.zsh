@@ -22,18 +22,19 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # git aliases
-alias ga='git add'
-alias gs='git status'
-alias gl=prettyGitLog
-alias gc='git commit'
-alias gb='git branch'
 alias gd=fuzzyGitDiff
-alias gsl=fuzzyGitStash
+alias gl=prettyGitLog
+alias gs='git status'
+alias gr='git restore'
 
 alias gco=fuzzyGitCheckout
 alias gfo='git fetch origin'
 alias gpo=fuzzyGitPullOrigin
-alias gpush=fuzzyGitPushOrigin
+alias gph=fuzzyGitPushOrigin
+alias gsl=fuzzyGitStash
+alias gss='git stash push'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
 
 # silent mode for make (suppress output)
 alias make='make -s'
