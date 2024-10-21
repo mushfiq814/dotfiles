@@ -71,6 +71,9 @@ alt - down : /usr/local/bin/spotify-macos toggle
 alt - left : /usr/local/bin/spotify-macos prev
 alt - right : /usr/local/bin/spotify-macos next
 
+# screensaver with mpv
+alt + shift - s : 'ls' ~/pics/wallpapers/videos/*.mov | shuf -n 1 - | mpv --loop --fullscreen --playlist=-
+
 # colorscheme picker
 alt - c : /usr/local/bin/colorscheme choose
 
