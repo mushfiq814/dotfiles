@@ -1,7 +1,7 @@
 return {
   {
     'github/copilot.vim',
-    enabled = false,
+    enabled = true,
     keys = {
       {
         '<C-J>',
@@ -72,7 +72,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     branch = "canary",
     dependencies = {
