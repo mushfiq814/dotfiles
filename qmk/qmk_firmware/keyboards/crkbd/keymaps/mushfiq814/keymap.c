@@ -1,58 +1,25 @@
-/*
-Copyright 2019 @foostan
-Copyright 2020 Drashna Jaelre <@drashna>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include QMK_KEYBOARD_H
 
-#ifdef OLED_ENABLE
-bool oled_task_user(void) {
-    oled_write_P(PSTR("Layer: "), false);
+#ifndef MOD_TAP_MACROS_H
+#define MOD_TAP_MACROS_H
 
-    switch (get_highest_layer(layer_state)) {
-        case 0:
-            oled_write_P(PSTR("Default\n"), false);
-            break;
-        case 1:
-            oled_write_P(PSTR("FN\n"), false);
-            break;
-        case 2:
-            oled_write_P(PSTR("ADJ\n"), false);
-            break;
-        default:
-            // Or use the write_ln shortcut over adding '\n' to the end of your string
-            oled_write_ln_P(PSTR("Undefined"), false);
-    }
+#define MLCMD(key) MT(MOD_LGUI, KC_##key)
+#define MRCMD(key) MT(MOD_RGUI, KC_##key)
+#define MLSFT(key) MT(MOD_LSFT, KC_##key)
+#define MRSFT(key) MT(MOD_RSFT, KC_##key)
+#define MLALT(key) MT(MOD_LALT, KC_##key)
+#define MRALT(key) MT(MOD_RALT, KC_##key)
+#define MLCTL(key) MT(MOD_LCTL, KC_##key)
+#define MRCTL(key) MT(MOD_RCTL, KC_##key)
 
-    // Host Keyboard LED Status
-    led_t led_state = host_keyboard_led_state();
-    oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
-    oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-    oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
-
-    return false;
-}
-#endif
+#endif // MOD_TAP_MACROS_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+      KC_LSFT,MLCMD(A),MLALT(S),MLSFT(D),MLCTL(F),    KC_G,                     MRCTL(H),MRSFT(J),MRALT(K),MRCMD(L), KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
