@@ -16,10 +16,27 @@ local function navicTags()
   end
 end
 
+local function treesitterTags()
+  local treesitterStatusLoaded, treesitterStatus = pcall(require, 'nvim-treesitter.statusline')
+  if treesitterStatusLoaded then
+    local current_tag = treesitterStatus.statusline({
+      indicator_size = 100,
+      type_patterns = { 'class', 'function', 'method', 'object', 'pair' },
+      transform_fn = function(line, _)
+        return line:gsub('%s*[%[%(%{]*%s*$', '')
+      end,
+      separator = ' > ',
+      allow_duplicates = false
+    })
+    return " %#winbarTags# > " .. current_tag .. "%#winbarTags# %#Normal#"
+  end
+end
+
 function MyWinbar()
   return table.concat({
     filename(),
-    navicTags(),
+    -- navicTags(),
+    treesitterTags(),
   })
 end
 
