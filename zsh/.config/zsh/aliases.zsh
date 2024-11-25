@@ -49,7 +49,7 @@ alias brc='v ~/.bashrc'
 alias zrc='v ~/.config/zsh/.zshrc'
 alias vrc='v /etc/vim/vimrc'
 alias nvrc='v ~/.config/nvim/init.vim'
-alias trc='v ~/.tmux.conf'
+alias trc='v ~/.config/tmux/tmux.conf'
 
 # filesystem aliases
 
