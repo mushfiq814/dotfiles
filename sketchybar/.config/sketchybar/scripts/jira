@@ -1,28 +1,35 @@
 #!/bin/bash
 
-# shellcheck source=../colors
+# shellcheck source=/Users/mumahmud/.config/sketchybar/colors
 source "$HOME/.config/sketchybar/colors"
-
-SCRIPTS="$HOME/.config/sketchybar/scripts"
 
 CACHE="$HOME/.config/sketchybar/scripts/jira-curr-sprint"
 
-get_from_jira_api() {
-  JIRA_API_TOKEN=$(cat "$HOME/.secrets/JIRA_API_TOKEN")
-  export JIRA_API_TOKEN
+SPRINT_NAME_KEY="t rex"
+JIRA_URL="https://billsdev.atlassian.net"
+JIRA_USERNAME="mumahmud@achieve.com"
 
+get_sprint_with_jira_cli() {
   SPRINT=$(
     jira sprint list \
       --state active \
       --table --plain --no-headers \
       --columns name,end \
-      | grep -i "t rex"
-  )
+      | grep -i "t rex")
+  TZ_FORMAT='%Y-%m-%d %H:%M:%S'
+}
 
-  SPRINT_NAME_FULL=$(echo "$SPRINT" | cut -d $'\t' -f 1)
-  SPRINT_NAME_SHORT=$(echo "$SPRINT_NAME_FULL" | grep -i "sprint \d\+" -o)
-  SPRINT_END_DATE=$(echo "$SPRINT" | tr -s "\t" | cut -d $'\t' -f 2)
+get_sprint_with_curl() {
+  SPRINT=$(
+  curl \
+    --request GET \
+    --url "$JIRA_URL/rest/agile/1.0/board/797/sprint?state=active" \
+    --user "$JIRA_USERNAME:$JIRA_API_TOKEN" \
+    | jq -r ".values.[] | select(.name | test(\"$SPRINT_NAME_KEY\"; \"i\")) | .name+\"\t\"+.endDate")
+  TZ_FORMAT='%Y-%m-%dT%H:%M:%S'
+}
 
+get_sprint_issues_with_jira_cli() {
   SPRINT_ISSUES=$(
     jira issue list \
       --plain --no-headers \
@@ -31,6 +38,18 @@ get_from_jira_api() {
       -t~Sub-Task \
       --columns KEY,SUMMARY,STATUS,TYPE
   )
+}
+
+get_from_jira_api() {
+  JIRA_API_TOKEN=$(cat "$HOME/.secrets/JIRA_API_TOKEN")
+  export JIRA_API_TOKEN
+
+  get_sprint_with_curl
+
+  SPRINT_NAME_FULL=$(echo "$SPRINT" | cut -d $'\t' -f 1)
+  SPRINT_NAME_SHORT=$(echo "$SPRINT_NAME_FULL" | grep -i "sprint \d\+" -o)
+  SPRINT_END_DATE=$(echo "$SPRINT" | tr -s "\t" | cut -d $'\t' -f 2)
+
 
   ISSUES_ARRAY=$(echo "$SPRINT_ISSUES" | awk -F '[\t]\+' '{
     print "{ \"key\": \"" $1 "\", \
@@ -67,12 +86,22 @@ if [[ "$SPRINT_NAME_SHORT" == "" ]]; then
 else
   # get sprint end and current timestamps
   CURR_TS=$(date +%s)
-  END_TS=$(date -j -f '%Y-%m-%d %H:%M:%S' "$SPRINT_END_DATE" +'%s')
+  END_TS=$(date -j -f "$TZ_FORMAT" "$SPRINT_END_DATE" +'%s')
 
   # calculate number of days
-  DIFF=$(( ($END_TS - $CURR_TS) / (24 * 60 * 60) + 1))
+  DIFF=$(( (END_TS - CURR_TS) / (24 * 60 * 60) + 1 ))
 
-  NOTIFY="$SPRINT_NAME_SHORT 󰔛 $DIFF day(s)  $SPRINT_ISSUES_LENGTH"
+  NOTIFY="$SPRINT_NAME_SHORT"
+
+  if [[ $DIFF -eq 0 ]]; then
+    NOTIFY="$NOTIFY 󰔛 ENDS TODAY"
+  elif [[ $DIFF -lt 0 ]]; then
+    NOTIFY="$NOTIFY 󰔛 $((DIFF * -1)) day(s) ago"
+  else
+    NOTIFY="$NOTIFY 󰔛 $DIFF day(s)"
+  fi
+
+  NOTIFY="$NOTIFY  $SPRINT_ISSUES_LENGTH"
 fi
 
 sketchybar -m \
@@ -137,16 +166,15 @@ for i in $(seq 0 $((SPRINT_ISSUES_LENGTH - 1))); do
       icon.color="$icon_color" \
       label="$status_text $key: $summary" \
       label.color="$label_color" \
-      click_script="sketchybar -m --set $NAME popup.drawing=off; open https://billsdev.atlassian.net/browse/$key"
+      click_script="sketchybar -m --set $NAME popup.drawing=off; open $JIRA_URL/browse/$key"
 done
 
-# TODO: add refresh button
-# currently, the refresh button is not working. probably the $NAME is not being passed correctly
-# sketchybar \
-#   --add item "jira.issues.refresh" "popup.$NAME" \
-#   --set "jira.issues.refresh" \
-#     icon= \
-#     icon.color="0xff${YELLOW0:1}" \
-#     label="Refresh" \
-#     click_script="sketchybar -m --set $NAME popup.drawing=off; rm -rf \"$CACHE\" && export NAME=$NAME && $SCRIPTS/jira"
+sketchybar \
+  --add item "jira.issues.refresh" "popup.$NAME" \
+  --set "jira.issues.refresh" \
+    icon="" \
+    icon.color="0xff${RED0:1}" \
+    label="Refresh" \
+    label.color="0xff${RED1:1}" \
+    click_script="sketchybar -m --set $NAME popup.drawing=off; rm -rf \"$CACHE\" && osascript -e 'display notification \"cache deleted\" with title \"sketchybar\"'"
 
