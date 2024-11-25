@@ -2,6 +2,9 @@
 # shellcheck source-path=scripts/colorscheme
 
 THEME_FILE="$1" # theme file containing colors
+BRIGHT_ACCENT="$2" # bright accent color
+NEUTRAL_ACCENT="$3" # neutral accent color
+FADED_ACCENT="$4" # faded accent color
 
 # shellcheck source=../colors/debug
 source "$THEME_FILE"
@@ -11,9 +14,40 @@ TMUX_COLORS_FILE="$HOME/.config/tmux/colors.conf"
 # tmux: set colors file
 echo "COLORSCHEME: setting tmux colors"
 cat << EOF > "$TMUX_COLORS_FILE"
-setenv -g brightorange "$BRIGHT_ORANGE"
-setenv -g neutralorange "$NEUTRAL_ORANGE"
-setenv -g fadedorange "$FADED_ORANGE"
+setenv -g BLACK "$BLACK"
+setenv -g GREY0 "$GREY0"
+setenv -g GREY1 "$GREY1"
+setenv -g GREY2 "$GREY2"
+setenv -g GREY3 "$GREY3"
+setenv -g GREY4 "$GREY4"
+setenv -g GREY5 "$GREY5"
+setenv -g WHITE "$WHITE"
+setenv -g BRIGHT_BLUE "$BRIGHT_BLUE"
+setenv -g NEUTRAL_BLUE "$NEUTRAL_BLUE"
+setenv -g FADED_BLUE "$FADED_BLUE"
+setenv -g BRIGHT_GREEN "$BRIGHT_GREEN"
+setenv -g NEUTRAL_GREEN "$NEUTRAL_GREEN"
+setenv -g FADED_GREEN "$FADED_GREEN"
+setenv -g BRIGHT_ORANGE "$BRIGHT_ORANGE"
+setenv -g NEUTRAL_ORANGE "$NEUTRAL_ORANGE"
+setenv -g FADED_ORANGE "$FADED_ORANGE"
+setenv -g BRIGHT_AQUA "$BRIGHT_AQUA"
+setenv -g NEUTRAL_AQUA "$NEUTRAL_AQUA"
+setenv -g FADED_AQUA "$FADED_AQUA"
+setenv -g BRIGHT_PURPLE "$BRIGHT_PURPLE"
+setenv -g NEUTRAL_PURPLE "$NEUTRAL_PURPLE"
+setenv -g FADED_PURPLE "$FADED_PURPLE"
+setenv -g BRIGHT_YELLOW "$BRIGHT_YELLOW"
+setenv -g NEUTRAL_YELLOW "$NEUTRAL_YELLOW"
+setenv -g FADED_YELLOW "$FADED_YELLOW"
+setenv -g BRIGHT_RED "$BRIGHT_RED"
+setenv -g NEUTRAL_RED "$NEUTRAL_RED"
+setenv -g FADED_RED "$FADED_RED"
+setenv -g BRIGHT_ACCENT "$BRIGHT_ACCENT"
+setenv -g NEUTRAL_ACCENT "$NEUTRAL_ACCENT"
+setenv -g FADED_ACCENT "$FADED_ACCENT"
+
+# vim:ft=tmux
 EOF
 
 # reload tmux
