@@ -97,5 +97,6 @@ o.shellcmdflag = "-ic"
 vim.filetype.add({
   extension = {
     ['http'] = 'http',
+    ['mdx'] = 'markdown',
   },
 })

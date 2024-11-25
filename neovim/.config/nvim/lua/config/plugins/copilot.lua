@@ -84,9 +84,9 @@ return {
       show_help = "yes",
       model = 'gpt-4', -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
       temperature = 0.1, -- GPT temperature
-      question_header = '## Mushfiq ', -- Header to use for user questions
-      answer_header = '## Copilot Chat ', -- Header to use for AI answers
-      error_header = '## Error ', -- Header to use for errors
+      question_header = '##   Mushfiq ', -- Header to use for user questions
+      answer_header = '## 󰚩  Copilot Chat ', -- Header to use for AI answers
+      error_header = '##   Error ', -- Header to use for errors
       separator = '───', -- Separator to use in chat
       prompts = {
         Explain = {

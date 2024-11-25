@@ -6,13 +6,12 @@ end
 
 vim.bo.syntax = 'ON'
 vim.opt.termguicolors = true
+vim.cmd('highlight clear')
+vim.cmd('syntax reset')
 
 -- edited from https://github.com/RRethy/nvim-base16/
 local utils = require('config/utils/color-utils')
 
-if vim.fn.exists('syntax_on') then
-  vim.cmd('syntax reset')
-end
 local hi               = utils.highlight
 local darkerbg         = utils.darken(colors.black, 0.1)
 local darkercursorline = utils.darken(colors.grey0, 0.1)
