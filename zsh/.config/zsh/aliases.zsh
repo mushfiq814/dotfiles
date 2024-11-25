@@ -8,10 +8,10 @@ alias pacsearch='sudo pacman -Ss'
 # safe move
 alias mv='mv -n'
 
-# exa (an ls alternative); NOTE: overrides the ls aliases
-alias ls='exa --oneline --icons'
-alias la='exa --long --all --icons'
-alias lg='exa --long --all --icons --git'
+# eza (an ls alternative); NOTE: overrides the ls aliases
+alias ls='eza --oneline --icons'
+alias la='eza --long --all --icons'
+alias lg='eza --long --all --icons --git'
 
 # bat (a cat alternative)
 alias cat='bat --theme base16'
