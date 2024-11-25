@@ -41,7 +41,7 @@ sketchybar --default           \
   label.color="0xFF${WHITE:1}"
 
 # Spaces
-SPACE_ICONS=("" "" "" "" "" "")
+SPACE_ICONS=("" "" "" "" "")
 for i in "${!SPACE_ICONS[@]}"
 do
   sid=$((i+1))
