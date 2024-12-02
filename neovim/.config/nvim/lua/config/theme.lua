@@ -422,6 +422,8 @@ hi["@markup.underline"] = "@text.underline"
 hi['@markdown_check_undone']               = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@markdown_check_done']                 = { guifg = colors.bright_green, guibg = nil, gui = nil, guisp = nil }
 hi['@markdown_list_marker']                = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
+hi['@markup.raw.markdown_inline']          = { guifg = darkeraccent, guibg = utils.lighten(colors.grey0, 0.1), gui = "bold", guisp = nil }
+hi['@markdown_code_span_delimiter']        = { guifg = darkeraccent, guibg = utils.lighten(colors.grey0, 0.1), gui = "bold", guisp = nil }
 hi['@none']                                = { guifg = colors.bright_yellow, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.bracket']                 = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }
 hi['@punctuation.delimiter']               = { guifg = darkeraccent, guibg = nil, gui = nil, guisp = nil }

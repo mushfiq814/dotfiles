@@ -12,4 +12,6 @@
 )
 (code_span
   (code_span_delimiter) @markdown_code_span_delimiter
-  (#set! conceal ""))
+  (#set! conceal " ")
+)
+(code_span (_) @markdown_code_span)
