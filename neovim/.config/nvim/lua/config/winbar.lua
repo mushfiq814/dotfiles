@@ -2,7 +2,7 @@ local function filename()
   local filename_base = vim.fn.expand("%:t")
   if filename_base == '' then filename_base = '[scratch buffer]' end
   if vim.bo.modified then
-    filename_base = filename_base .. " %#winbarFileNameModified# ● %#Normal#"
+    filename_base = filename_base .. " %#winbarFileNameModified#  %#Normal#"
   end
   return "%#winbarFileName# " .. filename_base .. " %#Normal#"
 end

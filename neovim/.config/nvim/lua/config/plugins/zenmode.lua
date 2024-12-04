@@ -6,40 +6,37 @@ return {
     },
     opts = {
       window = {
-        backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
         -- height and width can be:
         -- * an absolute number of cells when > 1
         -- * a percentage of the width / height of the editor when <= 1
         -- * a function that returns the width or the height
-        width = 80, -- width of the Zen window
-        height = 1, -- height of the Zen window
-        -- by default, no options are changed for the Zen window
-        -- uncomment any of the options below, or add other vim.wo options you want to apply
-        options = {
-          signcolumn = 'no',      -- disable/enable signcolumn
-          number = false,         -- disable/enable number column
-          relativenumber = false, -- disable/enable relative numbers
-          cursorline = false,     -- disable/enable cursorline
-          cursorcolumn = false,   -- disable/enable cursor column
-          foldcolumn = '0',       -- disable/enable fold column
-          list = false,           -- disable/enable whitespace characters
-          wrap = true,            -- disable/enable line wrap
-        },
+        width = 80,
+        height = 1,
       },
       plugins = {
-        -- disable some global vim options (vim.o...)
-        options = {
-          enabled = true,
-          ruler = false,                -- disables the ruler text in the cmd line area
-          showcmd = false,              -- disables the command in the last line of the screen
-        },
-        gitsigns = { enabled = false }, -- disables/enables git signs
-        tmux = { enabled = true },      -- disables the tmux statusline
+        tmux = { enabled = true },
       },
       -- callback where you can add custom code when the Zen window opens
-      -- on_open = function(win) end,
+      on_open = function(win)
+        vim.opt.signcolumn = "no"
+        vim.o.laststatus = 0
+        vim.opt.number = false
+        vim.opt.wrap = true
+        vim.opt.list = false
+        vim.opt.scrolloff = 999
+        vim.opt.cursorline = false
+      end,
       -- callback where you can add custom code when the Zen window closes
-      -- on_close = function() end,
+      on_close = function()
+        vim.opt.signcolumn = "auto"
+        vim.o.laststatus = 3
+        vim.opt.number = true
+        vim.opt.wrap = false
+        vim.opt.list = true
+        vim.opt.scrolloff = 0
+        vim.opt.cursorline = true
+        vim.fn.system([[tmux set status on]])
+      end,
     },
   },
 }

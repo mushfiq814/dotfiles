@@ -96,7 +96,7 @@ local function filename()
   local file = vim.fn.expand("%:~:.")
   if vim.bo.modified then
     file = file .. statusString({
-      { " ● ", "statusLineFileNameModified" },
+      { "  ", "statusLineFileNameModified" },
     })
   end
   return statusString({

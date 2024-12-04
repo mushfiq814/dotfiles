@@ -366,38 +366,12 @@ hi.CmpItemKindFile                    = { guifg = colors.black, guibg = colors.b
 hi.CmpItemKindFolder                  = { guifg = colors.black, guibg = colors.bright_yellow, gui = nil, guisp = nil }
 
 -- markdown
-local function getMdTitleHighlight(level)
-  local darkenFactor = 0.05
-  local titleDarkenFactors = {
-    darkenFactor * 0,
-    darkenFactor * 1,
-    darkenFactor * 2,
-    darkenFactor * 3,
-    darkenFactor * 4,
-    darkenFactor * 5,
-  }
-
-  return {
-    guifg = utils.darken(colors.bright_aqua, titleDarkenFactors[level]),
-    guibg = nil,
-    gui = 'bold',
-    guisp = nil,
-  }
-end
-
-hi['@markup.heading.1']                        = getMdTitleHighlight(1)
-hi['@markup.heading.2']                        = getMdTitleHighlight(2)
-hi['@markup.heading.3']                        = getMdTitleHighlight(3)
-hi['@markup.heading.4']                        = getMdTitleHighlight(4)
-hi['@markup.heading.5']                        = getMdTitleHighlight(5)
-hi['@markup.heading.6']                        = getMdTitleHighlight(6)
-
-hi['@markup.heading.1.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@markup.heading.2.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@markup.heading.3.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@markup.heading.4.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@markup.heading.5.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
-hi['@markup.heading.6.marker']                 = { guifg = colors.grey3, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.1']                        = { guifg = colors.bright_orange, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.2']                        = { guifg = colors.bright_yellow, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.3']                        = { guifg = colors.bright_green, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.4']                        = { guifg = colors.bright_aqua, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.5']                        = { guifg = colors.bright_blue, guibg = nil, gui = 'bold', guisp = nil }
+hi['@markup.heading.6']                        = { guifg = colors.bright_purple, guibg = nil, gui = 'bold', guisp = nil }
 
 hi['@text.reference']                      = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
 hi['@text.literal']                        = { guifg = colors.bright_purple, guibg = nil, gui = nil, guisp = nil }
