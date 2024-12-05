@@ -1,11 +1,11 @@
 -- remove list chars for improved readability
-vim.opt.list = false
+vim.opt_local.list = false
 
 -- tabs & spaces
-vim.opt.shiftwidth = 2  -- of spaces to use for each step of (auto)indent (>>, <<)
-vim.opt.tabstop = 2     -- of spaces that a <Tab> counts for
-vim.opt.softtabstop = 2 -- of spaces that a <Tab> counts while editing
-vim.o.breakindentopt = 'list:-1'
+vim.opt_local.shiftwidth = 2  -- of spaces to use for each step of (auto)indent (>>, <<)
+vim.opt_local.tabstop = 2     -- of spaces that a <Tab> counts for
+vim.opt_local.softtabstop = 2 -- of spaces that a <Tab> counts while editing
+vim.opt_local.breakindentopt = 'list:-1'
 
 -- keybindings
 local keymap = vim.keymap.set
