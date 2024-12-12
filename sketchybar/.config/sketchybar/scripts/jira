@@ -26,7 +26,7 @@ get_sprint_with_curl() {
     --url "$JIRA_URL/rest/agile/1.0/board/797/sprint?state=active" \
     --user "$JIRA_USERNAME:$JIRA_API_TOKEN" \
     | jq -r ".values.[] | select(.name | test(\"$SPRINT_NAME_KEY\"; \"i\")) | .name+\"\t\"+.endDate")
-  TZ_FORMAT='%Y-%m-%dT%H:%M:%S'
+  TZ_FORMAT='%Y-%m-%dT%H:%M:%S.000Z'
 }
 
 get_sprint_issues_with_jira_cli() {
@@ -62,6 +62,7 @@ get_from_jira_api() {
     ".sprint_name_full=\"$SPRINT_NAME_FULL\"
     | .sprint_name_short=\"$SPRINT_NAME_SHORT\"
     | .sprint_end_date=\"$SPRINT_END_DATE\"
+    | .timezone_format=\"$TZ_FORMAT\"
     | .issues=$ISSUES_ARRAY" > "$CACHE"
 }
 
@@ -72,6 +73,10 @@ if [[ "$CACHED" == "" ]]; then
   get_from_jira_api
   CACHED=$(cat "$CACHE" 2> /dev/null)
   # sketchybar -m --set "$NAME" label="parsing..."
+fi
+
+if [[ "$TZ_FORMAT" == "" ]]; then
+  TZ_FORMAT=$(echo "$CACHED" | jq -r ".timezone_format")
 fi
 
 SPRINT_NAME_FULL=$(echo "$CACHED" | jq -r ".sprint_name_full")
