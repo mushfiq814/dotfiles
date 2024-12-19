@@ -10,37 +10,6 @@ local fmta = require("luasnip/extras/fmt").fmta
 luasnip.add_snippets("all", {
   s(
     {
-      trig = "ale",
-      dscr = "Link Jira ALE3 Ticket using Slug",
-    },
-    fmt("[ALE3-{}](https://billsdev.atlassian.net/browse/ALE3-{})", {
-      luasnip.i(1),
-      rep(1),
-    })
-  ),
-  s(
-    {
-      trig = "ffam",
-      dscr = "Link Jira FFAM Ticket using Slug",
-    },
-    fmt("[FFAM-{}](https://billsdev.atlassian.net/browse/FFAM-{})", {
-      luasnip.i(1),
-      rep(1),
-    })
-  ),
-  s(
-    {
-      trig = "slack",
-      dscr = "generate branch deployment notification for slack",
-    },
-    fmt("@here deploying `{}` branch of `{}` to {}", {
-      luasnip.i(1),
-      luasnip.i(2),
-      luasnip.i(3),
-    })
-  ),
-  s(
-    {
       trig = "time",
       dscr = "Insert the current time",
     },
@@ -60,7 +29,7 @@ luasnip.add_snippets("markdown", {
     {
       trig = "dd",
       name = "diary link",
-      dscr = "Create diary link [txt](date).",
+      dscr = "Create diary link (date).",
     },
     fmt("* [{}]({}){}", {
       luasnip.i(1),

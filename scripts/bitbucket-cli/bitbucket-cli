@@ -4,8 +4,8 @@ $.verbose = false;
 import { $, argv } from "zx";
 import chalk from "chalk";
 
-const WORKSPACE = "billsdotcom_bills"
-const REPO_SLUG = "ffam-integration-spinwheel"
+const WORKSPACE = "WORKSPACE"
+const REPO_SLUG = "REPO_SLUG"
 const BASE_URL = `https://api.bitbucket.org/2.0/repositories/${WORKSPACE}/${REPO_SLUG}`;
 
 const TOKEN_FILE = `${process.env.HOME}/.secrets/BITBUCKET_ACCESS_TOKEN`;

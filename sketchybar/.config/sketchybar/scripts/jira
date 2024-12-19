@@ -5,9 +5,9 @@ source "$HOME/.config/sketchybar/colors"
 
 CACHE="$HOME/.config/sketchybar/scripts/jira-curr-sprint"
 
-SPRINT_NAME_KEY="t rex"
-JIRA_URL="https://billsdev.atlassian.net"
-JIRA_USERNAME="mumahmud@achieve.com"
+SPRINT_NAME_KEY="SPRINT-TEAM"
+JIRA_URL="https://<EXAMPLE>.atlassian.net"
+JIRA_USERNAME="USERNAME"
 
 get_sprint_with_jira_cli() {
   SPRINT=$(
