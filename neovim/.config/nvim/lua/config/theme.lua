@@ -597,3 +597,22 @@ hi.NvimTreeSpecialFile          = { guifg = colors.bright_yellow, gui = "bold" }
 hi.NvimTreeSymlink              = { guifg = colors.bright_purple, gui = "bold" }
 hi.NvimTreeSymlinkIcon          = "NONE"
 hi.NvimTreeWindowPicker         = { guifg = colors.white, guibg = colors.neutral_blue, gui = "bold" }
+
+-- neotest
+hi.NeotesTDir           = { guifg = colors.bright_aqua }
+hi.NeotestFile          = { guifg = colors.bright_blue }
+hi.NeotestTest          = { guifg = colors.bright_yellow }
+hi.NeotestFailed        = { guifg = colors.bright_red }
+hi.NeotestMarked        = { guifg = colors.faded_red, gui = "bold" }
+hi.NeotestPassed        = { guifg = colors.bright_green }
+-- hi.NeotestTarget        = { guifg = }
+hi.NeotestFocused       = { gui = "bold,italic" }
+hi.NeotestRunning       = { guifg = colors.bright_orange }
+hi.NeotestSkipped       = { guifg = colors.bright_purple }
+hi.NeotestUnknown       = { guifg = colors.bright_green }
+-- hi.NeotestWatching      = { guifg = }
+hi.NeotestNamespace     = { guifg = colors.bright_purple }
+-- hi.NeotestWinSelect     = { guifg = }
+hi.NeotestAdapterName   = { guifg = darkeraccent }
+hi.NeotestIndent        = { guifg = colors.bright_red }
+hi.NeotestExpandMarker  = { guifg = colors.bright_red }
