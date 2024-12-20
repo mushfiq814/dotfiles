@@ -40,6 +40,7 @@ return {
         incremental_selection = { enable = true },
         indent = { enable = true },
       }
+      vim.treesitter.language.register('markdown', 'octo')
     end
   },
   {
