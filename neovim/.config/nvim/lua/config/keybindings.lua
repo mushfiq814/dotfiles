@@ -41,7 +41,7 @@ keymap('n', '<leader>J', '<C-w>J', opts)
 keymap('n', '<leader>K', '<C-w>K', opts)
 keymap('n', '<leader>L', '<C-w>L', opts)
 -- new tab
-keymap('n', '<leader>t', ':tabnew<CR>', opts)
+keymap('n', '<leader>tt', ':tabnew<CR>', opts)
 -- focus current window to full screen
 keymap('n', '<C-w>F', ':wincmd _ | :wincmd |<CR>', opts)
 -- make all splits equal; should do the opposite of <C-w>F

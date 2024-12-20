@@ -92,6 +92,7 @@ return {
           find_files = {
             find_command = {
               "rg",
+              "--sortr=modified",
               "--hidden",         -- include hidden files
               "--glob", "!.git/", -- don't include .git directory
               "--glob", "!packages/deprecated/",

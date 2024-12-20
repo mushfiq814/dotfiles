@@ -16,6 +16,7 @@ return {
         "css",
         "html",
         "lua",
+        "yaml",
       },
       user_default_options = {
         RGB = true,           -- #RGB hex codes
