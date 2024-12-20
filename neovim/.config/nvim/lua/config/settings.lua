@@ -60,6 +60,9 @@ w.cursorline = true
 o.splitright = true
 o.splitbelow = true
 
+-- inlay hints
+vim.lsp.inlay_hint.enable()
+
 -- GUI
 if vim.g.neovide then
   -- Helper function for transparency formatting

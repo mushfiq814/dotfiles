@@ -70,6 +70,11 @@ return {
         "<CMD>lua vim.diagnostic.goto_next()<CR>",
         desc = "Go to next diagnostic in file"
       },
+      {
+        "<leader>lh",
+        "<CMD>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+        desc ="Toggle [l]sp inlay [h]ints",
+      },
     },
     dependencies = {
       "williamboman/mason.nvim",
@@ -121,14 +126,16 @@ return {
             single_file_support = false,
             init_options = {
               preferences = {
+                importModuleSpecifierPreference = 'non-relative',
+                includeInlayEnumMemberValueHints = false,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayFunctionParameterTypeHints = false,
+                ---@type "all" | "none" | "literals"
                 includeInlayParameterNameHints = 'all',
                 includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-                importModuleSpecifierPreference = 'non-relative',
+                includeInlayPropertyDeclarationTypeHints = false,
+                includeInlayVariableTypeHints = false,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
               },
             },
           }

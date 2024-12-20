@@ -201,6 +201,7 @@ hi.LspDiagnosticsUnderlineError       = 'DiagnosticUnderlineError'
 hi.LspDiagnosticsUnderlineWarning     = 'DiagnosticUnderlineWarning'
 hi.LspDiagnosticsUnderlineInformation = 'DiagnosticUnderlineInformation'
 hi.LspDiagnosticsUnderlineHint        = 'DiagnosticUnderlineHint'
+hi.LspInlayHint                       = { guifg = colors.grey4, guibg = 'none', gui = 'bold,italic', guisp = nil }
 
 hi.TSAnnotation                       = { guifg = colors.faded_orange, guibg = nil, gui = 'none', guisp = nil }
 hi.TSAttribute                        = { guifg = colors.bright_yellow, guibg = nil, gui = 'none', guisp = nil }
